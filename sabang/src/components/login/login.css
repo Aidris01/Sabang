@@ -1,0 +1,33 @@
+.parent-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(./img/back.jpg); width: 50vw; height: 52,5vw;
+    background-size: cover;
+}
+
+.login-form {
+    width: 400px;
+    height: 20px;
+    display: block;
+    position: absolute;
+    top: 40%;
+    right: 63%;
+}
+.login-image {
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    top: 45%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+}
+.login-form h3 {
+    font-family: 'Courier New', Courier, monospace;
+    display: block;
+    position: absolute;
+    bottom: 200%;
+    left: 35%;
+}

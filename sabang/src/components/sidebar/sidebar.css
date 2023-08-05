@@ -1,0 +1,41 @@
+.sidebar {
+    overflow: auto;
+    display: block;
+    height: 91vh;
+    width: 250px;
+    position: fixed;
+    left: 0;
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.list-menu {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: white;
+    color: gray;
+}
+.ant-menu-item:hover {
+    color: black !important;
+}
+.ant-menu-submenu:hover>.ant-menu-item {
+    color: black !important;
+}
+.ant-menu-submenu-title:hover {
+    color: black;
+}
+.ant-menu-submenu-selected>.ant-menu-item-selected {
+    color: white !important;
+}
+.ant-menu-item-selected {
+    color: white !important;
+    background-color: lightskyblue !important;
+}
+.ant-menu-submenu-selected>.ant-menu-submenu-title {
+    background-color: lightskyblue;
+    color: white !important;
+}
+.ant-menu-submenu-selected>.ant-menu-submenu-title:hover {
+    background-color: lightskyblue !important;
+    color: black !important;
+}

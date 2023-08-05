@@ -1,0 +1,85 @@
+.App {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  position: sticky;
+  top: 0px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.15);
+  background-color: lightskyblue;
+}
+.header h5{
+  color: white;
+  position: absolute;
+  left: 70px;
+  top: -1px;
+}
+.user-img {
+  justify-content: space-between;
+  width: 55px;
+  position: absolute;
+  left: 5px;
+  top: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 100%;
+}
+.logout-img {
+  justify-content: space-between;
+  width: 35px;
+  position: absolute;
+  top: 12px;
+  right: 10px;
+}
+.dashboard {
+  max-width: none;
+  padding-left: 250px;
+}
+.sidebar {
+  overflow: auto;
+  display: block;
+  height: 91vh;
+  width: 250px;
+  position: fixed;
+  left: 0;
+}
+.sidebar-dashboard {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.list-menu {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: white;
+  color: gray;
+}
+.ant-menu-item:hover {
+  color:  black !important;
+}
+.ant-menu-submenu:hover > .ant-menu-item {
+  color: black !important;
+}
+
+.ant-menu-submenu-title:hover {
+  color: black;
+}
+.ant-menu-submenu-selected > .ant-menu-item-selected{
+  color: white !important;
+}
+.ant-menu-item-selected {
+  color: white !important;
+  background-color: lightskyblue !important;
+}
+.ant-menu-submenu-selected > .ant-menu-submenu-title {
+  background-color: lightskyblue;
+  color: white !important;
+}
+.ant-menu-submenu-selected > .ant-menu-submenu-title:hover {
+  background-color: lightskyblue !important;
+  color: black !important;
+}
