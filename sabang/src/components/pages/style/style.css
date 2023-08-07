@@ -16,6 +16,7 @@
 }
 .ant-table-cell {
     width: 120px;
+    background-color: rgba(196, 231, 255, 0.2);
 }
 .ant-table-wrapper {
     padding: 15px;
