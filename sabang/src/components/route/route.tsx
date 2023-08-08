@@ -26,7 +26,7 @@ import WarehouseManagement from "../pages/WarehouseMan/WarehouseManagement";
 function AppRoute() {
     return (
         <Routes>
-            <Route path="/" element={<Dashboard />}></Route>
+            <Route path="/Dashboard" element={<Dashboard />}></Route>
 
             <Route path="/ListUser" element={<ListUser />}></Route>
             <Route path="/ManagementVillage" element={<ManagementVillage />}></Route>

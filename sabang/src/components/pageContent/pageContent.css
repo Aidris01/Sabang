@@ -4,3 +4,7 @@
     justify-content: flex-start;
     align-items: flex-start;
   }
+  .page {
+    display: flex;
+    flex-direction: column;
+  }

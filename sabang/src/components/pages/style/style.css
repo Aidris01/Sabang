@@ -1,3 +1,13 @@
+.page-content {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.page {
+    display: flex;
+    flex-direction: column;
+}
 .content {
     max-width: none;
     padding-left: 255px;
@@ -8,7 +18,7 @@
 }
 .dashboard-page {
     position: absolute;
-    padding-top: 70px;
+    padding-top: 55px;
 }
 .ant-card {
     width: 245px;
@@ -20,4 +30,5 @@
 }
 .ant-table-wrapper {
     padding: 15px;
+    padding-top: 20px;
 }

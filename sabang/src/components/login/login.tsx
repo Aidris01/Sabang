@@ -1,5 +1,5 @@
 import 'antd/dist/reset.css';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 import bg from './img/bg.jpg';
 import './login.css';
 
@@ -42,11 +42,6 @@ function Login() {
                         >
                             <Input.Password />
                         </Form.Item>
-
-                        <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-                            <Checkbox>Remember me</Checkbox>
-                        </Form.Item>
-
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                             <Button type="primary" htmlType="submit">
                                 Sign In
