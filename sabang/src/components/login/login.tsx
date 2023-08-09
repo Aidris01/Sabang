@@ -26,6 +26,7 @@ function Login() {
                         onFinish={onFinish}
                         onFinishFailed={onFinishFailed}
                         autoComplete="off"
+                        key='/'
                     >
                         <Form.Item
                             label="Username"

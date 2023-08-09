@@ -1,13 +1,3 @@
-.page-content {
-    display: flex;
-    flex: 1;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-.page {
-    display: flex;
-    flex-direction: column;
-}
 .content {
     max-width: none;
     padding-left: 255px;
