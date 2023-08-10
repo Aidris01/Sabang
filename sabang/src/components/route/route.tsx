@@ -20,8 +20,11 @@ import Purchase from "../pages/PurchaseICS/Purchase";
 import Tappers from "../pages/Tappers/Tappers";
 import AssignmentRole from "../pages/UserManagement/AssignmentRole";
 import AssignmentTapper from "../pages/UserManagement/AssignmentTappper";
-import ListUser from "../pages/UserManagement/ListUser";
-import ManagementVillage from "../pages/UserManagement/ManagementVillage";
+import CreateUser from "../pages/UserManagement/ListUser/CreateUser";
+import CreateUserBulk from "../pages/UserManagement/ListUser/CreateUserBulk";
+import ListUser from "../pages/UserManagement/ListUser/ListUser";
+import CreateVillage from "../pages/UserManagement/ManagementVillage/CreateVillage";
+import ManagementVillage from "../pages/UserManagement/ManagementVillage/ManagementVillage";
 import Roles from "../pages/UserManagement/Roles";
 import Village from "../pages/Village/Village";
 import WarehouseManagement from "../pages/WarehouseMan/WarehouseManagement";
@@ -265,6 +268,38 @@ function AppRoute() {
                     </Space>
                 </div>
             }></Route>
+
+            <Route path="/ListUser/CreateUser" element={
+                <div className='page'>
+                    <Header />
+                    <Space className='page-content'>
+                        <SideBar />
+                        <CreateUser />
+                    </Space>
+                </div>
+            }></Route>
+
+            <Route path="/ListUser/CreateUserBulk" element={
+                <div className='page'>
+                    <Header />
+                    <Space className='page-content'>
+                        <SideBar />
+                        <CreateUserBulk />
+                    </Space>
+                </div>
+            }>
+
+            </Route>
+            <Route path="/ManagementVillage/CreateVillage" element= {
+                <div className='page'>
+                <Header />
+                <Space className='page-content'>
+                    <SideBar />
+                    <CreateVillage />
+                </Space>
+            </div>
+            }>
+            </Route>
         </Routes>
     )
 }

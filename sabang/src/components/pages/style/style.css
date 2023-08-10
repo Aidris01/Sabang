@@ -1,6 +1,7 @@
 .content {
     max-width: none;
-    padding-left: 255px;
+    padding-left: 260px;
+    padding-top: 10px;
     display: flex;
     flex: 1;
     justify-content: flex-start;
@@ -21,4 +22,52 @@
 .ant-table-wrapper {
     padding: 15px;
     padding-top: 20px;
+}
+.list-user {
+    position: fixed;
+    top: 90px;
+    width: 1000px
+}
+.user-table {
+    display: flex;
+    justify-items: center;
+    flex: 1;
+    flex-direction: column;
+}
+.create-btn {
+    margin: 1px;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+.create-user {
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 20px;
+    width: 800px;
+}
+.save-btn {
+    margin-top: 10px;
+    width: 100px;
+    margin-left: 10px;
+    position: relative;
+    left: 570px;
+}
+.cancel-btn {
+    margin-top: 10px;
+    width: 100px;
+    margin-left: 10px;
+    position: relative;
+    left: 570px;
+}
+
+.management-village {
+    position: fixed;
+    top: 110px;
+    width: 1000px
+}
+.create-village {
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 50px;
+    width: 800px;
 }

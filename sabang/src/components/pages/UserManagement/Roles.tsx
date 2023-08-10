@@ -5,8 +5,8 @@ import '../../pages/style/style.css'
 function Roles() {
   return (
     <div className='content'>
-      <div className='roles'>
       <Typography.Title level={4}>Roles</Typography.Title>
+      <div className='roles'>
       </div>
     </div>
   )

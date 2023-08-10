@@ -2,6 +2,7 @@ import 'antd/dist/reset.css';
 import { Button, Form, Input } from 'antd';
 import bg from './img/bg.jpg';
 import './login.css';
+import { useNavigate } from 'react-router-dom';
 
 const onFinish = (values: any) => {
     console.log('Success:', values);
@@ -12,6 +13,11 @@ const onFinishFailed = (errorInfo: any) => {
 };
 
 function Login() {
+
+    const navigate = useNavigate();
+    const signIn = () => {
+        navigate("/Dashboard")
+    }
     return (
         <div>
             <div className='parent-container'>
@@ -44,7 +50,7 @@ function Login() {
                             <Input.Password />
                         </Form.Item>
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                            <Button type="primary" htmlType="submit">
+                            <Button type="primary" htmlType="submit" onClick={signIn}>
                                 Sign In
                             </Button>
                         </Form.Item>
