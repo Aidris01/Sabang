@@ -51,7 +51,7 @@ function SideBar() {
               { label: "List User", key: "/ListUser", icon: <SearchOutlined /> },
               { label: "Management Village", key: "/ManagementVillage", icon: <HomeOutlined /> },
               { label: "Assignment Roles", key: "/AssignmentRole", icon: <ReadOutlined /> },
-              { label: "Roles", key: "/Role", icon: <ApartmentOutlined /> },
+              { label: "Roles", key: "/Roles", icon: <ApartmentOutlined /> },
               { label: "Assignment Tapper", key: "/AssignmentTapper", icon: <TagsOutlined /> }
             ]
           },

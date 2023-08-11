@@ -56,7 +56,7 @@ function ManagementVillage() {
     <div className='content'>
       <Typography.Title level={4}>Management Village</Typography.Title>
       <div className='management-village'>
-        <Button onClick={createVillage}>Create New</Button>
+        <Button className='create-btn' onClick={createVillage}>Create New</Button>
         <div className='village-table'>
           <Table
           columns={columns}

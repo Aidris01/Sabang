@@ -72,8 +72,8 @@ function ListUser() {
       <Typography.Title level={4}>List User</Typography.Title>
       <div className='list-user'>
         <Space>
-          <Button className='create-btn' onClick={createUser}>Create User</Button>
-          <Button className='create-btn' onClick={createBulk}>Create User Bulk</Button>
+          <Button className='create-btn-user' onClick={createUser}>Create User</Button>
+          <Button className='create-btn-user' onClick={createBulk}>Create User Bulk</Button>
         </Space>
         <div className='user-table'>
           <Table

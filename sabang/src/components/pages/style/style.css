@@ -36,6 +36,11 @@
 }
 .create-btn {
     margin: 1px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.create-btn-user {
+    margin: 1px;
     margin-top: 20px;
     margin-left: 15px;
 }
@@ -59,7 +64,6 @@
     position: relative;
     left: 570px;
 }
-
 .management-village {
     position: fixed;
     top: 110px;
@@ -70,4 +74,34 @@
     margin-top: 70px;
     margin-left: 50px;
     width: 800px;
+}
+.roles {
+    position: fixed;
+    top: 110px;
+    width: 1000px
+}
+.role-table {
+    display: flex;
+    justify-items: center;
+    flex: 1;
+    flex-direction: column;
+}
+.assignment-role {
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 20px;
+    width: 800px;
+}
+.assignment-tapper {
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 20px;
+    width: 800px; 
+}
+.save-btn-tap {
+    margin-top: 10px;
+    width: 100px;
+    margin-left: 10px;
+    position: relative;
+    left: 690px;
 }
