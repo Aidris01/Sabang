@@ -30,6 +30,7 @@ import Village from "../pages/Village/Village";
 import WarehouseManagement from "../pages/WarehouseMan/WarehouseManagement";
 import SideBar from "../sidebar/sidebar";
 import './style.css';
+import CreateFactory from "../pages/FactoryManagement/CreateFactory";
 
 
 function AppRoute() {
@@ -300,7 +301,15 @@ function AppRoute() {
                 </div>
             }>
             </Route>
-
+            <Route path="/FactoryManagement/CreateFactory" element={
+                <div className='page'>
+                    <Header />
+                    <Space className='page-content'>
+                        <SideBar />
+                        <CreateFactory />
+                    </Space>
+                </div>
+            }></Route>
         </Routes>
     )
 }

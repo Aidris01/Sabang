@@ -1,7 +1,10 @@
 {
   "dependencies": {
+    "@react-google-maps/api": "^2.19.2",
+    "@types/google-map-react": "^2.1.7",
     "antd": "^5.7.3",
     "create-react-app": "^1.2.1",
+    "dotenv": "^16.3.1",
     "google-maps-react": "^2.0.6"
   }
 }

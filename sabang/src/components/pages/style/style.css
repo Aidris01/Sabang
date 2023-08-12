@@ -105,3 +105,14 @@
     position: relative;
     left: 690px;
 }
+.factory-management {
+    position: fixed;
+    top: 110px;
+    width: 1000px
+}
+.create-factory {
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 20px;
+    width: 800px; 
+}
