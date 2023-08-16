@@ -13,8 +13,10 @@ function AssignmentRole() {
     <div className='content'>
       <Typography.Title level={4}>Assignment Roles</Typography.Title>
       <div className='assignment-role'>
-        <Form hideRequiredMark
-        >
+        <Form 
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        hideRequiredMark>
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item

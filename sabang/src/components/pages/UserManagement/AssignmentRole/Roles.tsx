@@ -33,21 +33,25 @@ function Roles() {
     {
       key: '2',
       title: 'Name',
-      dataIndex: 'name'
+      dataIndex: 'name',
+      width: 900
     },
     {
       key: '3',
       title: 'Rule Name',
-      dataIndex: 'ruleName'
+      dataIndex: 'ruleName',
+      width: 900
     },
     {
       key: '4',
       title: 'Description',
-      dataIndex: 'description'
+      dataIndex: 'description',
+      width: 700
     },
     {
       key: '4',
       title: 'Action',
+      width: 400,
       render: () => {
         return <>
           <EditOutlined />
@@ -64,6 +68,7 @@ function Roles() {
         <Button className='create-btn' onClick={createRole}>Create Role</Button>
         <div className='role-table'>
           <Table
+            size='small'
             columns={columns}
             dataSource={dataSource}></Table>
         </div>

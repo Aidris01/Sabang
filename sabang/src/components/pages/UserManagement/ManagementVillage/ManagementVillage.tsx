@@ -33,16 +33,19 @@ function ManagementVillage() {
     {
       key: '2',
       title: 'Name',
-      dataIndex: 'name'
+      dataIndex: 'name',
+      width: 900
     },
     {
       key: '3',
       title: 'Village Code',
-      dataIndex: 'villageCode'
+      dataIndex: 'villageCode',
+      width: 900
     },
     {
       key: '4',
       title: 'Action',
+      width: 400,
       render: () => {
         return <>
           <EditOutlined />
@@ -59,6 +62,7 @@ function ManagementVillage() {
         <Button className='create-btn' onClick={createVillage}>Create New</Button>
         <div className='village-table'>
           <Table
+          size='small'
           columns={columns}
           dataSource={dataSource}
           ></Table>

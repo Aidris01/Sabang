@@ -72,8 +72,8 @@
 .create-village {
     position: absolute;
     margin-top: 70px;
-    margin-left: 50px;
-    width: 800px;
+    margin-left: 30px;
+    width: 550px;
 }
 .roles {
     position: fixed;
@@ -111,6 +111,44 @@
     width: 1000px
 }
 .create-factory {
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 20px;
+    width: 800px; 
+}
+.warehouse-management {
+    position: fixed;
+    top: 110px;
+    width: 1000px
+}
+.create-warehouse {
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 20px;
+    width: 800px;
+}
+.price-list {
+    position: fixed;
+    top: 110px;
+    width: 1000px
+}
+.create-price {
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 20px;
+    width: 800px; 
+}
+.status-payment {
+    position: fixed;
+    top: 110px;
+    width: 1000px
+}
+.checklist {
+    position: fixed;
+    top: 110px;
+    width: 1000px;
+}
+.create-checklist {
     position: absolute;
     margin-top: 60px;
     margin-left: 20px;

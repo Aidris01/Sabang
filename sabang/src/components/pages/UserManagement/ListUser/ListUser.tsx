@@ -43,17 +43,20 @@ function ListUser() {
     {
       key: '2',
       title: 'Username',
-      dataIndex: 'username'
+      dataIndex: 'username',
+      width: 600
     },
     {
       key: '3',
       title: 'Farmer Code',
-      dataIndex: 'farmerCode'
+      dataIndex: 'farmerCode',
+      width: 700
     },
     {
       key: '4',
       title: 'E-Mail',
-      dataIndex: 'email'
+      dataIndex: 'email',
+      width: 600
     },
     {
       key: '5',
@@ -77,6 +80,7 @@ function ListUser() {
         </Space>
         <div className='user-table'>
           <Table
+            size='small'
             columns={columns}
             dataSource={dataSource}
           >

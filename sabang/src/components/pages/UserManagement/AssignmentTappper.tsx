@@ -8,6 +8,8 @@ function AssignmentTapper() {
       <Typography.Title level={4}>Assignment Tapper</Typography.Title>
       <div className='assignment-tapper'>
         <Form
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
           hideRequiredMark>
           <Form.Item
             label="Tapper Name"

@@ -13,8 +13,9 @@ function CreateVillage() {
             <Typography.Title level={4}>Create Village</Typography.Title>
             <div className='create-village'>
                 <Form
-                    hideRequiredMark
-                >
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 16 }}
+                    hideRequiredMark>
                     <Form.Item
                         label="Name"
                         name="name"

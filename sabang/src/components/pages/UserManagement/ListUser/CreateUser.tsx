@@ -16,7 +16,9 @@ function CreateUser() {
             <Typography.Title level={4}>Create User</Typography.Title>
             <div className='create-user'>
                 <Form
-                    hideRequiredMark>
+                    hideRequiredMark
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 16 }}>
                     <Row gutter={16}>
                         <Col span={12}>
                             <Form.Item
@@ -125,13 +127,15 @@ function CreateUser() {
                                 rules={[{ required: true, message: "Please input your Acc Number!" }]}
                             ><Input /></Form.Item>
                         </Col>
+                        <Col span={12}>
+                            <Form.Item
+                                label="Address"
+                                name="address"
+                                rules={[{ required: true, message: "Please input your address!" }]}
+                            ><TextArea rows={5} autoSize={{minRows: 3, maxRows: 6}} />
+                            </Form.Item>
+                        </Col>
                     </Row>
-                    <Form.Item
-                        label="Address"
-                        name="address"
-                        rules={[{ required: true, message: "Please input your address!" }]}
-                    ><TextArea rows={4} />
-                    </Form.Item>
                     <Space size={10}>
                         <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
                         <Button className='cancel-btn' danger onClick={listUser}>Cancel</Button>

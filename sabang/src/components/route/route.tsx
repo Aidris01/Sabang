@@ -12,7 +12,7 @@ import FactoryManagement from "../pages/FactoryManagement/FactoryManagement";
 import KPI from "../pages/KPI/KPI";
 import Nira from "../pages/Nira/Nira";
 import NotFound from "../pages/NotFound/NotFound";
-import PriceList from "../pages/PaymentManagement/PriceList";
+import PriceList from "../pages/PaymentManagement/PriceList/PriceList";
 import StatusPayment from "../pages/PaymentManagement/StatusPay";
 import Production from "../pages/Production/Production";
 import ICS from "../pages/PurchaseICS/ICS";
@@ -31,6 +31,9 @@ import WarehouseManagement from "../pages/WarehouseMan/WarehouseManagement";
 import SideBar from "../sidebar/sidebar";
 import './style.css';
 import CreateFactory from "../pages/FactoryManagement/CreateFactory";
+import CreateWarehouse from "../pages/WarehouseMan/CreateWarehouse";
+import CreatePrice from "../pages/PaymentManagement/PriceList/CreatePrice";
+import CreateChecklist from "../pages/Checklist/CreateChecklist";
 
 
 function AppRoute() {
@@ -309,9 +312,40 @@ function AppRoute() {
                         <CreateFactory />
                     </Space>
                 </div>
-            }></Route>
+            }>
+            </Route>
+            <Route path="/WarehouseManagement/CreateWarehouse" element={
+                <div className="page">
+                    <Header />
+                    <Space className="page-content">
+                        <SideBar />
+                        <CreateWarehouse />
+                    </Space>
+                </div>
+            }>
+            </Route>
+            <Route path="/PriceList/CreatePrice" element={
+                <div className="page">
+                    <Header />
+                    <Space className="page-content">
+                        <SideBar />
+                        <CreatePrice />
+                    </Space>
+                </div>
+            }>
+            </Route>
+            <Route path="/Checklist/CreateChecklist" element= {
+                <div className="page">
+                <Header />
+                <Space className="page-content">
+                    <SideBar />
+                    <CreateChecklist />
+                </Space>
+            </div>
+            }
+            >
+            </Route>
         </Routes>
     )
 }
-
 export default AppRoute;

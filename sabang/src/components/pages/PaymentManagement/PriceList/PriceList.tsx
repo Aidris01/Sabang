@@ -2,33 +2,33 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import '../../pages/style/style.css'
+import '../../../pages/style/style.css'
 
-function Checklist() {
+function PriceList() {
   const navigate = useNavigate()
-  const createChecklist = () => {
-    navigate("/Checklist/CreateChecklist")
+  const createPrice = () => {
+    navigate("/PriceList/CreatePrice")
   }
   const [dataSource, setDataSource] = useState([
     {
       id: 1,
-      name: "Kualitas Kebersihan dan Fotonya"
+      sugarLevel: '11.0',
+      price: "IDR 1,300,00"
     },
     {
       id: 2,
-      name: "Foto tempat meletakan lodong"
+      sugarLevel: '14.0',
+      price: "IDR 1,600,00"
     },
     {
       id: 3,
-      name: "Foto tempat meletakan alat potong"
+      sugarLevel: '12.0',
+      price: 'IDR 1,400,00'
     },
     {
       id: 4,
-      name: "Foto catatan hasil panen"
-    },
-    {
-      id: 5,
-      name: "Ada sampah plastik di kebun ?"
+      sugarLevel: '10.0',
+      price: 'IDR 1,200,00'
     }
   ])
   const columns = [
@@ -39,14 +39,20 @@ function Checklist() {
     },
     {
       key: '2',
-      title: 'Name',
-      dataIndex: 'name',
+      title: 'Sugar Level',
+      dataIndex: 'sugarLevel',
       width: 900
     },
     {
       key: '3',
+      title: 'Price (Rp)',
+      dataIndex: 'price',
+      width: 900
+    },
+    {
+      key: '4',
       title: 'Action',
-      width: 70,
+      width: 600,
       render: () => {
         return <>
           <EditOutlined />
@@ -57,10 +63,10 @@ function Checklist() {
   ]
   return (
     <div className='content'>
-      <Typography.Title level={4}>Checklist</Typography.Title>
-      <div className='checklist'>
-        <Button className='create-btn' onClick={createChecklist}>Create New</Button>
-        <div className='checklist-table'>
+      <Typography.Title level={4}>Price List</Typography.Title>
+      <div className='price-list'>
+        <Button className='create-btn' onClick={createPrice}>Create New</Button>
+        <div className='price-table'>
           <Table
             size='small'
             columns={columns}
@@ -72,4 +78,4 @@ function Checklist() {
   )
 }
 
-export default Checklist
+export default PriceList

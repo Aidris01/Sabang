@@ -32,16 +32,19 @@ function FactoryManagement() {
     {
       key: '2',
       title: 'Name',
-      dataIndex: 'name'
+      dataIndex: 'name',
+      width: 900
     },
     {
       key: '3',
       title: 'Address',
-      dataIndex: 'address'
+      dataIndex: 'address',
+      width: 900
     },
     {
       key: '4',
       title: 'Action',
+      width: 400,
       render: () => {
         return <>
           <EditOutlined />
@@ -58,6 +61,7 @@ function FactoryManagement() {
         <Button className='create-btn' onClick={createFactory}>Create New</Button>
         <div className='factory-table'>
           <Table
+          size='small'
           columns={columns}
           dataSource={dataSource}></Table>
         </div>

@@ -21,6 +21,8 @@ function CreateFactory() {
       <Typography.Title level={4}>Create Factory</Typography.Title>
       <div className='create-factory'>
         <Form
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
           hideRequiredMark>
           <Row gutter={16}>
             <Col span={12}>
