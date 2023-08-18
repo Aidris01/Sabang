@@ -1,6 +1,6 @@
 .content {
     max-width: none;
-    padding-left: 260px;
+    padding-left: 21vw;
     padding-top: 10px;
     display: flex;
     flex: 1;
@@ -9,14 +9,24 @@
 }
 .dashboard-page {
     position: absolute;
+    padding: 10px;
     padding-top: 55px;
+    width: 76vw;
+    background-color: rgba(0, 0, 0, 0.02);
+    border: solid 2px rgba(46, 46, 46, 0.5);
 }
 .ant-card {
-    width: 245px;
+    width: 18vw;
     background-color: rgba(135, 206, 250, 0.3);
 }
+.content h4 {
+    padding: 10px;
+}
+.ant-table-thead .ant-table-cell {
+    background-color: lightskyblue !important;
+    }
 .ant-table-cell {
-    width: 120px;
+    width: 10vw;
     background-color: rgba(196, 231, 255, 0.2);
 }
 .ant-table-wrapper {
@@ -26,7 +36,7 @@
 .list-user {
     position: fixed;
     top: 90px;
-    width: 1000px
+    width: 78vw;
 }
 .user-table {
     display: flex;
@@ -48,37 +58,37 @@
     position: absolute;
     margin-top: 60px;
     margin-left: 20px;
-    width: 800px;
+    width: 65vw;
 }
 .save-btn {
     margin-top: 10px;
-    width: 100px;
+    width: 8vw;
     margin-left: 10px;
     position: relative;
-    left: 570px;
+    left: 45vw;
 }
 .cancel-btn {
     margin-top: 10px;
-    width: 100px;
+    width: 8vw;
     margin-left: 10px;
     position: relative;
-    left: 570px;
+    left: 45vw;
 }
 .management-village {
     position: fixed;
     top: 110px;
-    width: 1000px
+    width: 78vw;
 }
 .create-village {
     position: absolute;
     margin-top: 70px;
     margin-left: 30px;
-    width: 550px;
+    width: 50vw;
 }
 .roles {
     position: fixed;
     top: 110px;
-    width: 1000px
+    width: 78vw;
 }
 .role-table {
     display: flex;
@@ -90,67 +100,67 @@
     position: absolute;
     margin-top: 60px;
     margin-left: 20px;
-    width: 800px;
+    width: 65vw;
 }
 .assignment-tapper {
     position: absolute;
     margin-top: 60px;
     margin-left: 20px;
-    width: 800px; 
+    width: 65vw; 
 }
 .save-btn-tap {
     margin-top: 10px;
-    width: 100px;
+    width: 8vw;
     margin-left: 10px;
     position: relative;
-    left: 690px;
+    left: 56vw;
 }
 .factory-management {
     position: fixed;
     top: 110px;
-    width: 1000px
+    width: 78vw;
 }
 .create-factory {
     position: absolute;
     margin-top: 60px;
     margin-left: 20px;
-    width: 800px; 
+    width: 65vw; 
 }
 .warehouse-management {
     position: fixed;
     top: 110px;
-    width: 1000px
+    width: 78vw;
 }
 .create-warehouse {
     position: absolute;
     margin-top: 60px;
     margin-left: 20px;
-    width: 800px;
+    width: 65vw;
 }
 .price-list {
     position: fixed;
     top: 110px;
-    width: 1000px
+    width: 78vw;
 }
 .create-price {
     position: absolute;
     margin-top: 60px;
     margin-left: 20px;
-    width: 800px; 
+    width: 65vw; 
 }
 .status-payment {
     position: fixed;
     top: 110px;
-    width: 1000px
+    width: 78vw;
 }
 .checklist {
     position: fixed;
     top: 110px;
-    width: 1000px;
+    width: 78vw;
 }
 .create-checklist {
     position: absolute;
     margin-top: 60px;
     margin-left: 20px;
-    width: 800px; 
+    width: 65vw; 
 }
