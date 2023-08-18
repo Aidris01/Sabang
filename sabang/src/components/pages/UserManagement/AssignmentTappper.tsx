@@ -16,7 +16,7 @@ function AssignmentTapper() {
             name="tapperName"
             rules={[{ required: true, message: "Please select the tapper!" }]}>
             <Select
-              placeholder="Select Village Code"
+              placeholder="Select Tapper"
               allowClear
               placement="bottomLeft"
               listHeight={200}
@@ -61,7 +61,7 @@ function AssignmentTapper() {
             name="collectorName"
             rules={[{ required: true, message: "Please select the collector!" }]}>
             <Select
-              placeholder="Select Village Code"
+              placeholder="Select Collector"
               allowClear
               placement="bottomLeft"
               listHeight={200}

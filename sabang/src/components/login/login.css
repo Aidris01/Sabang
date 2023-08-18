@@ -4,7 +4,7 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-image: url(./img/back.jpg); width: 50vw; height: 52,5vw;
+    background-image: url(./img/back.jpg); width: 50vw; height: 52.7vw;
     background-size: cover;
 }
 .login-form {
@@ -12,14 +12,14 @@
     height: 20px;
     display: block;
     position: absolute;
-    top: 40%;
-    right: 63%;
+    top: 21vw;
+    right: 63vw;
 }
 .login-image {
-    width: 600px;
-    height: 600px;
+    width: 49vw;
+    height: 51vw;
     position: absolute;
-    top: 45%;
+    top: 49%;
     left: 75%;
     transform: translate(-50%, -50%);
 }

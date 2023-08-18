@@ -51,8 +51,8 @@ function CreateFactory() {
             </Col>
           </Row>
           <Space size={8}>
-            <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
-            <Button className='cancel-btn' danger onClick={factoryManagement}>Cancel</Button>
+            <Button className='save-btn-factory' type='primary' htmlType='submit'>Save</Button>
+            <Button className='cancel-btn-factory' danger onClick={factoryManagement}>Cancel</Button>
           </Space>
         </Form>
       </div>

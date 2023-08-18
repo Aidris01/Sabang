@@ -51,8 +51,8 @@ function CreateWarehouse() {
                         </Col>
                     </Row>
                     <Space size={8}>
-                        <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
-                        <Button className='cancel-btn' danger onClick={warehouseManagement}>Cancel</Button>
+                        <Button className='save-btn-warehouse' type='primary' htmlType='submit'>Save</Button>
+                        <Button className='cancel-btn-warehouse' danger onClick={warehouseManagement}>Cancel</Button>
                     </Space>
                 </Form>
             </div>
