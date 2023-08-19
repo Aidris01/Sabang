@@ -34,11 +34,11 @@ import Layout from "../layout/layout";
 import './style.css';
 
 
-function AppRoute() {
+function AppRouteBackup() {
     return (
         <Routes>
             <Route path="/" element={<Login />} />
-            
+
             <Route path="/Dashboard" element={<Layout>{<Dashboard />}</Layout>} />
             <Route path="/ListUser" element={<Layout>{<ListUser />}</Layout>} />
             <Route path="/ManagementVillage" element={<Layout>{<ManagementVillage />}</Layout>} />
@@ -74,4 +74,4 @@ function AppRoute() {
         </Routes>
     )
 }
-export default AppRoute;
+export default AppRouteBackup;

@@ -1,0 +1,11 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+  }
+.content {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
