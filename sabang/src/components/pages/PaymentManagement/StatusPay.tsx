@@ -1,5 +1,5 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons'
-import { Table, Typography } from 'antd'
+import { EyeOutlined } from '@ant-design/icons'
+import { Button, Table, Typography } from 'antd'
 import React, { useState } from 'react'
 import '../../pages/style/style.css'
 
@@ -26,11 +26,7 @@ function StatusPayment() {
       key: '2',
       title: 'Detail',
       width: 30,
-      render: () =>{
-        return <>
-        <EyeOutlined />
-        </>
-      }
+      render: () => <Button type='text'><EyeOutlined /></Button>
     },
     {
       key: '3',
@@ -48,12 +44,7 @@ function StatusPayment() {
       key: '5',
       title: 'Action',
       width: 600,
-      render: () => {
-        return <>
-          <EditOutlined />
-          <DeleteOutlined style={{ color: 'red', marginLeft: 12 }} />
-        </>
-      }
+      render: () => <Button>Set As Paid</Button>
     }
   ]
   return (

@@ -1,5 +1,5 @@
 import { Table, TableColumnsType, Typography } from 'antd'
-import React, { useState } from 'react'
+import React from 'react'
 import '../../pages/style/style.css'
 
 interface DataType {
