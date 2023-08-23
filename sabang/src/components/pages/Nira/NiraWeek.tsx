@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
 
-function Nira() {
+function NiraWeek() {
   const navigate = useNavigate()
 
   const niraToday = () => {
@@ -23,6 +23,12 @@ function Nira() {
       createDate: '2023-08-21',
       totalPrice: 'IDR2,900,00'
     },
+    {
+        id: 2,
+        tapper: 'amks.03',
+        createDate: '2023-04-20',
+        totalPrice: 'IDR5,800,00'
+    }
   ])
   const columns = [
     {
@@ -57,7 +63,7 @@ function Nira() {
   ]
   return (
     <div className='content'>
-      <Typography.Title level={4}>Nira Today</Typography.Title>
+      <Typography.Title level={4}>Nira Week</Typography.Title>
       <div className='nira'>
         <Button className='nira-btn' onClick={niraToday}>Nira Today</Button>
         <Button className='nira-btn' onClick={niraWeek}>Nira Week</Button>
@@ -74,4 +80,4 @@ function Nira() {
   )
 }
 
-export default Nira
+export default NiraWeek

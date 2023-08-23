@@ -32,6 +32,9 @@ import CreatePrice from "../pages/PaymentManagement/PriceList/CreatePrice";
 import CreateChecklist from "../pages/Checklist/CreateChecklist";
 import Layout from "../layout/layout";
 import './style.css';
+import NiraWeek from "../pages/Nira/NiraWeek";
+import NiraMonth from "../pages/Nira/NiraMonth";
+import PurchaseFilter from "../pages/Tappers/PurchaseFilter";
 
 
 function AppRoute() {
@@ -61,16 +64,18 @@ function AppRoute() {
             <Route path="/KPI" element={<Layout>{<KPI />}</Layout>} />
             <Route path="/CatatanPetani" element={<Layout>{<CatatanPetani />}</Layout>} />
             <Route path="/CatatanPupuk" element={<Layout>{<CatatanPupuk />}</Layout>} />
+            <Route path="/NiraWeek" element={<Layout>{<NiraWeek />}</Layout>} />
+            <Route path="/NiraMonth" element={<Layout>{<NiraMonth />}</Layout>} />
             <Route path="*" element={<Layout>{<NotFound />}</Layout>} />
 
             <Route path="/ListUser/CreateUser" element={<Layout>{<CreateUser />}</Layout>} />
-
             <Route path="/ListUser/CreateUserBulk" element={<Layout>{<CreateUserBulk />}</Layout>} />
             <Route path="/ManagementVillage/CreateVillage" element={<Layout>{<CreateVillage />}</Layout>} />
             <Route path="/FactoryManagement/CreateFactory" element={<Layout>{<CreateFactory />}</Layout>} />
             <Route path="/WarehouseManagement/CreateWarehouse" element={<Layout>{<CreateWarehouse />}</Layout>} />
             <Route path="/PriceList/CreatePrice" element={<Layout>{<CreatePrice />}</Layout>} />
             <Route path="/Checklist/CreateChecklist" element= {<Layout>{<CreateChecklist />}</Layout>} />
+            <Route path="/Tappers/PurchaseFilter" element= {<Layout>{<PurchaseFilter />}</Layout>} />
         </Routes>
     )
 }

@@ -1,74 +1,70 @@
-import { Table, TableColumnsType, Typography } from 'antd'
-import React from 'react'
+import { EyeOutlined } from '@ant-design/icons'
+import { Button, Table, Typography } from 'antd'
+import React, { useState } from 'react'
 import '../../pages/style/style.css'
 
-interface DataType {
-  key: React.Key;
-  tapperName: string;
-  ICSName: string;
-  long: string;
-  lat: string;
-  createDate: string;
-}
-
-interface ExpandedDataType {
-  key: React.Key;
-  checkName: string;
-  status: string;
-}
-
 function ControlChecklist() {
-  const expandedRowRender = () => {
-    const columns: TableColumnsType<ExpandedDataType> = [
-      { title: 'Check Name', dataIndex: 'checkName', key: 'checkName' },
-      { title: 'Status', dataIndex: 'status', key: ' status' },
-      { title: 'Photo', key: 'photo' }
-    ]
-    const data = [
-      {
-        key: 1,
-        checkName: 'Kualitas kebersihan alat dan fotonya',
-        status: 'Done'
-      }
-    ]
-    return <Table columns={columns} dataSource={data} pagination={false} />
-  }
-
-  const columns: TableColumnsType<DataType> = [
-    { title: 'Tapper Name', dataIndex: 'tapperName', key: 'tapperName' },
-    { title: 'ICS Name', dataIndex: 'ICSName', key: 'ICSName' },
-    { title: 'Long', dataIndex: 'long', key: 'long' },
-    { title: 'Lat', dataIndex: 'lat', key: 'lat' },
-    { title: 'Create Date', dataIndex: 'createDate', key: 'createDate' }
-  ]
-  const data = [
+  const [ data, setData ] = useState([
     {
-      key: 1,
-      tapperName: 'amck.03',
+      id: 1,
+      tapperName: 'amct.01',
       ICSName: 'dedi dedi',
       long: '107.9896661',
       lat: '-7.4093626',
-      createDate: '2020-02-22'
+      createDate: '2020-02-20'
+    }
+  ])
+  const columns = [
+    {
+      key: '1',
+      title: 'ID',
+      dataIndex: 'id'
     },
     {
-      key: 2,
-      tapperName: 'amck.04',
-      ICSName: 'dedi dedi',
-      long: '107.9896661',
-      lat: '-7.4093626',
-      createDate: '2020-02-22'
+      key: '2',
+      title: 'Detail',
+      render: () => <Button type='text'><EyeOutlined /></Button>,
+      width: 30
+    },
+    {
+      key: '3',
+      title: 'Tapper Name',
+      dataIndex: 'tapperName',
+      width: 500
+    },
+    {
+      key: '4',
+      title: 'ICS Name',
+      dataIndex: 'ICSName',
+      width: 300
+    },
+    {
+      key: '5',
+      title: 'Long',
+      dataIndex: 'long',
+      width: 200
+    },
+    {
+      key: '6',
+      title: 'Lat',
+      dataIndex: 'lat',
+      width: 200
+    },
+    {
+      key: '7',
+      title: 'Create Date',
+      dataIndex: 'createDate',
+      width: 200
     }
   ]
-
   return (
     <div className='content'>
       <Typography.Title level={4}>Control Checklist</Typography.Title>
       <div className='control-checklist'>
-        <Table
-          size='small'
-          columns={columns}
-          expandable={{ expandedRowRender, defaultExpandedRowKeys: ['0'] }}
-          dataSource={data}
+        <Table 
+        size='small'
+        columns={columns}
+        dataSource={data}
         />
       </div>
     </div>

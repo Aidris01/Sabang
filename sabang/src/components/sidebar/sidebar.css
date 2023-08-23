@@ -6,10 +6,7 @@
     position: fixed;
     top: 60px;
     left: 0;
-    display: flex;
-    flex: 1;
-    justify-content: flex-start;
-    align-items: flex-start;
+    z-index: 100;
 }
 .list-menu {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
