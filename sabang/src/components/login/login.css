@@ -2,24 +2,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 50vw;
     height: 100vh;
-    background-image: url(./img/back.jpg); width: 50vw; height: 52.7vw;
+    background-image: url(./img/back.jpg);
     background-size: cover;
 }
 .login-form {
-    width: 400px;
+    width: 450px;
     height: 20px;
     display: block;
     position: absolute;
-    top: 21vw;
-    right: 63vw;
+    top: 20vw;
+    right: 62vw;
 }
 .login-image {
     width: 49vw;
     height: 51vw;
     position: absolute;
-    top: 49%;
+    top: 50%;
     left: 75%;
     transform: translate(-50%, -50%);
 }

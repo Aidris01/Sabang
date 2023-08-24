@@ -56,8 +56,7 @@
 .create-user {
     position: absolute;
     margin-top: 50px;
-    margin-left: 10px;
-    width: 65vw;
+    width: 75vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -68,14 +67,14 @@
     width: 8vw;
     margin-left: 10px;
     position: relative;
-    left: 45vw;
+    left: 55vw;
 }
 .cancel-btn {
     margin-top: 10px;
     width: 8vw;
     margin-left: 10px;
     position: relative;
-    left: 45vw;
+    left: 55vw;
 }
 .management-village {
     position: fixed;
@@ -88,26 +87,25 @@
 .create-village {
     position: absolute;
     margin-top: 50px;
-    margin-left: 10vw;
-    width: 50vw;
+    width: 75vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
-    padding: 20px 100px 10px 0px;
+    padding: 10px 150px 10px 0px;
 }
 .save-btn-village {
     margin-top: 10px;
     width: 8vw;
     margin-left: 10px;
     position: relative;
-    left: 30vw;
+    left: 55vw;
 }
 .cancel-btn-village {
     margin-top: 10px;
     width: 8vw;
     margin-left: 10px;
     position: relative;
-    left: 30vw;
+    left: 55vw;
 }
 .roles {
     position: fixed;
@@ -126,8 +124,7 @@
 .assignment-role {
     position: absolute;
     margin-top: 50px;
-    margin-left: 20px;
-    width: 65vw;
+    width: 75vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -136,8 +133,7 @@
 .assignment-tapper {
     position: absolute;
     margin-top: 50px;
-    margin-left: 20px;
-    width: 65vw;
+    width: 75vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -148,7 +144,7 @@
     width: 8vw;
     margin-left: 10px;
     position: relative;
-    left: 50vw;
+    left: 65vw;
 }
 .factory-management {
     position: fixed;
@@ -160,8 +156,7 @@
 }
 .create-factory {
     position: absolute;
-    margin-top: 60px;
-    margin-left: 20px;
+    margin-top: 50px;
     width: 75vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
@@ -192,8 +187,7 @@
 }
 .create-warehouse {
     position: absolute;
-    margin-top: 60px;
-    margin-left: 20px;
+    margin-top: 50px;
     width: 75vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
@@ -224,9 +218,8 @@
 }
 .create-price {
     position: absolute;
-    margin-top: 60px;
-    margin-left: 20px;
-    width: 65vw;
+    margin-top: 50px;
+    width: 75vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -251,8 +244,7 @@
 .create-checklist {
     position: absolute;
     margin-top: 50px;
-    margin-left: 20px;
-    width: 65vw; 
+    width: 75vw; 
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -306,8 +298,7 @@
 .purchase-filter {
     position: absolute;
     margin-top: 50px;
-    margin-left: 20px;
-    width: 65vw;
+    width: 75vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -322,4 +313,28 @@
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
     padding: 20px 150px 10px 0px;
+}
+.not-found {
+    width: 55vw;
+    position: fixed;
+    left: 32vw;
+    top: 10px;
+}
+.production {
+    position: fixed;
+    margin-top: 10px;
+    top: 100px;
+    width: 78vw;
+    background-color: white;
+    border: solid 1px rgba(46, 46, 46, 0.2);
+    border-radius: 5px;
+}
+.create-production {
+    position: absolute;
+    margin-top: 50px;
+    width: 75vw;
+    background-color: white;
+    border: solid 1px rgba(46, 46, 46, 0.2);
+    border-radius: 5px;
+    padding: 10px 20px 20px 0px;
 }

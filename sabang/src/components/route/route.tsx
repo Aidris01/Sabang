@@ -35,6 +35,12 @@ import './style.css';
 import NiraWeek from "../pages/Nira/NiraWeek";
 import NiraMonth from "../pages/Nira/NiraMonth";
 import PurchaseFilter from "../pages/Tappers/PurchaseFilter";
+import TempoProduction from "../pages/Production/TempoProduction";
+import LiquidProduction from "../pages/Production/LiquidProduction";
+import ProductionToday from "../pages/Production/ProductionToday";
+import ProductionWeek from "../pages/Production/ProductionWeek";
+import ProductionMonth from "../pages/Production/ProductionMonth";
+import CreateProduction from "../pages/Production/CreateProduction";
 
 
 function AppRoute() {
@@ -76,6 +82,12 @@ function AppRoute() {
             <Route path="/PriceList/CreatePrice" element={<Layout>{<CreatePrice />}</Layout>} />
             <Route path="/Checklist/CreateChecklist" element= {<Layout>{<CreateChecklist />}</Layout>} />
             <Route path="/Tappers/PurchaseFilter" element= {<Layout>{<PurchaseFilter />}</Layout>} />
+            <Route path="/Production/TempoProduction" element= {<Layout>{<TempoProduction />}</Layout>} />
+            <Route path="/Production/LiquidProduction" element= {<Layout>{<LiquidProduction />}</Layout>} />
+            <Route path="/Production/ProductionToday" element= {<Layout>{<ProductionToday />}</Layout>} />
+            <Route path="/Production/ProductionWeek" element= {<Layout>{<ProductionWeek />}</Layout>} />
+            <Route path="/Production/ProductionMonth" element= {<Layout>{<ProductionMonth />}</Layout>} />
+            <Route path="/Production/CreateProduction" element= {<Layout>{<CreateProduction />}</Layout>} />
         </Routes>
     )
 }
