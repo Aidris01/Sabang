@@ -82,12 +82,12 @@ function TempoProduction() {
             title: 'Action',
             render: () => {
                 return <>
-                    <EyeOutlined />
-                    <PrinterOutlined style={{ marginLeft: 10 }} />
-                    <DeleteOutlined style={{ color: 'red', marginLeft: 10 }} />
+                    <Button type='link' size='small'><EyeOutlined /></Button>
+                    <Button type='link' size='small'><PrinterOutlined /></Button>
+                    <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
                 </>
             },
-            width: 150
+            width: 250
         }
     ]
     return (

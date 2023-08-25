@@ -33,7 +33,7 @@ function Nira() {
     {
       key: '2',
       title: 'Detail',
-      render: () => <Button type='text'><EyeOutlined /></Button>,
+      render: () => <Button type='text' size='small'><EyeOutlined /></Button>,
       width: 30
     },
     {

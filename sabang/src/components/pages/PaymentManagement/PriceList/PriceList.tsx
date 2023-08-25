@@ -52,11 +52,11 @@ function PriceList() {
     {
       key: '4',
       title: 'Action',
-      width: 600,
+      width: 400,
       render: () => {
         return <>
-          <EditOutlined />
-          <DeleteOutlined style={{ color: 'red', marginLeft: 12 }} />
+          <Button type='link' size='small' ><EditOutlined /></Button>
+          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       }
     }

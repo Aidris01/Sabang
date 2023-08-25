@@ -13,8 +13,8 @@ import NotFound from "../pages/NotFound/NotFound";
 import PriceList from "../pages/PaymentManagement/PriceList/PriceList";
 import StatusPayment from "../pages/PaymentManagement/StatusPay";
 import Production from "../pages/Production/Production";
-import ICS from "../pages/PurchaseICS/ICS";
-import Purchase from "../pages/PurchaseICS/Purchase";
+import ICS from "../pages/PurchaseICS/ICS/ICS";
+import Purchase from "../pages/PurchaseICS/Purchase/Purchase";
 import Tappers from "../pages/Tappers/Tappers";
 import AssignmentRole from "../pages/UserManagement/AssignmentRole/AssignmentRole";
 import AssignmentTapper from "../pages/UserManagement/AssignmentTappper";
@@ -41,6 +41,9 @@ import ProductionToday from "../pages/Production/ProductionToday";
 import ProductionWeek from "../pages/Production/ProductionWeek";
 import ProductionMonth from "../pages/Production/ProductionMonth";
 import CreateProduction from "../pages/Production/CreateProduction";
+import PurchaseWeek from "../pages/PurchaseICS/Purchase/PurchaseWeek";
+import ICSTeam from "../pages/PurchaseICS/ICS/ICSTeam";
+import Detail from "../pages/PaymentManagement/Detail";
 
 
 function AppRoute() {
@@ -88,6 +91,10 @@ function AppRoute() {
             <Route path="/Production/ProductionWeek" element= {<Layout>{<ProductionWeek />}</Layout>} />
             <Route path="/Production/ProductionMonth" element= {<Layout>{<ProductionMonth />}</Layout>} />
             <Route path="/Production/CreateProduction" element= {<Layout>{<CreateProduction />}</Layout>} />
+            <Route path="/Purchase/PurchaseWeek" element= {<Layout>{<PurchaseWeek />}</Layout>} />
+            <Route path="/ICS/ICSTeam" element= {<Layout>{<ICSTeam />}</Layout>} />
+
+            <Route path="/StatusPayment/Detail" element={<Layout>{<Detail />}</Layout>} />
         </Routes>
     )
 }

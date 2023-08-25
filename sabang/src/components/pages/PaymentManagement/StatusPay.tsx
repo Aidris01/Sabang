@@ -26,7 +26,7 @@ function StatusPayment() {
       key: '2',
       title: 'Detail',
       width: 30,
-      render: () => <Button type='text'><EyeOutlined /></Button>
+      render: () => <Button type='text' size='small'><EyeOutlined /></Button>
     },
     {
       key: '3',
@@ -43,8 +43,8 @@ function StatusPayment() {
     {
       key: '5',
       title: 'Action',
-      width: 600,
-      render: () => <Button>Set As Paid</Button>
+      width: 400,
+      render: () => <Button type='text' size='small'>Set As Paid</Button>
     }
   ]
   return (

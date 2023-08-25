@@ -46,11 +46,11 @@ function Checklist() {
     {
       key: '3',
       title: 'Action',
-      width: 70,
+      width: 200,
       render: () => {
         return <>
-          <EditOutlined />
-          <DeleteOutlined style={{ color: 'red', marginLeft: 12 }} />
+          <Button type='link' size='small'><EditOutlined /></Button>
+          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       }
     }
