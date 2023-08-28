@@ -44,6 +44,9 @@ import CreateProduction from "../pages/Production/CreateProduction";
 import PurchaseWeek from "../pages/PurchaseICS/Purchase/PurchaseWeek";
 import ICSTeam from "../pages/PurchaseICS/ICS/ICSTeam";
 import Detail from "../pages/PaymentManagement/Detail";
+import AverageKPI from "../pages/KPI/AverageKPI";
+import ScoreKPI from "../pages/KPI/ScoreKPI";
+import CreatePetani from "../pages/CatatanPetani/CreatePetani";
 
 
 function AppRoute() {
@@ -75,6 +78,8 @@ function AppRoute() {
             <Route path="/CatatanPupuk" element={<Layout>{<CatatanPupuk />}</Layout>} />
             <Route path="/NiraWeek" element={<Layout>{<NiraWeek />}</Layout>} />
             <Route path="/NiraMonth" element={<Layout>{<NiraMonth />}</Layout>} />
+            <Route path="/AverageKPI" element={<Layout>{<AverageKPI />}</Layout>} />
+            <Route path="/ScoreKPI" element={<Layout>{<ScoreKPI />}</Layout>} />
             <Route path="*" element={<Layout>{<NotFound />}</Layout>} />
 
             <Route path="/ListUser/CreateUser" element={<Layout>{<CreateUser />}</Layout>} />
@@ -93,6 +98,7 @@ function AppRoute() {
             <Route path="/Production/CreateProduction" element= {<Layout>{<CreateProduction />}</Layout>} />
             <Route path="/Purchase/PurchaseWeek" element= {<Layout>{<PurchaseWeek />}</Layout>} />
             <Route path="/ICS/ICSTeam" element= {<Layout>{<ICSTeam />}</Layout>} />
+            <Route path="/CatatanPetani/CreatePetani" element= {<Layout>{<CreatePetani />}</Layout>} />
 
             <Route path="/StatusPayment/Detail" element={<Layout>{<Detail />}</Layout>} />
         </Routes>

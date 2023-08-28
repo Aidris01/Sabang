@@ -1,12 +1,58 @@
-import { Typography } from 'antd'
-import React from 'react'
+import { EyeOutlined } from '@ant-design/icons'
+import { Button, Table, Typography } from 'antd'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
 
 function CatatanPetani() {
+  const navigate = useNavigate()
+  const createPetani = () => {
+    navigate('/CatatanPetani/CreatePetani')
+  }
+  const [ data, setData ] = useState([
+    {
+      no: 1,
+      docId: '220',
+      petani: 'amks.40'
+    }
+  ])
+  const columns = [
+    {
+      key: '1',
+      title: 'No',
+      dataIndex: 'no'
+    },
+    {
+      key: '2',
+      title: 'Document ID',
+      dataIndex: 'docId',
+      width: 200
+    },
+    {
+      key: '3',
+      title: 'Petani',
+      dataIndex: 'petani',
+      width: 900
+    },
+    {
+      key: '4',
+      title: 'Cetak',
+      width: 200,
+      render: () => <Button type='link' size='small'><EyeOutlined /></Button>
+    }
+  ]
   return (
     <div className='content'>
       <Typography.Title level={4}>Catatan Petani</Typography.Title>
       <div className='catatan-petani'>
+        <Button className='create-btn' onClick={createPetani}>Create Catatan</Button>
+        <div className="petani-table">
+          <Table 
+          size='small'
+          columns={columns}
+          dataSource={data}
+          />
+        </div>
       </div>
     </div>
   )
