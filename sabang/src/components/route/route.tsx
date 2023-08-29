@@ -47,6 +47,7 @@ import Detail from "../pages/PaymentManagement/Detail";
 import AverageKPI from "../pages/KPI/AverageKPI";
 import ScoreKPI from "../pages/KPI/ScoreKPI";
 import CreatePetani from "../pages/CatatanPetani/CreatePetani";
+import CreatePupuk from "../pages/CatatanPetani/CreatePupuk";
 
 
 function AppRoute() {
@@ -99,6 +100,7 @@ function AppRoute() {
             <Route path="/Purchase/PurchaseWeek" element= {<Layout>{<PurchaseWeek />}</Layout>} />
             <Route path="/ICS/ICSTeam" element= {<Layout>{<ICSTeam />}</Layout>} />
             <Route path="/CatatanPetani/CreatePetani" element= {<Layout>{<CreatePetani />}</Layout>} />
+            <Route path="/CatatanPupuk/CreatePupuk" element= {<Layout>{<CreatePupuk />}</Layout>} />
 
             <Route path="/StatusPayment/Detail" element={<Layout>{<Detail />}</Layout>} />
         </Routes>

@@ -1,6 +1,5 @@
 import { MinusCircleOutlined } from '@ant-design/icons'
-import { Button, DatePicker, Form, Input, Select, Space, Typography } from 'antd'
-import Operation from 'antd/es/transfer/operation'
+import { Button, Col, DatePicker, Form, Input, Row, Select, Space, Typography } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
@@ -64,102 +63,112 @@ function CreatePetani() {
                                 {fields.map((field, index) => {
                                     return (
                                         <Space key={field.key} direction="vertical" size={10}>
-                                            <Typography.Title style={{marginLeft: 100,}} level={4}>Detail</Typography.Title>
-                                            <Button className='remove-btn' type='text' icon={<MinusCircleOutlined />} style={{ color: 'red'}} onClick={() => {remove(field.name)}} />
+                                            <Typography.Title style={{ marginLeft: 100, }} level={4}>Detail</Typography.Title>
+                                            <Button className='remove-btn' type='text' icon={<MinusCircleOutlined />} style={{ color: 'red' }} onClick={() => { remove(field.name) }} />
                                             <Form
-                                                style={{ width: 620 }}
+                                                style={{ width: 700 }}
                                                 hideRequiredMark
                                                 labelCol={{ span: 9 }}
                                                 wrapperCol={{ span: 16 }}>
-                                                <Form.Item
-                                                    label='Tanggal'
-                                                    name={'tanggal'}
-                                                    rules={[{ required: true, message: 'Please select the date!' }]}>
-                                                    <DatePicker />
-                                                </Form.Item>
-                                                <Form.Item
-                                                    label='Kegiatan'
-                                                    name={'kegiatan'}
-                                                    rules={[{ required: true, message: 'Please select farmer activity!' }]}>
-                                                    <Select
-                                                        placeholder='Select the activity'
-                                                        allowClear
-                                                        placement='bottomLeft'
-                                                        listHeight={200}
-                                                        options={[
-                                                            {
-                                                                value: 'Pelumpingan ijuk',
-                                                                label: 'Pelumpingan ijuk'
-                                                            },
-                                                            {
-                                                                value: 'Pelemasan lengan aren',
-                                                                label: 'Pelemasan lengan aren'
-                                                            },
-                                                            {
-                                                                value: 'Pemotongan lengan aren',
-                                                                label: 'Pemotongan lengan aren'
-                                                            }
-                                                        ]}
-                                                    />
-                                                </Form.Item>
-                                                <Form.Item
-                                                    label='Bahan'
-                                                    name={'bahan'}
-                                                    rules={[{ required: true, message: 'Please input the used material!' }]}>
-                                                    <Input />
-                                                </Form.Item>
-                                                <Form.Item
-                                                    label='Jumlah'
-                                                    name={'jumlah'}
-                                                    rules={[{ required: true, message: 'Please input the amount!' }]}>
-                                                    <Input />
-                                                </Form.Item>
-                                                <Form.Item
-                                                    label='Alat'
-                                                    name={'alat'}
-                                                    rules={[{ required: true, message: 'Please select the tool!' }]}>
-                                                    <Select
-                                                        placeholder='Select the tool'
-                                                        allowClear
-                                                        placement='bottomLeft'
-                                                        listHeight={200}
-                                                        options={[
-                                                            {
-                                                                value: 'Golok',
-                                                                label: 'Golok'
-                                                            },
-                                                            {
-                                                                value: 'Paningur',
-                                                                label: 'Paningur'
-                                                            },
-                                                            {
-                                                                value: 'Pisau Sadap',
-                                                                label: 'Pisau Sadap'
-                                                            }
-                                                        ]}
-                                                    />
-                                                </Form.Item>
-                                                <Form.Item
-                                                    label='Pencucian'
-                                                    name={'pencucian'}
-                                                    rules={[{ required: true, message: 'Please select the options!' }]}>
-                                                    <Select
-                                                        allowClear
-                                                        placement='bottomLeft'
-                                                        placeholder='Select the options'
-                                                        listHeight={200}
-                                                        options={[
-                                                            {
-                                                                value: 'Sudah',
-                                                                label: 'Sudah'
-                                                            },
-                                                            {
-                                                                value: 'Belum',
-                                                                label: 'Belum'
-                                                            }
-                                                        ]}
-                                                    />
-                                                </Form.Item>
+                                                <Row gutter={16}>
+                                                    <Col span={12}>
+                                                        <Form.Item
+                                                            label='Tanggal'
+                                                            name={'tanggal'}
+                                                            rules={[{ required: true, message: 'Please select the date!' }]}>
+                                                            <DatePicker />
+                                                        </Form.Item>
+                                                        <Form.Item
+                                                            label='Kegiatan Petani'
+                                                            name={'kegiatan'}
+                                                            rules={[{ required: true, message: 'Please select farmer activity!' }]}>
+                                                            <Select
+                                                                placeholder='Select the activity'
+                                                                allowClear
+                                                                placement='bottomLeft'
+                                                                listHeight={200}
+                                                                options={[
+                                                                    {
+                                                                        value: 'Pelumpingan ijuk',
+                                                                        label: 'Pelumpingan ijuk'
+                                                                    },
+                                                                    {
+                                                                        value: 'Pelemasan lengan aren',
+                                                                        label: 'Pelemasan lengan aren'
+                                                                    },
+                                                                    {
+                                                                        value: 'Pemotongan lengan aren',
+                                                                        label: 'Pemotongan lengan aren'
+                                                                    }
+                                                                ]}
+                                                            />
+                                                        </Form.Item>
+                                                    </Col>
+                                                    <Col span={12}>
+                                                        <Form.Item
+                                                            label='Bahan'
+                                                            name={'bahan'}
+                                                            rules={[{ required: true, message: 'Please input the used material!' }]}>
+                                                            <Input />
+                                                        </Form.Item>
+                                                        <Form.Item
+                                                            label='Jumlah'
+                                                            name={'jumlah'}
+                                                            rules={[{ required: true, message: 'Please input the amount!' }]}>
+                                                            <Input />
+                                                        </Form.Item>
+                                                    </Col>
+                                                    <Col span={12}>
+                                                        <Form.Item
+                                                            label='Alat'
+                                                            name={'alat'}
+                                                            rules={[{ required: true, message: 'Please select the tool!' }]}>
+                                                            <Select
+                                                                placeholder='Select the tool'
+                                                                allowClear
+                                                                placement='bottomLeft'
+                                                                listHeight={200}
+                                                                options={[
+                                                                    {
+                                                                        value: 'Golok',
+                                                                        label: 'Golok'
+                                                                    },
+                                                                    {
+                                                                        value: 'Paningur',
+                                                                        label: 'Paningur'
+                                                                    },
+                                                                    {
+                                                                        value: 'Pisau Sadap',
+                                                                        label: 'Pisau Sadap'
+                                                                    }
+                                                                ]}
+                                                            />
+                                                        </Form.Item>
+                                                    </Col>
+                                                    <Col span={12}>
+                                                        <Form.Item
+                                                            label='Pencucian alat'
+                                                            name={'pencucian'}
+                                                            rules={[{ required: true, message: 'Please select the options!' }]}>
+                                                            <Select
+                                                                allowClear
+                                                                placement='bottomLeft'
+                                                                placeholder='Select the options'
+                                                                listHeight={200}
+                                                                options={[
+                                                                    {
+                                                                        value: 'Sudah',
+                                                                        label: 'Sudah'
+                                                                    },
+                                                                    {
+                                                                        value: 'Belum',
+                                                                        label: 'Belum'
+                                                                    }
+                                                                ]}
+                                                            />
+                                                        </Form.Item>
+                                                    </Col>
+                                                </Row>
                                             </Form>
                                         </Space>
                                     )

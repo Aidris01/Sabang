@@ -94,7 +94,7 @@ function Production() {
           <Button className='create-btn' type='text' onClick={Tempo}>Label Temporary</Button>
           <Button className='create-btn' type='text' onClick={Liquid}>Label Liquid/Cair</Button>
           <Button className='create-btn' type='text' onClick={Today}>Label List</Button>
-          <Button className='create-btn' onClick={Create}>Create Label</Button>
+          <Button className='create-production-btn' onClick={Create}>Create Label</Button>
         </Space>
         <div className="production-table">
           <Table

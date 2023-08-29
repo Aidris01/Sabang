@@ -6,10 +6,13 @@ import '../../../pages/style/style.css'
 
 function Purchase() {
   const navigate = useNavigate()
+  const Purchase = () => {
+    navigate('/Purchase')
+  }
   const purchaseWeek = () => {
     navigate('/Purchase/PurchaseWeek')
   }
-  const [ data, setData ] = useState([
+  const [data, setData] = useState([
     {
       id: 1,
       statusChecked: 'Not Checked',
@@ -106,6 +109,7 @@ function Purchase() {
     <div className='content'>
       <Typography.Title level={4}>Purchase</Typography.Title>
       <div className='purchase'>
+        <Button className='create-btn' onClick={Purchase}>Purchase</Button>
         <Button className='create-btn' onClick={purchaseWeek}>Purchase Week</Button>
         <div className="purchase-table">
           <Table
