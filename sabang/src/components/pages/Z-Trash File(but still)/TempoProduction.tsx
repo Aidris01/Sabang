@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
 
-function LiquidProduction() {
+function TempoProduction() {
     const navigate = useNavigate()
     const Label = () => {
         navigate('/Production')
@@ -21,31 +21,28 @@ function LiquidProduction() {
     const Create = () => {
         navigate('/Production/CreateProduction')
     }
-    const [data, setData] = useState([
+    const [dataTempo, setDataTempo ] = useState([
         {
             id: 1,
+            createNewLabel: '(not set)',
             operator: 'Santi Prasinta',
             factory: 'Mandalasari',
-            barcode: '0000008311',
-            kilo: 12.5,
-            gram: 12500,
-            createDate: '2020-10-20'
-        },
-        {
-            id: 2,
-            operator: 'Santi Prasinta',
-            factory: 'Bunikasih',
-            barcode: '0000008321',
-            kilo: 14.0,
-            gram: 14000,
-            createDate: '2021-12-01'
+            barcode: '0000008312',
+            kilo: 11.5,
+            gram: 11500,
+            createDate: '2020-08-20'
         }
     ])
-    const columns = [
+    const columnsTempo = [
         {
             key: '1',
             title: 'ID',
             dataIndex: 'id'
+        },
+        {
+            key: '9',
+            title: 'Create New Label',
+            dataIndex: 'createNewLabel'
         },
         {
             key: '2',
@@ -85,18 +82,17 @@ function LiquidProduction() {
             title: 'Action',
             render: () => {
                 return <>
-                  <Button type='link' size='small'><EyeOutlined /></Button>
-                  <Button type='link' size='small'><EditOutlined /></Button>
-                  <Button type='link' size='small'><PrinterOutlined /></Button>
-                  <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+                    <Button type='link' size='small'><EyeOutlined /></Button>
+                    <Button type='link' size='small'><PrinterOutlined /></Button>
+                    <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
                 </>
-              },
-              width: 250
+            },
+            width: 250
         }
     ]
     return (
         <div className='content'>
-            <Typography.Title level={4}>Liquid Production</Typography.Title>
+            <Typography.Title level={4}>Tempo Production</Typography.Title>
             <div className='production'>
                 <Space>
                     <Button className='create-btn' type='text' onClick={Label}>Label Production</Button>
@@ -108,8 +104,8 @@ function LiquidProduction() {
                 <div className="production-table">
                     <Table
                         size='small'
-                        columns={columns}
-                        dataSource={data}
+                        columns={columnsTempo}
+                        dataSource={dataTempo}
                     />
                 </div>
             </div>
@@ -117,4 +113,4 @@ function LiquidProduction() {
     )
 }
 
-export default LiquidProduction
+export default TempoProduction

@@ -31,23 +31,13 @@ import CreateWarehouse from "../pages/WarehouseMan/CreateWarehouse";
 import CreatePrice from "../pages/PaymentManagement/PriceList/CreatePrice";
 import CreateChecklist from "../pages/Checklist/CreateChecklist";
 import Layout from "../layout/layout";
-import './style.css';
-import NiraWeek from "../pages/Nira/NiraWeek";
-import NiraMonth from "../pages/Nira/NiraMonth";
 import PurchaseFilter from "../pages/Tappers/PurchaseFilter";
-import TempoProduction from "../pages/Production/TempoProduction";
-import LiquidProduction from "../pages/Production/LiquidProduction";
-import ProductionToday from "../pages/Production/ProductionToday";
-import ProductionWeek from "../pages/Production/ProductionWeek";
-import ProductionMonth from "../pages/Production/ProductionMonth";
 import CreateProduction from "../pages/Production/CreateProduction";
-import PurchaseWeek from "../pages/PurchaseICS/Purchase/PurchaseWeek";
 import ICSTeam from "../pages/PurchaseICS/ICS/ICSTeam";
 import Detail from "../pages/PaymentManagement/Detail";
-import AverageKPI from "../pages/KPI/AverageKPI";
-import ScoreKPI from "../pages/KPI/ScoreKPI";
 import CreatePetani from "../pages/CatatanPetani/CreatePetani";
 import CreatePupuk from "../pages/CatatanPetani/CreatePupuk";
+import './style.css';
 
 
 function AppRoute() {
@@ -77,10 +67,6 @@ function AppRoute() {
             <Route path="/KPI" element={<Layout>{<KPI />}</Layout>} />
             <Route path="/CatatanPetani" element={<Layout>{<CatatanPetani />}</Layout>} />
             <Route path="/CatatanPupuk" element={<Layout>{<CatatanPupuk />}</Layout>} />
-            <Route path="/NiraWeek" element={<Layout>{<NiraWeek />}</Layout>} />
-            <Route path="/NiraMonth" element={<Layout>{<NiraMonth />}</Layout>} />
-            <Route path="/AverageKPI" element={<Layout>{<AverageKPI />}</Layout>} />
-            <Route path="/ScoreKPI" element={<Layout>{<ScoreKPI />}</Layout>} />
             <Route path="*" element={<Layout>{<NotFound />}</Layout>} />
 
             <Route path="/ListUser/CreateUser" element={<Layout>{<CreateUser />}</Layout>} />
@@ -91,13 +77,7 @@ function AppRoute() {
             <Route path="/PriceList/CreatePrice" element={<Layout>{<CreatePrice />}</Layout>} />
             <Route path="/Checklist/CreateChecklist" element= {<Layout>{<CreateChecklist />}</Layout>} />
             <Route path="/Tappers/PurchaseFilter" element= {<Layout>{<PurchaseFilter />}</Layout>} />
-            <Route path="/Production/TempoProduction" element= {<Layout>{<TempoProduction />}</Layout>} />
-            <Route path="/Production/LiquidProduction" element= {<Layout>{<LiquidProduction />}</Layout>} />
-            <Route path="/Production/ProductionToday" element= {<Layout>{<ProductionToday />}</Layout>} />
-            <Route path="/Production/ProductionWeek" element= {<Layout>{<ProductionWeek />}</Layout>} />
-            <Route path="/Production/ProductionMonth" element= {<Layout>{<ProductionMonth />}</Layout>} />
             <Route path="/Production/CreateProduction" element= {<Layout>{<CreateProduction />}</Layout>} />
-            <Route path="/Purchase/PurchaseWeek" element= {<Layout>{<PurchaseWeek />}</Layout>} />
             <Route path="/ICS/ICSTeam" element= {<Layout>{<ICSTeam />}</Layout>} />
             <Route path="/CatatanPetani/CreatePetani" element= {<Layout>{<CreatePetani />}</Layout>} />
             <Route path="/CatatanPupuk/CreatePupuk" element= {<Layout>{<CreatePupuk />}</Layout>} />

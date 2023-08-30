@@ -4,45 +4,51 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
 
-function TempoProduction() {
+function ProductionWeek() {
     const navigate = useNavigate()
-    const Label = () => {
-        navigate('/Production')
-    }
-    const Tempo = () => {
-        navigate('/Production/TempoProduction')
-    }
-    const Liquid = () => {
-        navigate('/Production/LiquidProduction')
-    }
     const Today = () => {
         navigate('/Production/ProductionToday')
     }
-    const Create = () => {
-        navigate('/Production/CreateProduction')
+    const Week = () => {
+        navigate('/Production/ProductionWeek')
     }
-    const [data, setData] = useState([
+    const Month = () => {
+        navigate('/Production/ProductionMonth')
+    }
+    const Back = () => {
+        navigate('/Production')
+    }
+    const [dataWeek, setDataWeek] = useState([
         {
             id: 1,
-            createNewLabel: '(not set)',
             operator: 'Santi Prasinta',
             factory: 'Mandalasari',
             barcode: '0000008312',
             kilo: 11.5,
-            gram: 11500,
-            createDate: '2020-08-20'
+            gram: 11500
+        },
+        {
+            id: 2,
+            operator: 'Santi Prasinta',
+            factory: 'Bunikasih',
+            barcode: '0000008324',
+            kilo: 21.0,
+            gram: 21000
+        },
+        {
+            id: 3,
+            operator: 'Santi Prasinta',
+            factory: 'Mandalasari',
+            barcode: '0000008333',
+            kilo: 12.4,
+            gram: 12400
         }
     ])
-    const columns = [
+    const columnsWeek = [
         {
             key: '1',
             title: 'ID',
             dataIndex: 'id'
-        },
-        {
-            key: '9',
-            title: 'Create New Label',
-            dataIndex: 'createNewLabel'
         },
         {
             key: '2',
@@ -74,38 +80,33 @@ function TempoProduction() {
         },
         {
             key: '7',
-            title: 'Create Date',
-            dataIndex: 'createDate'
-        },
-        {
-            key: '8',
             title: 'Action',
             render: () => {
                 return <>
                     <Button type='link' size='small'><EyeOutlined /></Button>
+                    <Button type='link' size='small'><EditOutlined /></Button>
                     <Button type='link' size='small'><PrinterOutlined /></Button>
                     <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
                 </>
             },
-            width: 250
+            width: 200
         }
     ]
     return (
         <div className='content'>
-            <Typography.Title level={4}>Tempo Production</Typography.Title>
+            <Typography.Title level={4}>Production Week</Typography.Title>
             <div className='production'>
                 <Space>
-                    <Button className='create-btn' type='text' onClick={Label}>Label Production</Button>
-                    <Button className='create-btn' type='text' onClick={Tempo}>Label Temporary</Button>
-                    <Button className='create-btn' type='text' onClick={Liquid}>Label Liquid/Cair</Button>
-                    <Button className='create-btn' type='text' onClick={Today}>Label List</Button>
-                    <Button className='create-production-btn' onClick={Create}>Create Label</Button>
+                    <Button className='create-btn' type='text' onClick={Today}>Today</Button>
+                    <Button className='create-btn' type='text' onClick={Week}>Week</Button>
+                    <Button className='create-btn' type='text' onClick={Month}>Month</Button>
+                    <Button className='create-btn' onClick={Back}>Back</Button>
                 </Space>
                 <div className="production-table">
                     <Table
                         size='small'
-                        columns={columns}
-                        dataSource={data}
+                        columns={columnsWeek}
+                        dataSource={dataWeek}
                     />
                 </div>
             </div>
@@ -113,4 +114,4 @@ function TempoProduction() {
     )
 }
 
-export default TempoProduction
+export default ProductionWeek
