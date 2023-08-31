@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -10,7 +10,7 @@ function FactoryManagement() {
     navigate("/FactoryManagement/CreateFactory")
   }
 
-  const [dataSource, setDataSource] = useState ([
+  const [dataSource, setDataSource] = useState([
     {
       id: 1,
       name: 'Mandalasari',
@@ -47,6 +47,7 @@ function FactoryManagement() {
       width: 400,
       render: () => {
         return <>
+          <Button type='link' size='small'><EyeOutlined /></Button>
           <Button type='link' size='small'><EditOutlined /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
@@ -61,9 +62,9 @@ function FactoryManagement() {
         <Button className='create-btn' onClick={createFactory}>Create New</Button>
         <div className='factory-table'>
           <Table
-          size='small'
-          columns={columns}
-          dataSource={dataSource}></Table>
+            size='small'
+            columns={columns}
+            dataSource={dataSource}></Table>
         </div>
       </div>
     </div>

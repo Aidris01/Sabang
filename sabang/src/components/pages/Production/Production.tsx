@@ -10,6 +10,7 @@ function Production() {
     navigate('/Production/CreateProduction')
   }
   const Create = <Button style={{marginRight: 10}} onClick={createLabel}>Create Production</Button>
+  
   const [data, setData] = useState([
     {
       id: 1,
