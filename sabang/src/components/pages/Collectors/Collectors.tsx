@@ -44,7 +44,7 @@ function PurchaseFilter() {
                         style={{ width: '35.5vw' }}
                         />
                     </Form.Item>
-                        <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
+                        <Button className='save-collector-btn' type='primary' htmlType='submit'>Save</Button>
                 </Form>
             </div>
         </div>
