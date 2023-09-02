@@ -1,38 +1,51 @@
-import 'antd/dist/reset.css';
+import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import bg from './img/bg.jpg';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
+import axios from '../api/axios';
 
-const onFinish = (values: any) => {
-    console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-};
+interface LoginValues {
+    username: string;
+    password: string;
+}
 
 function Login() {
-
     const navigate = useNavigate();
-    const signIn = () => {
-        navigate("/Dashboard")
-    }
+    const [form] = Form.useForm();
+    const [loading, setLoading] = useState(false);
+
+    const onFinish = async (values: LoginValues) => {
+        try {
+            setLoading(true);
+            const response = await axios.post('/auth/login', values);
+
+            if (response.data.success) {
+                navigate('/Dashboard');
+            } else {
+                console.log('Authentication failed.');
+            }
+        } catch (error) {
+            console.error('An error occurred during login:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div>
             <div className='parent-container'>
                 <div className='login-form'>
                     <h3>Selamat Datang Kembali</h3>
                     <Form
+                        hideRequiredMark
                         name="basic"
                         labelCol={{ span: 8 }}
                         wrapperCol={{ span: 16 }}
                         style={{ maxWidth: 600 }}
                         initialValues={{ remember: true }}
                         onFinish={onFinish}
-                        onFinishFailed={onFinishFailed}
                         autoComplete="off"
-                        key='/'
                     >
                         <Form.Item
                             label="Username"
@@ -50,7 +63,7 @@ function Login() {
                             <Input.Password />
                         </Form.Item>
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                            <Button type="primary" htmlType="submit" onClick={signIn}>
+                            <Button type="primary" htmlType="submit" loading={loading}>
                                 Sign In
                             </Button>
                         </Form.Item>
@@ -59,7 +72,7 @@ function Login() {
                 <img className='login-image' src={bg} alt='login.jpg' />
             </div>
         </div>
-    )
+    );
 }
 
 export default Login;

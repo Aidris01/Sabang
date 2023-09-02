@@ -16,8 +16,8 @@
     right: 62vw;
 }
 .login-image {
-    width: 49vw;
-    height: 51vw;
+    width: 50%;
+    height: 100%;
     position: absolute;
     top: 50%;
     left: 75%;
