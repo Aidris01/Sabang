@@ -67,7 +67,7 @@ function AppRoute() {
             <Route path="/KPI" element={<Layout>{<KPI />}</Layout>} />
             <Route path="/CatatanPetani" element={<Layout>{<CatatanPetani />}</Layout>} />
             <Route path="/CatatanPupuk" element={<Layout>{<CatatanPupuk />}</Layout>} />
-            <Route path="*" element={<Layout>{<NotFound />}</Layout>} />
+            <Route path="*" element={<NotFound />} />
 
             <Route path="/ListUser/CreateUser" element={<Layout>{<CreateUser />}</Layout>} />
             <Route path="/ListUser/CreateUserBulk" element={<Layout>{<CreateUserBulk />}</Layout>} />

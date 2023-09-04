@@ -18,12 +18,14 @@ function Login() {
     const onFinish = async (values: LoginValues) => {
         try {
             setLoading(true);
-            const response = await axios.post('/auth/login', values);
+            const response = await axios.post('auth/login', values);
 
-            if (response.data.success) {
+            if (response.data.token) {
+                localStorage.setItem('token', response.data.token)
+                localStorage.setItem('username', response.data.username)
                 navigate('/Dashboard');
             } else {
-                console.log('Authentication failed.');
+                console.log('Authentication failed.',response.data.error);
             }
         } catch (error) {
             console.error('An error occurred during login:', error);
@@ -52,7 +54,9 @@ function Login() {
                             name="username"
                             rules={[{ required: true, message: 'Please input your username!' }]}
                         >
-                            <Input />
+                            <Input 
+                            id='username'
+                            />
                         </Form.Item>
 
                         <Form.Item
@@ -60,7 +64,9 @@ function Login() {
                             name="password"
                             rules={[{ required: true, message: 'Please input your password!' }]}
                         >
-                            <Input.Password />
+                            <Input.Password
+                            id='password'
+                            />
                         </Form.Item>
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                             <Button type="primary" htmlType="submit" loading={loading}>

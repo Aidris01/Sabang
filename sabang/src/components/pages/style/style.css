@@ -337,10 +337,10 @@
     left: 68vw;
 }
 .not-found {
-    width: 55vw;
+    width: 65vw;
     position: fixed;
-    left: 32vw;
-    top: 10px;
+    left: 20vw;
+    bottom: -50px;
 }
 .production {
     position: fixed;

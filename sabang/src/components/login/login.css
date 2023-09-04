@@ -27,8 +27,9 @@
     font-family: 'Courier New', Courier, monospace;
     display: block;
     position: absolute;
-    bottom: 200%;
+    bottom: 200%;   
     left: 35%;
+    font-weight: 100;
 }
 .submit-btn {
     position: absolute;
