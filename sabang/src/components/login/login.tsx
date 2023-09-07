@@ -4,6 +4,7 @@ import bg from './img/bg.jpg';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
+import { AxiosError } from 'axios'
 
 interface LoginValues {
     username: string;
@@ -12,7 +13,6 @@ interface LoginValues {
 
 function Login() {
     const navigate = useNavigate();
-    const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
 
     const onFinish = async (values: LoginValues) => {
@@ -25,10 +25,28 @@ function Login() {
                 localStorage.setItem('username', response.data.username)
                 navigate('/Dashboard');
             } else {
-                console.log('Authentication failed.',response.data.error);
+                console.log('Authentication failed.', response.data.error);
             }
         } catch (error) {
-            console.error('An error occurred during login:', error);
+            const axiosError = error as AxiosError;
+
+            if (axiosError.response) {
+                // Tangani error berdasarkan status code
+                if (axiosError.response.status === 400) {
+                    console.log('Bad Request:', axiosError.response.data);
+                } else if (axiosError.response.status === 401) {
+                    console.log('Unauthorized:', axiosError.response.data);
+                    // Tambahkan logika untuk penanganan 401 di sini
+                } else if (axiosError.response.status === 404) {
+                    console.log('Not Found:', axiosError.response.data);
+                    // Tambahkan logika untuk penanganan 404 di sini
+                } else {
+                    console.log('Server Error:', axiosError.response.data);
+                    // Tambahkan logika untuk penanganan jenis error lain di sini
+                }
+            } else {
+                console.error('An error occurred:', axiosError.message);
+            }
         } finally {
             setLoading(false);
         }
@@ -54,8 +72,8 @@ function Login() {
                             name="username"
                             rules={[{ required: true, message: 'Please input your username!' }]}
                         >
-                            <Input 
-                            id='username'
+                            <Input
+                                id='username'
                             />
                         </Form.Item>
 
@@ -65,7 +83,7 @@ function Login() {
                             rules={[{ required: true, message: 'Please input your password!' }]}
                         >
                             <Input.Password
-                            id='password'
+                                id='password'
                             />
                         </Form.Item>
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
