@@ -26,6 +26,7 @@ function Login() {
                 navigate('/');
             } else {
                 console.log('Authentication failed.', response.data.error);
+                alert('The username or password is wrong, Please try again!');
             }
         } catch (error) {
             const axiosError = error as AxiosError;
@@ -41,7 +42,7 @@ function Login() {
                     console.log('Not Found:', axiosError.response.data);
                     // Tambahkan logika untuk penanganan 404 di sini
                 } else {
-                    console.log('Server Error:', axiosError.response.data);
+                    alert('The username or password is wrong, Please try again!');
                     // Tambahkan logika untuk penanganan jenis error lain di sini
                 }
             } else {
