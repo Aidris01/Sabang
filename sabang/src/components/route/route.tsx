@@ -44,11 +44,11 @@ import './style.css';
 function AppRoute() {
     return (
         <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/Login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
 
             <Route element={<PrivateRoutes />}>
-                <Route path="/Dashboard" element={<Layout>{<Dashboard />}</Layout>} />
+                <Route path="/" element={<Layout>{<Dashboard />}</Layout>} />
                 <Route path="/ListUser" element={<Layout>{<ListUser />}</Layout>} />
                 <Route path="/ManagementVillage" element={<Layout>{<ManagementVillage />}</Layout>} />
                 <Route path="/AssignmentRole" element={<Layout>{<AssignmentRole />}</Layout>} />

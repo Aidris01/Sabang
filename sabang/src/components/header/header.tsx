@@ -8,7 +8,7 @@ import { PoweroffOutlined, SettingOutlined, UserOutlined } from '@ant-design/ico
 function Header() {
   const navigate = useNavigate();
   const Logout = () => {
-    navigate("/")
+    navigate("/Login")
     localStorage.removeItem('username')
     localStorage.removeItem('token')
   }

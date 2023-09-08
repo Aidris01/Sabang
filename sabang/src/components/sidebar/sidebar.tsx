@@ -41,7 +41,7 @@ function SideBar() {
           {
             label: "Dashboard",
             icon: <DashboardOutlined />,
-            key: "/Dashboard"
+            key: "/"
           },
           {
             label: "User Management",

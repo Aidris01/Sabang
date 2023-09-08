@@ -23,7 +23,7 @@ function Login() {
             if (response.data.token) {
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('username', response.data.username)
-                navigate('/Dashboard');
+                navigate('/');
             } else {
                 console.log('Authentication failed.', response.data.error);
             }
