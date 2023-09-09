@@ -6,7 +6,7 @@ function Profile() {
     <div className='content'>
         <Typography.Title level={4}>Profile</Typography.Title>
         <div className="profile">
-
+          
         </div>
     </div>
   )
