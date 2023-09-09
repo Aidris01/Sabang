@@ -40,6 +40,7 @@ import Detail from "../pages/PaymentManagement/Detail";
 import CreatePetani from "../pages/CatatanPetani/CreatePetani";
 import CreatePupuk from "../pages/CatatanPetani/CreatePupuk";
 import './style.css';
+import Profile from "../pages/Profile/Profile";
 
 function AppRoute() {
     return (
@@ -70,22 +71,23 @@ function AppRoute() {
                 <Route path="/KPI" element={<Layout>{<KPI />}</Layout>} />
                 <Route path="/CatatanPetani" element={<Layout>{<CatatanPetani />}</Layout>} />
                 <Route path="/CatatanPupuk" element={<Layout>{<CatatanPupuk />}</Layout>} />
+
+                <Route path="/ListUser/CreateUser" element={<Layout>{<CreateUser />}</Layout>} />
+                <Route path="/ListUser/CreateUserBulk" element={<Layout>{<CreateUserBulk />}</Layout>} />
+                <Route path="/ManagementVillage/CreateVillage" element={<Layout>{<CreateVillage />}</Layout>} />
+                <Route path="/FactoryManagement/CreateFactory" element={<Layout>{<CreateFactory />}</Layout>} />
+                <Route path="/WarehouseManagement/CreateWarehouse" element={<Layout>{<CreateWarehouse />}</Layout>} />
+                <Route path="/PriceList/CreatePrice" element={<Layout>{<CreatePrice />}</Layout>} />
+                <Route path="/Checklist/CreateChecklist" element={<Layout>{<CreateChecklist />}</Layout>} />
+                <Route path="/Tappers/PurchaseFilter" element={<Layout>{<PurchaseFilter />}</Layout>} />
+                <Route path="/Production/CreateProduction" element={<Layout>{<CreateProduction />}</Layout>} />
+                <Route path="/ICS/ICSTeam" element={<Layout>{<ICSTeam />}</Layout>} />
+                <Route path="/CatatanPetani/CreatePetani" element={<Layout>{<CreatePetani />}</Layout>} />
+                <Route path="/CatatanPupuk/CreatePupuk" element={<Layout>{<CreatePupuk />}</Layout>} />
+
+                <Route path="/StatusPayment/Detail" element={<Layout>{<Detail />}</Layout>} />
+                <Route path="/Profile" element={<Layout>{<Profile />}</Layout>} />
             </Route>
-
-            <Route path="/ListUser/CreateUser" element={<Layout>{<CreateUser />}</Layout>} />
-            <Route path="/ListUser/CreateUserBulk" element={<Layout>{<CreateUserBulk />}</Layout>} />
-            <Route path="/ManagementVillage/CreateVillage" element={<Layout>{<CreateVillage />}</Layout>} />
-            <Route path="/FactoryManagement/CreateFactory" element={<Layout>{<CreateFactory />}</Layout>} />
-            <Route path="/WarehouseManagement/CreateWarehouse" element={<Layout>{<CreateWarehouse />}</Layout>} />
-            <Route path="/PriceList/CreatePrice" element={<Layout>{<CreatePrice />}</Layout>} />
-            <Route path="/Checklist/CreateChecklist" element={<Layout>{<CreateChecklist />}</Layout>} />
-            <Route path="/Tappers/PurchaseFilter" element={<Layout>{<PurchaseFilter />}</Layout>} />
-            <Route path="/Production/CreateProduction" element={<Layout>{<CreateProduction />}</Layout>} />
-            <Route path="/ICS/ICSTeam" element={<Layout>{<ICSTeam />}</Layout>} />
-            <Route path="/CatatanPetani/CreatePetani" element={<Layout>{<CreatePetani />}</Layout>} />
-            <Route path="/CatatanPupuk/CreatePupuk" element={<Layout>{<CreatePupuk />}</Layout>} />
-
-            <Route path="/StatusPayment/Detail" element={<Layout>{<Detail />}</Layout>} />
         </Routes>
     )
 }
