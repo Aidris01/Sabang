@@ -23,6 +23,10 @@ function Login() {
             if (response.data.token) {
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('username', response.data.username)
+                localStorage.setItem('avatar', response.data.avatar)
+                localStorage.setItem('email', response.data.email)
+                localStorage.setItem('phone', response.data.phone)
+                localStorage.setItem('address', response.data.address)
                 navigate('/');
             } else {
                 console.log('Authentication failed.', response.data.error);

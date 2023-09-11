@@ -22,8 +22,12 @@ function Header() {
 
   const handleLogoutConfirm = () => {
     navigate("/Login")
-    localStorage.removeItem('username')
     localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    localStorage.removeItem('avatar')
+    localStorage.removeItem('email')
+    localStorage.removeItem('phone')
+    localStorage.removeItem('address')
   }
 
   const profile = () => {
