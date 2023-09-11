@@ -14,8 +14,8 @@ function CreateUserBulk() {
         <Typography.Title level={4}>Create User Bulk</Typography.Title>
         <div className='create-user-bulk'>
           <Space size={10}>
-            <Button className='save-bulk-btn' type='primary' htmlType='submit'>Save</Button>
-            <Button className='cancel-bulk-btn' danger onClick={createBulk}>Cancel</Button>
+            <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
+            <Button className='cancel-btn' danger onClick={createBulk}>Cancel</Button>
           </Space>
         </div>
       </div>
