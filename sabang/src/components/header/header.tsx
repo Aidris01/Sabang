@@ -5,8 +5,11 @@ import './header.css';
 import { useNavigate } from 'react-router-dom';
 import { PoweroffOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 
+
 function Header() {
+
   const navigate = useNavigate();
+  const name: string = JSON.parse(localStorage.getItem('profile')??'{}').name ?? '';
 
   const [logoutModalVisible, setLogoutModalVisible] = useState(false)
 
@@ -22,12 +25,8 @@ function Header() {
 
   const handleLogoutConfirm = () => {
     navigate("/Login")
+    localStorage.removeItem('profile')
     localStorage.removeItem('token')
-    localStorage.removeItem('username')
-    localStorage.removeItem('avatar')
-    localStorage.removeItem('email')
-    localStorage.removeItem('phone')
-    localStorage.removeItem('address')
   }
 
   const profile = () => {
@@ -47,12 +46,11 @@ function Header() {
       )
     }
   ]
-  const username = localStorage.getItem('username');
 
   return (
     <div className='header'>
-      <img className='user-img' src={user} alt="user.jpg" />
-      <h5>Welcome, {username}</h5>
+      <img className='user-img' src={JSON.parse(localStorage.getItem('profile')??'{}').avatar ?? user} />
+      <h5>Welcome, {name}</h5>
       <Dropdown menu={{ items }}>
         <Button type='link' className='settings-btn'><SettingOutlined />Settings</Button>
       </Dropdown>

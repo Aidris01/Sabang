@@ -461,12 +461,21 @@
     margin: -20px 0px 10px 10px;
 }
 .profile-img {
+    width: 200px;
+    height: 200px;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 100%;
+    border-radius: 50%;
+    overflow: hidden;
 }
 .profile-btn {
     margin: 0px 10px 10px 10px;
     width: 8vw;
     position: relative;
-    left: 67vw; 
+    left: 45vw; 
+}
+.save-cancel-btn {
+    margin: 10px 10px 10px 10px;
+    width: 8vw;
+    position: relative;
+    left: 39vw;
 }
