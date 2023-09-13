@@ -41,7 +41,7 @@ function PurchaseFilter() {
                         name="rangeDate"
                         rules={[{ required: true, message: "Please select the date!" }]}>
                         <DatePicker
-                        style={{ width: '35.5vw' }}
+                        style={{ width: '44.1vw' }}
                         />
                     </Form.Item>
                         <Button className='save-collector-btn' type='primary' htmlType='submit'>Save</Button>
