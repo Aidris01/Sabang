@@ -30,7 +30,7 @@ function Profile() {
   };
 
   const handleSaveClick = () => {
-    // Simpan data yang sudah diubah ke localStorage atau server
+    // Ubah data dari bentuk objek ke bentuk string
     let profile = JSON.parse(localStorage.getItem('profile')??'{}');
     profile.name = editedName
     profile.email = editedEmail
@@ -42,7 +42,7 @@ function Profile() {
         const avatarDataUrl = data.result as string;
         profile.avatar = avatarDataUrl;
         
-        // Set data avatar dalam localStorage
+        // Ubah data menjadi bentuk string kembali
         localStorage.setItem('profile', JSON.stringify(profile));
         // Pastikan untuk mengatur isEditing ke false setelah perubahan disimpan
         setIsEditing(false); 
