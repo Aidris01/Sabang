@@ -1,8 +1,16 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Typography, Table, Button, Space } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from '../../../api/axios'
 import '../../../pages/style/style.css'
+
+interface UserData {
+  id: number;
+  name: string;
+  villageId: string;
+  email: string;
+}
 
 function ListUser() {
 
@@ -14,47 +22,59 @@ function ListUser() {
     navigate("/ListUser/CreateUserBulk")
   }
 
-  const [dataSource, setDataSource] = useState([
-    {
-      id: 1,
-      username: "Cepot",
-      farmerCode: "amct.01",
-      email: "cepot12@gmail.com"
-    },
-    {
-      id: 2,
-      username: "Petruk",
-      farmerCode: "amct.02",
-      email: "ciupetruk@gmail.com"
-    },
-    {
-      id: 3,
-      username: "Semprul",
-      farmerCode: "amct.03",
-      email: "smprl@gmail.com"
+  const [dataSource, setDataSource] = useState<UserData[]>([])
+
+  const deleteUser = (userId: number) => {
+    const token = localStorage.getItem('token')
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     }
-  ])
+    axios.delete(`/users/${userId}`, config).then((response) => {
+      console.log('User Deleted:',response.data)
+    }).catch((error) => {
+      console.error('Error deleting user:', error)
+    })
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+
+    axios.get<UserData[]>('/users', config).then((response) => {
+      setDataSource(response.data)
+    }).catch((error) => {
+      console.error('Error fetching data:',error)
+    });
+  },[])
   const columns = [
     {
-      key: '1',
+      key: 'id',
       title: 'ID',
       dataIndex: 'id'
     },
     {
-      key: '2',
-      title: 'Username',
-      dataIndex: 'username',
+      key: 'name',
+      title: 'Name',
+      dataIndex: 'name',
       width: 600
     },
     {
-      key: '3',
-      title: 'Farmer Code',
-      dataIndex: 'farmerCode',
+      key: 'villageId',
+      title: 'Village Id',
+      dataIndex: 'villageId',
       width: 700
     },
     {
-      key: '4',
-      title: 'E-Mail',
+      key: 'email',
+      title: 'Email',
       dataIndex: 'email',
       width: 600
     },
