@@ -21,12 +21,12 @@
 }
 .user-img {
   justify-content: space-between;
-  width: 55px;
-  height: 55px;
+  width: 60px;
+  height: 60px;
   position: absolute;
   left: 5px;
-  top: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  top: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 100%;
 }
 .logout-img {

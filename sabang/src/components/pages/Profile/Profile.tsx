@@ -43,9 +43,10 @@ function Profile() {
         profile.avatar = avatarDataUrl;
         
         // Set data avatar dalam localStorage
-        profile.avatar = newAvatar;
-        
-        setIsEditing(false); // Pastikan untuk mengatur isEditing ke false setelah perubahan disimpan
+        localStorage.setItem('profile', JSON.stringify(profile));
+        // Pastikan untuk mengatur isEditing ke false setelah perubahan disimpan
+        setIsEditing(false); 
+
       };
       data.readAsDataURL(newAvatar);
     } else {
