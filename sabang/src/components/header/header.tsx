@@ -1,17 +1,31 @@
 import { Button, Dropdown, Modal } from 'antd';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import user from './img/user.png';
 import './header.css';
 import { useNavigate } from 'react-router-dom';
 import { PoweroffOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 
+interface ProfileData {
+  name?: string;
+  avatar?: string;
+}
+
 
 function Header() {
 
   const navigate = useNavigate();
-  const name: string = JSON.parse(localStorage.getItem('profile')??'{}').name ?? '';
+  const [name, setName] = useState<string>('')
+  const [avatar, setAvatar] = useState<string>(user);
+  const [logoutModalVisible, setLogoutModalVisible] = useState(false);
 
-  const [logoutModalVisible, setLogoutModalVisible] = useState(false)
+  useEffect(() => {
+    // Gunakan useEffect untuk memantau perubahan data di localStorage
+    const profileData: ProfileData = JSON.parse(localStorage.getItem('profile') ?? '{}');
+    const avatarData: string = profileData.avatar || user; // Jika avatar tidak ada, gunakan default
+
+    setName(profileData.name || ''); // Mengambil nama dari data localStorage
+    setAvatar(avatarData); // Mengambil avatar dari data localStorage atau default
+  }, []);
 
   const showLogoutModal = () => {
     setLogoutModalVisible(true);
@@ -36,20 +50,22 @@ function Header() {
     {
       key: '1',
       label: (
-        <a type='text' onClick={Logout}><PoweroffOutlined style={{ marginRight: 10 }} />Sign Out</a>
+        <a type='text' onClick={Logout}>
+          <PoweroffOutlined style={{ marginRight: 10 }} />Sign Out</a>
       )
     },
     {
       key: '2',
       label: (
-        <a type='text' onClick={profile}><UserOutlined style={{ marginRight: 10 }} />Profile</a>
+        <a type='text' onClick={profile}>
+          <UserOutlined style={{ marginRight: 10 }} />Profile</a>
       )
     }
   ]
 
   return (
     <div className='header'>
-      <img className='user-img' src={JSON.parse(localStorage.getItem('profile')??'{}').avatar ?? user} />
+      <img className='user-img' src={avatar} />
       <h5>Welcome, {name}</h5>
       <Dropdown menu={{ items }}>
         <Button type='link' className='settings-btn'><SettingOutlined />Settings</Button>

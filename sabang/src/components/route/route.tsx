@@ -40,7 +40,6 @@ import Detail from "../pages/PaymentManagement/Detail";
 import CreatePetani from "../pages/CatatanPetani/CreatePetani";
 import CreatePupuk from "../pages/CatatanPetani/CreatePupuk";
 import Profile from "../pages/Profile/Profile";
-import './style.css';
 
 function AppRoute() {
     return (
