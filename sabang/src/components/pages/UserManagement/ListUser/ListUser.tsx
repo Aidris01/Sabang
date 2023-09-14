@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Typography, Table, Button, Space } from 'antd';
+import { Typography, Table, Button, Space, Popconfirm, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios'
@@ -25,18 +25,24 @@ function ListUser() {
   const [dataSource, setDataSource] = useState<UserData[]>([])
 
   const deleteUser = (userId: number) => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
 
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
-    axios.delete(`/users/${userId}`, config).then((response) => {
-      console.log('User Deleted:',response.data)
-    }).catch((error) => {
-      console.error('Error deleting user:', error)
-    })
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios
+      .delete(`/users/${userId}`, config)
+      .then((response) => {
+        message.success('User deleted');
+        setDataSource((prevData) => prevData.filter((user) => user.id !== userId));
+      })
+      .catch((error) => {
+        message.error('Error deleting user');
+        console.error('Error deleting user:', error);
+      });
   }
 
   useEffect(() => {
@@ -51,9 +57,9 @@ function ListUser() {
     axios.get<UserData[]>('/users', config).then((response) => {
       setDataSource(response.data)
     }).catch((error) => {
-      console.error('Error fetching data:',error)
+      console.error('Error fetching data:', error)
     });
-  },[])
+  }, [])
   const columns = [
     {
       key: 'id',
@@ -81,11 +87,25 @@ function ListUser() {
     {
       key: '5',
       title: "Action",
-      render: () => {
-        return <>
-          <Button type='link' size='small'><EditOutlined /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red', marginLeft: 0 }} /></Button>
-        </>
+      render: (text: string, record: UserData) => {
+        const handleDelete = () => {
+          deleteUser(record.id);
+        };
+        return (
+          <Space>
+            <Button type='link' size='small'><EditOutlined /></Button>
+            <Popconfirm
+              title="Apakah anda yakin untuk menghapus user ini ?"
+              onConfirm={handleDelete}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button type='link' size='small'>
+                <DeleteOutlined style={{ color: 'red', marginLeft: 0 }} />
+              </Button>
+            </Popconfirm>
+          </Space>
+        )
       },
       width: 300
     }
