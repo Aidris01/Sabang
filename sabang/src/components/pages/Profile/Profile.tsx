@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Col, Row, Typography, Input } from 'antd';
 import '../style/style.css';
+import axios from '../../api/axios';
 import backup from '../Profile/user.png';
 import { EditOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
 
@@ -12,10 +13,10 @@ function Profile() {
   const [editedPhone, setEditedPhone] = useState<string>('');
   const [newAvatar, setNewAvatar] = useState<File | null>(null);
 
-  const name: string = JSON.parse(localStorage.getItem('profile')??'{}').name ?? '';
-  const email: string = JSON.parse(localStorage.getItem('profile')??'{}').email ?? '';
-  const phone: string = JSON.parse(localStorage.getItem('profile')??'{}').phone ?? '';
-  const address: string = JSON.parse(localStorage.getItem('profile')??'{}').address ?? '';
+  const name: string = JSON.parse(localStorage.getItem('profile') ?? '{}').name ?? '';
+  const email: string = JSON.parse(localStorage.getItem('profile') ?? '{}').email ?? '';
+  const phone: string = JSON.parse(localStorage.getItem('profile') ?? '{}').phone ?? '';
+  const address: string = JSON.parse(localStorage.getItem('profile') ?? '{}').address ?? '';
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
@@ -31,28 +32,48 @@ function Profile() {
 
   const handleSaveClick = () => {
     // Ubah data dari bentuk objek ke bentuk string
-    let profile = JSON.parse(localStorage.getItem('profile')??'{}');
-    profile.name = editedName
-    profile.email = editedEmail
-    profile.address = editedAddress
-    profile.phone = editedPhone
+    const token = localStorage.getItem('token')
+    let profile = JSON.parse(localStorage.getItem('profile') ?? '{}');
+    const updatedProfile = {
+      name: editedName,
+      email: editedEmail,
+      address: editedAddress,
+      phone: editedPhone,
+      avatar: profile.avatar
+    };
     if (newAvatar) {
       const data = new FileReader();
       data.onload = () => {
         const avatarDataUrl = data.result as string;
-        profile.avatar = avatarDataUrl;
-        
-        // Ubah data menjadi bentuk string kembali
-        localStorage.setItem('profile', JSON.stringify(profile));
-        // Pastikan untuk mengatur isEditing ke false setelah perubahan disimpan
-        setIsEditing(false); 
+        updatedProfile.avatar = avatarDataUrl;
 
+        axios.patch('/auth/profile', updatedProfile, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+        }).then((response) => {
+          console.log(response)
+          // Ubah data menjadi bentuk string kembali
+          localStorage.setItem('profile', JSON.stringify(updatedProfile));
+          // Pastikan untuk mengatur isEditing ke false setelah perubahan disimpan
+          setIsEditing(false);
+        }).catch((error) => {
+          console.error('Error Ocured: ',error)
+        });
       };
       data.readAsDataURL(newAvatar);
     } else {
-      // Jika tidak ada gambar baru yang dipilih, hanya simpan data yang lain
-      localStorage.setItem('profile', JSON.stringify(profile));
+      axios.patch('/auth/profile', updatedProfile, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+      }).then((response) => {
+        // Jika tidak ada gambar baru yang dipilih, hanya simpan data yang lain
+      localStorage.setItem('profile', JSON.stringify(updatedProfile));
       setIsEditing(false);
+      }).catch((error) => {
+        console.error('Error Ocured: ',error)
+      })
     }
   };
 
@@ -68,7 +89,7 @@ function Profile() {
               src={
                 newAvatar
                   ? URL.createObjectURL(newAvatar)
-                  : (JSON.parse(localStorage.getItem('profile')??'{}').avatar ?? backup)
+                  : (JSON.parse(localStorage.getItem('profile') ?? '{}').avatar ?? backup)
               }
             />
             {isEditing && (
