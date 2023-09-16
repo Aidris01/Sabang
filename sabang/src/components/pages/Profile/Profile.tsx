@@ -53,6 +53,7 @@ function Profile() {
           },
         }).then((response) => {
           // Ubah data menjadi bentuk string kembali
+          console.log(response)
           localStorage.setItem('profile', JSON.stringify(updatedProfile));
           // Pastikan untuk mengatur isEditing ke false setelah perubahan disimpan
           setIsEditing(false);
@@ -68,6 +69,7 @@ function Profile() {
         },
       }).then((response) => {
         // Jika tidak ada gambar baru yang dipilih, hanya simpan data yang lain
+      console.log(response)
       localStorage.setItem('profile', JSON.stringify(updatedProfile));
       setIsEditing(false);
       }).catch((error) => {
