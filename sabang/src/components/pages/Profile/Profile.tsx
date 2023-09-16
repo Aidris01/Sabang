@@ -52,7 +52,6 @@ function Profile() {
             Authorization: `Bearer ${token}`
           },
         }).then((response) => {
-          console.log(response)
           // Ubah data menjadi bentuk string kembali
           localStorage.setItem('profile', JSON.stringify(updatedProfile));
           // Pastikan untuk mengatur isEditing ke false setelah perubahan disimpan
