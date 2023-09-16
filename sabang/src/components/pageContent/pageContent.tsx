@@ -10,5 +10,5 @@ function PageContent() {
 
     )
 }
-
 export default PageContent
+// pagecontent ke app.tsx
