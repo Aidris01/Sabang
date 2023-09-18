@@ -1,5 +1,5 @@
 .content {
-    padding: 1px 0px 0px 1vw;
+    padding: 1px 0px 0px 1.1vw;
     display: flex;
     flex: 1;
     justify-content: flex-start;
@@ -32,9 +32,10 @@
     padding-left: 10px;
 }
 .list-user {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
+    height: auto;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -58,7 +59,7 @@
 .create-user {
     position: absolute;
     margin-top: 60px;
-    width: 77.2vw;
+    width: 76.25vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -81,16 +82,16 @@
 .create-user-bulk {
     position: absolute;
     margin-top: 60px;
-    width: 77.2vw;
+    width: 76.25vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
     padding: 20px 10px 10px 0px;
 }
 .management-village {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -98,7 +99,7 @@
 .create-village {
     position: absolute;
     margin-top: 60px;
-    width: 66.3vw;
+    width: 65.34vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -119,9 +120,9 @@
     left: 57vw;
 }
 .roles {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -135,7 +136,7 @@
 .assignment-role {
     position: absolute;
     margin-top: 60px;
-    width: 74.85vw;
+    width: 73.9vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -144,7 +145,7 @@
 .assignment-tapper {
     position: absolute;
     margin-top: 60px;
-    width: 66.25vw;
+    width: 65.33vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -158,9 +159,9 @@
     left: 67vw;
 }
 .factory-management {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -168,7 +169,7 @@
 .create-factory {
     position: absolute;
     margin-top: 60px;
-    width: 66.3vw;
+    width: 65.33vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -189,9 +190,9 @@
     left: 55vw;
 }
 .warehouse-management {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -199,7 +200,7 @@
 .create-warehouse {
     position: absolute;
     margin-top: 60px;
-    width: 66.3vw;
+    width: 65.33vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -220,9 +221,9 @@
     left: 55vw;
 }
 .price-list {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -230,24 +231,24 @@
 .create-price {
     position: absolute;
     margin-top: 60px;
-    width: 62.35vw;
+    width: 61.4vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
     padding: 10px 200px 20px 0px;
 }
 .status-payment {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
 }
 .checklist {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -255,16 +256,16 @@
 .create-checklist {
     position: absolute;
     margin-top: 60px;
-    width: 76.4vw; 
+    width: 75.5vw; 
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
     padding: 10px 10px 20px 10px;
 }
 .control-checklist {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -275,15 +276,15 @@
 .village {
     position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
 }
 .nira {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -294,9 +295,9 @@
     margin-left: 15px;
 }
 .tappers {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -309,7 +310,7 @@
 .purchase-filter {
     position: absolute;
     margin-top: 60px;
-    width: 66.3vw;
+    width: 65.33vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -318,7 +319,7 @@
 .collector {
     position: absolute;
     margin-top: 60px;
-    width: 66.3vw;
+    width: 65.33vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -329,7 +330,7 @@
     width: 8vw;
     margin-left: 10px;
     position: relative;
-    left: 68vw;
+    left: 67vw;
 }
 .not-found {
     width: 65vw;
@@ -338,9 +339,9 @@
     bottom: -50px;
 }
 .production {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -348,7 +349,7 @@
 .create-production {
     position: absolute;
     margin-top: 60px;
-    width: 76.4vw;
+    width: 75.5vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -360,17 +361,17 @@
     right: 2.5vw;
 }
 .purchase {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
 }
 .ics {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -378,14 +379,14 @@
 .ics-team {
     position: absolute;
     margin-top: 60px;
-    width: 66.3vw;
+    width: 65.33vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
     padding: 10px 150px 10px 0px;
 }
 .detail {
-    position: fixed;
+    position: absolute;
     top: 110px;
     width: 78vw;
     background-color: white;
@@ -397,17 +398,17 @@
     margin-left: 1vw;
 }
 .kpi {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
 }
 .catatan-petani {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -415,7 +416,7 @@
 .create-petani {
     position: absolute;
     margin-top: 60px;
-    width: 76.4vw;
+    width: 75.5vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -433,9 +434,9 @@
     left: 75%;
 }
 .catatan-pupuk {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
-    width: 78vw;
+    width: 77vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -443,14 +444,14 @@
 .create-pupuk {
     position: absolute;
     margin-top: 60px;
-    width: 76.4vw;
+    width: 75.5vw;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
     padding: 10px 20px 20px 0px;
 }
 .profile {
-    position: fixed;
+    position: absolute;
     margin-top: 60px;
     width: 78vw;
     background-color: white;
