@@ -37,6 +37,7 @@ function ListUser() {
       .delete(`/users/${userId}`, config)
       .then((response) => {
         message.success('User deleted');
+        console.log(response)
         setDataSource((prevData) => prevData.filter((user) => user.id !== userId));
       })
       .catch((error) => {
