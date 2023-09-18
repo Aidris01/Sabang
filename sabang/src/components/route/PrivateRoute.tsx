@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
-
-const useAuth = () => {
+    
+const useAuth = () : boolean => {
     const token = localStorage.getItem('token'); // Ganti menjadi true jika login berhasil
     return token != null;
 }
