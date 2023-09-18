@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import bg from './img/bg.jpg';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
@@ -26,7 +26,7 @@ function Login() {
                 navigate('/');
             } else {
                 console.log('Authentication failed.', response.data.error);
-                alert('The username or password is wrong, Please try again!');
+                message.error('The username or password is wrong, Please try again!');
             }
         } catch (error) {
             const axiosError = error as AxiosError;
@@ -42,7 +42,7 @@ function Login() {
                     console.log('Not Found:', axiosError.response.data);
                     // Tambahkan logika untuk penanganan 404 di sini
                 } else {
-                    alert('The username or password is wrong, Please try again!');
+                    message.error('The username or password is wrong, Please try again!');
                     // Tambahkan logika untuk penanganan jenis error lain di sini
                 }
             } else {
