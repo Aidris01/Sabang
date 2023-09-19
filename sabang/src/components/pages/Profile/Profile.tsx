@@ -59,8 +59,8 @@ function Profile() {
           message.success('Editing Success')
           setIsEditing(false);
         }).catch((error) => {
-          message.error('Error Ocured: ',error)
-          console.error('Error Ocured: ',error)
+          message.error('Error Ocured: ', error)
+          console.error('Error Ocured: ', error)
         });
       };
       data.readAsDataURL(newAvatar);
@@ -71,15 +71,18 @@ function Profile() {
         },
       }).then((response) => {
         // Jika tidak ada gambar baru yang dipilih, hanya simpan data yang lain
-      console.log(response)
-      localStorage.setItem('profile', JSON.stringify(updatedProfile));
-      message.success('Editing Success')
-      setIsEditing(false);
+        console.log(response)
+        localStorage.setItem('profile', JSON.stringify(updatedProfile));
+        message.success('Editing Success')
+        setIsEditing(false);
       }).catch((error) => {
-        message.error('Error Ocured: ',error)
-        console.error('Error Ocured: ',error)
+        message.error('Error Ocured: ', error)
+        console.error('Error Ocured: ', error)
       })
     }
+    setTimeout(() => {
+      message.destroy();
+    }, 5000);
   };
 
   return (

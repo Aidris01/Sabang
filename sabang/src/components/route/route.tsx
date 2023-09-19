@@ -40,6 +40,7 @@ import Detail from "../pages/PaymentManagement/Detail";
 import CreatePetani from "../pages/CatatanPetani/CreatePetani";
 import CreatePupuk from "../pages/CatatanPetani/CreatePupuk";
 import Profile from "../pages/Profile/Profile";
+import EditUser from "../pages/UserManagement/ListUser/EditUser";
 
 function AppRoute() {
     return (
@@ -86,6 +87,7 @@ function AppRoute() {
 
                 <Route path="/StatusPayment/Detail" element={<Layout>{<Detail />}</Layout>} />
                 <Route path="/Profile" element={<Layout>{<Profile />}</Layout>} />
+                <Route path="/ListUser/EditUser/:userId" element={<Layout>{<EditUser />}</Layout>} />
             </Route>
         </Routes>
     )

@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Typography, Table, Button, Space, Popconfirm, message } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from '../../../api/axios'
 import '../../../pages/style/style.css'
 
@@ -94,7 +94,9 @@ function ListUser() {
         };
         return (
           <Space>
-            <Button type='link' size='small'><EditOutlined /></Button>
+            <Link to={`/ListUser/EditUser/${record.id}`}>
+              <Button type='link' size='small'><EditOutlined /></Button>
+            </Link>
             <Popconfirm
               title="Apakah anda yakin untuk menghapus user ini ?"
               onConfirm={handleDelete}
