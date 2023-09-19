@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Col, Row, Typography, Input } from 'antd';
+import { Button, Col, Row, Typography, Input, message } from 'antd';
 import '../style/style.css';
 import axios from '../../api/axios';
 import backup from '../Profile/user.png';
@@ -56,8 +56,10 @@ function Profile() {
           console.log(response)
           localStorage.setItem('profile', JSON.stringify(updatedProfile));
           // Pastikan untuk mengatur isEditing ke false setelah perubahan disimpan
+          message.success('Editing Success')
           setIsEditing(false);
         }).catch((error) => {
+          message.error('Error Ocured: ',error)
           console.error('Error Ocured: ',error)
         });
       };
@@ -71,8 +73,10 @@ function Profile() {
         // Jika tidak ada gambar baru yang dipilih, hanya simpan data yang lain
       console.log(response)
       localStorage.setItem('profile', JSON.stringify(updatedProfile));
+      message.success('Editing Success')
       setIsEditing(false);
       }).catch((error) => {
+        message.error('Error Ocured: ',error)
         console.error('Error Ocured: ',error)
       })
     }
@@ -92,6 +96,7 @@ function Profile() {
                   ? URL.createObjectURL(newAvatar)
                   : (JSON.parse(localStorage.getItem('profile') ?? '{}').avatar ?? backup)
               }
+              alt='User.img'
             />
             {isEditing && (
               <div style={{ margin: 10 }}>
