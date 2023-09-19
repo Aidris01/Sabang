@@ -50,15 +50,15 @@ function Header() {
     {
       key: '1',
       label: (
-        <a type='text' onClick={Logout}>
-          <PoweroffOutlined style={{ marginRight: 10 }} />Sign Out</a>
+        <a type='text' onClick={profile}>
+          <UserOutlined style={{ marginRight: 10 }} />Profile</a>
       )
     },
     {
       key: '2',
       label: (
-        <a type='text' onClick={profile}>
-          <UserOutlined style={{ marginRight: 10 }} />Profile</a>
+        <a type='text' onClick={Logout}>
+          <PoweroffOutlined style={{ marginRight: 10 }} />Sign Out</a>
       )
     }
   ]

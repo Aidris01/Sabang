@@ -35,14 +35,17 @@ function Login() {
                 // Tangani error berdasarkan status code
                 if (axiosError.response.status === 400) {
                     console.log('Bad Request:', axiosError.response.data);
+                    message.error('Bad Request')
                 } else if (axiosError.response.status === 401) {
                     console.log('Unauthorized:', axiosError.response.data);
+                    message.error('Unautorized')
                     // Tambahkan logika untuk penanganan 401 di sini
                 } else if (axiosError.response.status === 404) {
                     console.log('Not Found:', axiosError.response.data);
+                    message.error('User Not Found')
                     // Tambahkan logika untuk penanganan 404 di sini
                 } else {
-                    message.error('The username or password is wrong, Please try again!');
+                    message.error("Something went wrong, and we don't know it.");
                     // Tambahkan logika untuk penanganan jenis error lain di sini
                 }
             } else {
