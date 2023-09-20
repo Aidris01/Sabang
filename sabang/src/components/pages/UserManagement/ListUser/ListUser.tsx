@@ -57,7 +57,6 @@ function ListUser() {
 
     axios.get<UserData[]>('/users', config).then((response) => {
       setDataSource(response.data)
-      console.log(response.data)
     }).catch((error) => {
       console.error('Error fetching data:', error)
     });

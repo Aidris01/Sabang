@@ -1,4 +1,5 @@
-import { Button, Col, Form, Input, message, Row, Select, Space, Typography } from 'antd'
+import { Button, Col, Form, Input, message, Row, Select, Space, Typography, } from 'antd'
+import { useForm } from 'antd/es/form/Form';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -15,9 +16,18 @@ interface UserData {
 }
 
 function EditUser() {
+    const [form] = useForm()
+    const initialValues = {
+        name: form.getFieldValue('name') || '',
+        nik: form.getFieldValue('nik') || '',
+        phone: form.getFieldValue('phone') || '',
+        address: form.getFieldValue('address') || '',
+        email: form.getFieldValue('email') || '',
+        villageId: form.getFieldValue('villageId') || ''
+    }
     const navigate = useNavigate()
     const { userId } = useParams<Record<string, string>>();
-    const [userData, setUserData] = useState<UserData>({name: '', nik: '', phone: '', address: '', email: '', villageId: ''});
+    const [userData, setUserData] = useState<UserData>({ name: '', nik: '', phone: '', address: '', email: '', villageId: '' });
     const token = localStorage.getItem('token')
 
     useEffect(() => {
@@ -26,6 +36,7 @@ function EditUser() {
                 Authorization: `Bearer ${token}`
             }
         }).then((response) => {
+            form.setFieldsValue(response.data)
             setUserData(response.data)
         }).catch((error) => {
             message.error('Error Ocured', error)
@@ -33,7 +44,7 @@ function EditUser() {
     }, [token, userId])
 
     const onFinish = (values: any) => {
-        axios.patch(`/users/${userId}`, {
+        axios.patch(`/users/${userId}`, form.getFieldsValue(), {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -51,21 +62,21 @@ function EditUser() {
     }
 
     if (!userData) {
-        <div>Loading...</div>
+       return <div>Loading...</div>
     }
-    console.log(userData)
 
     return (
         <div className='content'>
             <Typography.Title level={4}>Edit User - {userId}</Typography.Title>
             <div className="edit-user">
                 <Form
+                    form={form}
                     hideRequiredMark
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
                     name='EditedUserForm'
                     onFinish={onFinish}
-                    initialValues={userData}>
+                    initialValues={initialValues}>
                     <Row gutter={16}>
                         <Col span={12}>
                             <Form.Item
@@ -105,20 +116,23 @@ function EditUser() {
                         </Col>
                         <Col span={12}>
                             <Form.Item
-                            name='villageId'
-                            label='Village ID'>
+                                name='villageId'
+                                label='Village ID'>
                                 <Select />
                             </Form.Item>
                         </Col>
                     </Row>
                     <Space>
-                        <Button className='save-btn' type='primary' htmlType='submit' onClick={onFinish}>Save</Button>
-                        <Button className='cancel-btn' danger onClick={handleCancel}>Cancel</Button>
+                        <Button className='save-btn' type='primary' htmlType='submit'>
+                            Save
+                        </Button>
+                        <Button className='cancel-btn' danger onClick={handleCancel}>
+                            Cancel
+                        </Button>
                     </Space>
                 </Form>
             </div>
         </div>
     )
 }
-
 export default EditUser
