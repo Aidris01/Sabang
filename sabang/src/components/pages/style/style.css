@@ -480,3 +480,12 @@
     position: relative;
     left: 39vw;
 }
+.edit-user {
+    position: absolute;
+    margin-top: 60px;
+    width: 73.9vw;
+    background-color: white;
+    border: solid 1px rgba(46, 46, 46, 0.2);
+    border-radius: 5px;
+    padding: 20px 40px 10px 0px;
+}
