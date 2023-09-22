@@ -22,7 +22,7 @@ function CreateUserBulk() {
       <Typography.Title level={4}>Create User Bulk</Typography.Title>
       <div className='create-user-bulk'>
         <Input
-          style={{ marginLeft: 10, marginRight: 10, width: 955 }}
+          style={{ marginLeft: 15, marginRight: 10, width: 955 }}
           type='file'
           accept='.csv'
           onChange={handleFileChange} />
