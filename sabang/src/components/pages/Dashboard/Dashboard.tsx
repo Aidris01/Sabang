@@ -8,10 +8,10 @@ function Dashboard() {
       <Typography.Title level={4}>Dashboard</Typography.Title>
       <div className='dashboard-page'>
         <Space direction='horizontal'>
-          <DashboardCard title={"All Purchases (Liter)"} value={1000} />
-          <DashboardCard title={"All Productions (Kg)"} value={2000} />
-          <DashboardCard title={"ICS Checked (Place)"} value={0} />
-          <DashboardCard title={"All Payments (Rp)"} value={3000} />
+          <DashboardCard title={"All Purchases (Liter)"} value={6740} />
+          <DashboardCard title={"All Productions (Kg)"} value={4200} />
+          <DashboardCard title={"ICS Checked (Place)"} value={2} />
+          <DashboardCard title={"All Payments (Rp)"} value={2130} />
         </Space>
         <Space>
           <Typography.Title level={4}>Purchase<Purchase /></Typography.Title>
