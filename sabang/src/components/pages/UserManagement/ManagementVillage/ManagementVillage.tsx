@@ -1,8 +1,15 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Button, Table, Typography } from 'antd';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Button, message, Popconfirm, Space, Table, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../../pages/style/style.css'
+import axios from '../../../api/axios'
+
+interface Village {
+  id: number;
+  name: string;
+  villageCode: string;
+}
 
 function ManagementVillage() {
 
@@ -10,19 +17,33 @@ function ManagementVillage() {
   const createVillage = () => {
     navigate("/ManagementVillage/CreateVillage")
   }
-
-  const [dataSource, setDataSource] = useState([
-    {
-      id: 1,
-      name: "Sagulung",
-      villageCode: "AMSA"
-    },
-    {
-      id: 2,
-      name: "Karyamekar",
-      villageCode: "AMKM"
+  const [dataSource, setDataSource] = useState<Village[]>([])
+  const token = localStorage.getItem('token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
     }
-  ])
+  }
+
+  useEffect(() => {
+    axios.get<Village[]>('/villages', config).then((response) => {
+      setDataSource(response.data)
+    }).catch((error) => {
+      console.error('Error Ocured: ', error)
+    })
+  })
+
+  const deleteVillage = (villageId: number) => {
+    axios.delete(`/villages/${villageId}`, config)
+      .then((response) => {
+        message.success('Village Deleted')
+        console.log(response)
+        setDataSource((prevData) => prevData.filter((village) => village.id !== villageId));
+      }).catch((error) => {
+        message.error('Error Ocured')
+        console.error('Error Ocured: ', error)
+      })
+  }
 
   const columns = [
     {
@@ -46,11 +67,24 @@ function ManagementVillage() {
       key: '4',
       title: 'Action',
       width: 400,
-      render: () => {
-        return <>
-          <Button type='link' size='small'><EditOutlined /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
-        </>
+      render: (text: string, record: Village) => {
+        const handleDelete = () => {
+          deleteVillage(record.id)
+        }
+        return (
+          <Space>
+            <Link to={`/ManagementVillage/EditVillage/${record.id}`}>
+              <Button type='link' size='small'><EditOutlined /></Button>
+            </Link>
+            <Popconfirm
+              title="Apakah anda yakin untuk menghapus village ini ?"
+              onConfirm={handleDelete}
+              okText="Yes"
+              cancelText="No">
+              <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+            </Popconfirm>
+          </Space>
+        )
       },
     }
   ]
@@ -62,14 +96,13 @@ function ManagementVillage() {
         <Button className='create-btn' onClick={createVillage}>Create New</Button>
         <div className='village-table'>
           <Table
-          size='small'
-          columns={columns}
-          dataSource={dataSource}
+            size='small'
+            columns={columns}
+            dataSource={dataSource}
           ></Table>
         </div>
       </div>
     </div>
   )
 }
-
 export default ManagementVillage;

@@ -41,6 +41,7 @@ import CreatePetani from "../pages/CatatanPetani/CreatePetani";
 import CreatePupuk from "../pages/CatatanPetani/CreatePupuk";
 import Profile from "../pages/Profile/Profile";
 import EditUser from "../pages/UserManagement/ListUser/EditUser";
+import EditVillage from "../pages/UserManagement/ManagementVillage/EditVillage";
 
 function AppRoute() {
     return (
@@ -88,6 +89,7 @@ function AppRoute() {
                 <Route path="/StatusPayment/Detail" element={<Layout>{<Detail />}</Layout>} />
                 <Route path="/Profile" element={<Layout>{<Profile />}</Layout>} />
                 <Route path="/ListUser/EditUser/:userId" element={<Layout>{<EditUser />}</Layout>} />
+                <Route path="/ManagementVillage/EditVillage/:villageId" element={<Layout>{<EditVillage />}</Layout>} />
             </Route>
         </Routes>
     )

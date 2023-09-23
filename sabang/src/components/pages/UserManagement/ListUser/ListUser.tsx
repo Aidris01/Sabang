@@ -32,7 +32,6 @@ function ListUser() {
         Authorization: `Bearer ${token}`,
       },
     };
-
     axios
       .delete(`/users/${userId}`, config)
       .then((response) => {
@@ -54,7 +53,6 @@ function ListUser() {
         Authorization: `Bearer ${token}`
       }
     }
-
     axios.get<UserData[]>('/users', config).then((response) => {
       setDataSource(response.data)
     }).catch((error) => {
@@ -134,5 +132,4 @@ function ListUser() {
     </div>
   )
 }
-
 export default ListUser;
