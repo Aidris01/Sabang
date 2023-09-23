@@ -28,7 +28,7 @@ function AssignmentRole() {
                 label="Description"
                 name="description"
                 rules={[{ required: true, message: "Please input the description!" }]}>
-                <TextArea rows={2} /></Form.Item>
+                <TextArea rows={2} autoSize={{ minRows: 3, maxRows: 6 }} /></Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
@@ -40,7 +40,7 @@ function AssignmentRole() {
                 label="Data"
                 name="data"
                 rules={[{ required: true, message: "Please input the data!" }]}>
-                <TextArea rows={4} /></Form.Item>
+                <TextArea rows={4} autoSize={{ minRows: 3, maxRows: 6 }} /></Form.Item>
             </Col>
           </Row>
           <Space size={10}>
