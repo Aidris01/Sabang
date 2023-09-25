@@ -112,7 +112,7 @@ function CreateUser() {
                         <Col span={12}>
                             <Form.Item
                                 label="Village Code"
-                                name="code"
+                                name="villageId"
                                 rules={[{ required: false, message: "Please selected one of them!" }]}>
                                 <Select
                                     placeholder="Select Village Code"
