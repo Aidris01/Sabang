@@ -31,7 +31,6 @@ function EditVillage() {
         .then((response) => {
             form.setFieldsValue(response.data)
             setVillageData(response.data)
-            console.log(response.data)
         }).catch((error) => {
             message.error('Error Ocured')
             console.error(error)
@@ -41,7 +40,6 @@ function EditVillage() {
     const onFinish = (values: any) => {
         axios.patch(`/villages/${villageId}`, form.getFieldsValue(), config)
         .then((response) => {
-            console.log('Village Updated: ',response)
             message.success('Village Updated')
             navigate('/ManagementVillage')
         }).catch((error) => {

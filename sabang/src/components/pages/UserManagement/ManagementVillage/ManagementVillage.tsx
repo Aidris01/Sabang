@@ -31,7 +31,7 @@ function ManagementVillage() {
     }).catch((error) => {
       console.error('Error Ocured: ', error)
     })
-  })
+  }, [])
 
   const deleteVillage = (villageId: number) => {
     axios.delete(`/villages/${villageId}`, config)
