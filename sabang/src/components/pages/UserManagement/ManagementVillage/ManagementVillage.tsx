@@ -8,7 +8,7 @@ import axios from '../../../api/axios'
 interface Village {
   id: number;
   name: string;
-  villageCode: string;
+  code: string;
 }
 
 function ManagementVillage() {
@@ -60,7 +60,7 @@ function ManagementVillage() {
     {
       key: '3',
       title: 'Village Code',
-      dataIndex: 'villageCode',
+      dataIndex: 'code',
       width: 900
     },
     {

@@ -7,18 +7,18 @@ import '../../style/style.css'
 
 interface Village {
     name: string;
-    villageCode: string;
+    code: string;
 }
 
 function EditVillage() {
     const navigate = useNavigate()
     const { villageId } = useParams<Record<string, string>>();
-    const [ villageData, setVillageData ] = useState<Village>({ name: '', villageCode: ''});
+    const [ villageData, setVillageData ] = useState<Village>({ name: '', code: ''});
     const token = localStorage.getItem('token')
     const [form] = useForm();
     const initialValues = {
         name: form.getFieldValue('name') || '',
-        villageCode: form.getFieldValue('villageCode') || ''
+        code: form.getFieldValue('code') || ''
     }
     const config = {
         headers: {
@@ -31,6 +31,7 @@ function EditVillage() {
         .then((response) => {
             form.setFieldsValue(response.data)
             setVillageData(response.data)
+            console.log(response.data)
         }).catch((error) => {
             message.error('Error Ocured')
             console.error(error)
@@ -76,7 +77,7 @@ function EditVillage() {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                name='villageCode'
+                name='code'
                 label='Village Code'
                 rules={[{required: true, message: 'Please input the code!'}]}>
                     <Input />
