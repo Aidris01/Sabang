@@ -6,7 +6,6 @@ import axios from '../../../api/axios';
 import '../../../pages/style/style.css'
 
 function CreateUser() {
-
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const listUser = () => {

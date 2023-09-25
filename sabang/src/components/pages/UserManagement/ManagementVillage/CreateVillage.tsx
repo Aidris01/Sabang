@@ -1,6 +1,7 @@
-import { Button, Form, Input, Space, Typography } from 'antd'
+import { Button, Form, Input, message, Space, Typography } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../../api/axios'
 import '../../../pages/style/style.css'
 
 function CreateVillage() {
@@ -8,11 +9,28 @@ function CreateVillage() {
     const managementVillage = () => {
         navigate("/ManagementVillage")
     }
+    const token = localStorage.getItem('token')
+    const handleFormSubmit = async (values: any) => {
+        try {
+            const response = await axios.post('/villages', values, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log("Response Server: ", response.data)
+            message.success("Village Added")
+            navigate('/ManagementVillage')
+        } catch (error) {
+            console.error("Error Ocured: ", error)
+            message.error('Error Ocured')
+        }
+    }
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Village</Typography.Title>
             <div className='create-village'>
                 <Form
+                    onFinish={handleFormSubmit}
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
                     hideRequiredMark>
@@ -24,7 +42,7 @@ function CreateVillage() {
                     </Form.Item>
                     <Form.Item
                         label="Village Code"
-                        name="villageCode"
+                        name="code"
                         rules={[{ required: true, message: "Please input the village code !" }]}>
                         <Input />
                     </Form.Item>
