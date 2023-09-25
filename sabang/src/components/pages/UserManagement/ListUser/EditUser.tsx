@@ -14,6 +14,10 @@ interface UserData {
     email: string,
     villageId: string
 }
+interface VillageData {
+    name: string,
+    code: string
+}
 
 function EditUser() {
     const [form] = useForm()
@@ -29,6 +33,26 @@ function EditUser() {
     const { userId } = useParams<Record<string, string>>();
     const [userData, setUserData] = useState<UserData>({ name: '', nik: '', phone: '', address: '', email: '', villageId: '' });
     const token = localStorage.getItem('token')
+    const [villageData, setVillageData] = useState<VillageData[]>([]);
+    const [loading, setLoading] = useState<Boolean>();
+
+    useEffect(() => {
+        axios.get('/villages', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response) => {
+            const formattedData = response.data.map((item: any) => ({
+                value: item.name,
+                label: item.code
+            }));
+            setVillageData(formattedData)
+            setLoading(false)
+        }).catch((error) => {
+            console.log("Error Fetching Data: ", error)
+            setLoading(false)
+        })
+    }, [])
 
     useEffect(() => {
         axios.get(`/users/${userId}`, {
@@ -118,7 +142,13 @@ function EditUser() {
                             <Form.Item
                                 name='villageId'
                                 label='Village ID'>
-                                <Select />
+                                <Select
+                                placeholder="Select Village Code"
+                                allowClear
+                                placement="bottomLeft"
+                                listHeight={200}
+                                options={villageData} />
+                                {loading && <div>Loading...</div>}
                             </Form.Item>
                         </Col>
                     </Row>

@@ -1,16 +1,41 @@
 import { Button, Form, Input, Select, Typography, Space, Col, Row, message } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios';
 import '../../../pages/style/style.css'
 
+interface VillageData {
+    name: string,
+    code: string
+}
+
 function CreateUser() {
+    const [villageData, setVillageData] = useState<VillageData[]>([]);
+    const [loading, setLoading] = useState<Boolean>();
+
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const listUser = () => {
         navigate("/ListUser")
     }
+    useEffect(() => {
+        axios.get('/villages', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response) => {
+            const formattedData = response.data.map((item: any) => ({
+                value: item.name,
+                label: item.code
+            }));
+            setVillageData(formattedData)
+            setLoading(false)
+        }).catch((error) => {
+            console.log("Error Fetching Data: ", error)
+            setLoading(false)
+        })
+    }, [])
     const handleFormSubmit = async (values: any) => {
         try {
             const response = await axios.post('/users', values, {
@@ -94,40 +119,8 @@ function CreateUser() {
                                     allowClear
                                     placement="bottomLeft"
                                     listHeight={200}
-                                    options={[{
-                                        value: "AMCT",
-                                        label: "AMCT"
-                                    },
-                                    {
-                                        value: "AMKM",
-                                        label: "AMKM"
-                                    },
-                                    {
-                                        value: "AMSA",
-                                        label: "AMSA"
-                                    },
-                                    {
-                                        value: "AMSM",
-                                        label: "AMSM"
-                                    },
-                                    {
-                                        value: "AMCK",
-                                        label: "AMCK"
-                                    },
-                                    {
-                                        value: "AMKS",
-                                        label: "AMKS"
-                                    },
-                                    {
-                                        value: "AMJA",
-                                        label: "AMJA"
-                                    },
-                                    {
-                                        value: "AMBK",
-                                        label: "AMBK"
-                                    }
-                                    ]}>
-                                </Select>
+                                    options={villageData} />
+                                {loading && <div>Loading...</div>}
                             </Form.Item>
                         </Col>
                         <Col span={12}>
