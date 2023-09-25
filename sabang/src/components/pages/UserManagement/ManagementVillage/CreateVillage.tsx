@@ -5,11 +5,12 @@ import axios from '../../../api/axios'
 import '../../../pages/style/style.css'
 
 function CreateVillage() {
+    const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const managementVillage = () => {
         navigate("/ManagementVillage")
     }
-    const token = localStorage.getItem('token')
+
     const handleFormSubmit = async (values: any) => {
         try {
             const response = await axios.post('/villages', values, {
@@ -46,11 +47,11 @@ function CreateVillage() {
                         rules={[{ required: true, message: "Please input the village code !" }]}>
                         <Input />
                     </Form.Item>
+                    <Space size={10}>
+                        <Button className='save-btn-village' type='primary' htmlType='submit'>Save</Button>
+                        <Button className='cancel-btn-village' danger onClick={managementVillage}>Cancel</Button>
+                    </Space>
                 </Form>
-                <Space size={10}>
-                    <Button className='save-btn-village' type='primary' htmlType='submit'>Save</Button>
-                    <Button className='cancel-btn-village' danger onClick={managementVillage}>Cancel</Button>
-                </Space>
             </div>
         </div>
     )
