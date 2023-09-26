@@ -53,11 +53,26 @@ function ListUser() {
         Authorization: `Bearer ${token}`
       }
     }
-    axios.get<UserData[]>('/users', config).then((response) => {
-      setDataSource(response.data)
-    }).catch((error) => {
-      console.error('Error fetching data:', error)
-    });
+    axios.get<UserData[]>('/users', config)
+      .then((response) => {
+        const users = response.data
+        axios.get('/villages', config)
+        .then((villageResponse) => {
+          const villages = villageResponse.data;
+          const updatedUsers = users.map((user) => {
+            const village = villages.find((village: { id: string; }) => village.id === user.villageId)
+            return {
+              ...user,
+              villageId: village ? village.name : '',
+            };
+          });
+          setDataSource(updatedUsers)
+        }).catch((villageError) => {
+          console.error('Error Fetching Village Data: ',villageError)
+        });
+      }).catch((error) => {
+        console.error('Error fetching data:', error)
+      });
   }, [])
   const columns = [
     {

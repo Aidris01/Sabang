@@ -73,7 +73,6 @@ function EditUser() {
                 Authorization: `Bearer ${token}`
             }
         }).then((response) => {
-            console.log('User data updated:', response.data);
             message.success('User Updated')
             navigate('/ListUser')
         }).catch((error) => {
