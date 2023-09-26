@@ -27,7 +27,7 @@ function CreateUser() {
         }).then((response) => {
             const formattedData = response.data.map((item: any) => ({
                 value: item.id,
-                label: item.code
+                label: `${item.code} ${item.name}`
             }));
             setVillageData(formattedData)
             setLoading(false)
@@ -113,7 +113,7 @@ function CreateUser() {
                             <Form.Item
                                 label="Village Code"
                                 name="villageId"
-                                rules={[{ required: true, message: "Please selected one of them!" }]}>
+                                rules={[{ required: false, message: "Please selected one of them!" }]}>
                                 <Select
                                     placeholder="Select Village Code"
                                     allowClear

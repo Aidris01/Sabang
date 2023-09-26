@@ -44,7 +44,7 @@ function EditUser() {
         }).then((response) => {
             const formattedData = response.data.map((item: any) => ({
                 value: item.id,
-                label: item.code
+                label: `${item.code} ${item.name}`
             }));
             setVillageData(formattedData)
             setLoading(false)
@@ -142,7 +142,7 @@ function EditUser() {
                             <Form.Item
                                 name='villageId'
                                 label='Village ID'
-                                rules={[{required: true, message: 'Please select the village code!'}]}>
+                                rules={[{required: false, message: 'Please select the village code!'}]}>
                                 <Select
                                 placeholder="Select Village Code"
                                 allowClear
