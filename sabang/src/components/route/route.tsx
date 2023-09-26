@@ -42,6 +42,7 @@ import CreatePupuk from "../pages/CatatanPetani/CreatePupuk";
 import Profile from "../pages/Profile/Profile";
 import EditUser from "../pages/UserManagement/ListUser/EditUser";
 import EditVillage from "../pages/UserManagement/ManagementVillage/EditVillage";
+import CreateRole from "../pages/UserManagement/AssignmentRole/CreateRole";
 
 function AppRoute() {
     return (
@@ -75,6 +76,7 @@ function AppRoute() {
 
                 <Route path="/ListUser/CreateUser" element={<Layout>{<CreateUser />}</Layout>} />
                 <Route path="/ListUser/CreateUserBulk" element={<Layout>{<CreateUserBulk />}</Layout>} />
+                <Route path="/Roles/CreateRole" element={<Layout>{<CreateRole />}</Layout>} />
                 <Route path="/ManagementVillage/CreateVillage" element={<Layout>{<CreateVillage />}</Layout>} />
                 <Route path="/FactoryManagement/CreateFactory" element={<Layout>{<CreateFactory />}</Layout>} />
                 <Route path="/WarehouseManagement/CreateWarehouse" element={<Layout>{<CreateWarehouse />}</Layout>} />

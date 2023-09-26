@@ -7,7 +7,7 @@ import '../../../pages/style/style.css'
 function Roles() {
   const navigate = useNavigate()
   const createRole = () => {
-    navigate("/AssignmentRole")
+    navigate("/Roles/CreateRole")
   }
   const [dataSource, setDataSource] = useState([
     {
