@@ -10,5 +10,4 @@ function AssignmentRole() {
     </div>
   )
 }
-
 export default AssignmentRole;
