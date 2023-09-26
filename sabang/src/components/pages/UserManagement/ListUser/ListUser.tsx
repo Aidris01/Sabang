@@ -88,7 +88,7 @@ function ListUser() {
     },
     {
       key: 'villageId',
-      title: 'Village Id',
+      title: 'Village',
       dataIndex: 'villageId',
       width: 700
     },
