@@ -77,7 +77,7 @@ function EditUser() {
             message.success('User Updated')
             navigate('/ListUser')
         }).catch((error) => {
-            message.error('Error Ocured')
+            message.error("Error Ocured")
             console.error('Error Ocured: ', error)
         })
     }
