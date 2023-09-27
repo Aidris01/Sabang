@@ -13,13 +13,11 @@ function Roles() {
     {
       id: 1,
       name: 'Buyer',
-      ruleName: '(Not Set)',
       description: '(Not Set)'
     },
     {
       id: 2,
       name: 'Pengepul',
-      ruleName: '(Not Set)',
       description: 'role untuk pengepul'
     }
   ])
@@ -38,12 +36,6 @@ function Roles() {
     },
     {
       key: '3',
-      title: 'Rule Name',
-      dataIndex: 'ruleName',
-      width: 900
-    },
-    {
-      key: '4',
       title: 'Description',
       dataIndex: 'description',
       width: 700
