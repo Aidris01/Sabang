@@ -52,5 +52,4 @@ function CreateRole() {
     </div>
   )
 }
-
 export default CreateRole;
