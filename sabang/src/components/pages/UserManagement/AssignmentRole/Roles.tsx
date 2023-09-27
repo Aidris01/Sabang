@@ -6,31 +6,32 @@ import axios from '../../../api/axios';
 import '../../../pages/style/style.css';
 
 interface Role {
-  id: number,
-  name: string,
-  description: string
+  id: number;
+  name: string;
+  description: string;
 }
 
 function Roles() {
-  const token = localStorage.getItem('token')
   const navigate = useNavigate()
   const createRole = () => {
     navigate("/Roles/CreateRole")
   }
   const [dataSource, setDataSource] = useState<Role[]>([])
+  const token = localStorage.getItem('token')
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
   useEffect(() => {
-    axios.get<Role[]>('/roles', config).then((response) => {
-      setDataSource(response.data)
-    }).catch((error) => {
-      console.error('Error Ocured: ', error)
-    })
-  }, [])
-
+    axios.get('/roles', config)
+      .then(response => {
+        setDataSource(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching roles:', error);
+      });
+  }, [config]);
   const columns = [
     {
       key: '1',
