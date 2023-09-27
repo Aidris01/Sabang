@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Button, message, Table, Typography } from 'antd';
+import { Button, Table, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios';
@@ -23,16 +23,13 @@ function Roles() {
       Authorization: `Bearer ${token}`,
     },
   };
-
   useEffect(() => {
-    axios.get('/roles', config)
-    .then((response) => {
+    axios.get<Role[]>('/roles', config).then((response) => {
       setDataSource(response.data)
     }).catch((error) => {
-      console.error('Error Ocured: ',error)
-      message.error("Error Fetching Data")
+      console.error('Error Ocured: ', error)
     })
-  })
+  }, [])
 
   const columns = [
     {

@@ -43,6 +43,7 @@ function CreateUser() {
                     Authorization: `Bearer ${token}`
                 }
             })
+            console.log(response)
             message.success("User Added")
             navigate('/ListUser')
         } catch (error) {

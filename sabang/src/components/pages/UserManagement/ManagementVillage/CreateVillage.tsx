@@ -48,8 +48,12 @@ function CreateVillage() {
                         <Input />
                     </Form.Item>
                     <Space size={10}>
-                        <Button className='save-btn-village' type='primary' htmlType='submit'>Save</Button>
-                        <Button className='cancel-btn-village' danger onClick={managementVillage}>Cancel</Button>
+                        <Button className='save-btn-village' type='primary' htmlType='submit'>
+                            Save
+                        </Button>
+                        <Button className='cancel-btn-village' danger onClick={managementVillage}>
+                            Cancel
+                        </Button>
                     </Space>
                 </Form>
             </div>

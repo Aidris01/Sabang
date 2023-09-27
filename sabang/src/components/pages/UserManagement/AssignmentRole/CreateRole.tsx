@@ -1,19 +1,37 @@
-import { Button, Form, Input, Space, Typography } from 'antd';
+import { Button, Form, Input, message, Space, Typography } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from '../../../api/axios';
 import '../../../pages/style/style.css'
 
 function CreateRole() {
+  const token = localStorage.getItem('token')
   const navigate = useNavigate()
   const roles = () => {
     navigate("/Roles")
+  }
+  const handleFormSubmit = async (values: any) => {
+    try {
+      const response = await axios.post('/roles', values, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      console.log('Response',response)
+      message.success('Role Added')
+      navigate('/roles')
+    } catch(error) {
+      console.error('Error Ocured: ',error)
+      message.error('Error Ocured')
+    }
   }
   return (
     <div className='content'>
       <Typography.Title level={4}>Create Role</Typography.Title>
       <div className='create-role'>
         <Form
+          onFinish={handleFormSubmit}
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           hideRequiredMark>

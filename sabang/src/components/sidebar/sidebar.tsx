@@ -12,7 +12,6 @@ import {
   FileOutlined,
   HomeOutlined,
   PieChartOutlined,
-  ReadOutlined,
   ScheduleOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
@@ -50,7 +49,6 @@ function SideBar() {
             children: [
               { label: "List User", key: "/ListUser", icon: <SearchOutlined /> },
               { label: "Management Village", key: "/ManagementVillage", icon: <HomeOutlined /> },
-              { label: "Assignment Roles", key: "/AssignmentRole", icon: <ReadOutlined /> },
               { label: "Roles", key: "/Roles", icon: <ApartmentOutlined /> },
               { label: "Assignment Tapper", key: "/AssignmentTapper", icon: <TagsOutlined /> }
             ]
