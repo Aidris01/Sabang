@@ -31,7 +31,7 @@ function Roles() {
       .catch(error => {
         console.error('Error fetching roles:', error);
       });
-  }, [config]);
+  }, []);
   const columns = [
     {
       key: '1',
