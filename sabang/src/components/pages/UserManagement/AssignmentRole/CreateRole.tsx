@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, Space, Typography } from 'antd';
+import { Button, Form, Input, Space, Typography } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';

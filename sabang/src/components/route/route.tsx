@@ -18,7 +18,6 @@ import Production from "../pages/Production/Production";
 import ICS from "../pages/PurchaseICS/ICS/ICS";
 import Purchase from "../pages/PurchaseICS/Purchase/Purchase";
 import Tappers from "../pages/Tappers/Tappers";
-import AssignmentRole from "../pages/UserManagement/AssignmentRole/AssignmentRole";
 import AssignmentTapper from "../pages/UserManagement/AssignmentTappper";
 import CreateUser from "../pages/UserManagement/ListUser/CreateUser";
 import CreateUserBulk from "../pages/UserManagement/ListUser/CreateUserBulk";
@@ -54,7 +53,6 @@ function AppRoute() {
                 <Route path="/" element={<Layout>{<Dashboard />}</Layout>} />
                 <Route path="/ListUser" element={<Layout>{<ListUser />}</Layout>} />
                 <Route path="/ManagementVillage" element={<Layout>{<ManagementVillage />}</Layout>} />
-                <Route path="/AssignmentRole" element={<Layout>{<AssignmentRole />}</Layout>} />
                 <Route path="/Roles" element={<Layout>{<Roles />}</Layout>} />
                 <Route path="/AssignmentTapper" element={<Layout>{<AssignmentTapper />}</Layout>} />
                 <Route path="/FactoryManagement" element={<Layout>{<FactoryManagement />}</Layout>} />

@@ -1,26 +1,38 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Button, Table, Typography } from 'antd';
-import React, { useState } from 'react';
+import { Button, message, Table, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../../pages/style/style.css'
+import axios from '../../../api/axios';
+import '../../../pages/style/style.css';
+
+interface Role {
+  id: number,
+  name: string,
+  description: string
+}
 
 function Roles() {
+  const token = localStorage.getItem('token')
   const navigate = useNavigate()
   const createRole = () => {
     navigate("/Roles/CreateRole")
   }
-  const [dataSource, setDataSource] = useState([
-    {
-      id: 1,
-      name: 'Buyer',
-      description: '(Not Set)'
+  const [dataSource, setDataSource] = useState<Role[]>([])
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
-    {
-      id: 2,
-      name: 'Pengepul',
-      description: 'role untuk pengepul'
-    }
-  ])
+  };
+
+  useEffect(() => {
+    axios.get('/roles', config)
+    .then((response) => {
+      setDataSource(response.data)
+    }).catch((error) => {
+      console.error('Error Ocured: ',error)
+      message.error("Error Fetching Data")
+    })
+  })
 
   const columns = [
     {

@@ -1,5 +1,4 @@
 import { Typography } from 'antd';
-import '../../../pages/style/style.css'
 
 function AssignmentRole() {
   return (
