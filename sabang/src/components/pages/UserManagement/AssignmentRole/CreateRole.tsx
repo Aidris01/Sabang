@@ -1,6 +1,6 @@
 import { Button, Col, Form, Input, Row, Space, Typography } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import React, { } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../../pages/style/style.css'
 
