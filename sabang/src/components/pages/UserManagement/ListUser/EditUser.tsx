@@ -21,6 +21,10 @@ interface VillageData {
     name: string,
     code: string
 }
+interface RoleData {
+    name: string,
+    description: string
+}
 
 function EditUser() {
     const [form] = useForm()
@@ -49,6 +53,7 @@ function EditUser() {
     );
     const token = localStorage.getItem('token')
     const [villageData, setVillageData] = useState<VillageData[]>([]);
+    const [roleData, setRoleData] = useState<RoleData[]>([])
     const [loading, setLoading] = useState<Boolean>();
 
     useEffect(() => {
@@ -81,6 +86,23 @@ function EditUser() {
             message.error('Error Ocured', error)
         })
     }, [token, userId])
+    useEffect(() => {
+        axios.get('/roles', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response) => {
+            const roleData = response.data.map((item: any) => ({
+                value: item.id,
+                label: `${item.name}`
+            }));
+            setRoleData(roleData)
+            setLoading(false)
+        }).catch((error) => {
+            console.log("Error Fetching Data: ", error)
+            setLoading(false)
+        })
+    }, [])
 
     const onFinish = (values: any) => {
         axios.patch(`/users/${userId}`, form.getFieldsValue(), {
@@ -156,6 +178,19 @@ function EditUser() {
                                 label='Email'
                                 rules={[{ required: true, message: 'Please enter your email!' }]}>
                                 <Input />
+                            </Form.Item>
+                            <Form.Item
+                            name='userRoles'
+                            label='Roles'
+                            rules={[{required: true, message: 'Please select the role'}]}>
+                                <Select 
+                                mode='multiple'
+                                placeholder="Select Village Code"
+                                allowClear
+                                placement="bottomLeft"
+                                listHeight={200}
+                                options={roleData}/>
+                                {loading && <div>Loading...</div>}
                             </Form.Item>
                             <Form.Item
                                 name='address'

@@ -16,6 +16,7 @@ function Roles() {
   const createRole = () => {
     navigate("/Roles/CreateRole")
   }
+  const [isLoading, setIsLoading] = useState(false);
   const [dataSource, setDataSource] = useState<Role[]>([])
   const token = localStorage.getItem('token')
   const config = {
@@ -27,9 +28,11 @@ function Roles() {
     axios.get('/roles', config)
       .then(response => {
         setDataSource(response.data);
+        setIsLoading(false)
       })
       .catch(error => {
         console.error('Error fetching roles:', error);
+        setIsLoading(false)
       });
   }, []);
   const deleteRole = (roleId: number) => {
@@ -102,6 +105,7 @@ function Roles() {
         <Button className='create-btn' onClick={createRole}>Create Role</Button>
         <div className='role-table'>
           <Table
+            loading={isLoading}
             size='small'
             columns={columns}
             dataSource={dataSource}></Table>
