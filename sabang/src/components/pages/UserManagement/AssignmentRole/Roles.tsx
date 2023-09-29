@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Button, message, Popconfirm, Table, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios';
 import '../../../pages/style/style.css';
 
@@ -43,7 +43,7 @@ function Roles() {
     axios
       .delete(`/roles/${roleId}`, config)
       .then((response) => {
-        message.success('User deleted');
+        message.success('Role deleted');
         console.log(response)
         setDataSource((prevData) => prevData.filter((role) => role.id !== roleId));
       })
@@ -79,7 +79,9 @@ function Roles() {
           deleteRole(record.id);
         };
         return <>
-          <Button type='link' size='small'><EditOutlined /></Button>
+          <Link to={`/Roles/EditRole/${record.id}`}>
+            <Button type='link' size='small'><EditOutlined /></Button>
+          </Link>
           <Popconfirm
             title="Apakah anda yakin untuk menghapus user ini ?"
             onConfirm={handleDelete}

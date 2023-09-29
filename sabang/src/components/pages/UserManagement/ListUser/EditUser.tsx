@@ -12,6 +12,9 @@ interface UserData {
     phone: string,
     address: string,
     email: string,
+    bankName: string,
+    accName: string,
+    accNumber: string,
     villageId: string
 }
 interface VillageData {
@@ -31,7 +34,19 @@ function EditUser() {
     }
     const navigate = useNavigate()
     const { userId } = useParams<Record<string, string>>();
-    const [userData, setUserData] = useState<UserData>({ name: '', nik: '', phone: '', address: '', email: '', villageId: '' });
+    const [userData, setUserData] = useState<UserData>(
+        {
+            name: '',
+            nik: '',
+            phone: '',
+            address: '',
+            email: '',
+            bankName: '',
+            accName: '',
+            accNumber: '',
+            villageId: ''
+        }
+    );
     const token = localStorage.getItem('token')
     const [villageData, setVillageData] = useState<VillageData[]>([]);
     const [loading, setLoading] = useState<Boolean>();
@@ -123,32 +138,50 @@ function EditUser() {
                                 <Input />
                             </Form.Item>
                             <Form.Item
+                                name='villageId'
+                                label='Village ID'
+                                rules={[{ required: false, message: 'Please select the village code!' }]}>
+                                <Select
+                                    placeholder="Select Village Code"
+                                    allowClear
+                                    placement="bottomLeft"
+                                    listHeight={200}
+                                    options={villageData} />
+                                {loading && <div>Loading...</div>}
+                            </Form.Item>
+                        </Col>
+                        <Col span={12}>
+                            <Form.Item
                                 name='email'
                                 label='Email'
                                 rules={[{ required: true, message: 'Please enter your email!' }]}>
                                 <Input />
                             </Form.Item>
-                        </Col>
-                        <Col span={12}>
                             <Form.Item
                                 name='address'
                                 label='Address'
                                 rules={[{ required: true, message: 'Please enter your address!' }]}>
-                                <TextArea rows={5} autoSize={{ minRows: 3, maxRows: 6 }} />
+                                <TextArea rows={5} autoSize={{ minRows: 4, maxRows: 7 }} />
                             </Form.Item>
                         </Col>
                         <Col span={12}>
                             <Form.Item
-                                name='villageId'
-                                label='Village ID'
-                                rules={[{required: false, message: 'Please select the village code!'}]}>
-                                <Select
-                                placeholder="Select Village Code"
-                                allowClear
-                                placement="bottomLeft"
-                                listHeight={200}
-                                options={villageData} />
-                                {loading && <div>Loading...</div>}
+                                name='bankName'
+                                label='Bank Name'
+                                rules={[{ required: true, message: 'Please input the bank name!' }]}>
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                            name='accName'
+                            label='Acc Name'
+                            rules={[{required: true, message: 'Please input your account name!'}]}>
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                            name='accNumber'
+                            label='Acc Number'
+                            rules={[{required: true, message: 'Please input your account number!'}]}>
+                                <Input />
                             </Form.Item>
                         </Col>
                     </Row>
