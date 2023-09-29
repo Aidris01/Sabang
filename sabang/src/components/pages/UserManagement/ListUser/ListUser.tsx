@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
 import { Typography, Table, Button, Space, Popconfirm, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
@@ -57,19 +57,19 @@ function ListUser() {
       .then((response) => {
         const users = response.data
         axios.get('/villages', config)
-        .then((villageResponse) => {
-          const villages = villageResponse.data;
-          const updatedUsers = users.map((user) => {
-            const village = villages.find((village: { id: string; }) => village.id === user.villageId)
-            return {
-              ...user,
-              villageId: village ? village.name : '',
-            };
+          .then((villageResponse) => {
+            const villages = villageResponse.data;
+            const updatedUsers = users.map((user) => {
+              const village = villages.find((village: { id: string; }) => village.id === user.villageId)
+              return {
+                ...user,
+                villageId: village ? village.name : '',
+              };
+            });
+            setDataSource(updatedUsers)
+          }).catch((villageError) => {
+            console.error('Error Fetching Village Data: ', villageError)
           });
-          setDataSource(updatedUsers)
-        }).catch((villageError) => {
-          console.error('Error Fetching Village Data: ',villageError)
-        });
       }).catch((error) => {
         console.error('Error fetching data:', error)
       });
@@ -107,6 +107,9 @@ function ListUser() {
         };
         return (
           <Space>
+            <Link to={`/ListUser/DetailUser/${record.id}`}>
+              <Button type='link' size='small'><EyeOutlined /></Button>
+            </Link>
             <Link to={`/ListUser/EditUser/${record.id}`}>
               <Button type='link' size='small'><EditOutlined /></Button>
             </Link>
