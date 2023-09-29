@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Button, Table, Typography } from 'antd';
+import { Button, message, Popconfirm, Table, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios';
@@ -32,6 +32,26 @@ function Roles() {
         console.error('Error fetching roles:', error);
       });
   }, []);
+  const deleteRole = (roleId: number) => {
+    const token = localStorage.getItem('token');
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios
+      .delete(`/roles/${roleId}`, config)
+      .then((response) => {
+        message.success('User deleted');
+        console.log(response)
+        setDataSource((prevData) => prevData.filter((role) => role.id !== roleId));
+      })
+      .catch((error) => {
+        message.error('Error deleting user');
+        console.error('Error deleting user:', error);
+      });
+  }
   const columns = [
     {
       key: '1',
@@ -54,10 +74,20 @@ function Roles() {
       key: '4',
       title: 'Action',
       width: 400,
-      render: () => {
+      render: (text: string, record: Role) => {
+        const handleDelete = () => {
+          deleteRole(record.id);
+        };
         return <>
           <Button type='link' size='small'><EditOutlined /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          <Popconfirm
+            title="Apakah anda yakin untuk menghapus user ini ?"
+            onConfirm={handleDelete}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          </Popconfirm>
         </>
       }
     }
