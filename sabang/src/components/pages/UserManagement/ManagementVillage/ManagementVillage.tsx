@@ -18,6 +18,7 @@ function ManagementVillage() {
     navigate("/ManagementVillage/CreateVillage")
   }
   const [dataSource, setDataSource] = useState<Village[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const token = localStorage.getItem('token')
   const config = {
     headers: {
@@ -28,8 +29,10 @@ function ManagementVillage() {
   useEffect(() => {
     axios.get<Village[]>('/villages', config).then((response) => {
       setDataSource(response.data)
+      setIsLoading(false)
     }).catch((error) => {
       console.error('Error Ocured: ', error)
+      setIsLoading(false)
     })
   }, [])
 
@@ -96,6 +99,7 @@ function ManagementVillage() {
         <Button className='create-btn' onClick={createVillage}>Create New</Button>
         <div className='village-table'>
           <Table
+            loading={isLoading}
             size='small'
             columns={columns}
             dataSource={dataSource}

@@ -16,7 +16,7 @@ function Roles() {
   const createRole = () => {
     navigate("/Roles/CreateRole")
   }
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [dataSource, setDataSource] = useState<Role[]>([])
   const token = localStorage.getItem('token')
   const config = {
