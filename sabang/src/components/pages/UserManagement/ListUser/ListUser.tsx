@@ -22,8 +22,11 @@ function ListUser() {
     navigate("/ListUser/CreateUserBulk")
   }
 
+  const [totalItems, setTotalItems] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
   const [dataSource, setDataSource] = useState<UserData[]>([])
 
+  const [isLoading, setIsLoading] = useState(false);
   const deleteUser = (userId: number) => {
     const token = localStorage.getItem('token');
 
@@ -46,6 +49,9 @@ function ListUser() {
   }
 
   useEffect(() => {
+    getUsers(1)
+  }, [])
+  function getUsers(page: number) {
     const token = localStorage.getItem('token');
 
     const config = {
@@ -53,9 +59,11 @@ function ListUser() {
         Authorization: `Bearer ${token}`
       }
     }
-    axios.get<UserData[]>('/users', config)
+    setIsLoading(true)
+    axios.get<{ data: UserData[], totalItems: number }>(`/users/paginated?page=${page}&limit=10`, config)
       .then((response) => {
-        const users = response.data
+        const users = response.data.data
+        setTotalItems(response.data.totalItems)
         axios.get('/villages', config)
           .then((villageResponse) => {
             const villages = villageResponse.data;
@@ -67,13 +75,16 @@ function ListUser() {
               };
             });
             setDataSource(updatedUsers)
+            setIsLoading(false)
           }).catch((villageError) => {
+            setIsLoading(false)
             console.error('Error Fetching Village Data: ', villageError)
           });
       }).catch((error) => {
+        setIsLoading(false)
         console.error('Error fetching data:', error)
       });
-  }, [])
+  }
   const columns = [
     {
       key: 'id',
@@ -143,6 +154,13 @@ function ListUser() {
             size='small'
             columns={columns}
             dataSource={dataSource}
+            loading={isLoading}
+            onChange={(pagination) => {
+              console.log(pagination)
+              setCurrentPage(pagination.current ?? 1)
+              getUsers(pagination.current ?? 1)
+            }}
+            pagination={{ total: totalItems }}
           >
           </Table>
         </div>

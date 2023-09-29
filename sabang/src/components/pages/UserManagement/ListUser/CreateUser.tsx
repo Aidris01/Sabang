@@ -9,9 +9,14 @@ interface VillageData {
     name: string,
     code: string
 }
+interface RoleData {
+    name: string,
+    description: string
+}
 
 function CreateUser() {
     const [villageData, setVillageData] = useState<VillageData[]>([]);
+    const [roleData, setRoleData] = useState<RoleData[]>([])
     const [loading, setLoading] = useState<Boolean>();
 
     const token = localStorage.getItem('token')
@@ -30,6 +35,23 @@ function CreateUser() {
                 label: `${item.code} ${item.name}`
             }));
             setVillageData(formattedData)
+            setLoading(false)
+        }).catch((error) => {
+            console.log("Error Fetching Data: ", error)
+            setLoading(false)
+        })
+    }, [])
+    useEffect(() => {
+        axios.get('/roles', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response) => {
+            const roleData = response.data.map((item: any) => ({
+                value: item.id,
+                label: `${item.name}`
+            }));
+            setRoleData(roleData)
             setLoading(false)
         }).catch((error) => {
             console.log("Error Fetching Data: ", error)
@@ -122,20 +144,32 @@ function CreateUser() {
                                     options={villageData} />
                                 {loading && <div>Loading...</div>}
                             </Form.Item>
+                            <Form.Item
+                                label="Address"
+                                name="address"
+                                rules={[{ required: true, message: "Please input your address!" }]}>
+                                <TextArea rows={5} autoSize={{ minRows: 3, maxRows: 6 }} />
+                            </Form.Item>
                         </Col>
                         <Col span={12}>
                             <Form.Item
                                 label="Acc Number"
                                 name="accNumber"
                                 rules={[{ required: false, message: "Please input your Acc Number!" }]}>
-                                <Input /></Form.Item>
-                        </Col>
-                        <Col span={12}>
+                                <Input />
+                            </Form.Item>
                             <Form.Item
-                                label="Address"
-                                name="address"
-                                rules={[{ required: true, message: "Please input your address!" }]}>
-                                <TextArea rows={5} autoSize={{ minRows: 3, maxRows: 6 }} />
+                                label='Roles'
+                                name='userRoles'
+                                rules={[{ required: true, message: 'Please input the role!' }]}>
+                                <Select
+                                    mode='multiple'
+                                    placeholder="Select Role(s)"
+                                    allowClear
+                                    placement="bottomLeft"
+                                    listHeight={200}
+                                    options={roleData} />
+                                {loading && <div>Loading...</div>}
                             </Form.Item>
                         </Col>
                     </Row>
