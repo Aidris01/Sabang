@@ -123,12 +123,12 @@ function CreateUser() {
                             <Form.Item
                                 label="Bank Name"
                                 name="bankName"
-                                rules={[{ required: false, message: "Please input your bank name!" }]}
+                                rules={[{ required: true, message: "Please input your bank name!" }]}
                             ><Input /></Form.Item>
                             <Form.Item
                                 label="Acc Name"
                                 name="accName"
-                                rules={[{ required: false, message: "Please input your Acc Name!" }]}
+                                rules={[{ required: true, message: "Please input your Acc Name!" }]}
                             ><Input /></Form.Item>
                         </Col>
                         <Col span={12}>
@@ -155,13 +155,13 @@ function CreateUser() {
                             <Form.Item
                                 label="Acc Number"
                                 name="accNumber"
-                                rules={[{ required: false, message: "Please input your Acc Number!" }]}>
+                                rules={[{ required: true, message: "Please input your Acc Number!" }]}>
                                 <Input />
                             </Form.Item>
                             <Form.Item
                                 label='Roles'
                                 name='userRoles'
-                                rules={[{ required: true, message: 'Please input the role!' }]}>
+                                rules={[{ required: false, message: 'Please input the role!' }]}>
                                 <Select
                                     mode='multiple'
                                     placeholder="Select Role(s)"

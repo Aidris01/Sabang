@@ -182,7 +182,7 @@ function EditUser() {
                             <Form.Item
                             name='userRoles'
                             label='Roles'
-                            rules={[{required: true, message: 'Please select the role'}]}>
+                            rules={[{required: false, message: 'Please select the role'}]}>
                                 <Select 
                                 mode='multiple'
                                 placeholder="Select Village Code"
