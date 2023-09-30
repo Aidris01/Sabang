@@ -54,7 +54,7 @@ function EditUser() {
     const token = localStorage.getItem('token')
     const [villageData, setVillageData] = useState<VillageData[]>([]);
     const [roleData, setRoleData] = useState<RoleData[]>([])
-    const [loading, setLoading] = useState<Boolean>();
+    const [loading, setLoading] = useState<Boolean>(false);
 
     useEffect(() => {
         axios.get('/villages', {
@@ -92,11 +92,11 @@ function EditUser() {
                 Authorization: `Bearer ${token}`
             }
         }).then((response) => {
-            const roleData = response.data.map((item: any) => ({
+            const formattedRole = response.data.map((item: any) => ({
                 value: item.id,
                 label: `${item.name}`
             }));
-            setRoleData(roleData)
+            setRoleData(formattedRole)
             setLoading(false)
         }).catch((error) => {
             console.log("Error Fetching Data: ", error)
