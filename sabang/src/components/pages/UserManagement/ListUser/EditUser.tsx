@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, message, Row, Select, Space, Typography, } from 'antd'
+import { Button, Checkbox, Col, Form, Input, message, Row, Select, Space, Typography, } from 'antd'
 import { useForm } from 'antd/es/form/Form';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useState, useEffect } from 'react'
@@ -23,7 +23,7 @@ interface VillageData {
 }
 interface RoleData {
     name: string,
-    description: string
+    id: number
 }
 
 function EditUser() {
@@ -53,6 +53,7 @@ function EditUser() {
     );
     const token = localStorage.getItem('token')
     const [villageData, setVillageData] = useState<VillageData[]>([]);
+    const [roleOptions, setRoleOptions] = useState<RoleData[]>([])
     const [roleData, setRoleData] = useState<RoleData[]>([])
     const [loading, setLoading] = useState<Boolean>(false);
 
@@ -92,11 +93,8 @@ function EditUser() {
                 Authorization: `Bearer ${token}`
             }
         }).then((response) => {
-            const formattedRole = response.data.map((item: any) => ({
-                value: item.id,
-                label: `${item.name}`
-            }));
-            setRoleData(formattedRole)
+            const roleData = response.data as RoleData[];
+            setRoleOptions(roleData);
             setLoading(false)
         }).catch((error) => {
             console.log("Error Fetching Data: ", error)
@@ -183,13 +181,7 @@ function EditUser() {
                             name='userRoles'
                             label='Roles'
                             rules={[{required: false, message: 'Please select the role'}]}>
-                                <Select 
-                                mode='multiple'
-                                placeholder="Select Village Code"
-                                allowClear
-                                placement="bottomLeft"
-                                listHeight={200}
-                                options={roleData}/>
+                                <Checkbox.Group options={roleOptions.map(r => ({value: r.id, label: r.name}))} />
                                 {loading && <div>Loading...</div>}
                             </Form.Item>
                             <Form.Item

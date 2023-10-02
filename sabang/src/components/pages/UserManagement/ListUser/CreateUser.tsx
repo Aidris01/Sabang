@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select, Typography, Space, Col, Row, message } from 'antd';
+import { Button, Form, Input, Select, Typography, Space, Col, Row, message, Checkbox } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -11,12 +11,12 @@ interface VillageData {
 }
 interface RoleData {
     name: string,
-    description: string
+    id: number
 }
 
 function CreateUser() {
     const [villageData, setVillageData] = useState<VillageData[]>([]);
-    const [roleData, setRoleData] = useState<RoleData[]>([])
+    const [roleOptions, setRoleOptions] = useState<RoleData[]>([])
     const [loading, setLoading] = useState<Boolean>();
 
     const token = localStorage.getItem('token')
@@ -47,11 +47,8 @@ function CreateUser() {
                 Authorization: `Bearer ${token}`
             }
         }).then((response) => {
-            const roleData = response.data.map((item: any) => ({
-                value: item.id,
-                label: `${item.name}`
-            }));
-            setRoleData(roleData)
+            const roleData = response.data as RoleData[];
+            setRoleOptions(roleData);
             setLoading(false)
         }).catch((error) => {
             console.log("Error Fetching Data: ", error)
@@ -162,13 +159,7 @@ function CreateUser() {
                                 label='Roles'
                                 name='userRoles'
                                 rules={[{ required: false, message: 'Please input the role!' }]}>
-                                <Select
-                                    mode='multiple'
-                                    placeholder="Select Role(s)"
-                                    allowClear
-                                    placement="bottomLeft"
-                                    listHeight={200}
-                                    options={roleData} />
+                                <Checkbox.Group options={roleOptions.map(r => ({value: r.id, label: r.name}))} />
                                 {loading && <div>Loading...</div>}
                             </Form.Item>
                         </Col>
