@@ -65,11 +65,6 @@ function DetailUser() {
         <div className='content'>
             <Typography.Title level={4}>Detail User - {userId}</Typography.Title>
             <div className="detail-user">
-                <Space>
-                    <Button className='back-btn' danger onClick={back}>Back</Button>
-                    <Button className='edit-btn' type='primary' onClick={edit}>Edit</Button>
-                </Space>
-                <div className="user-info">
                     <Descriptions title='User Detail' layout='vertical'>
                         <Descriptions.Item label='Name'>{userData.name}</Descriptions.Item>
                         <Descriptions.Item label='NIK'>{userData.nik}</Descriptions.Item>
@@ -82,7 +77,10 @@ function DetailUser() {
                         <Descriptions.Item label='Acc Number'>{userData.accNumber}</Descriptions.Item>
                         <Descriptions.Item label='Roles'>{userData.roles}</Descriptions.Item>
                     </Descriptions>
-                </div>
+                    <Space>
+                        <Button className='edit-btn' type='primary' onClick={edit}>Edit</Button>
+                        <Button className='back-btn' danger onClick={back}>Back</Button>
+                    </Space>
             </div>
         </div>
     )
