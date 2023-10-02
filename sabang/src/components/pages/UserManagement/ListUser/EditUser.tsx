@@ -54,7 +54,6 @@ function EditUser() {
     const token = localStorage.getItem('token')
     const [villageData, setVillageData] = useState<VillageData[]>([]);
     const [roleOptions, setRoleOptions] = useState<RoleData[]>([])
-    const [roleData, setRoleData] = useState<RoleData[]>([])
     const [loading, setLoading] = useState<Boolean>(false);
 
     useEffect(() => {
