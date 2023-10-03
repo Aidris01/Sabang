@@ -73,7 +73,7 @@ function EditUser() {
             console.log("Error Fetching Data: ", error)
             setLoading(false)
         })
-    }, [])
+    }, [token])
 
     useEffect(() => {
         axios.get(`/users/${userId}`, {
@@ -86,7 +86,7 @@ function EditUser() {
         }).catch((error) => {
             message.error('Error Ocured', error)
         })
-    }, [token, userId])
+    }, [token, userId, form])
     useEffect(() => {
         axios.get('/roles', {
             headers: {
@@ -100,7 +100,7 @@ function EditUser() {
             console.log("Error Fetching Data: ", error)
             setLoading(false)
         })
-    }, [])
+    }, [token])
 
     const onFinish = (values: any) => {
         axios.patch(`/users/${userId}`, form.getFieldsValue(), {

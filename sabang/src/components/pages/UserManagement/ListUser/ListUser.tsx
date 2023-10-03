@@ -159,6 +159,7 @@ function ListUser() {
               console.log(pagination)
               setCurrentPage(pagination.current ?? 1)
               getUsers(pagination.current ?? 1)
+              console.log(currentPage)
             }}
             pagination={{ total: totalItems }}
           >
@@ -168,4 +169,5 @@ function ListUser() {
     </div>
   )
 }
+
 export default ListUser;

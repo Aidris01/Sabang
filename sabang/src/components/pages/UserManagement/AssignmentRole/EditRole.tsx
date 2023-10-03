@@ -1,6 +1,7 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Space, Typography } from 'antd'
 import { useForm } from 'antd/es/form/Form';
+import TextArea from 'antd/es/input/TextArea';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../../api/axios';
@@ -38,7 +39,7 @@ function EditRole() {
             console.error('Error Ocured: ', error)
             message.error('Error Fetching Data')
         })
-    }, [token, roleId])
+    }, [token, roleId, form])
 
     const onFinish = (values: any) => {
         axios.patch(`/roles/${roleId}`, form.getFieldsValue(), {
@@ -48,6 +49,7 @@ function EditRole() {
         }).then((response) => {
             message.success('Role Updated')
             navigate('/Roles')
+            console.log(roleData)
         }).catch((error) => {
             message.error("Error Ocured")
             console.error('Error Ocured: ', error)
@@ -78,7 +80,7 @@ function EditRole() {
                         name='description'
                         label='Description'
                         rules={[{ required: true, message: 'Please input the description' }]}>
-                        <Input />
+                        <TextArea rows={2} autoSize={{ minRows: 3, maxRows: 6 }} />
                     </Form.Item>
                     <Space>
                         <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
