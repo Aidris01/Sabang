@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { Typography, Table, Button, Space, Popconfirm, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
@@ -146,8 +146,8 @@ function ListUser() {
       <Typography.Title level={4}>List User</Typography.Title>
       <div className='list-user'>
         <Space>
-          <Button className='create-btn-user' onClick={createUser}>Create User</Button>
-          <Button className='create-btn-user' onClick={createBulk}>Create User Bulk</Button>
+          <Button className='create-btn-user' onClick={createUser}><PlusOutlined /> Create User</Button>
+          <Button className='create-btn-user' onClick={createBulk}><UploadOutlined />Create User Bulk</Button>
         </Space>
         <div className='user-table'>
           <Table

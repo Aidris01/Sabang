@@ -1,3 +1,4 @@
+import { CloseOutlined, SaveOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Col, Form, Input, message, Row, Select, Space, Typography, } from 'antd'
 import { useForm } from 'antd/es/form/Form';
 import TextArea from 'antd/es/input/TextArea';
@@ -212,10 +213,10 @@ function EditUser() {
                         </Col>
                     </Row>
                     <Space>
-                        <Button className='save-btn' type='primary' htmlType='submit'>
+                        <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
                             Save
                         </Button>
-                        <Button className='cancel-btn' danger onClick={handleCancel}>
+                        <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
                             Cancel
                         </Button>
                     </Space>

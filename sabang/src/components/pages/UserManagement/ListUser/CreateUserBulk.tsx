@@ -1,3 +1,4 @@
+import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Input, Space, Typography } from 'antd'
 import React, { useState, ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -27,8 +28,8 @@ function CreateUserBulk() {
           accept='.csv'
           onChange={handleFileChange} />
         <Space size={10}>
-          <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
-          <Button className='cancel-btn' danger onClick={createBulk}>Cancel</Button>
+          <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>Save</Button>
+          <Button className='cancel-btn' danger onClick={createBulk} icon={<CloseOutlined />}>Cancel</Button>
         </Space>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, message, Popconfirm, Table, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -102,7 +102,7 @@ function Roles() {
     <div className='content'>
       <Typography.Title level={4}>Roles</Typography.Title>
       <div className='roles'>
-        <Button className='create-btn' onClick={createRole}>Create Role</Button>
+        <Button className='create-btn' onClick={createRole} icon={<PlusOutlined />}>Create Role</Button>
         <div className='role-table'>
           <Table
             loading={isLoading}

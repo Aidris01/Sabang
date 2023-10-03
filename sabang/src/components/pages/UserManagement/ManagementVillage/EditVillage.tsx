@@ -1,3 +1,4 @@
+import { CloseOutlined, SaveOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Space, Typography } from 'antd'
 import { useForm } from 'antd/es/form/Form';
 import React, { useEffect, useState } from 'react'
@@ -81,10 +82,10 @@ function EditVillage() {
                     <Input />
                 </Form.Item>
                 <Space>
-                    <Button className='save-btn' type='primary' htmlType='submit'>
+                    <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
                         Save
                     </Button>
-                    <Button className='cancel-btn' danger onClick={handleCancel}>
+                    <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
                         Cancel
                     </Button>
                 </Space>

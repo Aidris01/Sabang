@@ -1,3 +1,4 @@
+import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Form, Input, message, Space, Typography } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -48,10 +49,10 @@ function CreateVillage() {
                         <Input />
                     </Form.Item>
                     <Space size={10}>
-                        <Button className='save-btn-village' type='primary' htmlType='submit'>
+                        <Button className='save-btn-village' type='primary' htmlType='submit' icon={<SaveOutlined />}>
                             Save
                         </Button>
-                        <Button className='cancel-btn-village' danger onClick={managementVillage}>
+                        <Button className='cancel-btn-village' danger onClick={managementVillage} icon={<CloseOutlined />}>
                             Cancel
                         </Button>
                     </Space>

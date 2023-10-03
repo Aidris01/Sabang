@@ -3,6 +3,7 @@ import { Button, Col, Descriptions, Row, Space, Typography } from 'antd'
 import '../../style/style.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../../api/axios';
+import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 
 interface UserData {
     name: string,
@@ -78,8 +79,8 @@ function DetailUser() {
                         <Descriptions.Item label='Roles'>{userData.roles}</Descriptions.Item>
                     </Descriptions>
                     <Space>
-                        <Button className='edit-btn' type='primary' onClick={edit}>Edit</Button>
-                        <Button className='back-btn' danger onClick={back}>Back</Button>
+                        <Button className='edit-btn' type='primary' onClick={edit} icon={<EditOutlined />}>Edit</Button>
+                        <Button className='back-btn' danger onClick={back} icon={<CloseOutlined />}>Back</Button>
                     </Space>
             </div>
         </div>

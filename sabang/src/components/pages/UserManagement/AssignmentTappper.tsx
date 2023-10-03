@@ -1,3 +1,4 @@
+import { SaveOutlined } from '@ant-design/icons';
 import { Button, Form, Select, Typography } from 'antd';
 import React from 'react';
 import '../../pages/style/style.css'
@@ -81,7 +82,9 @@ function AssignmentTapper() {
             >
             </Select>
           </Form.Item>
-          <Button className='save-btn-tap' type='primary' htmlType='submit'>Save</Button>
+          <Button className='save-btn-tap' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+            Save
+          </Button>
         </Form>
       </div>
     </div>

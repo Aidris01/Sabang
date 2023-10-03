@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, message, Popconfirm, Space, Table, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -96,7 +96,7 @@ function ManagementVillage() {
     <div className='content'>
       <Typography.Title level={4}>Management Village</Typography.Title>
       <div className='management-village'>
-        <Button className='create-btn' onClick={createVillage}>Create New</Button>
+        <Button className='create-btn' onClick={createVillage} icon={<PlusOutlined />}>Create New</Button>
         <div className='village-table'>
           <Table
             loading={isLoading}

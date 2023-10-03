@@ -1,3 +1,4 @@
+import { CloseOutlined, SaveOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Select, Typography, Space, Col, Row, message, Checkbox } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useEffect, useState } from 'react';
@@ -159,18 +160,23 @@ function CreateUser() {
                                 label='Roles'
                                 name='userRoles'
                                 rules={[{ required: false, message: 'Please input the role!' }]}>
-                                <Checkbox.Group options={roleOptions.map(r => ({value: r.id, label: r.name}))} />
+                                <Checkbox.Group options={roleOptions.map(r => ({ value: r.id, label: r.name }))} />
                                 {loading && <div>Loading...</div>}
                             </Form.Item>
                         </Col>
                     </Row>
                     <Space size={10}>
-                        <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
-                        <Button className='cancel-btn' danger onClick={listUser}>Cancel</Button>
+                        <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                            Save
+                        </Button>
+                        <Button className='cancel-btn' danger onClick={listUser} icon={<CloseOutlined />}>
+                            Cancel
+                        </Button>
                     </Space>
                 </Form>
             </div>
         </div >
     )
 }
+
 export default CreateUser
