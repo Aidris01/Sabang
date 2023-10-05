@@ -180,7 +180,7 @@ function EditUser() {
                                 rules={[{ required: false, message: 'Please select the role' }]}>
                                 <Checkbox.Group options={
                                     roleOptions.map(r => ({ value: r.id, label: r.name }))
-                                } />
+                                }/>
                             </Form.Item>
                             <Form.Item
                                 name='address'
@@ -223,4 +223,5 @@ function EditUser() {
         </div>
     )
 }
+
 export default EditUser
