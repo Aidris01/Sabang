@@ -55,7 +55,7 @@ function EditUser() {
     const token = localStorage.getItem('token')
     const [villageData, setVillageData] = useState<VillageData[]>([]);
     const [roleOptions, setRoleOptions] = useState<RoleData[]>([])
-    const [loading, setLoading] = useState<Boolean>(false);
+    const [loading, setLoading] = useState<Boolean>(true);
 
     useEffect(() => {
         axios.get('/villages', {
@@ -83,8 +83,10 @@ function EditUser() {
         }).then((response) => {
             form.setFieldsValue(response.data)
             setUserData(response.data)
+            setLoading(false)
         }).catch((error) => {
             message.error('Error Ocured', error)
+            setLoading(false)
         })
     }, [token, userId, form])
     useEffect(() => {
@@ -117,10 +119,6 @@ function EditUser() {
     }
     const handleCancel = () => {
         navigate('/ListUser')
-    }
-
-    if (!userData) {
-        return <div>Loading...</div>
     }
 
     return (
@@ -167,7 +165,6 @@ function EditUser() {
                                     placement="bottomLeft"
                                     listHeight={200}
                                     options={villageData} />
-                                {loading && <div>Loading...</div>}
                             </Form.Item>
                         </Col>
                         <Col span={12}>
@@ -178,11 +175,12 @@ function EditUser() {
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                            name='userRoles'
-                            label='Roles'
-                            rules={[{required: false, message: 'Please select the role'}]}>
-                                <Checkbox.Group options={roleOptions.map(r => ({value: r.id, label: r.name}))} />
-                                {loading && <div>Loading...</div>}
+                                name='userRoles'
+                                label='Roles'
+                                rules={[{ required: false, message: 'Please select the role' }]}>
+                                <Checkbox.Group options={
+                                    roleOptions.map(r => ({ value: r.id, label: r.name }))
+                                } />
                             </Form.Item>
                             <Form.Item
                                 name='address'
@@ -199,15 +197,15 @@ function EditUser() {
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                            name='accName'
-                            label='Acc Name'
-                            rules={[{required: true, message: 'Please input your account name!'}]}>
+                                name='accName'
+                                label='Acc Name'
+                                rules={[{ required: true, message: 'Please input your account name!' }]}>
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                            name='accNumber'
-                            label='Acc Number'
-                            rules={[{required: true, message: 'Please input your account number!'}]}>
+                                name='accNumber'
+                                label='Acc Number'
+                                rules={[{ required: true, message: 'Please input your account number!' }]}>
                                 <Input />
                             </Form.Item>
                         </Col>
