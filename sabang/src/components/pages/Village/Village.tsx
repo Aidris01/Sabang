@@ -20,7 +20,7 @@ function Village() {
     {
       key: '2',
       title: 'Detail',
-      render: () => <Button type='text' size='small'><EyeOutlined /></Button>,
+      render: () => <Button type='link' size='small'><EyeOutlined /></Button>,
       width: 30
     },
     {

@@ -49,7 +49,7 @@ function ICS() {
     },
     {
       key: '5',
-      title: 'Set Audit',
+      title: 'Action',
       render: () => <Button type='link' size='small'><EyeOutlined /></Button>,
       width: 100
     }

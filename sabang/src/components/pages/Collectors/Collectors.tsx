@@ -1,3 +1,4 @@
+import { SearchOutlined } from '@ant-design/icons'
 import { Button, DatePicker, Form, Select, Typography } from 'antd'
 import React from 'react'
 import '../../pages/style/style.css'
@@ -41,10 +42,12 @@ function PurchaseFilter() {
                         name="rangeDate"
                         rules={[{ required: true, message: "Please select the date!" }]}>
                         <DatePicker
-                        style={{ width: '44.1vw' }}
+                            style={{ width: '43.5vw' }}
                         />
                     </Form.Item>
-                        <Button className='save-collector-btn' type='primary' htmlType='submit'>Save</Button>
+                    <Button className='save-collector-btn' type='primary' htmlType='submit' icon={<SearchOutlined />}>
+                        Search
+                    </Button>
                 </Form>
             </div>
         </div>
