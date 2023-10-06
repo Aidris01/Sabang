@@ -32,10 +32,12 @@ function CreateVillage() {
             <Typography.Title level={4}>Create Village</Typography.Title>
             <div className='create-village'>
                 <Form
+                    className='form-container'
                     onFinish={handleFormSubmit}
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
-                    hideRequiredMark>
+                    hideRequiredMark
+                    style={{width: 800}}>
                     <Form.Item
                         label="Name"
                         name="name"
@@ -48,14 +50,16 @@ function CreateVillage() {
                         rules={[{ required: true, message: "Please input the village code !" }]}>
                         <Input />
                     </Form.Item>
-                    <Space size={10}>
-                        <Button className='save-btn-village' type='primary' htmlType='submit' icon={<SaveOutlined />}>
-                            Save
-                        </Button>
-                        <Button className='cancel-btn-village' danger onClick={managementVillage} icon={<CloseOutlined />}>
-                            Cancel
-                        </Button>
-                    </Space>
+                    <div className="button-container">
+                        <Space size={10}>
+                            <Button className='save-btn-village' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                                Save
+                            </Button>
+                            <Button className='cancel-btn-village' danger onClick={managementVillage} icon={<CloseOutlined />}>
+                                Cancel
+                            </Button>
+                        </Space>
+                    </div>
                 </Form>
             </div>
         </div>

@@ -1,9 +1,15 @@
+import { CloseOutlined, SearchOutlined } from '@ant-design/icons'
 import { Button, DatePicker, Form, Select, Space, Typography } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
+import moment from 'moment';
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
 
+const { RangePicker } = DatePicker;
+
 function PurchaseFilter() {
+    const [dates, setDates] = useState<string[]>([]);
+    console.log(dates)
     const navigate = useNavigate()
     const Tappers = () => {
         navigate('/Tappers')
@@ -65,13 +71,24 @@ function PurchaseFilter() {
                         label="Range Date"
                         name="rangeDate"
                         rules={[{ required: true, message: "Please select the date!" }]}>
-                        <DatePicker
-                        style={{ width: '43.5vw' }}
+                        <RangePicker
+                            style={{ width: '43.5vw' }}
+                            onChange={(values) => {
+                                if (values) {
+                                    setDates(values.map((item) => moment(item?.toDate()).format('DD-MM-YYYY')));
+                                } else {
+                                    setDates([])
+                                }
+                            }}
                         />
                     </Form.Item>
                     <Space size={10}>
-                        <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
-                        <Button className='cancel-btn' danger onClick={Tappers}>Cancel</Button>
+                        <Button className='save-btn' type='primary' htmlType='submit' icon={<SearchOutlined />}>
+                            Search
+                        </Button>
+                        <Button className='cancel-btn' danger onClick={Tappers} icon={<CloseOutlined />}>
+                            Cancel
+                        </Button>
                     </Space>
                 </Form>
             </div>

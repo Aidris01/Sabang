@@ -76,6 +76,7 @@ function CreateUser() {
             <Typography.Title level={4}>Create User</Typography.Title>
             <div className='create-user'>
                 <Form
+                    className='form-container'
                     onFinish={handleFormSubmit}
                     hideRequiredMark
                     labelCol={{ span: 8 }}
@@ -165,14 +166,16 @@ function CreateUser() {
                             </Form.Item>
                         </Col>
                     </Row>
-                    <Space size={10}>
-                        <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
-                            Save
-                        </Button>
-                        <Button className='cancel-btn' danger onClick={listUser} icon={<CloseOutlined />}>
-                            Cancel
-                        </Button>
-                    </Space>
+                    <div className="button-container">
+                        <Space size={10}>
+                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                                Save
+                            </Button>
+                            <Button className='cancel-btn' danger onClick={listUser} icon={<CloseOutlined />}>
+                                Cancel
+                            </Button>
+                        </Space>
+                    </div>
                 </Form>
             </div>
         </div >

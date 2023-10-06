@@ -23,14 +23,17 @@ function CreateUserBulk() {
       <Typography.Title level={4}>Create User Bulk</Typography.Title>
       <div className='create-user-bulk'>
         <Input
+          className='input-container'
           style={{ marginLeft: 15, marginRight: 10, width: 955 }}
           type='file'
           accept='.csv'
           onChange={handleFileChange} />
-        <Space size={10}>
-          <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>Save</Button>
-          <Button className='cancel-btn' danger onClick={createBulk} icon={<CloseOutlined />}>Cancel</Button>
-        </Space>
+        <div className="button-container">
+          <Space size={10}>
+            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>Save</Button>
+            <Button className='cancel-btn' danger onClick={createBulk} icon={<CloseOutlined />}>Cancel</Button>
+          </Space>
+        </div>
       </div>
     </div>
   )
