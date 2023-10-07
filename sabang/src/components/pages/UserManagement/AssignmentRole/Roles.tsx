@@ -86,7 +86,7 @@ function Roles() {
             <Button type='link' size='small'><EditOutlined /></Button>
           </Link>
           <Popconfirm
-            title="Apakah anda yakin untuk menghapus user ini ?"
+            title="Apakah anda yakin untuk menghapus role ini ?"
             onConfirm={handleDelete}
             okText="Yes"
             cancelText="No"
