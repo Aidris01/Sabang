@@ -88,7 +88,7 @@ function Profile() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Profile</Typography.Title>
-      <div className="profile">
+      <div className="main-container">
         <Row gutter={24}>
           <Col span={6}>
             <img
@@ -99,8 +99,7 @@ function Profile() {
                   ? URL.createObjectURL(newAvatar)
                   : (JSON.parse(localStorage.getItem('profile') ?? '{}').avatar ?? backup)
               }
-              alt='User.img'
-            />
+              />
             {isEditing && (
               <div style={{ margin: 10 }}>
                 <Typography.Title level={4}>Profile Picture</Typography.Title>
@@ -139,8 +138,14 @@ function Profile() {
                   value={editedPhone}
                   onChange={(e) => setEditedPhone(e.target.value)}
                 />
-                <Button type='primary' htmlType='submit' className='save-cancel-btn' onClick={handleSaveClick}><SaveOutlined /> Save</Button>
-                <Button danger className='save-cancel-btn' onClick={handleEditClick}><CloseOutlined /> Cancel</Button>
+                <div className="button-container">
+                  <Button type='primary' htmlType='submit' className='save-btn' onClick={handleSaveClick}><SaveOutlined />
+                    Save
+                  </Button>
+                  <Button danger className='cancel-btn' onClick={handleEditClick}><CloseOutlined />
+                    Cancel
+                  </Button>
+                </div>
               </div>
             ) : (
               <div>
