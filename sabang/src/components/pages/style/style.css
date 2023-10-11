@@ -14,9 +14,6 @@
     width: 18vw;
     background-color: rgb(113, 201, 255);
 }
-.content h4 {
-    padding: 0px 0px 0px -10px;
-}
 .ant-table-thead .ant-table-cell {
     background-color: lightskyblue !important;
 }
