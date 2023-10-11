@@ -1,10 +1,13 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, DatePicker, Form, Input, Select, Space, Typography } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../style/style.css'
 
 function ICSTeam() {
+    useEffect(() => {
+        document.title = 'Sabang | ICS Team'
+      }, [])
     const navigate = useNavigate()
     const ICS = () => {
         navigate('/ICS')

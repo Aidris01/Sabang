@@ -1,8 +1,11 @@
 import { Card, Space, Statistic, Table, Typography } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../pages/style/style.css'
 
 function Dashboard() {
+  useEffect(() => {
+    document.title = 'Sabang | Dashboard'
+  }, [])
   return (
     <div className='content'>
       <Typography.Title level={4}>Dashboard</Typography.Title>

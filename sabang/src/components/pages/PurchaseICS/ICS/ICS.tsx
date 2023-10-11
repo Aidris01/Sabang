@@ -1,10 +1,13 @@
 import { EyeOutlined, TeamOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../../pages/style/style.css'
 
 function ICS() {
+  useEffect(() => {
+    document.title = 'Sabang | ICS'
+  }, [])
   const navigate = useNavigate()
   const Team = () => {
     navigate('/ICS/ICSTeam')

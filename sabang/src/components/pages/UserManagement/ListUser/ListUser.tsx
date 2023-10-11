@@ -13,6 +13,9 @@ interface UserData {
 }
 
 function ListUser() {
+  useEffect(() => {
+    document.title = 'Sabang | List Users'
+  }, [])
 
   const navigate = useNavigate();
   const createUser = () => {

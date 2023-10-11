@@ -1,9 +1,12 @@
 import { EyeOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../pages/style/style.css'
 
 function StatusPayment() {
+  useEffect(() => {
+    document.title = 'Sabang | Status Payment'
+  }, [])
   const [dataSource, setDataSource] = useState([
     {
       id: 1,

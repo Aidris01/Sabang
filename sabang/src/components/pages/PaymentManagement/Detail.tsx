@@ -1,10 +1,13 @@
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Button, Descriptions, Typography } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../style/style.css'
 
 function Detail() {
+  useEffect(() => {
+    document.title = 'Sabang | Detail'
+  }, [])
   const navigate = useNavigate()
   const back = () => {
     navigate('/StatusPayment')

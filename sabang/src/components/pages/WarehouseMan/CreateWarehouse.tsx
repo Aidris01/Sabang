@@ -1,6 +1,6 @@
 import { Button, Col, Form, Input, Row, Space, Typography } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../pages/style/style.css'
 import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
@@ -8,11 +8,14 @@ import '../../pages/style/style.css'
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 
 const containerStyle = {
-    width: '500px',
+    width: '100%',
     height: '365px'
 };
 
 function CreateWarehouse() {
+    useEffect(() => {
+        document.title = 'Sabang | Create Warehouse'
+      }, [])
     const navigate = useNavigate()
     const warehouseManagement = () => {
         navigate("/WarehouseManagement")

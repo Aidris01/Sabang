@@ -12,6 +12,9 @@ interface Village {
 }
 
 function EditVillage() {
+    useEffect(() => {
+        document.title = `Sabang | Edit Village ${villageId}`
+      }, [])
     const navigate = useNavigate()
     const { villageId } = useParams<Record<string, string>>();
     const [villageData, setVillageData] = useState<Village>({ name: '', code: '' });

@@ -1,9 +1,12 @@
 import { SaveOutlined } from '@ant-design/icons';
 import { Button, Form, Select, Typography } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../pages/style/style.css'
 
 function AssignmentTapper() {
+  useEffect(() => {
+    document.title = 'Sabang | Assignment Tapper'
+  }, [])
   return (
     <div className='content'>
       <Typography.Title level={4}>Assignment Tapper</Typography.Title>

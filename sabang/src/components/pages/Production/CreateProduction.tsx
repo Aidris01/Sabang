@@ -1,10 +1,13 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Col, Form, Input, Row, Select, Space, Typography } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../style/style.css'
 
 function CreateProduction() {
+    useEffect(() => {
+        document.title = 'Sabang | Create Production'
+      }, [])
     const navigate = useNavigate()
     const Production = () => {
         navigate('/Production')

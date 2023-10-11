@@ -1,10 +1,13 @@
 import { EyeOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
 
 function CatatanPupuk() {
+  useEffect(() => {
+    document.title = 'Sabang | Catatan Pupuk'
+  }, [])
   const navigate = useNavigate()
   const createPupuk = () => {
     navigate('/CatatanPupuk/CreatePupuk')

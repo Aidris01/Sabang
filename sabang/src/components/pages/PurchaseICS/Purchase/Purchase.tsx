@@ -1,10 +1,13 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons'
 import { Button, Table, Tabs, Typography } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../../pages/style/style.css'
 
 function Purchase() {
+  useEffect(() => {
+    document.title = 'Sabang | Purchase'
+  }, [])
   const navigate = useNavigate()
 
   const [data, setData] = useState([

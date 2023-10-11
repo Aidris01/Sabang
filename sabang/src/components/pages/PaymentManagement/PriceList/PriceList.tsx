@@ -1,10 +1,13 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../../pages/style/style.css'
 
 function PriceList() {
+  useEffect(() => {
+    document.title = 'Sabang | Price List'
+  }, [])
   const navigate = useNavigate()
   const createPrice = () => {
     navigate("/PriceList/CreatePrice")

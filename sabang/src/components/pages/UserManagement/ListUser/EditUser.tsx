@@ -28,6 +28,9 @@ interface RoleData {
 }
 
 function EditUser() {
+    useEffect(() => {
+        document.title = `Sabang | Edit User ${userId}`
+      }, [])
     const [form] = useForm()
     const initialValues = {
         name: form.getFieldValue('name') || '',

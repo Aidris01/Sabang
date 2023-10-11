@@ -16,6 +16,9 @@ interface RoleData {
 }
 
 function CreateUser() {
+    useEffect(() => {
+        document.title = 'Sabang | Create User'
+      }, [])
     const [villageData, setVillageData] = useState<VillageData[]>([]);
     const [roleOptions, setRoleOptions] = useState<RoleData[]>([])
     const [loading, setLoading] = useState<Boolean>();

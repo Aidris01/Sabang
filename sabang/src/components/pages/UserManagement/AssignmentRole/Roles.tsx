@@ -12,6 +12,9 @@ interface Role {
 }
 
 function Roles() {
+  useEffect(() => {
+    document.title = 'Sabang | Roles'
+  }, [])
   const navigate = useNavigate()
   const createRole = () => {
     navigate("/Roles/CreateRole")

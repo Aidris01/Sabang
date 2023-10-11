@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Row, Typography, Input, message } from 'antd';
 import '../style/style.css';
 import axios from '../../api/axios';
@@ -6,6 +6,9 @@ import backup from '../Profile/user.png';
 import { EditOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
 
 function Profile() {
+  useEffect(() => {
+    document.title = 'Sabang | Profile'
+  }, [])
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editedName, setEditedName] = useState<string>('');
   const [editedEmail, setEditedEmail] = useState<string>('');

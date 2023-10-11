@@ -13,6 +13,9 @@ interface RoleData {
 }
 
 function EditRole() {
+    useEffect(() => {
+        document.title = `Sabang | Edit Role ${roleId}`
+      }, [])
     const navigate = useNavigate()
     const { roleId } = useParams<Record<string, string>>();
     const [form] = useForm()

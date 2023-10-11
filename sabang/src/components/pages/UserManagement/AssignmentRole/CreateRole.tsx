@@ -1,12 +1,15 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Space, Typography } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios';
 import '../../../pages/style/style.css'
 
 function CreateRole() {
+  useEffect(() => {
+    document.title = 'Sabang | Create Role'
+  }, [])
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
   const roles = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Button, DatePicker, Form, Select, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
@@ -7,6 +7,9 @@ import '../../pages/style/style.css';
 const { RangePicker } = DatePicker;
 
 function PurchaseFilter() {
+    useEffect(() => {
+        document.title = 'Sabang | Collector'
+      }, [])
     const [dates, setDates] = useState<string[]>([]);
     console.log(dates)
 

@@ -1,9 +1,12 @@
 import { EyeOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../pages/style/style.css'
 
 function Village() {
+  useEffect(() => {
+    document.title = 'Sabang | Village'
+  }, [])
   const [ data, setData ] = useState([
     {
       id: 1,

@@ -1,10 +1,13 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Input, Space, Typography } from 'antd'
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState, ChangeEvent, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../style/style.css'
 
 function CreateUserBulk() {
+  useEffect(() => {
+    document.title = 'Sabang | Create Bulk'
+  }, [])
   const navigate = useNavigate()
   const [file, setFile] = useState<File | null>(null)
 

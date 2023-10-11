@@ -1,10 +1,13 @@
 import { CloseOutlined, MinusCircleOutlined, PlusOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Col, DatePicker, Form, Input, Row, Select, Space, Typography } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
 
 function CreatePupuk() {
+  useEffect(() => {
+    document.title = 'Sabang | Create Pupuk'
+  }, [])
   const navigate = useNavigate()
   const back = () => {
     navigate('/CatatanPupuk')

@@ -1,11 +1,14 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Form, Input, message, Space, Typography } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from '../../../api/axios'
 import '../../../pages/style/style.css'
 
 function CreateVillage() {
+    useEffect(() => {
+        document.title = 'Sabang | Create Village'
+      }, [])
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const managementVillage = () => {

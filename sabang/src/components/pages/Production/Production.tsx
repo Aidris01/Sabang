@@ -1,10 +1,13 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined } from '@ant-design/icons'
 import { Button, Col, Form, Input, Row, Select, Space, Table, Tabs, Typography } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
 
 function Production() {
+  useEffect(() => {
+    document.title = 'Sabang | Production'
+  }, [])
   const navigate = useNavigate()
   const createLabel = () => {
     navigate('/Production/CreateProduction')

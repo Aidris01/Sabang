@@ -1,10 +1,13 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Form, Input, Space, Typography } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
 
 function CreateChecklist() {
+    useEffect(() => {
+        document.title = 'Sabang | Create Checklist'
+      }, [])
     const navigate = useNavigate()
     const checklist = () => {
         navigate("/Checklist")

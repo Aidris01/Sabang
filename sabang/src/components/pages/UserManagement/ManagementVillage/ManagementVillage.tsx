@@ -12,6 +12,9 @@ interface Village {
 }
 
 function ManagementVillage() {
+  useEffect(() => {
+    document.title = 'Sabang | Management Vilage'
+  }, [])
 
   const navigate = useNavigate();
   const createVillage = () => {

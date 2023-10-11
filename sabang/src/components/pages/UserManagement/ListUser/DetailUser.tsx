@@ -18,6 +18,9 @@ interface UserData {
     roles: string[]
 }
 function DetailUser() {
+    useEffect(() => {
+        document.title = `Sabang | Detail User ${userId}`
+      }, [])
     const token = localStorage.getItem('token')
     const { userId } = useParams<Record<string, string>>();
     const [villageName, setVillageName] = useState('');

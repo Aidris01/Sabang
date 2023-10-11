@@ -1,10 +1,13 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
 
 function FactoryManagement() {
+  useEffect(() => {
+    document.title = 'Sabang | Factory'
+  }, [])
   const navigate = useNavigate()
   const createFactory = () => {
     navigate("/FactoryManagement/CreateFactory")

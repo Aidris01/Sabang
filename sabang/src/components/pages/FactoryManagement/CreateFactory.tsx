@@ -1,17 +1,20 @@
 import { Button, Col, Form, Input, Row, Space, Typography } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../pages/style/style.css'
 import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 
 const containerStyle = {
-  width: '500px',
+  width: '100%',
   height: '365px'
 };
 
 function CreateFactory() {
+  useEffect(() => {
+    document.title = 'Sabang | Create Factory'
+  }, [])
   const navigate = useNavigate()
   const factoryManagement = () => {
     navigate("/FactoryManagement")

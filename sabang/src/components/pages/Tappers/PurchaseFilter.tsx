@@ -1,6 +1,6 @@
 import { CloseOutlined, SearchOutlined } from '@ant-design/icons'
 import { Button, DatePicker, Form, Select, Space, Typography } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
@@ -8,6 +8,9 @@ import '../../pages/style/style.css'
 const { RangePicker } = DatePicker;
 
 function PurchaseFilter() {
+    useEffect(() => {
+        document.title = 'Sabang | Purchase Filter'
+      }, [])
     const [dates, setDates] = useState<string[]>([]);
     console.log(dates)
     const navigate = useNavigate()
