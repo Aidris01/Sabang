@@ -162,7 +162,7 @@ function Purchase() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Purchase</Typography.Title>
-      <div className='purchase'>
+      <div className='main-container'>
         <Tabs defaultActiveKey='1' items={[
           {
             key: '1',

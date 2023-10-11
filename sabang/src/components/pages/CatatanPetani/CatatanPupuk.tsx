@@ -1,4 +1,4 @@
-import { EyeOutlined } from '@ant-design/icons'
+import { EyeOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -44,8 +44,10 @@ function CatatanPupuk() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Catatan Pupuk</Typography.Title>
-      <div className='catatan-pupuk'>
-        <Button className='create-btn' onClick={createPupuk}>Create Catatan</Button>
+      <div className='main-container'>
+        <Button className='create-btn' onClick={createPupuk} icon={<PlusOutlined />}>
+          Create Catatan
+        </Button>
         <div className="pupuk-table">
           <Table 
           size='small'

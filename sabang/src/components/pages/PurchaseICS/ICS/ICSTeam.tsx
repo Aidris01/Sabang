@@ -1,3 +1,4 @@
+import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, DatePicker, Form, Input, Select, Space, Typography } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -11,11 +12,13 @@ function ICSTeam() {
     return (
         <div className='content'>
             <Typography.Title level={4}>ICS Team</Typography.Title>
-            <div className='ics-team'>
+            <div className='main-container'>
                 <Form
+                    className='form-container'
                     hideRequiredMark
                     labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}>
+                    wrapperCol={{ span: 16 }}
+                    style={{width: 800}}>
                     <Form.Item
                         label='Tapper'
                         name='tapper'
@@ -79,12 +82,19 @@ function ICSTeam() {
                         label='Tanggal'
                         name='tanggal'
                         rules={[{ required: true, message: 'Please select the date!' }]}>
-                        <DatePicker />
+                        <DatePicker
+                        style={{width: 505}}/>
                     </Form.Item>
-                    <Space size={10}>
-                        <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
-                        <Button className='cancel-btn' danger onClick={ICS}>Cancel</Button>
-                    </Space>
+                    <div className="button-container">
+                        <Space size={10}>
+                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                                Save
+                            </Button>
+                            <Button className='cancel-btn' danger onClick={ICS} icon={<CloseOutlined />}>
+                                Cancel
+                            </Button>
+                        </Space>
+                    </div>
                 </Form>
             </div>
         </div>

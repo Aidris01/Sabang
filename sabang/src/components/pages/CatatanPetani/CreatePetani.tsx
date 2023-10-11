@@ -1,4 +1,4 @@
-import { MinusCircleOutlined } from '@ant-design/icons'
+import { CloseOutlined, MinusCircleOutlined, PlusOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Col, DatePicker, Form, Input, Row, Select, Space, Typography } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -12,8 +12,9 @@ function CreatePetani() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Catatan Petani</Typography.Title>
-            <div className='create-petani'>
+            <div className='main-container'>
                 <Form
+                    className='form-container'
                     style={{ width: 700 }}
                     hideRequiredMark
                     labelCol={{ span: 8 }}
@@ -174,11 +175,19 @@ function CreatePetani() {
                                     )
                                 })}
                                 <Form.Item>
-                                    <Space>
-                                        <Button className='create-btn' onClick={back} danger>Back</Button>
-                                        <Button className='create-btn' onClick={() => { add() }}>Add Row</Button>
-                                    </Space>
-                                    <Button className='save-petani-btn' htmlType='submit' type='primary'>Create</Button>
+                                    <div className="button-container">
+                                        <Space>
+                                            <Button className='create-btn' onClick={back} danger icon={<CloseOutlined />}>
+                                                Back
+                                            </Button>
+                                            <Button className='create-btn' onClick={() => { add() }} icon={<PlusOutlined />}>
+                                                Add Row
+                                            </Button>
+                                            <Button className='create-btn' htmlType='submit' type='primary' icon={<SaveOutlined />}>
+                                                Save
+                                            </Button>
+                                        </Space>
+                                    </div>
                                 </Form.Item>
                             </>
                         )}

@@ -157,7 +157,7 @@ function KPI() {
   return (
     <div className='content'>
       <Typography.Title level={4}>KPI Result</Typography.Title>
-      <div className='kpi'>
+      <div className='main-container'>
         <Tabs defaultActiveKey='1' items={[
           {
             key: '1',

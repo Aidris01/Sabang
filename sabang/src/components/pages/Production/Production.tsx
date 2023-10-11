@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined, PrinterOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined } from '@ant-design/icons'
 import { Button, Col, Form, Input, Row, Select, Space, Table, Tabs, Typography } from 'antd'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -9,7 +9,9 @@ function Production() {
   const createLabel = () => {
     navigate('/Production/CreateProduction')
   }
-  const Create = <Button style={{marginRight: 10}} onClick={createLabel}>Create Production</Button>
+  const Create = <Button style={{marginRight: 10}} onClick={createLabel} icon={<PlusOutlined />}>
+    Create Production
+  </Button>
   
   const [data, setData] = useState([
     {
@@ -442,7 +444,7 @@ function Production() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Production</Typography.Title>
-      <div className='production'>
+      <div className='main-container'>
         <Tabs tabBarExtraContent={Create} defaultActiveKey='1' items={[
           {
             key: '1',

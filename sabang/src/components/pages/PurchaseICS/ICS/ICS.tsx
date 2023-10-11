@@ -1,4 +1,4 @@
-import { EyeOutlined } from '@ant-design/icons'
+import { EyeOutlined, TeamOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -57,8 +57,10 @@ function ICS() {
   return (
     <div className='content'>
       <Typography.Title level={4}>ICS</Typography.Title>
-      <div className='ics'>
-        <Button className='create-btn' onClick={Team}>ICS Team</Button>
+      <div className='main-container'>
+        <Button className='create-btn' onClick={Team} icon={<TeamOutlined />}>
+          ICS Team
+        </Button>
         <div className="ics-table">
           <Table
             size='small'

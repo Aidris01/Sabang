@@ -1,3 +1,4 @@
+import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Col, Form, Input, Row, Select, Space, Typography } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -11,8 +12,9 @@ function CreateProduction() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Production</Typography.Title>
-            <div className="create-production">
+            <div className="main-container">
                 <Form
+                    className='form-container'
                     hideRequiredMark
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}>
@@ -95,10 +97,16 @@ function CreateProduction() {
                             </Form.Item>
                         </Col>
                     </Row>
-                    <Space size={10}>
-                        <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
-                        <Button className='cancel-btn' danger onClick={Production}>Cancel</Button>
-                    </Space>
+                    <div className="button-container">
+                        <Space size={10}>
+                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                                Save
+                            </Button>
+                            <Button className='cancel-btn' danger onClick={Production} icon={<CloseOutlined />}>
+                                Cancel
+                            </Button>
+                        </Space>
+                    </div>
                 </Form>
             </div>
         </div>
