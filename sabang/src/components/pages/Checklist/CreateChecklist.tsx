@@ -1,3 +1,4 @@
+import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Form, Input, Space, Typography } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -11,18 +12,26 @@ function CreateChecklist() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Checklist</Typography.Title>
-            <div className='create-checklist'>
+            <div className='main-container'>
                 <Form
-                    hideRequiredMark>
+                    className='form-container'
+                    hideRequiredMark
+                    style={{ width: 950 }}>
                     <Form.Item
                         label="Name"
                         name="name"
                         rules={[{ required: true, message: "Please input the name!" }]}>
                         <Input /></Form.Item>
-                    <Space size={8}>
-                        <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
-                        <Button className='cancel-btn' danger onClick={checklist}>Cancel</Button>
-                    </Space>
+                    <div className="button-container">
+                        <Space size={8}>
+                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                                Save
+                            </Button>
+                            <Button className='cancel-btn' danger onClick={checklist} icon={<CloseOutlined />}>
+                                Cancel
+                            </Button>
+                        </Space>
+                    </div>
                 </Form>
             </div>
         </div>

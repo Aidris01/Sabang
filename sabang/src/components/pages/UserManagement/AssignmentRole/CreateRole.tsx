@@ -30,7 +30,7 @@ function CreateRole() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Create Role</Typography.Title>
-      <div className='create-role'>
+      <div className='main-container'>
         <Form
           className='form-container'
           onFinish={handleFormSubmit}

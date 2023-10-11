@@ -95,7 +95,7 @@ function ManagementVillage() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Management Village</Typography.Title>
-      <div className='management-village'>
+      <div className='main-container'>
         <Button className='create-btn' onClick={createVillage} icon={<PlusOutlined />}>Create New</Button>
         <div className='village-table'>
           <Table

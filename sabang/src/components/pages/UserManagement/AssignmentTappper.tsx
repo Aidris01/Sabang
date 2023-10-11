@@ -7,7 +7,7 @@ function AssignmentTapper() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Assignment Tapper</Typography.Title>
-      <div className='assignment-tapper'>
+      <div className='main-container'>
         <Form
           className='form-container'
           labelCol={{ span: 8 }}

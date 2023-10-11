@@ -17,11 +17,13 @@ function PurchaseFilter() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Purchase Filter</Typography.Title>
-            <div className='purchase-filter'>
+            <div className='main-container'>
                 <Form
+                    className='form-container'
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
-                    hideRequiredMark>
+                    hideRequiredMark
+                    style={{width: 800}}>
                     <Form.Item
                         label="Tapper Name"
                         name="tapperName"
@@ -72,7 +74,7 @@ function PurchaseFilter() {
                         name="rangeDate"
                         rules={[{ required: true, message: "Please select the date!" }]}>
                         <RangePicker
-                            style={{ width: '43.5vw' }}
+                            style={{ width: 505 }}
                             onChange={(values) => {
                                 if (values) {
                                     setDates(values.map((item) => moment(item?.toDate()).format('DD-MM-YYYY')));
@@ -82,14 +84,16 @@ function PurchaseFilter() {
                             }}
                         />
                     </Form.Item>
-                    <Space size={10}>
-                        <Button className='save-btn' type='primary' htmlType='submit' icon={<SearchOutlined />}>
-                            Search
-                        </Button>
-                        <Button className='cancel-btn' danger onClick={Tappers} icon={<CloseOutlined />}>
-                            Cancel
-                        </Button>
-                    </Space>
+                    <div className="button-container">
+                        <Space size={10}>
+                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SearchOutlined />}>
+                                Search
+                            </Button>
+                            <Button className='cancel-btn' danger onClick={Tappers} icon={<CloseOutlined />}>
+                                Cancel
+                            </Button>
+                        </Space>
+                    </div>
                 </Form>
             </div>
         </div>

@@ -14,7 +14,7 @@ interface Village {
 function EditVillage() {
     const navigate = useNavigate()
     const { villageId } = useParams<Record<string, string>>();
-    const [ villageData, setVillageData ] = useState<Village>({ name: '', code: ''});
+    const [villageData, setVillageData] = useState<Village>({ name: '', code: '' });
     const token = localStorage.getItem('token')
     const [form] = useForm();
     const initialValues = {
@@ -28,70 +28,74 @@ function EditVillage() {
     }
 
     useEffect(() => {
-        axios.get(`/villages/${villageId}`, config )
-        .then((response) => {
-            form.setFieldsValue(response.data)
-            setVillageData(response.data)
-        }).catch((error) => {
-            message.error('Error Ocured')
-            console.error(error)
-        })
+        axios.get(`/villages/${villageId}`, config)
+            .then((response) => {
+                form.setFieldsValue(response.data)
+                setVillageData(response.data)
+            }).catch((error) => {
+                message.error('Error Ocured')
+                console.error(error)
+            })
     }, [token, villageId])
 
     const onFinish = (values: any) => {
         axios.patch(`/villages/${villageId}`, form.getFieldsValue(), config)
-        .then((response) => {
-            message.success('Village Updated')
-            navigate('/ManagementVillage')
-        }).catch((error) => {
-            message.error('Error Ocured')
-            console.error('Error Ocured: ',error)
-        })
+            .then((response) => {
+                message.success('Village Updated')
+                navigate('/ManagementVillage')
+            }).catch((error) => {
+                message.error('Error Ocured')
+                console.error('Error Ocured: ', error)
+            })
     }
 
     const handleCancel = () => {
         navigate('/ManagementVillage')
     }
 
-    if(!villageData) {
+    if (!villageData) {
         return <div>Loading...</div>
     }
 
-  return (
-    <div className='content'>
-        <Typography.Title level={4}>Edit Village - {villageId}</Typography.Title>
-        <div className="edit-village">
-            <Form
-            form={form}
-            hideRequiredMark
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            name='EditVillageForm'
-            onFinish={onFinish}
-            initialValues={initialValues}>
-                <Form.Item
-                name='name'
-                label='Name'
-                rules={[{required: true, message: 'Please input the name!'}]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                name='code'
-                label='Village Code'
-                rules={[{required: true, message: 'Please input the code!'}]}>
-                    <Input />
-                </Form.Item>
-                <Space>
-                    <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
-                        Save
-                    </Button>
-                    <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
-                        Cancel
-                    </Button>
-                </Space>
-            </Form>
+    return (
+        <div className='content'>
+            <Typography.Title level={4}>Edit Village - {villageId}</Typography.Title>
+            <div className="main-container">
+                <Form
+                    className='form-container'
+                    form={form}
+                    hideRequiredMark
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 16 }}
+                    name='EditVillageForm'
+                    onFinish={onFinish}
+                    initialValues={initialValues}
+                    style={{width: 800}}>
+                    <Form.Item
+                        name='name'
+                        label='Name'
+                        rules={[{ required: true, message: 'Please input the name!' }]}>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name='code'
+                        label='Village Code'
+                        rules={[{ required: true, message: 'Please input the code!' }]}>
+                        <Input />
+                    </Form.Item>
+                    <div className="button-container">
+                        <Space>
+                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                                Save
+                            </Button>
+                            <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
+                                Cancel
+                            </Button>
+                        </Space>
+                    </div>
+                </Form>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 export default EditVillage

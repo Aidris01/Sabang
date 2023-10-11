@@ -13,12 +13,13 @@ function PurchaseFilter() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Collector</Typography.Title>
-            <div className='collector'>
+            <div className='main-container'>
                 <Form
+                    className='form-container'
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
                     hideRequiredMark
-                >
+                    style={{width: 800}}>
                     <Form.Item
                         label="Collector Name"
                         name="collectorName"
@@ -51,7 +52,7 @@ function PurchaseFilter() {
                         rules={[{ required: true, message: "Please select the date!" }]}
                     >
                         <RangePicker
-                            style={{ width: '43.5vw' }}
+                            style={{ width: 505 }}
                             onChange={(values) => {
                                 if (values) {
                                     setDates(values.map((item) => moment(item?.toDate()).format('DD-MM-YYYY')));
@@ -61,9 +62,11 @@ function PurchaseFilter() {
                             }}
                         />
                     </Form.Item>
-                    <Button className='save-collector-btn' type='primary' htmlType='submit' icon={<SearchOutlined />}>
-                        Search
-                    </Button>
+                    <div className="button-container">
+                        <Button className='save-btn' type='primary' htmlType='submit' icon={<SearchOutlined />}>
+                            Search
+                        </Button>
+                    </div>
                 </Form>
             </div>
         </div>

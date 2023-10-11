@@ -1,3 +1,4 @@
+import { PlusOutlined } from '@ant-design/icons'
 import { Button, Table, Tabs, Typography } from 'antd'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -8,7 +9,9 @@ function Tappers() {
   const purchaseFilter = () => {
     navigate('/Tappers/PurchaseFilter')
   }
-  const create = <Button style={{marginRight: 10}} onClick={purchaseFilter}>Purchase Filter</Button>
+  const create = <Button style={{marginRight: 10}} onClick={purchaseFilter} icon={<PlusOutlined />}>
+    Purchase Filter
+  </Button>
   const [data, setData] = useState([
     {
       id: 1,
@@ -129,7 +132,7 @@ function Tappers() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Tappers</Typography.Title>
-      <div className='tappers'>
+      <div className='main-container'>
         <Tabs tabBarExtraContent={create} defaultActiveKey='1' items={[
           {
             key: '1',

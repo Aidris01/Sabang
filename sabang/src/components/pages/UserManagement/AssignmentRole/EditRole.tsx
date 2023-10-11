@@ -61,15 +61,17 @@ function EditRole() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Edit Role - {roleId}</Typography.Title>
-            <div className="edit-role">
+            <div className="main-container">
                 <Form
+                    className='form-container'
                     form={form}
                     hideRequiredMark
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
                     name='EditedUserForm'
                     onFinish={onFinish}
-                    initialValues={initialValues}>
+                    initialValues={initialValues}
+                    style={{width: 800}}>
                     <Form.Item
                         name='name'
                         label='Name'
@@ -82,14 +84,16 @@ function EditRole() {
                         rules={[{ required: true, message: 'Please input the description' }]}>
                         <TextArea rows={2} autoSize={{ minRows: 3, maxRows: 6 }} />
                     </Form.Item>
-                    <Space>
-                        <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
-                            Save
-                        </Button>
-                        <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
-                            Cancel
-                        </Button>
-                    </Space>
+                    <div className="button-container">
+                        <Space>
+                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                                Save
+                            </Button>
+                            <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
+                                Cancel
+                            </Button>
+                        </Space>
+                    </div>
                 </Form>
             </div>
         </div>

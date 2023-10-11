@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -55,8 +55,10 @@ function WarehouseManagement() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Warehouse Management</Typography.Title>
-      <div className='warehouse-management'>
-        <Button className='create-btn' onClick={createWarehouse}>Create New</Button>
+      <div className='main-container'>
+        <Button className='create-btn' onClick={createWarehouse} icon={<PlusOutlined />}>
+          Create New
+        </Button>
         <div className='warehouse-table'>
           <Table
             size='small'

@@ -124,8 +124,9 @@ function EditUser() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Edit User - {userId}</Typography.Title>
-            <div className="edit-user">
+            <div className="main-container">
                 <Form
+                    className='form-container'
                     form={form}
                     hideRequiredMark
                     labelCol={{ span: 8 }}
@@ -180,7 +181,7 @@ function EditUser() {
                                 rules={[{ required: false, message: 'Please select the role' }]}>
                                 <Checkbox.Group options={
                                     roleOptions.map(r => ({ value: r.id, label: r.name }))
-                                }/>
+                                } />
                             </Form.Item>
                             <Form.Item
                                 name='address'
@@ -210,14 +211,16 @@ function EditUser() {
                             </Form.Item>
                         </Col>
                     </Row>
-                    <Space>
-                        <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
-                            Save
-                        </Button>
-                        <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
-                            Cancel
-                        </Button>
-                    </Space>
+                    <div className="button-container">
+                        <Space>
+                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                                Save
+                            </Button>
+                            <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
+                                Cancel
+                            </Button>
+                        </Space>
+                    </div>
                 </Form>
             </div>
         </div>

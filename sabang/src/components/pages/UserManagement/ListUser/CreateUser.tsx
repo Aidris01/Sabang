@@ -74,7 +74,7 @@ function CreateUser() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Create User</Typography.Title>
-            <div className='create-user'>
+            <div className='main-container'>
                 <Form
                     className='form-container'
                     onFinish={handleFormSubmit}

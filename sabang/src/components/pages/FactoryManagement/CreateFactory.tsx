@@ -4,6 +4,7 @@ import React from 'react'
 import '../../pages/style/style.css'
 import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
+import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 
 const containerStyle = {
   width: '500px',
@@ -53,10 +54,10 @@ function CreateFactory() {
           </Row>
           <div className="button-container">
             <Space size={8}>
-              <Button className='save-btn' type='primary' htmlType='submit'>
+              <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
                 Save
               </Button>
-              <Button className='cancel-btn' danger onClick={factoryManagement}>
+              <Button className='cancel-btn' danger onClick={factoryManagement} icon={<CloseOutlined />}>
                 Cancel
               </Button>
             </Space>

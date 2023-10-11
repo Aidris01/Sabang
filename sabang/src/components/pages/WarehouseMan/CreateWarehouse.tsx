@@ -5,6 +5,7 @@ import '../../pages/style/style.css'
 import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import '../../pages/style/style.css'
+import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 
 const containerStyle = {
     width: '500px',
@@ -19,8 +20,9 @@ function CreateWarehouse() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Warehouse</Typography.Title>
-            <div className='create-warehouse'>
+            <div className='main-container'>
                 <Form
+                    className='form-container'
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
                     hideRequiredMark>
@@ -50,10 +52,16 @@ function CreateWarehouse() {
                             </LoadScript>
                         </Col>
                     </Row>
-                    <Space size={8}>
-                        <Button className='save-btn-warehouse' type='primary' htmlType='submit'>Save</Button>
-                        <Button className='cancel-btn-warehouse' danger onClick={warehouseManagement}>Cancel</Button>
-                    </Space>
+                    <div className="button-container">
+                        <Space size={8}>
+                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                                Save
+                            </Button>
+                            <Button className='cancel-btn' danger onClick={warehouseManagement} icon={<CloseOutlined />}>
+                                Cancel
+                            </Button>
+                        </Space>
+                    </div>
                 </Form>
             </div>
         </div>

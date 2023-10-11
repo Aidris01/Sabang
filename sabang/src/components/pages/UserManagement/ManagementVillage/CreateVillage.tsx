@@ -30,7 +30,7 @@ function CreateVillage() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Village</Typography.Title>
-            <div className='create-village'>
+            <div className='main-container'>
                 <Form
                     className='form-container'
                     onFinish={handleFormSubmit}

@@ -65,23 +65,29 @@ function DetailUser() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Detail User - {userId}</Typography.Title>
-            <div className="detail-user">
-                    <Descriptions title='User Detail' layout='vertical'>
-                        <Descriptions.Item label='Name'>{userData.name}</Descriptions.Item>
-                        <Descriptions.Item label='NIK'>{userData.nik}</Descriptions.Item>
-                        <Descriptions.Item label='Email'>{userData.email}</Descriptions.Item>
-                        <Descriptions.Item label='Phone'>{userData.phone}</Descriptions.Item>
-                        <Descriptions.Item label='Address'>{userData.address}</Descriptions.Item>
-                        <Descriptions.Item label='Village ID'>{villageName}</Descriptions.Item>
-                        <Descriptions.Item label='Bank Name'>{userData.bankName}</Descriptions.Item>
-                        <Descriptions.Item label='Acc Name'>{userData.accName}</Descriptions.Item>
-                        <Descriptions.Item label='Acc Number'>{userData.accNumber}</Descriptions.Item>
-                        <Descriptions.Item label='Roles'>{userData.roles}</Descriptions.Item>
-                    </Descriptions>
+            <div className="main-container">
+                <Descriptions title='User Detail' layout='vertical' className='form-container'>
+                    <Descriptions.Item label='Name'>{userData.name}</Descriptions.Item>
+                    <Descriptions.Item label='NIK'>{userData.nik}</Descriptions.Item>
+                    <Descriptions.Item label='Email'>{userData.email}</Descriptions.Item>
+                    <Descriptions.Item label='Phone'>{userData.phone}</Descriptions.Item>
+                    <Descriptions.Item label='Address'>{userData.address}</Descriptions.Item>
+                    <Descriptions.Item label='Village ID'>{villageName}</Descriptions.Item>
+                    <Descriptions.Item label='Bank Name'>{userData.bankName}</Descriptions.Item>
+                    <Descriptions.Item label='Acc Name'>{userData.accName}</Descriptions.Item>
+                    <Descriptions.Item label='Acc Number'>{userData.accNumber}</Descriptions.Item>
+                    <Descriptions.Item label='Roles'>{userData.roles}</Descriptions.Item>
+                </Descriptions>
+                <div className="button-container">
                     <Space>
-                        <Button className='edit-btn' type='primary' onClick={edit} icon={<EditOutlined />}>Edit</Button>
-                        <Button className='back-btn' danger onClick={back} icon={<CloseOutlined />}>Back</Button>
+                        <Button className='edit-btn' type='primary' onClick={edit} icon={<EditOutlined />}>
+                            Edit
+                        </Button>
+                        <Button className='back-btn' danger onClick={back} icon={<CloseOutlined />}>
+                            Back
+                        </Button>
                     </Space>
+                </div>
             </div>
         </div>
     )

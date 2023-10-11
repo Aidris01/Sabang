@@ -40,6 +40,16 @@
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
 }
+.form-container {
+    padding: 20px;
+}
+.input-container {
+    margin: 10px 10px 0px 0px;
+}
+.button-container {
+    display: flex;
+    justify-content: end;
+}
 .user-table {
     display: flex;
     justify-items: center;
@@ -56,68 +66,13 @@
     margin-top: 10px;
     margin-left: 15px;
 }
-.create-user {
-    position: absolute;
-    margin-top: 60px;
-    width: 96%;
-    height: auto;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.form-container {
-    padding: 20px;
-}
-.input-container {
-    margin: 10px 10px 0px 0px;
-}
-.button-container {
-    display: flex;
-    justify-content: end;
-}
 .save-btn {
-    margin: 10px 0px 10px 0px;
+    margin: 10px 10px 10px 0px;
     width: 3cm;
 }
 .cancel-btn {
-    margin: 10px 0px 10px 0px;
+    margin: 10px 10px 10px 0px;
     width: 3cm;
-}
-.create-user-bulk {
-    position: absolute;
-    margin-top: 60px;
-    width: 96%;
-    height: auto;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.management-village {
-    position: absolute;
-    margin-top: 60px;
-    width: 96%;
-    height: auto;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.create-village {
-    position: absolute;
-    margin-top: 60px;
-    width: 96%;
-    height: auto;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.roles {
-    position: absolute;
-    margin-top: 60px;
-    width: 96%;
-    height: auto;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
 }
 .role-table {
     display: flex;
@@ -125,185 +80,8 @@
     flex: 1;
     flex-direction: column;
 }
-.create-role {
-    position: absolute;
-    margin-top: 60px;
-    width: 96%;
-    height: auto;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.assignment-tapper {
-    position: absolute;
-    margin-top: 60px;
-    width: 96%;
-    height: auto;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.factory-management {
-    position: absolute;
-    margin-top: 60px;
-    width: 96%;
-    height: auto;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.create-factory {
-    position: absolute;
-    margin-top: 60px;
-    width: 96%;
-    height: auto;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.warehouse-management {
-    position: absolute;
-    margin-top: 60px;
-    width: 96%;
-    height: auto;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.create-warehouse {
-    position: absolute;
-    margin-top: 60px;
-    width: 65.33vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-    padding: 20px 150px 20px 0px;
-}
-.save-btn-warehouse {
-    margin-top: 10px;
-    width: 8vw;
-    margin-left: 10px;
-    position: relative;
-    left: 55vw;
-}
-.cancel-btn-warehouse {
-    margin-top: 10px;
-    width: 8vw;
-    margin-left: 10px;
-    position: relative;
-    left: 55vw;
-}
-.price-list {
-    position: absolute;
-    margin-top: 60px;
-    width: 77vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.create-price {
-    position: absolute;
-    margin-top: 60px;
-    width: 61.4vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-    padding: 10px 200px 20px 0px;
-}
-.status-payment {
-    position: absolute;
-    margin-top: 60px;
-    width: 77vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.checklist {
-    position: absolute;
-    margin-top: 60px;
-    width: 77vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.create-checklist {
-    position: absolute;
-    margin-top: 60px;
-    width: 75.5vw; 
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-    padding: 10px 10px 20px 10px;
-}
-.control-checklist {
-    position: absolute;
-    margin-top: 60px;
-    width: 77vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
 .control-table2 {
     width: 70vw;
-}
-.village {
-    position: absolute;
-    margin-top: 60px;
-    width: 77vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.nira {
-    position: absolute;
-    margin-top: 60px;
-    width: 77vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.nira-btn {
-    margin: 1px;
-    margin-top: 10px;
-    margin-left: 15px;
-}
-.tappers {
-    position: absolute;
-    margin-top: 60px;
-    width: 77vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-}
-.filter {
-    margin: 1px;
-    margin-top: 10px;
-    margin-left: 15px;
-}
-.purchase-filter {
-    position: absolute;
-    margin-top: 60px;
-    width: 65.33vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-    padding: 20px 150px 10px 0px;
-}
-.collector {
-    position: absolute;
-    margin-top: 60px;
-    width: 65.33vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-    padding: 20px 150px 10px 0px;
-}
-.save-collector-btn {
-    margin-top: 10px;
-    width: 8vw;
-    margin-left: 10px;
-    position: relative;
-    left: 67vw;
 }
 .not-found {
     width: 65vw;
@@ -481,20 +259,12 @@
     padding: 10px 0px 0px 30px;
 }
 .back-btn {
-    margin-top: 10px;
-    width: 8vw;
-    margin-left: 10px;
-    position: relative;
-    left: 55vw;
-    margin-bottom: 10px;
+    margin: 10px 10px 10px 0px;
+    width: 3cm;
 }
 .edit-btn {
-    margin-top: 10px;
-    width: 8vw;
-    margin-left: 10px;
-    position: relative;
-    left: 55vw;
-    margin-bottom: 10px;
+    margin: 10px 10px 10px 0px;
+    width: 3cm;
 }
 .edit-role {
     position: absolute;

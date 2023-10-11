@@ -1,3 +1,4 @@
+import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Form, Input, Space, Typography } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -11,11 +12,13 @@ function CreatePrice() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Create Price</Typography.Title>
-      <div className='create-price'>
+      <div className='main-container'>
         <Form
+          className='form-container'
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
-          hideRequiredMark>
+          hideRequiredMark
+          style={{width: 800}}>
           <Form.Item
             label="Sugar Level"
             name="sugarLevel"
@@ -26,10 +29,16 @@ function CreatePrice() {
             name="price"
             rules={[{ required: true, message: "Please input the price!" }]}>
             <Input /></Form.Item>
-          <Space size={8}>
-            <Button className='save-btn' type='primary' htmlType='submit'>Save</Button>
-            <Button className='cancel-btn' danger onClick={priceList}>Cancel</Button>
-          </Space>
+          <div className="button-container">
+            <Space size={8}>
+              <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                Save
+              </Button>
+              <Button className='cancel-btn' danger onClick={priceList} icon={<CloseOutlined />}>
+                Cancel
+              </Button>
+            </Space>
+          </div>
         </Form>
       </div>
     </div>

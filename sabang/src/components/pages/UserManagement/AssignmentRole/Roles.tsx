@@ -101,7 +101,7 @@ function Roles() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Roles</Typography.Title>
-      <div className='roles'>
+      <div className='main-container'>
         <Button className='create-btn' onClick={createRole} icon={<PlusOutlined />}>Create Role</Button>
         <div className='role-table'>
           <Table

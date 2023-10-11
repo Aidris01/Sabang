@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -59,8 +59,10 @@ function Checklist() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Checklist</Typography.Title>
-      <div className='checklist'>
-        <Button className='create-btn' onClick={createChecklist}>Create New</Button>
+      <div className='main-container'>
+        <Button className='create-btn' onClick={createChecklist} icon={<PlusOutlined />}>
+          Create New
+        </Button>
         <div className='checklist-table'>
           <Table
             size='small'

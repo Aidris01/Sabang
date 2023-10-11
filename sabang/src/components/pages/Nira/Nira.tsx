@@ -142,7 +142,7 @@ function Nira() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Nira</Typography.Title>
-      <div className='nira'>
+      <div className='main-container'>
        <Tabs defaultActiveKey='1' items={[
         {
           key: '1',
@@ -172,8 +172,7 @@ function Nira() {
           />
         }
        ]} >
-       </Tabs>
-          
+       </Tabs>   
       </div>
     </div>
   )

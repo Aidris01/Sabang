@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -65,8 +65,10 @@ function PriceList() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Price List</Typography.Title>
-      <div className='price-list'>
-        <Button className='create-btn' onClick={createPrice}>Create New</Button>
+      <div className='main-container'>
+        <Button className='create-btn' onClick={createPrice} icon={<PlusOutlined />}>
+          Create New
+        </Button>
         <div className='price-table'>
           <Table
             size='small'
