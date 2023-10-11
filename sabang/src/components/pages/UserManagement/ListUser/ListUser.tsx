@@ -153,22 +153,20 @@ function ListUser() {
             Create User Bulk
           </Button>
         </Space>
-        <div className='user-table'>
-          <Table
-            size='small'
-            columns={columns}
-            dataSource={dataSource}
-            loading={isLoading}
-            onChange={(pagination) => {
-              console.log(pagination)
-              setCurrentPage(pagination.current ?? 1)
-              getUsers(pagination.current ?? 1)
-              console.log(currentPage)
-            }}
-            pagination={{ total: totalItems }}
-          >
-          </Table>
-        </div>
+        <Table
+          size='small'
+          columns={columns}
+          dataSource={dataSource}
+          loading={isLoading}
+          onChange={(pagination) => {
+            console.log(pagination)
+            setCurrentPage(pagination.current ?? 1)
+            getUsers(pagination.current ?? 1)
+            console.log(currentPage)
+          }}
+          pagination={{ total: totalItems }}
+        >
+        </Table>
       </div>
     </div>
   )

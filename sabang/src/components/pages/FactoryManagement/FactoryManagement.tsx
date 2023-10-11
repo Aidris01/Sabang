@@ -62,12 +62,10 @@ function FactoryManagement() {
         <Button className='create-btn' onClick={createFactory} icon={<PlusOutlined />}>
           Create New
         </Button>
-        <div className='factory-table'>
-          <Table
-            size='small'
-            columns={columns}
-            dataSource={dataSource}></Table>
-        </div>
+        <Table
+          size='small'
+          columns={columns}
+          dataSource={dataSource}></Table>
       </div>
     </div>
   )

@@ -50,12 +50,6 @@
     display: flex;
     justify-content: end;
 }
-.user-table {
-    display: flex;
-    justify-items: center;
-    flex: 1;
-    flex-direction: column;
-}
 .create-btn {
     margin: 1px;
     margin-top: 10px;
@@ -74,15 +68,6 @@
     margin: 10px 10px 10px 0px;
     width: 3cm;
 }
-.role-table {
-    display: flex;
-    justify-items: center;
-    flex: 1;
-    flex-direction: column;
-}
-.control-table2 {
-    width: 70vw;
-}
 .not-found {
     width: 65vw;
     position: fixed;
@@ -92,14 +77,6 @@
 .remove-btn {
     position: absolute;
     left: 75%;
-}
-.profile {
-    position: absolute;
-    margin-top: 60px;
-    width: 77vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
 }
 .info {
     margin: -20px 0px 10px 10px;
@@ -122,15 +99,6 @@
     width: 8vw;
     position: relative;
     left: 39vw;
-}
-.detail-user {
-    position: absolute;
-    margin-top: 60px;
-    width: 74.7vw;
-    background-color: white;
-    border: solid 1px rgba(46, 46, 46, 0.2);
-    border-radius: 5px;
-    padding: 10px 0px 0px 30px;
 }
 .back-btn {
     margin: 10px 10px 10px 0px;
