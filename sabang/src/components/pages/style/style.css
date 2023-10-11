@@ -31,7 +31,7 @@
 .ant-tabs-nav-list{
     padding-left: 10px;
 }
-.list-user {
+.main-container {
     position: absolute;
     margin-top: 60px;
     width: 96%;
@@ -76,17 +76,17 @@
     justify-content: end;
 }
 .save-btn {
-    margin: 10px 10px 10px 0px;
+    margin: 10px 0px 10px 0px;
     width: 3cm;
 }
 .cancel-btn {
-    margin: 10px 10px 10px 0px;
+    margin: 10px 0px 10px 0px;
     width: 3cm;
 }
 .create-user-bulk {
     position: absolute;
     margin-top: 60px;
-    width: 96.3%;
+    width: 96%;
     height: auto;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
@@ -109,26 +109,12 @@
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
-    display: flex;
-    justify-content: start;
 }
-.save-btn-village {
-    margin-top: 10px;
-    width: 3cm;
-    margin-left: 10px;
-}
-.cancel-btn-village {
-    margin-top: 10px;
-    width: 3cm;
-    margin-left: 10px;
-}
-
-/* Untuk revisi baru sampai sini */
-
 .roles {
     position: absolute;
     margin-top: 60px;
-    width: 77vw;
+    width: 96%;
+    height: auto;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -142,32 +128,26 @@
 .create-role {
     position: absolute;
     margin-top: 60px;
-    width: 60.9vw;
+    width: 96%;
+    height: auto;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
-    padding: 20px 206px 10px 0px;
 }
 .assignment-tapper {
     position: absolute;
     margin-top: 60px;
-    width: 65.33vw;
+    width: 96%;
+    height: auto;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
-    padding: 20px 150px 10px 0px;
-}
-.save-btn-tap {
-    margin-top: 10px;
-    width: 8vw;
-    margin-left: 10px;
-    position: relative;
-    left: 67vw;
 }
 .factory-management {
     position: absolute;
     margin-top: 60px;
-    width: 77vw;
+    width: 96%;
+    height: auto;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
@@ -175,30 +155,17 @@
 .create-factory {
     position: absolute;
     margin-top: 60px;
-    width: 65.33vw;
+    width: 96%;
+    height: auto;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;
-    padding: 20px 150px 20px 0px;
-}
-.save-btn-factory {
-    margin-top: 10px;
-    width: 8vw;
-    margin-left: 10px;
-    position: relative;
-    left: 55vw;
-}
-.cancel-btn-factory {
-    margin-top: 10px;
-    width: 8vw;
-    margin-left: 10px;
-    position: relative;
-    left: 55vw;
 }
 .warehouse-management {
     position: absolute;
     margin-top: 60px;
-    width: 77vw;
+    width: 96%;
+    height: auto;
     background-color: white;
     border: solid 1px rgba(46, 46, 46, 0.2);
     border-radius: 5px;

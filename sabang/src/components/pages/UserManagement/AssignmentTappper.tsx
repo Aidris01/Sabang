@@ -9,9 +9,11 @@ function AssignmentTapper() {
       <Typography.Title level={4}>Assignment Tapper</Typography.Title>
       <div className='assignment-tapper'>
         <Form
+          className='form-container'
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
-          hideRequiredMark>
+          hideRequiredMark
+          style={{ width: 800 }}>
           <Form.Item
             label="Tapper Name"
             name="tapperName"
@@ -82,9 +84,11 @@ function AssignmentTapper() {
             >
             </Select>
           </Form.Item>
-          <Button className='save-btn-tap' type='primary' htmlType='submit' icon={<SaveOutlined />}>
-            Save
-          </Button>
+          <div className="button-container">
+            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+              Save
+            </Button>
+          </div>
         </Form>
       </div>
     </div>

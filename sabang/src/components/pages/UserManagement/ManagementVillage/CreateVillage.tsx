@@ -52,10 +52,10 @@ function CreateVillage() {
                     </Form.Item>
                     <div className="button-container">
                         <Space size={10}>
-                            <Button className='save-btn-village' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
                                 Save
                             </Button>
-                            <Button className='cancel-btn-village' danger onClick={managementVillage} icon={<CloseOutlined />}>
+                            <Button className='cancel-btn' danger onClick={managementVillage} icon={<CloseOutlined />}>
                                 Cancel
                             </Button>
                         </Space>

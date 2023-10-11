@@ -19,8 +19,9 @@ function CreateFactory() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Create Factory</Typography.Title>
-      <div className='create-factory'>
+      <div className='main-container'>
         <Form
+          className='form-container'
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           hideRequiredMark>
@@ -50,10 +51,16 @@ function CreateFactory() {
               </LoadScript>
             </Col>
           </Row>
-          <Space size={8}>
-            <Button className='save-btn-factory' type='primary' htmlType='submit'>Save</Button>
-            <Button className='cancel-btn-factory' danger onClick={factoryManagement}>Cancel</Button>
-          </Space>
+          <div className="button-container">
+            <Space size={8}>
+              <Button className='save-btn' type='primary' htmlType='submit'>
+                Save
+              </Button>
+              <Button className='cancel-btn' danger onClick={factoryManagement}>
+                Cancel
+              </Button>
+            </Space>
+          </div>
         </Form>
       </div>
     </div>

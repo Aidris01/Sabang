@@ -19,11 +19,11 @@ function CreateRole() {
           Authorization: `Bearer ${token}`
         }
       })
-      console.log('Response',response)
+      console.log('Response', response)
       message.success('Role Added')
       navigate('/roles')
-    } catch(error) {
-      console.error('Error Ocured: ',error)
+    } catch (error) {
+      console.error('Error Ocured: ', error)
       message.error('Error Ocured')
     }
   }
@@ -32,10 +32,12 @@ function CreateRole() {
       <Typography.Title level={4}>Create Role</Typography.Title>
       <div className='create-role'>
         <Form
+          className='form-container'
           onFinish={handleFormSubmit}
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
-          hideRequiredMark>
+          hideRequiredMark
+          style={{width: 800}}>
           <Form.Item
             label="Name"
             name="name"
@@ -46,14 +48,16 @@ function CreateRole() {
             name="description"
             rules={[{ required: true, message: "Please input the description!" }]}>
             <TextArea rows={2} autoSize={{ minRows: 3, maxRows: 6 }} /></Form.Item>
-          <Space size={10}>
-            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
-              Save
-            </Button>
-            <Button className='cancel-btn' danger onClick={roles} icon={<CloseOutlined />}>
-              Cancel
-            </Button>
-          </Space>
+          <div className="button-container">
+            <Space size={10}>
+              <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                Save
+              </Button>
+              <Button className='cancel-btn' danger onClick={roles} icon={<CloseOutlined />}>
+                Cancel
+              </Button>
+            </Space>
+          </div>
         </Form>
       </div>
     </div>

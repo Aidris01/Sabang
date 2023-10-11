@@ -144,7 +144,7 @@ function ListUser() {
   return (
     <div className='content'>
       <Typography.Title level={4}>List User</Typography.Title>
-      <div className='list-user'>
+      <div className='main-container'>
         <Space>
           <Button className='create-btn-user' onClick={createUser}><PlusOutlined /> Create User</Button>
           <Button className='create-btn-user' onClick={createBulk}><UploadOutlined />Create User Bulk</Button>
