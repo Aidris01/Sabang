@@ -1,5 +1,5 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Col, Form, Input, message, Row, Select, Space, Typography, } from 'antd'
+import { Button, Checkbox, Col, Form, Input, message, Row, Select, Space, Spin, Typography, } from 'antd'
 import { useForm } from 'antd/es/form/Form';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useState, useEffect } from 'react'
@@ -30,7 +30,7 @@ interface RoleData {
 function EditUser() {
     useEffect(() => {
         document.title = `Sabang | Edit User ${userId}`
-      }, [])
+    }, [])
     const [form] = useForm()
     const initialValues = {
         name: form.getFieldValue('name') || '',
@@ -58,7 +58,7 @@ function EditUser() {
     const token = localStorage.getItem('token')
     const [villageData, setVillageData] = useState<VillageData[]>([]);
     const [roleOptions, setRoleOptions] = useState<RoleData[]>([])
-    const [loading, setLoading] = useState<Boolean>(true);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axios.get('/villages', {
@@ -128,103 +128,105 @@ function EditUser() {
         <div className='content'>
             <Typography.Title level={4}>Edit User - {userId}</Typography.Title>
             <div className="main-container">
-                <Form
-                    className='form-container'
-                    form={form}
-                    hideRequiredMark
-                    labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}
-                    name='EditedUserForm'
-                    onFinish={onFinish}
-                    initialValues={initialValues}>
-                    <Row gutter={16}>
-                        <Col span={12}>
-                            <Form.Item
-                                name="name"
-                                label="Name"
-                                rules={[{ required: true, message: "Please enter your name!" }]}>
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                name='nik'
-                                label='NIK'
-                                rules={[{ required: true, message: 'Please enter your nik!' }]}>
-                                <Input />
-                            </Form.Item>
-                        </Col>
-                        <Col span={12}>
-                            <Form.Item
-                                name='phone'
-                                label='Phone'
-                                rules={[{ required: true, message: 'Please enter your phone number!' }]}>
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                name='villageId'
-                                label='Village ID'
-                                rules={[{ required: false, message: 'Please select the village code!' }]}>
-                                <Select
-                                    placeholder="Select Village Code"
-                                    allowClear
-                                    placement="bottomLeft"
-                                    listHeight={200}
-                                    options={villageData} />
-                            </Form.Item>
-                        </Col>
-                        <Col span={12}>
-                            <Form.Item
-                                name='email'
-                                label='Email'
-                                rules={[{ required: true, message: 'Please enter your email!' }]}>
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                name='userRoles'
-                                label='Roles'
-                                rules={[{ required: false, message: 'Please select the role' }]}>
-                                <Checkbox.Group options={
-                                    roleOptions.map(r => ({ value: r.id, label: r.name }))
-                                } />
-                            </Form.Item>
-                            <Form.Item
-                                name='address'
-                                label='Address'
-                                rules={[{ required: true, message: 'Please enter your address!' }]}>
-                                <TextArea rows={5} autoSize={{ minRows: 4, maxRows: 7 }} />
-                            </Form.Item>
-                        </Col>
-                        <Col span={12}>
-                            <Form.Item
-                                name='bankName'
-                                label='Bank Name'
-                                rules={[{ required: true, message: 'Please input the bank name!' }]}>
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                name='accName'
-                                label='Acc Name'
-                                rules={[{ required: true, message: 'Please input your account name!' }]}>
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                name='accNumber'
-                                label='Acc Number'
-                                rules={[{ required: true, message: 'Please input your account number!' }]}>
-                                <Input />
-                            </Form.Item>
-                        </Col>
-                    </Row>
-                    <div className="button-container">
-                        <Space>
-                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
-                                Save
-                            </Button>
-                            <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
-                                Cancel
-                            </Button>
-                        </Space>
-                    </div>
-                </Form>
+                <Spin spinning={loading}>
+                    <Form
+                        className='form-container'
+                        form={form}
+                        hideRequiredMark
+                        labelCol={{ span: 8 }}
+                        wrapperCol={{ span: 16 }}
+                        name='EditedUserForm'
+                        onFinish={onFinish}
+                        initialValues={initialValues}>
+                        <Row gutter={16}>
+                            <Col span={12}>
+                                <Form.Item
+                                    name="name"
+                                    label="Name"
+                                    rules={[{ required: true, message: "Please enter your name!" }]}>
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name='nik'
+                                    label='NIK'
+                                    rules={[{ required: true, message: 'Please enter your nik!' }]}>
+                                    <Input />
+                                </Form.Item>
+                            </Col>
+                            <Col span={12}>
+                                <Form.Item
+                                    name='phone'
+                                    label='Phone'
+                                    rules={[{ required: true, message: 'Please enter your phone number!' }]}>
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name='villageId'
+                                    label='Village ID'
+                                    rules={[{ required: false, message: 'Please select the village code!' }]}>
+                                    <Select
+                                        placeholder="Select Village Code"
+                                        allowClear
+                                        placement="bottomLeft"
+                                        listHeight={200}
+                                        options={villageData} />
+                                </Form.Item>
+                            </Col>
+                            <Col span={12}>
+                                <Form.Item
+                                    name='email'
+                                    label='Email'
+                                    rules={[{ required: true, message: 'Please enter your email!' }]}>
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name='userRoles'
+                                    label='Roles'
+                                    rules={[{ required: false, message: 'Please select the role' }]}>
+                                    <Checkbox.Group options={
+                                        roleOptions.map(r => ({ value: r.id, label: r.name }))
+                                    } />
+                                </Form.Item>
+                                <Form.Item
+                                    name='address'
+                                    label='Address'
+                                    rules={[{ required: true, message: 'Please enter your address!' }]}>
+                                    <TextArea rows={5} autoSize={{ minRows: 4, maxRows: 7 }} />
+                                </Form.Item>
+                            </Col>
+                            <Col span={12}>
+                                <Form.Item
+                                    name='bankName'
+                                    label='Bank Name'
+                                    rules={[{ required: true, message: 'Please input the bank name!' }]}>
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name='accName'
+                                    label='Acc Name'
+                                    rules={[{ required: true, message: 'Please input your account name!' }]}>
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name='accNumber'
+                                    label='Acc Number'
+                                    rules={[{ required: true, message: 'Please input your account number!' }]}>
+                                    <Input />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <div className="button-container">
+                            <Space>
+                                <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                                    Save
+                                </Button>
+                                <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
+                                    Cancel
+                                </Button>
+                            </Space>
+                        </div>
+                    </Form>
+                </Spin>
             </div>
         </div>
     )

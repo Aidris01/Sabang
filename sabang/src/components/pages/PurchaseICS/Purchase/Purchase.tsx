@@ -1,108 +1,181 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons'
-import { Button, Table, Tabs, Typography } from 'antd'
+import { Button, message, Popconfirm, Table, Tabs, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import axios from '../../../api/axios'
 import '../../../pages/style/style.css'
 
+interface Purchase {
+  id: number,
+  penyadapId: number,
+  PurchaserId: number,
+  ph: number,
+  sugarLevel: number,
+  volume: number,
+  lat: number,
+  lng: number,
+  amount: number,
+  timestamp: Date,
+  paidAt: Date,
+  checkedAt: Date,
+  auditedAt: Date
+}
+function formatDate(timestamp: Date) {
+  const year = timestamp.getFullYear();
+  const month = String(timestamp.getMonth() + 1).padStart(2, '0'); // Tambah 1 karena bulan dimulai dari 0
+  const day = String(timestamp.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+function checkedStatus(checkedAt: Date | null): string {
+  if (checkedAt === null) {
+    return 'Not Checked'
+  } else {
+    return 'Checked'
+  }
+}
+function auditStatus(auditedAt: Date | null): string {
+  if (auditedAt === null) {
+    return 'Not Audited'
+  } else {
+    return 'Audited'
+  }
+}
+function updateStatus(paidAt: Date | null): string {
+  if (paidAt === null) {
+    return 'Not Updated'
+  } else {
+    return 'Updated'
+  }
+}
 function Purchase() {
   useEffect(() => {
     document.title = 'Sabang | Purchase'
   }, [])
-  const navigate = useNavigate()
+  const token = localStorage.getItem('token');
+  const [isLoading, setIsLoading] = useState(true);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  useEffect(() => {
+    axios.get('/purchases', config)
+      .then((response) => {
+        const updatedData = response.data.map((purchase: any) => {
+          // Update statusChecked property based on checkedAt
+          purchase.statusChecked = checkedStatus(purchase.checkedAt);
+          purchase.statusAudited = auditStatus(purchase.auditedAt);
+          purchase.statusUpdated = updateStatus(purchase.paidAt)
+          return purchase;
+        });
 
-  const [data, setData] = useState([
-    {
-      id: 1,
-      statusChecked: 'Not Checked',
-      statusUpdated: 'Not Updated',
-      purchaseID: 61332,
-      createDate: '2020-02-20',
-      tapper: 'amks.08',
-      ph: 7.6,
-      brix: 12.7,
-      niraVolume: 5.0,
-      totalPrice: 'IDR 7,350,00',
-      statusAudit: 'Not Audit'
-    }
-  ])
+        setData(updatedData);
+        setIsLoading(false);
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Ocured')
+        setIsLoading(false)
+      })
+  }, [])
+  const deletePurchase = (purchaseId: number) => {
+    axios
+      .delete(`/purchases/${purchaseId}`, config)
+      .then((response) => {
+        // Perbarui data setelah penghapusan berhasil
+        const updatedData = data.filter((purchase) => purchase.id !== purchaseId);
+        setData(updatedData);
+        message.success('Pembelian berhasil dihapus');
+      })
+      .catch((error) => {
+        console.error('Error Occurred: ', error);
+        message.error('Gagal menghapus pembelian');
+      });
+  };
+
+  const [data, setData] = useState<Purchase[]>([])
   const columns = [
     {
-      key: '1',
-      title: 'ID',
-      dataIndex: 'id'
+      key: 'id',
+      title: 'Purchase ID',
+      dataIndex: 'id',
+      windth: 100
     },
     {
-      key: '2',
+      key: 'statusChecked',
       title: 'Status Checked',
       dataIndex: 'statusChecked',
       width: 100
     },
     {
-      key: '3',
+      key: 'statusUpdated',
       title: 'Status Updated',
       dataIndex: 'statusUpdated'
     },
     {
-      key: '4',
-      title: 'Purchase ID',
-      dataIndex: 'purchaseID',
-      windth: 100
-    },
-    {
-      key: '5',
+      key: 'timestamp',
       title: 'Create Date',
-      dataIndex: 'createDate',
-      width: 100
+      dataIndex: 'timestamp',
+      width: 100,
+      render: (timestamp: Date) => formatDate(new Date(timestamp))
     },
     {
-      key: '6',
+      key: 'penyadapId',
       title: 'Tapper',
-      dataIndex: 'tapper',
+      dataIndex: 'penyadapId',
       width: 100
     },
     {
-      key: '7',
+      key: 'ph',
       title: 'PH',
       dataIndex: 'ph'
     },
     {
-      key: '8',
+      key: 'sugarLevel',
       title: 'BRIX',
-      dataIndex: 'brix'
+      dataIndex: 'sugarLevel'
     },
     {
-      key: '9',
+      key: 'volume',
       title: 'Nira Volume',
-      dataIndex: 'niraVolume'
+      dataIndex: 'volume'
     },
     {
-      key: '10',
+      key: 'amount',
       title: 'Total Price',
-      dataIndex: 'totalPrice'
+      dataIndex: 'amount'
+    },
+    {
+      key: 'statusAudited',
+      title: 'Status Audit',
+      dataIndex: 'statusAudited'
     },
     {
       key: '11',
-      title: 'Status Audit',
-      dataIndex: 'statusAudit'
-    },
-    {
-      key: '12',
       title: 'Set Audit',
       render: () => <Button type='link' size='small'><EditOutlined /></Button>
     },
     {
-      key: '13',
+      key: '12',
       title: 'Action',
-      render: () => {
+      render: (record: Purchase) => {
+        const handleDelete = () => {
+          deletePurchase(record.id)
+        }
         return <>
           <Button type='link' size='small'><EyeOutlined /></Button>
           <Button type='link' size='small'><EditOutlined /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          <Popconfirm
+            title="Apakah anda yakin untuk menghapus role ini ?"
+            onConfirm={handleDelete}
+            okText="Yes"
+            cancelText="No">
+            <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          </Popconfirm>
         </>
       },
       width: 400
     }
   ]
+
   const [dataWeek, setDataWeek] = useState([
     {
       id: 1,
@@ -171,6 +244,7 @@ function Purchase() {
             key: '1',
             label: 'Purchase',
             children: <Table
+              loading={isLoading}
               size='small'
               columns={columns}
               dataSource={data}

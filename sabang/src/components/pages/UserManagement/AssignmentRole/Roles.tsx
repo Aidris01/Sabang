@@ -92,8 +92,7 @@ function Roles() {
             title="Apakah anda yakin untuk menghapus role ini ?"
             onConfirm={handleDelete}
             okText="Yes"
-            cancelText="No"
-          >
+            cancelText="No">
             <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
           </Popconfirm>
         </>

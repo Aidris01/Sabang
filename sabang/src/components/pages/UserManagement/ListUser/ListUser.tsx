@@ -29,7 +29,7 @@ function ListUser() {
   const [currentPage, setCurrentPage] = useState(1)
   const [dataSource, setDataSource] = useState<UserData[]>([])
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const deleteUser = (userId: number) => {
     const token = localStorage.getItem('token');
 

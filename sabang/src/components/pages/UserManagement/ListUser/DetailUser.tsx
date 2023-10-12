@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Descriptions, Row, Space, Typography } from 'antd'
+import { Button, Col, Descriptions, Row, Space, Spin, Typography } from 'antd'
 import '../../style/style.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../../api/axios';
@@ -20,10 +20,11 @@ interface UserData {
 function DetailUser() {
     useEffect(() => {
         document.title = `Sabang | Detail User ${userId}`
-      }, [])
+    }, [])
     const token = localStorage.getItem('token')
     const { userId } = useParams<Record<string, string>>();
     const [villageName, setVillageName] = useState('');
+    const [loading, setLoading] = useState(true)
     const [userData, setUserData] = useState<UserData>(
         {
             name: '',
@@ -51,8 +52,10 @@ function DetailUser() {
                 }
             }).then((villageResponse) => {
                 setVillageName(villageResponse.data.name);
+                setLoading(false)
             }).catch((villageError) => {
                 console.error('Error Occurred while fetching village name: ', villageError);
+                setLoading(false)
             });
         }).catch((error) => {
             console.error('Error Occurred: ', error);
@@ -69,18 +72,20 @@ function DetailUser() {
         <div className='content'>
             <Typography.Title level={4}>Detail User - {userId}</Typography.Title>
             <div className="main-container">
-                <Descriptions title='User Detail' layout='vertical' className='form-container'>
-                    <Descriptions.Item label='Name'>{userData.name}</Descriptions.Item>
-                    <Descriptions.Item label='NIK'>{userData.nik}</Descriptions.Item>
-                    <Descriptions.Item label='Email'>{userData.email}</Descriptions.Item>
-                    <Descriptions.Item label='Phone'>{userData.phone}</Descriptions.Item>
-                    <Descriptions.Item label='Address'>{userData.address}</Descriptions.Item>
-                    <Descriptions.Item label='Village ID'>{villageName}</Descriptions.Item>
-                    <Descriptions.Item label='Bank Name'>{userData.bankName}</Descriptions.Item>
-                    <Descriptions.Item label='Acc Name'>{userData.accName}</Descriptions.Item>
-                    <Descriptions.Item label='Acc Number'>{userData.accNumber}</Descriptions.Item>
-                    <Descriptions.Item label='Roles'>{userData.roles}</Descriptions.Item>
-                </Descriptions>
+                <Spin spinning={loading}>
+                    <Descriptions title='User Detail' layout='vertical' className='form-container'>
+                        <Descriptions.Item label='Name'>{userData.name}</Descriptions.Item>
+                        <Descriptions.Item label='NIK'>{userData.nik}</Descriptions.Item>
+                        <Descriptions.Item label='Email'>{userData.email}</Descriptions.Item>
+                        <Descriptions.Item label='Phone'>{userData.phone}</Descriptions.Item>
+                        <Descriptions.Item label='Address'>{userData.address}</Descriptions.Item>
+                        <Descriptions.Item label='Village ID'>{villageName}</Descriptions.Item>
+                        <Descriptions.Item label='Bank Name'>{userData.bankName}</Descriptions.Item>
+                        <Descriptions.Item label='Acc Name'>{userData.accName}</Descriptions.Item>
+                        <Descriptions.Item label='Acc Number'>{userData.accNumber}</Descriptions.Item>
+                        <Descriptions.Item label='Roles'>{userData.roles}</Descriptions.Item>
+                    </Descriptions>
+                </Spin>
                 <div className="button-container">
                     <Space>
                         <Button className='edit-btn' type='primary' onClick={edit} icon={<EditOutlined />}>

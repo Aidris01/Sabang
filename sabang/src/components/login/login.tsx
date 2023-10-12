@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Input, message } from 'antd';
 import bg from './img/bg.jpg';
 import './login.css';
@@ -12,6 +12,9 @@ interface LoginValues {
 }
 
 function Login() {
+    useEffect(() => {
+        document.title = 'Sabang | Login';
+      }, []);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 

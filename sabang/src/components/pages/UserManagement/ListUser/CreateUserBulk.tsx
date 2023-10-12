@@ -16,7 +16,6 @@ function CreateUserBulk() {
   };
 
   const onFinish = (values: any) => {
-    // Kirim data atau lakukan tindakan yang sesuai dengan data yang dikumpulkan dari formulir.
     console.log('Form values:', values);
     console.log('Selected file:', file);
   };

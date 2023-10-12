@@ -1,5 +1,5 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons';
-import { Button, Form, Input, message, Space, Typography } from 'antd'
+import { Button, Form, Input, message, Space, Spin, Typography } from 'antd'
 import { useForm } from 'antd/es/form/Form';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useEffect, useState } from 'react'
@@ -15,9 +15,10 @@ interface RoleData {
 function EditRole() {
     useEffect(() => {
         document.title = `Sabang | Edit Role ${roleId}`
-      }, [])
+    }, [])
     const navigate = useNavigate()
     const { roleId } = useParams<Record<string, string>>();
+    const [loading, setLoading] = useState(true)
     const [form] = useForm()
     const initialValues = {
         name: form.getFieldValue('name') || '',
@@ -38,9 +39,11 @@ function EditRole() {
         }).then((response) => {
             form.setFieldsValue(response.data)
             setRoleData(response.data)
+            setLoading(false)
         }).catch((error) => {
             console.error('Error Ocured: ', error)
             message.error('Error Fetching Data')
+            setLoading(false)
         })
     }, [token, roleId, form])
 
@@ -65,39 +68,41 @@ function EditRole() {
         <div className='content'>
             <Typography.Title level={4}>Edit Role - {roleId}</Typography.Title>
             <div className="main-container">
-                <Form
-                    className='form-container'
-                    form={form}
-                    hideRequiredMark
-                    labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}
-                    name='EditedUserForm'
-                    onFinish={onFinish}
-                    initialValues={initialValues}
-                    style={{width: 800}}>
-                    <Form.Item
-                        name='name'
-                        label='Name'
-                        rules={[{ required: true, message: 'Please input the role name!' }]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        name='description'
-                        label='Description'
-                        rules={[{ required: true, message: 'Please input the description' }]}>
-                        <TextArea rows={2} autoSize={{ minRows: 3, maxRows: 6 }} />
-                    </Form.Item>
-                    <div className="button-container">
-                        <Space>
-                            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
-                                Save
-                            </Button>
-                            <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
-                                Cancel
-                            </Button>
-                        </Space>
-                    </div>
-                </Form>
+                <Spin spinning={loading}>
+                    <Form
+                        className='form-container'
+                        form={form}
+                        hideRequiredMark
+                        labelCol={{ span: 8 }}
+                        wrapperCol={{ span: 16 }}
+                        name='EditedUserForm'
+                        onFinish={onFinish}
+                        initialValues={initialValues}
+                        style={{ width: 800 }}>
+                        <Form.Item
+                            name='name'
+                            label='Name'
+                            rules={[{ required: true, message: 'Please input the role name!' }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            name='description'
+                            label='Description'
+                            rules={[{ required: true, message: 'Please input the description' }]}>
+                            <TextArea rows={2} autoSize={{ minRows: 3, maxRows: 6 }} />
+                        </Form.Item>
+                        <div className="button-container">
+                            <Space>
+                                <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
+                                    Save
+                                </Button>
+                                <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
+                                    Cancel
+                                </Button>
+                            </Space>
+                        </div>
+                    </Form>
+                </Spin>
             </div>
         </div>
     )
