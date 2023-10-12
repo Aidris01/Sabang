@@ -1,4 +1,4 @@
-import { Form, Spin, Typography } from 'antd'
+import { Form, message, Select, Spin, Typography } from 'antd'
 import { useForm } from 'antd/es/form/Form'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -6,11 +6,15 @@ import axios from '../../../api/axios'
 import '../../style/style.css'
 
 interface PurchaseData {
-    penyadapId: string,
-    purchaserId: string,
+    penyadapId: number,
+    purchaserId: number,
     ph: number,
     sugarLevel: number,
     volume: number
+}
+interface Penyadap {
+    id: number,
+    name: string
 }
 
 function EditPurchase() {
@@ -21,17 +25,18 @@ function EditPurchase() {
     const [loading, setLoading] = useState(true)
     const [form] = useForm();
     const initialValues = {
-        penyadapId: form.getFieldValue('penyadapId') || '',
-        purchaseId: form.getFieldValue('purchaserId') || '',
+        penyadapId: form.getFieldValue('penyadapId') || 0,
+        purchaseId: form.getFieldValue('purchaserId') || 0,
         sugarLevel: form.getFieldValue('sugarLevel') || 0,
         volume: form.getFieldValue('volume') || 0,
         ph: form.getFieldValue('ph') || 0
     }
     const navigate = useNavigate()
+    const [penyadap, setPenyadap] = useState<Penyadap[]>([])
     const [purchase, setPurchase] = useState<PurchaseData>(
         {
-            penyadapId: '',
-            purchaserId: '',
+            penyadapId: 0,
+            purchaserId: 0,
             sugarLevel: 0,
             volume: 0,
             ph: 0
@@ -39,13 +44,31 @@ function EditPurchase() {
     )
     const token = localStorage.getItem('token')
     useEffect(() => {
-        axios.get(`/puchase/${purchaseId}`, {
+        axios.get(`/purchases/${purchaseId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((response) => {
             form.setFieldsValue(response.data)
             setPurchase(response.data)
+            setLoading(false)
+        }).catch((error) => {
+            console.error('Error Ocured: ',error)
+            message.error('Error Ocured')
+            setLoading(false)
+        })
+    },[token, form, purchaseId])
+    useEffect(() => {
+        axios.get('/users/penyadap', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response) => {
+            const format = response.data.map((item: any) => ({
+                value: item.id,
+                label: item.name
+            }))
+            setPenyadap(format)
             setLoading(false)
         })
     },[])
@@ -56,8 +79,25 @@ function EditPurchase() {
             <Spin spinning={loading}>
                 <Form
                 className='form-container'
-                hideRequiredMark>
-
+                form={form}
+                hideRequiredMark
+                initialValues={initialValues}>
+                    <Form.Item
+                    label='Penyadap'
+                    name='penyadapId'
+                    rules={[{required: true, message: 'Please select the tapper!'}]}>
+                        <Select 
+                        placeholder='Select Tapper'
+                        allowClear
+                        placement="bottomLeft"
+                        listHeight={200}
+                        options={penyadap}/>
+                    </Form.Item>
+                    <Form.Item
+                    label='Purchaser'
+                    name='purchaserId'>
+                        <Select />
+                    </Form.Item>
                 </Form>
             </Spin>
         </div>
