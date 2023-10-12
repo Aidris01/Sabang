@@ -1,6 +1,7 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons'
 import { Button, message, Popconfirm, Table, Tabs, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from '../../../api/axios'
 import '../../../pages/style/style.css'
 
@@ -162,7 +163,9 @@ function Purchase() {
         }
         return <>
           <Button type='link' size='small'><EyeOutlined /></Button>
-          <Button type='link' size='small'><EditOutlined /></Button>
+          <Link to={`/Purchase/EditPurchase/${record.id}`}>
+            <Button type='link' size='small'><EditOutlined /></Button>
+          </Link>
           <Popconfirm
             title="Apakah anda yakin untuk menghapus role ini ?"
             onConfirm={handleDelete}

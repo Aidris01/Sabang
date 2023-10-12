@@ -44,6 +44,7 @@ import EditVillage from "../pages/UserManagement/ManagementVillage/EditVillage";
 import CreateRole from "../pages/UserManagement/AssignmentRole/CreateRole";
 import DetailUser from "../pages/UserManagement/ListUser/DetailUser";
 import EditRole from "../pages/UserManagement/AssignmentRole/EditRole";
+import EditPurchase from "../pages/PurchaseICS/Purchase/EditPurchase";
 
 function AppRoute() {
     return (
@@ -94,6 +95,7 @@ function AppRoute() {
                 <Route path="/ListUser/DetailUser/:userId" element={<Layout>{<DetailUser />}</Layout>} />
                 <Route path="/ManagementVillage/EditVillage/:villageId" element={<Layout>{<EditVillage />}</Layout>} />
                 <Route path="/Roles/EditRole/:roleId" element={<Layout>{<EditRole />}</Layout>} />
+                <Route path="/Purchase/EditPurchase/:purchaseId" element={<Layout>{<EditPurchase />}</Layout>} />
             </Route>
         </Routes>
     )
