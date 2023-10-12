@@ -61,6 +61,20 @@ function EditUser() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        axios.get(`/users/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response) => {
+            form.setFieldsValue(response.data)
+            setUserData(response.data)
+            setLoading(false)
+        }).catch((error) => {
+            message.error('Error Ocured', error)
+            setLoading(false)
+        })
+    }, [token, userId, form])
+    useEffect(() => {
         axios.get('/villages', {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -77,21 +91,6 @@ function EditUser() {
             setLoading(false)
         })
     }, [token])
-
-    useEffect(() => {
-        axios.get(`/users/${userId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
-            form.setFieldsValue(response.data)
-            setUserData(response.data)
-            setLoading(false)
-        }).catch((error) => {
-            message.error('Error Ocured', error)
-            setLoading(false)
-        })
-    }, [token, userId, form])
     useEffect(() => {
         axios.get('/roles', {
             headers: {
