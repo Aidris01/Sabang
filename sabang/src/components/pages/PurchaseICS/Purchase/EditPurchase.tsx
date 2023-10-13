@@ -1,4 +1,4 @@
-import { Form, message, Select, Spin, Typography } from 'antd'
+import { Form, Input, message, Select, Spin, Typography } from 'antd'
 import { useForm } from 'antd/es/form/Form'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -98,6 +98,19 @@ function EditPurchase() {
                     name='purchaserId'>
                         <Select />
                     </Form.Item>
+                    <Form.Item
+                    label='Sugar Level'
+                    name='sugarLevel'
+                    rules={[{required: true, message: 'Please input the sugar level!'}]}>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                    label='Volume'
+                    name='volume'
+                    rules={[{required: true, message: 'Please input the volume!'}]}>
+                        <Input />
+                    </Form.Item>
+                    
                 </Form>
             </Spin>
         </div>
