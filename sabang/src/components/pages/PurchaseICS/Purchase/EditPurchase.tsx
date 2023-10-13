@@ -20,8 +20,8 @@ interface Penyadap {
 function EditPurchase() {
     useEffect(() => {
         document.title = `Sabang | Edit User ${purchaseId} `
-    },[])
-    const {purchaseId} = useParams<Record<string, string>>();
+    }, [])
+    const { purchaseId } = useParams<Record<string, string>>();
     const [loading, setLoading] = useState(true)
     const [form] = useForm();
     const initialValues = {
@@ -53,11 +53,11 @@ function EditPurchase() {
             setPurchase(response.data)
             setLoading(false)
         }).catch((error) => {
-            console.error('Error Ocured: ',error)
+            console.error('Error Ocured: ', error)
             message.error('Error Ocured')
             setLoading(false)
         })
-    },[token, form, purchaseId])
+    }, [token, form, purchaseId])
     useEffect(() => {
         axios.get('/users/penyadap', {
             headers: {
@@ -71,51 +71,58 @@ function EditPurchase() {
             setPenyadap(format)
             setLoading(false)
         })
-    },[])
-  return (
-    <div className='content'>
-        <Typography.Title level={4}>Edit Purchase - {purchaseId}</Typography.Title>
-        <div className="main-container">
-            <Spin spinning={loading}>
-                <Form
-                className='form-container'
-                form={form}
-                hideRequiredMark
-                initialValues={initialValues}>
-                    <Form.Item
-                    label='Penyadap'
-                    name='penyadapId'
-                    rules={[{required: true, message: 'Please select the tapper!'}]}>
-                        <Select 
-                        placeholder='Select Tapper'
-                        allowClear
-                        placement="bottomLeft"
-                        listHeight={200}
-                        options={penyadap}/>
-                    </Form.Item>
-                    <Form.Item
-                    label='Purchaser'
-                    name='purchaserId'>
-                        <Select />
-                    </Form.Item>
-                    <Form.Item
-                    label='Sugar Level'
-                    name='sugarLevel'
-                    rules={[{required: true, message: 'Please input the sugar level!'}]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                    label='Volume'
-                    name='volume'
-                    rules={[{required: true, message: 'Please input the volume!'}]}>
-                        <Input />
-                    </Form.Item>
-                    
-                </Form>
-            </Spin>
+    }, [])
+    return (
+        <div className='content'>
+            <Typography.Title level={4}>Edit Purchase - {purchaseId}</Typography.Title>
+            <div className="main-container">
+                <Spin spinning={loading}>
+                    <Form
+                        className='form-container'
+                        form={form}
+                        labelCol={{ span: 2 }}
+                        wrapperCol={{ span: 22 }}
+                        hideRequiredMark
+                        initialValues={initialValues}>
+                        <Form.Item
+                            label='Penyadap'
+                            name='penyadapId'
+                            rules={[{ required: true, message: 'Please select the tapper!' }]}>
+                            <Select
+                                placeholder='Select Tapper'
+                                allowClear
+                                placement="bottomLeft"
+                                listHeight={200}
+                                options={penyadap} />
+                        </Form.Item>
+                        <Form.Item
+                            label='Purchaser'
+                            name='purchaserId'>
+                            <Select />
+                        </Form.Item>
+                        <Form.Item
+                            label='Sugar Level'
+                            name='sugarLevel'
+                            rules={[{ required: true, message: 'Please input the sugar level!' }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label='Volume'
+                            name='volume'
+                            rules={[{ required: true, message: 'Please input the volume!' }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label='PH'
+                            name='ph'
+                            rules={[{ required: true, message: 'Please input the ph!' }]}>
+                            <Input />
+                        </Form.Item>
+                    </Form>
+                </Spin>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default EditPurchase
