@@ -132,8 +132,8 @@ function EditUser() {
                         className='form-container'
                         form={form}
                         hideRequiredMark
-                        labelCol={{ span: 8 }}
-                        wrapperCol={{ span: 16 }}
+                        labelCol={{ span: 5 }}
+                        wrapperCol={{ span: 19 }}
                         name='EditedUserForm'
                         onFinish={onFinish}
                         initialValues={initialValues}>

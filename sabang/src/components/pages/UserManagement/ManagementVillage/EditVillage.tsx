@@ -72,12 +72,12 @@ function EditVillage() {
                         className='form-container'
                         form={form}
                         hideRequiredMark
-                        labelCol={{ span: 8 }}
-                        wrapperCol={{ span: 16 }}
+                        labelCol={{ span: 4 }}
+                        wrapperCol={{ span: 20 }}
                         name='EditVillageForm'
                         onFinish={onFinish}
                         initialValues={initialValues}
-                        style={{ width: 800 }}>
+                        style={{ width: 900 }}>
                         <Form.Item
                             name='name'
                             label='Name'

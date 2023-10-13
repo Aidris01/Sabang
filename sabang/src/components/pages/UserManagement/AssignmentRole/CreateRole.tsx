@@ -37,10 +37,10 @@ function CreateRole() {
         <Form
           className='form-container'
           onFinish={handleFormSubmit}
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 20 }}
           hideRequiredMark
-          style={{width: 800}}>
+          style={{width: 900}}>
           <Form.Item
             label="Name"
             name="name"
