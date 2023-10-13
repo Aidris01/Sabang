@@ -20,6 +20,10 @@ interface Purchase {
   checkedAt: Date,
   auditedAt: Date
 }
+interface PenyadapGet {
+  id: number,
+  name: string
+}
 function formatDate(timestamp: Date) {
   const year = timestamp.getFullYear();
   const month = String(timestamp.getMonth() + 1).padStart(2, '0'); // Tambah 1 karena bulan dimulai dari 0
@@ -53,6 +57,7 @@ function Purchase() {
   }, [])
   const token = localStorage.getItem('token');
   const [isLoading, setIsLoading] = useState(true);
+  const [getPenyadap, setGetPenyadap] = useState<PenyadapGet[]>([])
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -77,6 +82,19 @@ function Purchase() {
         setIsLoading(false)
       })
   }, [])
+  useEffect(() => {
+    axios.get(`/users/penyadap`, config)
+    .then((responsePenyadap) => {
+      setGetPenyadap(responsePenyadap.data)
+    }).catch((error) => {
+      console.error('Error Ocured: ',error)
+      message.error('Error Fetching Tapper')
+    })
+  })
+  const getTapperName = (penyadapId: number) => {
+    const penyadap = getPenyadap.find((penyadap: any) => penyadap.id === penyadapId);
+    return penyadap ? penyadap.name : 'Unknown Tapper'
+  }
   const deletePurchase = (purchaseId: number) => {
     axios
       .delete(`/purchases/${purchaseId}`, config)
@@ -122,7 +140,8 @@ function Purchase() {
       key: 'penyadapId',
       title: 'Tapper',
       dataIndex: 'penyadapId',
-      width: 100
+      width: 100,
+      render: (penyadapId: number) => getTapperName(penyadapId)
     },
     {
       key: 'ph',

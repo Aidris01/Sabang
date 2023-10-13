@@ -146,6 +146,11 @@ function EditPurchase() {
                             <Input />
                         </Form.Item>
                         <Form.Item
+                            label='Amount'
+                            name='amount'>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
                             label='Lat'
                             name='lat'>
                             <Input disabled />
@@ -153,11 +158,6 @@ function EditPurchase() {
                         <Form.Item
                             label='Long'
                             name='lng'>
-                            <Input disabled />
-                        </Form.Item>
-                        <Form.Item
-                            label='Amount'
-                            name='amount'>
                             <Input disabled />
                         </Form.Item>
                         <div className="button-container">
