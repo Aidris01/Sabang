@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Descriptions, Row, Space, Spin, Typography } from 'antd'
+import { Button, Descriptions, Space, Spin, Typography } from 'antd'
 import '../../style/style.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../../api/axios';
