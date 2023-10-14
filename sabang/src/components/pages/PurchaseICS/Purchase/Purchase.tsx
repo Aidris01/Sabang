@@ -78,7 +78,6 @@ function Purchase() {
         setIsLoading(false);
       }).catch((error) => {
         console.error('Error Ocured: ', error)
-        message.error('Error Ocured')
         setIsLoading(false)
       })
   }, [])
@@ -88,9 +87,8 @@ function Purchase() {
         setGetPenyadap(responsePenyadap.data)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
-        message.error('Error Fetching Tapper')
       })
-  })
+  }, [])
   const getTapperName = (penyadapId: number) => {
     const penyadap = getPenyadap.find((penyadap: any) => penyadap.id === penyadapId);
     return penyadap ? penyadap.name : 'Unknown Tapper'
