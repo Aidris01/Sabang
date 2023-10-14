@@ -84,12 +84,12 @@ function Purchase() {
   }, [])
   useEffect(() => {
     axios.get(`/users/penyadap`, config)
-    .then((responsePenyadap) => {
-      setGetPenyadap(responsePenyadap.data)
-    }).catch((error) => {
-      console.error('Error Ocured: ',error)
-      message.error('Error Fetching Tapper')
-    })
+      .then((responsePenyadap) => {
+        setGetPenyadap(responsePenyadap.data)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Fetching Tapper')
+      })
   })
   const getTapperName = (penyadapId: number) => {
     const penyadap = getPenyadap.find((penyadap: any) => penyadap.id === penyadapId);
@@ -181,7 +181,9 @@ function Purchase() {
           deletePurchase(record.id)
         }
         return <>
-          <Button type='link' size='small'><EyeOutlined /></Button>
+          <Link to={`/Purchase/DetailPurchase/${record.id}`}>
+            <Button type='link' size='small'><EyeOutlined /></Button>
+          </Link>
           <Link to={`/Purchase/EditPurchase/${record.id}`}>
             <Button type='link' size='small'><EditOutlined /></Button>
           </Link>
