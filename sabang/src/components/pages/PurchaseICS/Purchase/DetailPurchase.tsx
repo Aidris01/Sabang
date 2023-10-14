@@ -54,7 +54,7 @@ function DetailPurchase() {
     },[])
     const getTapperName = (penyadapId: number) => {
         const penyadap = penyadapName.find((penyadap: any) => penyadap.id === penyadapId)
-        return penyadap ? penyadap.name : 'Unknow Tapper'
+        return penyadap ? penyadap.name : 'Unknown Tapper'
     }
     useEffect(() => {
         axios.get(`/purchases/${purchaseId}`, {
@@ -82,12 +82,12 @@ function DetailPurchase() {
             <div className="main-container">
                 <Spin spinning={loading}>
                     <Descriptions title='Purchase Detail' layout='vertical' className='form-container'>
-                        <Descriptions.Item label='Tapper'>{getTapperName(purchaseData.penyadapId)}</Descriptions.Item>
+                        <Descriptions.Item label='Tapper'>{purchaseData.penyadapId} - {getTapperName(purchaseData.penyadapId)}</Descriptions.Item>
                         <Descriptions.Item label='Purchaser'>{purchaseData.purchaserId}</Descriptions.Item>
                         <Descriptions.Item label='Sugar Level'>{purchaseData.sugarLevel}</Descriptions.Item>
-                        <Descriptions.Item label='Volume(Liter)'>{purchaseData.volume}</Descriptions.Item>
+                        <Descriptions.Item label='Volume(Liter)'>{purchaseData.volume} Liter</Descriptions.Item>
                         <Descriptions.Item label='PH'>{purchaseData.ph}</Descriptions.Item>
-                        <Descriptions.Item label='Amount(Rp)'>{purchaseData.amount}</Descriptions.Item>
+                        <Descriptions.Item label='Amount(Rp)'>Rp.{purchaseData.amount}</Descriptions.Item>
                         <Descriptions.Item label='Lat'>{purchaseData.lat}</Descriptions.Item>
                         <Descriptions.Item label='Lng'>{purchaseData.lng}</Descriptions.Item>
                     </Descriptions>
