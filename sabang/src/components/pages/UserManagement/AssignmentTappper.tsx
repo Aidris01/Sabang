@@ -1,12 +1,38 @@
 import { SaveOutlined } from '@ant-design/icons';
-import { Button, Form, Select, Typography } from 'antd';
-import React, { useEffect } from 'react';
+import { Button, Form, message, Select, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
+import axios from '../../api/axios';
 import '../../pages/style/style.css'
+
+interface PenyadapData {
+  id: number,
+  name: string
+}
 
 function AssignmentTapper() {
   useEffect(() => {
     document.title = 'Sabang | Assignment Tapper'
   }, [])
+
+  const [penyadap, setPenyadap] = useState<PenyadapData[]>([])
+
+  const token = localStorage.getItem('token')
+  useEffect(() => {
+    axios.get('/users/penyadap', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((response) => {
+      const formattedData = response.data.map((item: any) => ({
+        value: item.id,
+        label: item.name
+      }))
+      setPenyadap(formattedData)
+    }).catch((error) => {
+      console.error('Error Ocured: ',error)
+      message.error('Error Ocured')
+    })
+  },[])
   return (
     <div className='content'>
       <Typography.Title level={4}>Assignment Tapper</Typography.Title>
@@ -22,43 +48,12 @@ function AssignmentTapper() {
             name="tapperName"
             rules={[{ required: true, message: "Please select the tapper!" }]}>
             <Select
+              showSearch
               placeholder="Select Tapper"
               allowClear
               placement="bottomLeft"
               listHeight={200}
-              options={[{
-                value: "amct.01",
-                label: "amct.01"
-              },
-              {
-                value: "amct.02",
-                label: "amct.02"
-              },
-              {
-                value: "amct.03",
-                label: "amct.03"
-              },
-              {
-                value: "amkm.01",
-                label: "amkm.01"
-              },
-              {
-                value: "amkm.02",
-                label: "amkm.02"
-              },
-              {
-                value: "amkm.03",
-                label: "amkm.03"
-              },
-              {
-                value: "amsa.01",
-                label: "amsa.01"
-              },
-              {
-                value: "amsa.02",
-                label: "amsa.02"
-              }
-              ]}
+              options={penyadap}
             >
             </Select>
           </Form.Item>
@@ -67,6 +62,7 @@ function AssignmentTapper() {
             name="collectorName"
             rules={[{ required: true, message: "Please select the collector!" }]}>
             <Select
+              showSearch
               placeholder="Select Collector"
               allowClear
               placement="bottomLeft"
