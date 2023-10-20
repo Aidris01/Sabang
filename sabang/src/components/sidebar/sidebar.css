@@ -7,6 +7,7 @@
     top: 66px;
     left: 0;
     z-index: 100;
+    scrollbar-color: #B9947080 #F9EBC7;
 }
 .list-menu {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
