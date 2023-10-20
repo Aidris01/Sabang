@@ -26,8 +26,13 @@
 }
 .ant-table-cell {
     width: 10vw;
-    background-color: #B99470;
+    background-color: #B99470DD;
     color: white !important;
+}
+tbody > tr:hover > td {
+    width: 10vw;
+    background-color: #B9947080 !important;
+    color: black !important;
 }
 .ant-table-wrapper {
     padding: 15px;
