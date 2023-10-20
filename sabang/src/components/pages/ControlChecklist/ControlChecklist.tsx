@@ -26,7 +26,7 @@ function ControlChecklist() {
     {
       key: '2',
       title: 'Detail',
-      render: () => <Button type='link' size='small'><EyeOutlined /></Button>,
+      render: () => <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>,
       width: 30
     },
     {

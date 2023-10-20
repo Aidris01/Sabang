@@ -58,8 +58,8 @@ function PriceList() {
       width: 400,
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined /></Button>
-          <Button type='link' size='small' ><EditOutlined /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small' ><EditOutlined style={{color: 'black'}} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       }
