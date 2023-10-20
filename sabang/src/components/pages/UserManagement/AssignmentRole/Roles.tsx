@@ -86,7 +86,7 @@ function Roles() {
         };
         return <>
           <Link to={`/Roles/EditRole/${record.id}`}>
-            <Button type='link' size='small'><EditOutlined /></Button>
+            <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
           </Link>
           <Popconfirm
             title="Apakah anda yakin untuk menghapus role ini ?"

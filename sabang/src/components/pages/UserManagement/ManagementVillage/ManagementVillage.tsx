@@ -80,7 +80,7 @@ function ManagementVillage() {
         return (
           <Space>
             <Link to={`/ManagementVillage/EditVillage/${record.id}`}>
-              <Button type='link' size='small'><EditOutlined /></Button>
+              <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
             </Link>
             <Popconfirm
               title="Apakah anda yakin untuk menghapus village ini ?"
