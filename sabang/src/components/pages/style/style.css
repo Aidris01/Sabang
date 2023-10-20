@@ -12,14 +12,22 @@
 }
 .ant-card {
     width: 18vw;
-    background-color: rgb(113, 201, 255);
+    background-color: #78937A;
 }
 .ant-table-thead .ant-table-cell {
-    background-color: lightskyblue !important;
+    background-color: #78937A !important;
+    color: white !important;
+}   
+.ant-statistic .ant-statistic-title {
+    color: white;
+}
+.ant-statistic-content-value-int {
+    color: white;
 }
 .ant-table-cell {
     width: 10vw;
-    background-color: rgba(196, 231, 255, 0.4);
+    background-color: #B99470;
+    color: white !important;
 }
 .ant-table-wrapper {
     padding: 15px;
