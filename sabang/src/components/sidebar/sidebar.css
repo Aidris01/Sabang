@@ -10,30 +10,30 @@
 }
 .list-menu {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: white;
-    color: gray;
+    background-color: #B99470;
+    color: #F9EBC7;
 }
 .ant-menu-item:hover {
-    color: black !important;
+    color: white !important;
 }
 .ant-menu-submenu:hover>.ant-menu-item {
-    color: black !important;
+    color: white !important;
 }
 .ant-menu-submenu-title:hover {
-    color: black;
+    color: white !important;
 }
 .ant-menu-submenu-selected>.ant-menu-item-selected {
     color: white !important;
 }
 .ant-menu-item-selected {
     color: white !important;
-    background-color: lightskyblue !important;
+    background-color: #78938A !important;
 }
 .ant-menu-submenu-selected>.ant-menu-submenu-title {
-    background-color: lightskyblue;
+    background-color: #78938A;
     color: white !important;
 }
 .ant-menu-submenu-selected>.ant-menu-submenu-title:hover {
-    background-color: lightskyblue !important;
-    color: black !important;
+    background-color: #78938A !important;
+    color: white !important;
 }
