@@ -53,7 +53,7 @@ function ICS() {
     {
       key: '5',
       title: 'Action',
-      render: () => <Button type='link' size='small'><EyeOutlined /></Button>,
+      render: () => <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>,
       width: 100
     }
   ]

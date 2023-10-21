@@ -71,9 +71,9 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined /></Button>
-          <Button type='link' size='small'><EditOutlined /></Button>
-          <Button type='link' size='small'><PrinterOutlined /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },
@@ -141,8 +141,8 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined /></Button>
-          <Button type='link' size='small'><PrinterOutlined /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },
@@ -213,9 +213,9 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined /></Button>
-          <Button type='link' size='small'><EditOutlined /></Button>
-          <Button type='link' size='small'><PrinterOutlined /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },
@@ -279,9 +279,9 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined /></Button>
-          <Button type='link' size='small'><EditOutlined /></Button>
-          <Button type='link' size='small'><PrinterOutlined /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },
@@ -353,9 +353,9 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined /></Button>
-          <Button type='link' size='small'><EditOutlined /></Button>
-          <Button type='link' size='small'><PrinterOutlined /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },
@@ -435,9 +435,9 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined /></Button>
-          <Button type='link' size='small'><EditOutlined /></Button>
-          <Button type='link' size='small'><PrinterOutlined /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },

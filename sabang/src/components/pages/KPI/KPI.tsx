@@ -82,7 +82,7 @@ function KPI() {
       key: '5',
       title: 'Input Shelter & Rek. Pandai',
       width: 500,
-      render: () => <Button type='link' size='small' onClick={AddScore}>Add Score</Button>
+      render: () => <Button type='link' size='small' onClick={AddScore} style={{color: 'black'}}>Add Score</Button>
     }
   ]
   const [dataScore, setDataScore] = useState([
@@ -150,8 +150,8 @@ function KPI() {
       width: 2000,
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined /></Button>
-          <Button type='link' size='small'><EditOutlined /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       }

@@ -169,7 +169,7 @@ function Purchase() {
     {
       key: '11',
       title: 'Set Audit',
-      render: () => <Button type='link' size='small'><EditOutlined /></Button>
+      render: () => <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
     },
     {
       key: '12',
@@ -180,10 +180,10 @@ function Purchase() {
         }
         return <>
           <Link to={`/Purchase/DetailPurchase/${record.id}`}>
-            <Button type='link' size='small'><EyeOutlined /></Button>
+            <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
           </Link>
           <Link to={`/Purchase/EditPurchase/${record.id}`}>
-            <Button type='link' size='small'><EditOutlined /></Button>
+            <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
           </Link>
           <Popconfirm
             title="Apakah anda yakin untuk menghapus role ini ?"
@@ -249,8 +249,8 @@ function Purchase() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined /></Button>
-          <Button type='link' size='small'><EditOutlined /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },

@@ -41,7 +41,7 @@ function CatatanPetani() {
       key: '4',
       title: 'Cetak',
       width: 200,
-      render: () => <Button type='link' size='small'><EyeOutlined /></Button>
+      render: () => <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
     }
   ]
   return (
