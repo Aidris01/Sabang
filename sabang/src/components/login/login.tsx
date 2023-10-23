@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Input, message } from 'antd';
-import bg from './img/bg.jpg';
+import bg from './img/bg2.jpg';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import { AxiosError } from 'axios'
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 interface LoginValues {
     username: string;
@@ -75,22 +76,24 @@ function Login() {
                         autoComplete="off"
                     >
                         <Form.Item
-                            label="Username"
+                            label={<UserOutlined style={{color: 'white', fontSize: 20}} />}
                             name="username"
                             rules={[{ required: true, message: 'Please input your username!' }]}
                         >
                             <Input
                                 id='username'
+                                placeholder='username'
                             />
                         </Form.Item>
 
                         <Form.Item
-                            label="Password"
+                            label={<LockOutlined style={{color: 'white', fontSize: 20}} />}
                             name="password"
                             rules={[{ required: true, message: 'Please input your password!' }]}
                         >
                             <Input.Password
                                 id='password'
+                                placeholder='password'
                             />
                         </Form.Item>
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
