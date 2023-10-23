@@ -35,7 +35,6 @@ import Layout from "../layout/layout";
 import PurchaseFilter from "../pages/Tappers/PurchaseFilter";
 import CreateProduction from "../pages/Production/CreateProduction";
 import ICSTeam from "../pages/PurchaseICS/ICS/ICSTeam";
-import Detail from "../pages/PaymentManagement/Detail";
 import CreatePetani from "../pages/CatatanPetani/CreatePetani";
 import CreatePupuk from "../pages/CatatanPetani/CreatePupuk";
 import Profile from "../pages/Profile/Profile";
@@ -46,6 +45,7 @@ import DetailUser from "../pages/UserManagement/ListUser/DetailUser";
 import EditRole from "../pages/UserManagement/AssignmentRole/EditRole";
 import EditPurchase from "../pages/PurchaseICS/Purchase/EditPurchase";
 import DetailPurchase from "../pages/PurchaseICS/Purchase/DetailPurchase";
+import DetailPayment from "../pages/PaymentManagement/DetailPayment";
 
 function AppRoute() {
     return (
@@ -90,7 +90,6 @@ function AppRoute() {
                 <Route path="/CatatanPetani/CreatePetani" element={<Layout>{<CreatePetani />}</Layout>} />
                 <Route path="/CatatanPupuk/CreatePupuk" element={<Layout>{<CreatePupuk />}</Layout>} />
 
-                <Route path="/StatusPayment/Detail" element={<Layout>{<Detail />}</Layout>} />
                 <Route path="/Profile" element={<Layout>{<Profile />}</Layout>} />
                 <Route path="/ListUser/EditUser/:userId" element={<Layout>{<EditUser />}</Layout>} />
                 <Route path="/ListUser/DetailUser/:userId" element={<Layout>{<DetailUser />}</Layout>} />
@@ -98,6 +97,7 @@ function AppRoute() {
                 <Route path="/Roles/EditRole/:roleId" element={<Layout>{<EditRole />}</Layout>} />
                 <Route path="/Purchase/EditPurchase/:purchaseId" element={<Layout>{<EditPurchase />}</Layout>} />
                 <Route path="/Purchase/DetailPurchase/:purchaseId" element={<Layout>{<DetailPurchase />}</Layout>} />
+                <Route path="/StatusPayment/DetailPayment" element={<Layout>{<DetailPayment />}</Layout>} />
             </Route>
         </Routes>
     )

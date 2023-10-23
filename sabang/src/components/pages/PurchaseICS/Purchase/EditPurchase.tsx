@@ -110,7 +110,8 @@ function EditPurchase() {
                         wrapperCol={{ span: 22 }}
                         hideRequiredMark
                         onFinish={onFinish}
-                        initialValues={initialValues}>
+                        initialValues={initialValues}
+                        autoComplete='off'>
                         <Form.Item
                             label='Penyadap'
                             name='penyadapId'

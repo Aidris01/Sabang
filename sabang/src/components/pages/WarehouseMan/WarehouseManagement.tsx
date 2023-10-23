@@ -1,8 +1,17 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons'
-import { Button, Table, Typography } from 'antd'
+import { Button, message, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../api/axios'
 import '../../pages/style/style.css'
+
+interface Warehouse {
+  id: number,
+  name: string,
+  address: string,
+  lat: string,
+  lng: string
+}
 
 function WarehouseManagement() {
   useEffect(() => {
@@ -12,18 +21,25 @@ function WarehouseManagement() {
   const createWarehouse = () => {
     navigate("/WarehouseManagement/CreateWarehouse")
   }
-  const [dataSource, setDataSource] = useState([
-    {
-      id: 1,
-      name: 'Address1',
-      address: 'jl.1 Address 1'
+  const token = localStorage.getItem('token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
-    {
-      id: 2,
-      name: 'Address2',
-      address: 'Jl.2 Address 2'
-    }
-  ])
+  };
+  const [loading, setLoading] = useState(true)
+  const [dataSource, setDataSource] = useState<Warehouse[]>([])
+  useEffect(() => {
+    axios.get('/warehouses', config)
+      .then((response) => {
+        setDataSource(response.data)
+        setLoading(false)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Ocured')
+        setLoading(false)
+      })
+  }, [])
   const columns = [
     {
       key: '1',
@@ -48,8 +64,8 @@ function WarehouseManagement() {
       width: 400,
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       }
@@ -62,13 +78,13 @@ function WarehouseManagement() {
         <Button className='create-btn' onClick={createWarehouse} icon={<PlusOutlined />}>
           Create New
         </Button>
-        <div className='warehouse-table'>
+        <Spin spinning={loading}>
           <Table
             size='small'
             columns={columns}
             dataSource={dataSource}
           />
-        </div>
+        </Spin>
       </div>
     </div>
   )

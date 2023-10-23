@@ -1,31 +1,56 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons'
-import { Button, Table, Typography } from 'antd'
+import { Button, message, Popconfirm, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../api/axios'
 import '../../pages/style/style.css'
+
+interface Factory {
+  id: number,
+  name: string,
+  address: string,
+  lat: string,
+  lng: string
+}
 
 function FactoryManagement() {
   useEffect(() => {
     document.title = 'Sabang | Factory'
   }, [])
+  const token = localStorage.getItem('token')
   const navigate = useNavigate()
   const createFactory = () => {
     navigate("/FactoryManagement/CreateFactory")
   }
 
-  const [dataSource, setDataSource] = useState([
-    {
-      id: 1,
-      name: 'Mandalasari',
-      address: 'Dusun Cikurantung, Desa Mandalasari'
-    },
-    {
-      id: 1,
-      name: 'Bunikasih',
-      address: 'Dusun Bunikasih, Desa Cupunegara'
+  const [dataSource, setDataSource] = useState<Factory[]>([])
+  const [loading, setLoading] = useState(true)
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
     }
-  ])
-
+  }
+  useEffect(() => {
+    axios.get('/factories', config)
+      .then((response) => {
+        setDataSource(response.data)
+        setLoading(false)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Ocured')
+        setLoading(false)
+      })
+  }, [])
+  const deleteFactory = (factoryId: number) => {
+    axios.delete(`/factory/${factoryId}/softDelete`, config)
+      .then((response) => {
+        message.success('Factory Deleted')
+        console.log(response)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Ocured')
+      })
+  }
   const columns = [
     {
       key: '1',
@@ -48,11 +73,21 @@ function FactoryManagement() {
       key: '4',
       title: 'Action',
       width: 400,
-      render: () => {
+      render: (record: Factory) => {
+        const handleDelete = () => {
+          deleteFactory(record.id)
+        }
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          <Popconfirm
+            title="Apakah anda yakin untuk menghapus factory ini ?"
+            onConfirm={handleDelete}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          </Popconfirm>
         </>
       }
     }
@@ -65,10 +100,12 @@ function FactoryManagement() {
         <Button className='create-btn' onClick={createFactory} icon={<PlusOutlined />}>
           Create New
         </Button>
-        <Table
-          size='small'
-          columns={columns}
-          dataSource={dataSource}></Table>
+        <Spin spinning={loading}>
+          <Table
+            size='small'
+            columns={columns}
+            dataSource={dataSource}></Table>
+        </Spin>
       </div>
     </div>
   )
