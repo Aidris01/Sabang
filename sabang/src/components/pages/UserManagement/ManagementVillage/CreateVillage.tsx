@@ -40,7 +40,8 @@ function CreateVillage() {
                     labelCol={{ span: 4 }}
                     wrapperCol={{ span: 20 }}
                     hideRequiredMark
-                    style={{width: 900}}>
+                    style={{width: 900}}
+                    autoComplete='off'>
                     <Form.Item
                         label="Name"
                         name="name"

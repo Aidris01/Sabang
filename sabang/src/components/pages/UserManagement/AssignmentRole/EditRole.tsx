@@ -78,7 +78,8 @@ function EditRole() {
                         name='EditedUserForm'
                         onFinish={onFinish}
                         initialValues={initialValues}
-                        style={{ width: 900 }}>
+                        style={{ width: 900 }}
+                        autoComplete='off'>
                         <Form.Item
                             name='name'
                             label='Name'

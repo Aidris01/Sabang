@@ -136,7 +136,8 @@ function EditUser() {
                         wrapperCol={{ span: 19 }}
                         name='EditedUserForm'
                         onFinish={onFinish}
-                        initialValues={initialValues}>
+                        initialValues={initialValues}
+                        autoComplete='off'>
                         <Row gutter={16}>
                             <Col span={12}>
                                 <Form.Item

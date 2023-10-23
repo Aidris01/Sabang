@@ -83,7 +83,8 @@ function CreateUser() {
                     onFinish={handleFormSubmit}
                     hideRequiredMark
                     labelCol={{ span: 5 }}
-                    wrapperCol={{ span: 19 }}>
+                    wrapperCol={{ span: 19 }}
+                    autoComplete='off'>
                     <Row gutter={16}>
                         <Col span={12}>
                             <Form.Item

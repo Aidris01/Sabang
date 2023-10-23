@@ -42,7 +42,8 @@ function AssignmentTapper() {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           hideRequiredMark
-          style={{ width: 800 }}>
+          style={{ width: 800 }}
+          autoComplete='off'>
           <Form.Item
             label="Tapper Name"
             name="tapperName"
