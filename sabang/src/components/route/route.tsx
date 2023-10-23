@@ -46,6 +46,10 @@ import EditRole from "../pages/UserManagement/AssignmentRole/EditRole";
 import EditPurchase from "../pages/PurchaseICS/Purchase/EditPurchase";
 import DetailPurchase from "../pages/PurchaseICS/Purchase/DetailPurchase";
 import DetailPayment from "../pages/PaymentManagement/DetailPayment";
+import DetailFactory from "../pages/FactoryManagement/DetailFactory";
+import EditFactory from "../pages/FactoryManagement/EditFactory";
+import DetailChecklist from "../pages/Checklist/DetailChecklist";
+import EditChecklist from "../pages/Checklist/EditChecklist";
 
 function AppRoute() {
     return (
@@ -98,6 +102,10 @@ function AppRoute() {
                 <Route path="/Purchase/EditPurchase/:purchaseId" element={<Layout>{<EditPurchase />}</Layout>} />
                 <Route path="/Purchase/DetailPurchase/:purchaseId" element={<Layout>{<DetailPurchase />}</Layout>} />
                 <Route path="/StatusPayment/DetailPayment" element={<Layout>{<DetailPayment />}</Layout>} />
+                <Route path="/FactoryManagement/DetailFactory/:factoryId" element={<Layout>{<DetailFactory />}</Layout>} />
+                <Route path="/FactoryManagement/EditFactory/:factoryId" element={<Layout>{<EditFactory />}</Layout>} />
+                <Route path="/Checklist/DetailChecklist/:checklistId" element={<Layout>{<DetailChecklist />}</Layout>} />
+                <Route path="/Checklist/EditChecklist/:checklistId" element={<Layout>{<EditChecklist />}</Layout>} />
             </Route>
         </Routes>
     )

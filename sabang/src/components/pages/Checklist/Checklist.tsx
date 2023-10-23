@@ -1,8 +1,14 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons'
-import { Button, Table, Typography } from 'antd'
+import { Button, message, Popconfirm, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from '../../api/axios'
 import '../../pages/style/style.css'
+
+interface Checklist {
+  id: number,
+  type: string
+}
 
 function Checklist() {
   useEffect(() => {
@@ -12,28 +18,35 @@ function Checklist() {
   const createChecklist = () => {
     navigate("/Checklist/CreateChecklist")
   }
-  const [dataSource, setDataSource] = useState([
-    {
-      id: 1,
-      name: "Kualitas Kebersihan dan Fotonya"
-    },
-    {
-      id: 2,
-      name: "Foto tempat meletakan lodong"
-    },
-    {
-      id: 3,
-      name: "Foto tempat meletakan alat potong"
-    },
-    {
-      id: 4,
-      name: "Foto catatan hasil panen"
-    },
-    {
-      id: 5,
-      name: "Ada sampah plastik di kebun ?"
+  const [dataSource, setDataSource] = useState<Checklist[]>([])
+  const [loading, setLoading] = useState(true)
+  const token = localStorage.getItem('token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
     }
-  ])
+  }
+  useEffect(() => {
+    axios.get('/checklists', config)
+      .then((response) => {
+        setDataSource(response.data)
+        setLoading(false)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Ocured')
+        setLoading(false)
+      })
+  }, [])
+  const deleteChecklist = (checklistId: number) => {
+    axios.delete(`/checklists/${checklistId}`, config)
+      .then((response) => {
+        message.success('Checklist deleted')
+        console.log(response)
+      }).catch((error) => {
+        message.error('Error Ocured')
+        console.error('Error Ocured: ', error)
+      })
+  }
   const columns = [
     {
       key: '1',
@@ -43,18 +56,32 @@ function Checklist() {
     {
       key: '2',
       title: 'Name',
-      dataIndex: 'name',
+      dataIndex: 'type',
       width: 900
     },
     {
       key: '3',
       title: 'Action',
       width: 200,
-      render: () => {
+      render: (record: Checklist) => {
+        const handleDelete = () => {
+          deleteChecklist(record.id)
+        }
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{ color: 'black'}} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{ color: 'black'}} /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          <Link to={`/Checklist/DetailChecklist/${record.id}`}>
+            <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          </Link>
+          <Link to={`/Checklist/EditChecklist/${record.id}`}>
+            <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          </Link>
+          <Popconfirm
+            title="Apakah anda yakin untuk menghapus checklist ini ?"
+            onConfirm={handleDelete}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          </Popconfirm>
         </>
       }
     }
@@ -66,13 +93,13 @@ function Checklist() {
         <Button className='create-btn' onClick={createChecklist} icon={<PlusOutlined />}>
           Create New
         </Button>
-        <div className='checklist-table'>
+        <Spin spinning={loading}>
           <Table
             size='small'
             columns={columns}
             dataSource={dataSource}
           />
-        </div>
+        </Spin>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import { Button, Col, Form, Input, Row, Space, Typography } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../pages/style/style.css'
 import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
@@ -19,6 +19,15 @@ function CreateFactory() {
   const factoryManagement = () => {
     navigate("/FactoryManagement")
   }
+  const [markerPosition, setMarkerPosition] = useState({ lat: -6.2, lng: 106.816666 });
+
+  const handleMapClick = (e: any) => {
+    // Update posisi marker sesuai dengan posisi klik
+    setMarkerPosition({
+      lat: e.latLng.lat(),
+      lng: e.latLng.lng(),
+    });
+  };
 
   return (
     <div className='content'>
@@ -35,7 +44,8 @@ function CreateFactory() {
                 label="Name"
                 name="name"
                 rules={[{ required: true, message: "Please input the name!" }]}>
-                <Input /></Form.Item>
+                <Input />
+                </Form.Item>
               <Form.Item
                 label="Address"
                 name="address"
@@ -49,8 +59,9 @@ function CreateFactory() {
                   mapContainerStyle={containerStyle}
                   center={{ lat: -6.2, lng: 106.816666 }}
                   zoom={10}
+                  onClick={handleMapClick}
                 >
-                  <Marker position={{ lat: -6.2, lng: 106.816666 }} />
+                  <Marker position={markerPosition} draggable={true}  />
                 </GoogleMap>
               </LoadScript>
             </Col>

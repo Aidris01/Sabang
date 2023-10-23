@@ -86,6 +86,16 @@ function EditPurchase() {
         })
     }, [])
     const onFinish = (values: any) => {
+        const ph = parseFloat(values.ph)
+        const sugarLevel = parseFloat(values.sugarLevel)
+        const amount = parseFloat(values.amount)
+        
+        const updatedPurchase = {
+            ...values,
+            ph,
+            sugarLevel,
+            amount
+        }
         axios.patch(`/purchases/${purchaseId}`, form.getFieldsValue(), {
             headers: {
                 Authorization: `Bearer ${token}`

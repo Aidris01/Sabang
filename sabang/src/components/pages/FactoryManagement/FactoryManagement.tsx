@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, message, Popconfirm, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from '../../api/axios'
 import '../../pages/style/style.css'
 
@@ -9,8 +9,8 @@ interface Factory {
   id: number,
   name: string,
   address: string,
-  lat: string,
-  lng: string
+  lat: number,
+  lng: number
 }
 
 function FactoryManagement() {
@@ -42,7 +42,7 @@ function FactoryManagement() {
       })
   }, [])
   const deleteFactory = (factoryId: number) => {
-    axios.delete(`/factory/${factoryId}/softDelete`, config)
+    axios.delete(`/factory/${factoryId}`, config)
       .then((response) => {
         message.success('Factory Deleted')
         console.log(response)
@@ -78,8 +78,12 @@ function FactoryManagement() {
           deleteFactory(record.id)
         }
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          <Link to={`/FactoryManagement/DetailFactory/${record.id}`}>
+            <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          </Link>
+          <Link to={`/FactoryManagement/EditFactory/${record.id}`}>
+            <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          </Link>
           <Popconfirm
             title="Apakah anda yakin untuk menghapus factory ini ?"
             onConfirm={handleDelete}
