@@ -1,11 +1,10 @@
 import { Button, Col, Form, Input, Row, Space, Typography } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
 import React, { useEffect } from 'react'
-import '../../pages/style/style.css'
 import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
-import '../../pages/style/style.css'
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
+import '../../pages/style/style.css'
 
 const containerStyle = {
     width: '100%',
@@ -20,6 +19,7 @@ function CreateWarehouse() {
     const warehouseManagement = () => {
         navigate("/WarehouseManagement")
     }
+    const markerPostion = { lat: -6.2, lng: 106.816666 }
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Warehouse</Typography.Title>
@@ -47,10 +47,10 @@ function CreateWarehouse() {
                                 googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY!}>
                                 <GoogleMap
                                     mapContainerStyle={containerStyle}
-                                    center={{ lat: -6.2, lng: 106.816666 }}
+                                    center={markerPostion}
                                     zoom={10}
                                 >
-                                    <Marker position={{ lat: -6.2, lng: 106.816666 }} />
+                                    <Marker position={markerPostion} draggable={true} />
                                 </GoogleMap>
                             </LoadScript>
                         </Col>

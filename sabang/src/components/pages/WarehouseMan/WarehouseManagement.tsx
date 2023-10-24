@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, message, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from '../../api/axios'
 import '../../pages/style/style.css'
 
@@ -62,10 +62,14 @@ function WarehouseManagement() {
       key: '4',
       title: 'Action',
       width: 400,
-      render: () => {
+      render: (record: Warehouse) => {
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          <Link to={`/WarehouseManagement/DetailWarehouse/${record.id}`}>
+            <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          </Link>
+          <Link to={`/WarehouseManagement/EditWarehouse/${record.id}`}>
+            <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          </Link>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       }
