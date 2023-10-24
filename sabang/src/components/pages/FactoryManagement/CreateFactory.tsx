@@ -19,16 +19,8 @@ function CreateFactory() {
   const factoryManagement = () => {
     navigate("/FactoryManagement")
   }
-  const [markerPosition, setMarkerPosition] = useState({ lat: -6.2, lng: 106.816666 });
-
-  const handleMapClick = (e: any) => {
-    // Update posisi marker sesuai dengan posisi klik
-    setMarkerPosition({
-      lat: e.latLng.lat(),
-      lng: e.latLng.lng(),
-    });
-  };
-
+  const markers = { lat: -6.2, lng: 106.816666 }
+  const center = { lat: -6.2, lng: 106.816666 }
   return (
     <div className='content'>
       <Typography.Title level={4}>Create Factory</Typography.Title>
@@ -45,7 +37,7 @@ function CreateFactory() {
                 name="name"
                 rules={[{ required: true, message: "Please input the name!" }]}>
                 <Input />
-                </Form.Item>
+              </Form.Item>
               <Form.Item
                 label="Address"
                 name="address"
@@ -57,11 +49,9 @@ function CreateFactory() {
                 googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY!}>
                 <GoogleMap
                   mapContainerStyle={containerStyle}
-                  center={{ lat: -6.2, lng: 106.816666 }}
-                  zoom={10}
-                  onClick={handleMapClick}
-                >
-                  <Marker position={markerPosition} draggable={true}  />
+                  center={center}
+                  zoom={10}>
+                  <Marker position={markers} draggable={true} />
                 </GoogleMap>
               </LoadScript>
             </Col>

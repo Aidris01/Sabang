@@ -107,7 +107,7 @@ function AppRoute() {
                 <Route path="/FactoryManagement/DetailFactory/:factoryId" element={<Layout>{<DetailFactory />}</Layout>} />
                 <Route path="/FactoryManagement/EditFactory/:factoryId" element={<Layout>{<EditFactory />}</Layout>} />
                 <Route path="/Checklist/DetailChecklist/:checklistId" element={<Layout>{<DetailChecklist />}</Layout>} />
-                <Route path="/Checklist/DetailChecklist/:checklistId" element={<Layout>{<DetailChecklist />}</Layout>} />
+                <Route path="/Checklist/EditChecklist/:checklistId" element={<Layout>{<EditChecklist />}</Layout>} />
                 <Route path="/WarehouseManagement/DetailWarehouse/:warehouseId" element={<Layout>{<DetailWarehouse />}</Layout>} />
                 <Route path="/WarehouseManagement/EditWarehouse/:warehouseId" element={<Layout>{<EditWarehouse />}</Layout>} />
             </Route>

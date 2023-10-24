@@ -14,12 +14,16 @@ const containerStyle = {
 function CreateWarehouse() {
     useEffect(() => {
         document.title = 'Sabang | Create Warehouse'
-      }, [])
+    }, [])
     const navigate = useNavigate()
     const warehouseManagement = () => {
         navigate("/WarehouseManagement")
     }
-    const markerPostion = { lat: -6.2, lng: 106.816666 }
+    const markers = { lat: -6.2, lng: 106.816666 }
+    const center = { lat: -6.2, lng: 106.816666 }
+    const onLoad = (marker: any) => {
+        console.log('Marker',marker)
+    }
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Warehouse</Typography.Title>
@@ -47,10 +51,10 @@ function CreateWarehouse() {
                                 googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY!}>
                                 <GoogleMap
                                     mapContainerStyle={containerStyle}
-                                    center={markerPostion}
-                                    zoom={10}
-                                >
-                                    <Marker position={markerPostion} draggable={true} />
+                                    center={center}
+                                    zoom={10}>
+                                    <Marker onLoad={onLoad} position={markers} draggable={true}>
+                                    </Marker>
                                 </GoogleMap>
                             </LoadScript>
                         </Col>
