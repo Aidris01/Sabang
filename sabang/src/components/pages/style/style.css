@@ -2,8 +2,6 @@
     padding: 0px 0px 0px 1.1vw;
     display: flex;
     flex: 1;
-    justify-content: flex-start;
-    align-items: flex-start;
 }
 .dashboard-page {
     position: absolute;

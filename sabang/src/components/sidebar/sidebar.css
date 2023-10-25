@@ -1,13 +1,12 @@
 .sidebar {
-    overflow: auto;
-    display: block;
-    height: 90.4%;
+    overflow-y: auto;
+    height: 100%;
     width: 20vw;
-    position: fixed;
-    top: 66px;
+    margin-top: 66px;
     left: 0;
     z-index: 100;
     scrollbar-color: #B9947080 #F9EBC7;
+    background-color: #B99470;
 }
 .list-menu {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

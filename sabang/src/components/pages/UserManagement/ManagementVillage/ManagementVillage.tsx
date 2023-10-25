@@ -40,7 +40,7 @@ function ManagementVillage() {
   }, [])
 
   const deleteVillage = (villageId: number) => {
-    axios.delete(`/villages/${villageId}/softDelete`, config)
+    axios.delete(`/villages/${villageId}`, config)
       .then((response) => {
         message.success('Village Deleted')
         console.log(response)
