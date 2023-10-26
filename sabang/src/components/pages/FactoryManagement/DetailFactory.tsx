@@ -52,7 +52,7 @@ function DetailFactory() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Detail Factory - {factoryId}</Typography.Title>
-            <div className="main-container">
+            <div className="desc-container">
                 <Spin spinning={loading}>
                     <Descriptions title='Factory Detail' layout='vertical' className='form-container'>
                         <Descriptions.Item label='Name'>{factoryData.name}</Descriptions.Item>

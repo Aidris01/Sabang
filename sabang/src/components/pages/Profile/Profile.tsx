@@ -91,7 +91,7 @@ function Profile() {
   return (
     <div className='content'>
       <Typography.Title level={4}>Profile</Typography.Title>
-      <div className="main-container">
+      <div className="desc-container">
         <Row gutter={24}>
           <Col span={6}>
             <img

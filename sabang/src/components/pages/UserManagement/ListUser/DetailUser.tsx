@@ -71,7 +71,7 @@ function DetailUser() {
     return (
         <div className='content'>
             <Typography.Title level={4}>Detail User - {userId}</Typography.Title>
-            <div className="main-container">
+            <div className="desc-container">
                 <Spin spinning={loading}>
                     <Descriptions title='User Detail' layout='vertical' className='form-container'>
                         <Descriptions.Item label='Name'>{userData.name}</Descriptions.Item>
