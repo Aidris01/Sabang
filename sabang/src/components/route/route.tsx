@@ -31,7 +31,7 @@ import CreateFactory from "../pages/FactoryManagement/CreateFactory";
 import CreateWarehouse from "../pages/WarehouseMan/CreateWarehouse";
 import CreatePrice from "../pages/PaymentManagement/PriceList/CreatePrice";
 import CreateChecklist from "../pages/Checklist/CreateChecklist";
-import Layout from "../layout/layout";
+import WebLayout from "../layout/layout";
 import PurchaseFilter from "../pages/Tappers/PurchaseFilter";
 import CreateProduction from "../pages/Production/CreateProduction";
 import ICSTeam from "../pages/PurchaseICS/ICS/ICSTeam";
@@ -60,56 +60,56 @@ function AppRoute() {
             <Route path="*" element={<NotFound />} />
 
             <Route element={<PrivateRoutes />}>
-                <Route path="/" element={<Layout>{<Dashboard />}</Layout>} />
-                <Route path="/ListUser" element={<Layout>{<ListUser />}</Layout>} />
-                <Route path="/ManagementVillage" element={<Layout>{<ManagementVillage />}</Layout>} />
-                <Route path="/Roles" element={<Layout>{<Roles />}</Layout>} />
-                <Route path="/AssignmentTapper" element={<Layout>{<AssignmentTapper />}</Layout>} />
-                <Route path="/FactoryManagement" element={<Layout>{<FactoryManagement />}</Layout>} />
-                <Route path="/WarehouseManagement" element={<Layout>{<WarehouseManagement />}</Layout>} />
-                <Route path="/PriceList" element={<Layout>{<PriceList />}</Layout>} />
-                <Route path="/StatusPayment" element={<Layout>{<StatusPayment />}</Layout>} />
-                <Route path="/Checklist" element={<Layout>{<Checklist />}</Layout>} />
-                <Route path="/ControlChecklist" element={<Layout>{<ControlChecklist />}</Layout>} />
-                <Route path="/Village" element={<Layout>{<Village />}</Layout>} />
-                <Route path="/Nira" element={<Layout>{<Nira />}</Layout>} />
-                <Route path="/Tappers" element={<Layout>{<Tappers />}</Layout>} />
-                <Route path="/Collectors" element={<Layout>{<Collectors />}</Layout>} />
-                <Route path="/Production" element={<Layout>{<Production />}</Layout>} />
-                <Route path="/Purchase" element={<Layout>{<Purchase />}</Layout>} />
-                <Route path="/ICS" element={<Layout>{<ICS />}</Layout>} />
-                <Route path="/KPI" element={<Layout>{<KPI />}</Layout>} />
-                <Route path="/CatatanPetani" element={<Layout>{<CatatanPetani />}</Layout>} />
-                <Route path="/CatatanPupuk" element={<Layout>{<CatatanPupuk />}</Layout>} />
+                <Route path="/" element={<WebLayout>{<Dashboard />}</WebLayout>} />
+                <Route path="/ListUser" element={<WebLayout>{<ListUser />}</WebLayout>} />
+                <Route path="/ManagementVillage" element={<WebLayout>{<ManagementVillage />}</WebLayout>} />
+                <Route path="/Roles" element={<WebLayout>{<Roles />}</WebLayout>} />
+                <Route path="/AssignmentTapper" element={<WebLayout>{<AssignmentTapper />}</WebLayout>} />
+                <Route path="/FactoryManagement" element={<WebLayout>{<FactoryManagement />}</WebLayout>} />
+                <Route path="/WarehouseManagement" element={<WebLayout>{<WarehouseManagement />}</WebLayout>} />
+                <Route path="/PriceList" element={<WebLayout>{<PriceList />}</WebLayout>} />
+                <Route path="/StatusPayment" element={<WebLayout>{<StatusPayment />}</WebLayout>} />
+                <Route path="/Checklist" element={<WebLayout>{<Checklist />}</WebLayout>} />
+                <Route path="/ControlChecklist" element={<WebLayout>{<ControlChecklist />}</WebLayout>} />
+                <Route path="/Village" element={<WebLayout>{<Village />}</WebLayout>} />
+                <Route path="/Nira" element={<WebLayout>{<Nira />}</WebLayout>} />
+                <Route path="/Tappers" element={<WebLayout>{<Tappers />}</WebLayout>} />
+                <Route path="/Collectors" element={<WebLayout>{<Collectors />}</WebLayout>} />
+                <Route path="/Production" element={<WebLayout>{<Production />}</WebLayout>} />
+                <Route path="/Purchase" element={<WebLayout>{<Purchase />}</WebLayout>} />
+                <Route path="/ICS" element={<WebLayout>{<ICS />}</WebLayout>} />
+                <Route path="/KPI" element={<WebLayout>{<KPI />}</WebLayout>} />
+                <Route path="/CatatanPetani" element={<WebLayout>{<CatatanPetani />}</WebLayout>} />
+                <Route path="/CatatanPupuk" element={<WebLayout>{<CatatanPupuk />}</WebLayout>} />
 
-                <Route path="/ListUser/CreateUser" element={<Layout>{<CreateUser />}</Layout>} />
-                <Route path="/ListUser/CreateUserBulk" element={<Layout>{<CreateUserBulk />}</Layout>} />
-                <Route path="/Roles/CreateRole" element={<Layout>{<CreateRole />}</Layout>} />
-                <Route path="/ManagementVillage/CreateVillage" element={<Layout>{<CreateVillage />}</Layout>} />
-                <Route path="/FactoryManagement/CreateFactory" element={<Layout>{<CreateFactory />}</Layout>} />
-                <Route path="/WarehouseManagement/CreateWarehouse" element={<Layout>{<CreateWarehouse />}</Layout>} />
-                <Route path="/PriceList/CreatePrice" element={<Layout>{<CreatePrice />}</Layout>} />
-                <Route path="/Checklist/CreateChecklist" element={<Layout>{<CreateChecklist />}</Layout>} />
-                <Route path="/Tappers/PurchaseFilter" element={<Layout>{<PurchaseFilter />}</Layout>} />
-                <Route path="/Production/CreateProduction" element={<Layout>{<CreateProduction />}</Layout>} />
-                <Route path="/ICS/ICSTeam" element={<Layout>{<ICSTeam />}</Layout>} />
-                <Route path="/CatatanPetani/CreatePetani" element={<Layout>{<CreatePetani />}</Layout>} />
-                <Route path="/CatatanPupuk/CreatePupuk" element={<Layout>{<CreatePupuk />}</Layout>} />
+                <Route path="/ListUser/CreateUser" element={<WebLayout>{<CreateUser />}</WebLayout>} />
+                <Route path="/ListUser/CreateUserBulk" element={<WebLayout>{<CreateUserBulk />}</WebLayout>} />
+                <Route path="/Roles/CreateRole" element={<WebLayout>{<CreateRole />}</WebLayout>} />
+                <Route path="/ManagementVillage/CreateVillage" element={<WebLayout>{<CreateVillage />}</WebLayout>} />
+                <Route path="/FactoryManagement/CreateFactory" element={<WebLayout>{<CreateFactory />}</WebLayout>} />
+                <Route path="/WarehouseManagement/CreateWarehouse" element={<WebLayout>{<CreateWarehouse />}</WebLayout>} />
+                <Route path="/PriceList/CreatePrice" element={<WebLayout>{<CreatePrice />}</WebLayout>} />
+                <Route path="/Checklist/CreateChecklist" element={<WebLayout>{<CreateChecklist />}</WebLayout>} />
+                <Route path="/Tappers/PurchaseFilter" element={<WebLayout>{<PurchaseFilter />}</WebLayout>} />
+                <Route path="/Production/CreateProduction" element={<WebLayout>{<CreateProduction />}</WebLayout>} />
+                <Route path="/ICS/ICSTeam" element={<WebLayout>{<ICSTeam />}</WebLayout>} />
+                <Route path="/CatatanPetani/CreatePetani" element={<WebLayout>{<CreatePetani />}</WebLayout>} />
+                <Route path="/CatatanPupuk/CreatePupuk" element={<WebLayout>{<CreatePupuk />}</WebLayout>} />
 
-                <Route path="/Profile" element={<Layout>{<Profile />}</Layout>} />
-                <Route path="/ListUser/EditUser/:userId" element={<Layout>{<EditUser />}</Layout>} />
-                <Route path="/ListUser/DetailUser/:userId" element={<Layout>{<DetailUser />}</Layout>} />
-                <Route path="/ManagementVillage/EditVillage/:villageId" element={<Layout>{<EditVillage />}</Layout>} />
-                <Route path="/Roles/EditRole/:roleId" element={<Layout>{<EditRole />}</Layout>} />
-                <Route path="/Purchase/EditPurchase/:purchaseId" element={<Layout>{<EditPurchase />}</Layout>} />
-                <Route path="/Purchase/DetailPurchase/:purchaseId" element={<Layout>{<DetailPurchase />}</Layout>} />
-                <Route path="/StatusPayment/DetailPayment" element={<Layout>{<DetailPayment />}</Layout>} />
-                <Route path="/FactoryManagement/DetailFactory/:factoryId" element={<Layout>{<DetailFactory />}</Layout>} />
-                <Route path="/FactoryManagement/EditFactory/:factoryId" element={<Layout>{<EditFactory />}</Layout>} />
-                <Route path="/Checklist/DetailChecklist/:checklistId" element={<Layout>{<DetailChecklist />}</Layout>} />
-                <Route path="/Checklist/EditChecklist/:checklistId" element={<Layout>{<EditChecklist />}</Layout>} />
-                <Route path="/WarehouseManagement/DetailWarehouse/:warehouseId" element={<Layout>{<DetailWarehouse />}</Layout>} />
-                <Route path="/WarehouseManagement/EditWarehouse/:warehouseId" element={<Layout>{<EditWarehouse />}</Layout>} />
+                <Route path="/Profile" element={<WebLayout>{<Profile />}</WebLayout>} />
+                <Route path="/ListUser/EditUser/:userId" element={<WebLayout>{<EditUser />}</WebLayout>} />
+                <Route path="/ListUser/DetailUser/:userId" element={<WebLayout>{<DetailUser />}</WebLayout>} />
+                <Route path="/ManagementVillage/EditVillage/:villageId" element={<WebLayout>{<EditVillage />}</WebLayout>} />
+                <Route path="/Roles/EditRole/:roleId" element={<WebLayout>{<EditRole />}</WebLayout>} />
+                <Route path="/Purchase/EditPurchase/:purchaseId" element={<WebLayout>{<EditPurchase />}</WebLayout>} />
+                <Route path="/Purchase/DetailPurchase/:purchaseId" element={<WebLayout>{<DetailPurchase />}</WebLayout>} />
+                <Route path="/StatusPayment/DetailPayment" element={<WebLayout>{<DetailPayment />}</WebLayout>} />
+                <Route path="/FactoryManagement/DetailFactory/:factoryId" element={<WebLayout>{<DetailFactory />}</WebLayout>} />
+                <Route path="/FactoryManagement/EditFactory/:factoryId" element={<WebLayout>{<EditFactory />}</WebLayout>} />
+                <Route path="/Checklist/DetailChecklist/:checklistId" element={<WebLayout>{<DetailChecklist />}</WebLayout>} />
+                <Route path="/Checklist/EditChecklist/:checklistId" element={<WebLayout>{<EditChecklist />}</WebLayout>} />
+                <Route path="/WarehouseManagement/DetailWarehouse/:warehouseId" element={<WebLayout>{<DetailWarehouse />}</WebLayout>} />
+                <Route path="/WarehouseManagement/EditWarehouse/:warehouseId" element={<WebLayout>{<EditWarehouse />}</WebLayout>} />
             </Route>
         </Routes>
     )

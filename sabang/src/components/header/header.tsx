@@ -11,7 +11,7 @@ interface ProfileData {
 }
 
 
-function Header() {
+function Headers() {
 
   const navigate = useNavigate();
   const [name, setName] = useState<string>('')
@@ -67,7 +67,7 @@ function Header() {
     <div className='header'>
       <img className='user-img' src={avatar} />
       <h5>Welcome, {name}</h5>
-      <Dropdown menu={{ items }}>
+      <Dropdown className='dropdown' menu={{ items }}>
         <Button type='link' className='settings-btn'><SettingOutlined />Settings</Button>
       </Dropdown>
       <Modal
@@ -84,4 +84,4 @@ function Header() {
   )
 }
 
-export default Header
+export default Headers

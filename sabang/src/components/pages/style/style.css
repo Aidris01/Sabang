@@ -1,11 +1,15 @@
 .content {
-    padding: 0px 0px 0px 1.1vw;
     display: flex;
     flex: 1;
+    height: 90vh;
+}
+.content h4 {
+    margin-left: 10px;
+    margin-top: 3vh;
 }
 .dashboard-page {
     position: absolute;
-    padding: 60px 10px 10px 10px;
+    padding: 5% 10px 10px 10px;
     width: 76vw;
 }
 .ant-card {
@@ -41,6 +45,7 @@ tbody > tr:hover > td.ant-table-cell {
 .main-container {
     position: absolute;
     margin-top: 60px;
+    margin-left: 10px;
     width: 96%;
     height: auto;
     background-color: white;

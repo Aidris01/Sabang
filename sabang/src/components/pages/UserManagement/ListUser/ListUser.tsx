@@ -122,10 +122,10 @@ function ListUser() {
         return (
           <Space>
             <Link to={`/ListUser/DetailUser/${record.id}`}>
-              <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
+              <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
             </Link>
             <Link to={`/ListUser/EditUser/${record.id}`}>
-              <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
+              <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
             </Link>
             <Popconfirm
               title="Apakah anda yakin untuk menghapus user ini ?"
@@ -145,7 +145,7 @@ function ListUser() {
   ]
 
   return (
-    <div className='content'>
+    <div className="content">
       <Typography.Title level={4}>List User</Typography.Title>
       <div className='main-container'>
         <Space>
