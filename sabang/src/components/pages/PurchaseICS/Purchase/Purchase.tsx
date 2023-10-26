@@ -113,19 +113,19 @@ function Purchase() {
     {
       key: 'id',
       title: 'Purchase ID',
-      dataIndex: 'id',
-      windth: 100
+      dataIndex: 'id'
     },
     {
       key: 'statusChecked',
       title: 'Status Checked',
       dataIndex: 'statusChecked',
-      width: 100
+      width: 300
     },
     {
       key: 'statusUpdated',
       title: 'Status Updated',
-      dataIndex: 'statusUpdated'
+      dataIndex: 'statusUpdated',
+      width: 300
     },
     {
       key: 'timestamp',
@@ -164,7 +164,8 @@ function Purchase() {
     {
       key: 'statusAudited',
       title: 'Status Audit',
-      dataIndex: 'statusAudited'
+      dataIndex: 'statusAudited',
+      width: 300
     },
     {
       key: '11',
@@ -194,7 +195,7 @@ function Purchase() {
           </Popconfirm>
         </>
       },
-      width: 400
+      width: 500
     }
   ]
 

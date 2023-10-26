@@ -13,7 +13,9 @@ const WebLayout: React.FC<LayoutProps> = ({ children }) => {
       <Headers />
       <div className="content">
         <SideBar />
-        <main className="main-content">{children}</main>
+        <div className="main-content">
+          <main>{children}</main>
+        </div>
       </div>
     </div>
   );
