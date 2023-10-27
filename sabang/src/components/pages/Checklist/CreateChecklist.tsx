@@ -1,16 +1,34 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
-import { Button, Form, Input, Space, Typography } from 'antd'
+import { Button, Form, Input, message, Space, Typography } from 'antd'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../api/axios'
 import '../../pages/style/style.css'
 
 function CreateChecklist() {
     useEffect(() => {
         document.title = 'Sabang | Create Checklist'
-      }, [])
+    }, [])
     const navigate = useNavigate()
     const checklist = () => {
         navigate("/Checklist")
+    }
+    const token = localStorage.getItem('token')
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const handleFormSubmit = async (values: any) => {
+        try {
+            const response = await axios.post('/checklists', values, config)
+            console.log('Response: ', response)
+            message.success('Checklist Added')
+            navigate('/Checklist')
+        } catch (error) {
+            console.error('Error Ocured: ')
+            message.error('Error Ocured')
+        }
     }
     return (
         <div className='content'>
@@ -18,13 +36,24 @@ function CreateChecklist() {
             <div className='main-container'>
                 <Form
                     className='form-container'
+                    onFinish={handleFormSubmit}
+                    labelCol={{ span: 4 }}
+                    wrapperCol={{ span: 20 }}
                     hideRequiredMark
-                    style={{ width: 950 }}>
+                    style={{ width: 900 }}
+                    autoComplete='off'>
                     <Form.Item
                         label="Name"
-                        name="name"
+                        name="title"
                         rules={[{ required: true, message: "Please input the name!" }]}>
-                        <Input /></Form.Item>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label='Type'
+                        name='type'
+                        rules={[{ required: true, message: 'Please input the type!' }]}>
+                        <Input />
+                    </Form.Item>
                     <div className="button-container">
                         <Space size={8}>
                             <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>

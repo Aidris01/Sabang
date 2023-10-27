@@ -7,7 +7,7 @@ import '../../pages/style/style.css'
 
 interface Checklist {
   id: number,
-  type: string
+  title: string
 }
 
 function Checklist() {
@@ -56,7 +56,7 @@ function Checklist() {
     {
       key: '2',
       title: 'Name',
-      dataIndex: 'type',
+      dataIndex: 'title',
       width: 900
     },
     {

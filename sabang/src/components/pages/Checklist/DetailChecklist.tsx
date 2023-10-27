@@ -7,7 +7,7 @@ import '../style/style.css'
 
 interface Checklist {
   id: number,
-  type: string
+  title: string
 }
 
 function DetailChecklist() {
@@ -27,7 +27,7 @@ function DetailChecklist() {
   const [checklist, setChecklist] = useState(
     {
       id: 0,
-      type: ''
+      title: ''
     }
   )
   const config = {
@@ -53,7 +53,7 @@ function DetailChecklist() {
         <Spin spinning={loading}>
           <Descriptions title='Checklist Detail' layout='vertical' className='form-container'>
             <Descriptions.Item label='ID'>{checklist.id}</Descriptions.Item>
-            <Descriptions.Item label='Name'>{checklist.type}</Descriptions.Item>
+            <Descriptions.Item label='Name'>{checklist.title}</Descriptions.Item>
           </Descriptions>
         </Spin>
         <div className="button-container">

@@ -7,6 +7,7 @@ import axios from '../../api/axios'
 import '../style/style.css'
 
 interface Checklist {
+    title: string,
     type: string
 }
 
@@ -18,11 +19,13 @@ function EditChecklist() {
     const { checklistId } = useParams<Record<string, string>>();
     const [form] = useForm()
     const initialValues = {
-        title: form.getFieldValue('title') || ''
+        title: form.getFieldValue('title') || '',
+        type: form.getFieldValue('type') || ''
     }
     const [loading, setLoading] = useState(true)
     const [checklist, setChecklist] = useState<Checklist>(
         {
+            title: '',
             type: ''
         }
     )
@@ -66,14 +69,22 @@ function EditChecklist() {
                         className='form-container'
                         form={form}
                         onFinish={onFinish}
+                        labelCol={{ span: 4 }}
+                        wrapperCol={{ span: 20 }}
                         hideRequiredMark
                         initialValues={initialValues}
                         autoComplete='off'
                         name='EditedChecklistForm'>
                         <Form.Item
-                            name='type'
+                            name='title'
                             label='Name'
                             rules={[{ required: true, message: 'Please input the name!' }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                        name='type'
+                        label='Type'
+                        rules={[{required: true, message: 'Please input the type!'}]}>
                             <Input />
                         </Form.Item>
                         <div className="button-container">
