@@ -107,6 +107,10 @@ tbody > tr:hover > td.ant-table-cell {
     left: 20vw;
     bottom: -50px;
 }
+.not-found-btn {
+    position: absolute;
+    margin-top: 5%;
+}
 .remove-btn {
     position: absolute;
     left: 75%;
