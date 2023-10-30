@@ -33,7 +33,7 @@ function Checklist() {
         setLoading(false)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
-        message.error('Error Ocured')
+        message.error('Error Ocured, Please check the console')
         setLoading(false)
       })
   }, [])

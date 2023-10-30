@@ -5,6 +5,7 @@ import '../../pages/style/style.css'
 import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
+import { latLng2Tile } from 'google-map-react'
 
 const containerStyle = {
   width: '100%',
@@ -19,8 +20,15 @@ function CreateFactory() {
   const factoryManagement = () => {
     navigate("/FactoryManagement")
   }
-  const markers = { lat: -6.2, lng: 106.816666 }
   const center = { lat: -6.2, lng: 106.816666 }
+  const [markerPosition, setMarkerPosition] = useState({ lat: 0, lng: 0 })
+  const handleMapClick = (event: { latLng: any }) => {
+    const { latLng } = event;
+    const lat = latLng.lat();
+    const lng = latLng.lng();
+    setMarkerPosition({ lat, lng });
+  }
+  console.log(markerPosition)
   return (
     <div className='content'>
       <Typography.Title level={4}>Create Factory</Typography.Title>
@@ -48,10 +56,17 @@ function CreateFactory() {
               <LoadScript
                 googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY!}>
                 <GoogleMap
+                  onClick={handleMapClick}
                   mapContainerStyle={containerStyle}
                   center={center}
                   zoom={10}>
-                  <Marker position={markers} draggable={true} />
+                  {markerPosition && (
+                    <Marker
+                      position={{
+                        lat: markerPosition.lat,
+                        lng: markerPosition.lng
+                      }} />
+                  )}
                 </GoogleMap>
               </LoadScript>
             </Col>

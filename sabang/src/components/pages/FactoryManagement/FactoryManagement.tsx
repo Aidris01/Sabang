@@ -15,7 +15,7 @@ interface Factory {
 
 function FactoryManagement() {
   useEffect(() => {
-    document.title = 'Sabang | Factory'
+    document.title = 'Sabang | Factory Management'
   }, [])
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
