@@ -82,10 +82,12 @@ function ListUser() {
           }).catch((villageError) => {
             setIsLoading(false)
             console.error('Error Fetching Village Data: ', villageError)
+            message.error('Error Fetching Village Data')
           });
       }).catch((error) => {
         setIsLoading(false)
         console.error('Error fetching data:', error)
+        message.error('Error Ocured, Please check the console')
       });
   }
   const columns = [

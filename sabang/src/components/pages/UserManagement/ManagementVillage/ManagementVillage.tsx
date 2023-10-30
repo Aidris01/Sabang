@@ -35,6 +35,7 @@ function ManagementVillage() {
       setIsLoading(false)
     }).catch((error) => {
       console.error('Error Ocured: ', error)
+      message.error('Error Ocured, Please check the console')
       setIsLoading(false)
     })
   }, [])

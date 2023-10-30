@@ -36,6 +36,7 @@ function Roles() {
       .catch(error => {
         console.error('Error fetching roles:', error);
         setIsLoading(false)
+        message.error('Error Ocured, Please check the console')
       });
   }, []);
   const deleteRole = (roleId: number) => {
