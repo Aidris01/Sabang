@@ -79,6 +79,7 @@ function Purchase() {
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         setIsLoading(false)
+        message.error('Error Ocured, Please check the console')
       })
   }, [])
   useEffect(() => {
@@ -87,6 +88,7 @@ function Purchase() {
         setGetPenyadap(responsePenyadap.data)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
+        message.error('Error Fetching Tapper')
       })
   }, [])
   const getTapperName = (penyadapId: number) => {
@@ -100,11 +102,11 @@ function Purchase() {
         // Perbarui data setelah penghapusan berhasil
         const updatedData = data.filter((purchase) => purchase.id !== purchaseId);
         setData(updatedData);
-        message.success('Pembelian berhasil dihapus');
+        message.success('Purchase Deleted');
       })
       .catch((error) => {
         console.error('Error Occurred: ', error);
-        message.error('Gagal menghapus pembelian');
+        message.error('Error Deleting Purchase');
       });
   };
 

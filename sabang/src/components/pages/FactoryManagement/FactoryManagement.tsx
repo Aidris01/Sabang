@@ -37,7 +37,7 @@ function FactoryManagement() {
         setLoading(false)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
-        message.error('Error Ocured')
+        message.error('Error Ocured, Please check the console')
         setLoading(false)
       })
   }, [])
@@ -48,7 +48,7 @@ function FactoryManagement() {
         console.log(response)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
-        message.error('Error Ocured')
+        message.error('Error Deleting Factory')
       })
   }
   const columns = [
