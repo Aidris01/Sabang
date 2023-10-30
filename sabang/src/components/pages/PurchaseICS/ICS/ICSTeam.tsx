@@ -1,13 +1,17 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, DatePicker, Form, Input, Select, Space, Typography } from 'antd'
-import React, { useEffect } from 'react'
+import moment from 'moment'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../style/style.css'
+
+const { RangePicker } = DatePicker;
 
 function ICSTeam() {
     useEffect(() => {
         document.title = 'Sabang | ICS Team'
-      }, [])
+    }, [])
+    const [dates, setDates] = useState<string[]>([]);
     const navigate = useNavigate()
     const ICS = () => {
         navigate('/ICS')
@@ -21,12 +25,11 @@ function ICSTeam() {
                     hideRequiredMark
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
-                    style={{width: 800}}>
+                    style={{ width: 800 }}>
                     <Form.Item
                         label='Tapper'
                         name='tapper'
-                        rules={[{ required: true, message: 'Please select the tapper!' }]}
-                    >
+                        rules={[{ required: true, message: 'Please select the tapper!' }]}>
                         <Select
                             placeholder="Select Tapper"
                             allowClear
@@ -49,8 +52,7 @@ function ICSTeam() {
                                     value: 'amct.03',
                                     lable: 'amct.03'
                                 }
-                            ]}
-                        />
+                            ]} />
                     </Form.Item>
                     <Form.Item
                         label='Purchaser'
@@ -66,8 +68,7 @@ function ICSTeam() {
                                     value: 'Santi Prasinta',
                                     label: 'Santi Prasinta'
                                 }
-                            ]}
-                        />
+                            ]} />
                     </Form.Item>
                     <Form.Item
                         label='Jumlah Kilo'
@@ -82,11 +83,18 @@ function ICSTeam() {
                         <Input />
                     </Form.Item>
                     <Form.Item
-                        label='Tanggal'
-                        name='tanggal'
+                        label='Range Date'
+                        name='rangeDate'
                         rules={[{ required: true, message: 'Please select the date!' }]}>
-                        <DatePicker
-                        style={{width: 505}}/>
+                        <RangePicker
+                            style={{ width: 505 }}
+                            onChange={(values) => {
+                                if (values) {
+                                    setDates(values.map((item) => moment(item?.toDate()).format('DD-MM-YYYY')));
+                                } else {
+                                    setDates([])
+                                }
+                            }} />
                     </Form.Item>
                     <div className="button-container">
                         <Space size={10}>

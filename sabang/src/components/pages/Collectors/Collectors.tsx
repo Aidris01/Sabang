@@ -9,7 +9,7 @@ const { RangePicker } = DatePicker;
 function PurchaseFilter() {
     useEffect(() => {
         document.title = 'Sabang | Collector'
-      }, [])
+    }, [])
     const [dates, setDates] = useState<string[]>([]);
     console.log(dates)
 
@@ -22,12 +22,11 @@ function PurchaseFilter() {
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
                     hideRequiredMark
-                    style={{width: 800}}>
+                    style={{ width: 800 }}>
                     <Form.Item
                         label="Collector Name"
                         name="collectorName"
-                        rules={[{ required: true, message: "Please select the collector!" }]}
-                    >
+                        rules={[{ required: true, message: "Please select the collector!" }]}>
                         <Select
                             placeholder="Select Collector"
                             allowClear
@@ -46,14 +45,12 @@ function PurchaseFilter() {
                                     value: "ampp.02 - maman pengepul",
                                     label: "ampp.02 - maman pengepul"
                                 }
-                            ]}
-                        />
+                            ]} />
                     </Form.Item>
                     <Form.Item
                         label="Range Date"
                         name="rangeDate"
-                        rules={[{ required: true, message: "Please select the date!" }]}
-                    >
+                        rules={[{ required: true, message: "Please select the date!" }]}>
                         <RangePicker
                             style={{ width: 505 }}
                             onChange={(values) => {
@@ -62,8 +59,7 @@ function PurchaseFilter() {
                                 } else {
                                     setDates([])
                                 }
-                            }}
-                        />
+                            }} />
                     </Form.Item>
                     <div className="button-container">
                         <Button className='save-btn' type='primary' htmlType='submit' icon={<SearchOutlined />}>

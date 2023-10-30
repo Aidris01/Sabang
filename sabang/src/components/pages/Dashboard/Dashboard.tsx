@@ -21,6 +21,7 @@ function Dashboard() {
           <Typography.Title level={4}>Production<Production /></Typography.Title>
           <Typography.Title level={4}>ICS Progress<ICS /></Typography.Title>
         </Space>
+        <Typography.Title level={4}>Daftar Kadar PH Dibawah 6<PH5 /></Typography.Title>
       </div>
     </div>
   )
@@ -83,4 +84,32 @@ function ICS() {
   )
 }
 
+function PH5() {
+  return (
+    <Table 
+    columns={[
+      {
+        title: 'ID',
+        dataIndex: 'id'
+      },
+      {
+        title: 'Purchase ID',
+        dataIndex: 'purchaseId'
+      },
+      {
+        title: 'Tapper',
+        dataIndex: 'tapper'
+      },
+      {
+        title: 'Ph',
+        dataIndex: 'ph'
+      },
+      {
+        title: 'Create Date',
+        dataIndex: 'createDate'
+      }
+    ]}
+    />
+  )
+}
 export default Dashboard;

@@ -20,7 +20,7 @@ function CreateFactory() {
   const factoryManagement = () => {
     navigate("/FactoryManagement")
   }
-  const center = useMemo(() => ({ lat: -6.2, lng: 106.816666 }),[])
+  const center = useMemo(() => ({ lat: -6.2, lng: 106.816666 }), [])
   const [markerPosition, setMarkerPosition] = useState({ lat: -6.2, lng: 106.816666 })
   const handleMapClick = (event: { latLng: any }) => {
     const { latLng } = event;
@@ -49,8 +49,9 @@ function CreateFactory() {
               <Form.Item
                 label="Address"
                 name="address"
-                rules={[{ required: true, message: "Please input your address!" }]}
-              ><TextArea rows={6} /></Form.Item>
+                rules={[{ required: true, message: "Please input your address!" }]}>
+                <TextArea rows={6} />
+              </Form.Item>
             </Col>
             <Col span={12}>
               <LoadScript
