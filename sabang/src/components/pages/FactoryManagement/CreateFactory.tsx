@@ -1,6 +1,6 @@
 import { Button, Col, Form, Input, Row, Space, Typography } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import '../../pages/style/style.css'
 import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
@@ -20,7 +20,7 @@ function CreateFactory() {
   const factoryManagement = () => {
     navigate("/FactoryManagement")
   }
-  const center = { lat: -6.2, lng: 106.816666 }
+  const center = useMemo(() => ({ lat: -6.2, lng: 106.816666 }),[])
   const [markerPosition, setMarkerPosition] = useState({ lat: -6.2, lng: 106.816666 })
   const handleMapClick = (event: { latLng: any }) => {
     const { latLng } = event;
@@ -58,7 +58,7 @@ function CreateFactory() {
                 <GoogleMap
                   onClick={handleMapClick}
                   mapContainerStyle={containerStyle}
-                  center={markerPosition || center}
+                  center={center}
                   zoom={10}>
                   {markerPosition && (
                     <Marker
