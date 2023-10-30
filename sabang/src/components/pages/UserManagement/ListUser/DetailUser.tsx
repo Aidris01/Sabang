@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Descriptions, Space, Spin, Typography } from 'antd'
+import { Button, Descriptions, message, Space, Spin, Typography } from 'antd'
 import '../../style/style.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../../api/axios';
@@ -59,6 +59,8 @@ function DetailUser() {
             });
         }).catch((error) => {
             console.error('Error Occurred: ', error);
+            message.error('Error Ocured, Please check the console')
+            setLoading(false)
         });
     }, [userId]);
     const navigate = useNavigate()
