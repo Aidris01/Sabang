@@ -21,7 +21,7 @@ function CreateFactory() {
     navigate("/FactoryManagement")
   }
   const center = { lat: -6.2, lng: 106.816666 }
-  const [markerPosition, setMarkerPosition] = useState({ lat: 0, lng: 0 })
+  const [markerPosition, setMarkerPosition] = useState({ lat: -6.2, lng: 106.816666 })
   const handleMapClick = (event: { latLng: any }) => {
     const { latLng } = event;
     const lat = latLng.lat();
@@ -58,7 +58,7 @@ function CreateFactory() {
                 <GoogleMap
                   onClick={handleMapClick}
                   mapContainerStyle={containerStyle}
-                  center={center}
+                  center={markerPosition || center}
                   zoom={10}>
                   {markerPosition && (
                     <Marker
