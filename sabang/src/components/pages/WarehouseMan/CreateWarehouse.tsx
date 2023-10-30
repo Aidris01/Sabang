@@ -1,6 +1,6 @@
 import { Button, Col, Form, Input, Row, Space, Typography } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
@@ -19,11 +19,15 @@ function CreateWarehouse() {
     const warehouseManagement = () => {
         navigate("/WarehouseManagement")
     }
-    const markers = { lat: -6.2, lng: 106.816666 }
     const center = { lat: -6.2, lng: 106.816666 }
-    const onLoad = (marker: any) => {
-        console.log('Marker',marker)
+    const [markerPosition, setMarkerPosition] = useState({lat: 0, lng: 0});
+    const handleMapClick = (event: {latLng: any}) => {
+        const {latLng} = event;
+        const lat = latLng.lat();
+        const lng = latLng.lng();
+        setMarkerPosition({lat, lng});
     }
+    console.log(markerPosition)
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Warehouse</Typography.Title>
@@ -39,22 +43,40 @@ function CreateWarehouse() {
                                 label="Name"
                                 name="name"
                                 rules={[{ required: true, message: "Please input the name!" }]}>
-                                <Input /></Form.Item>
+                                <Input />
+                            </Form.Item>
                             <Form.Item
                                 label="Address"
                                 name="address"
-                                rules={[{ required: true, message: "Please input your address!" }]}
-                            ><TextArea rows={6} /></Form.Item>
+                                rules={[{ required: true, message: "Please input your address!" }]}>
+                                <TextArea rows={6} />
+                            </Form.Item>
+                            <Form.Item
+                            label='Lat'
+                            name='lat'>
+                                <Input value={markerPosition.lat} />
+                            </Form.Item>
+                            <Form.Item
+                            label='Lng'
+                            name='lng'>
+                                <Input value={markerPosition.lng} />
+                            </Form.Item>
                         </Col>
                         <Col span={12}>
                             <LoadScript
                                 googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY!}>
                                 <GoogleMap
+                                    onClick={handleMapClick}
                                     mapContainerStyle={containerStyle}
                                     center={center}
                                     zoom={10}>
-                                    <Marker onLoad={onLoad} position={markers} draggable={true}>
-                                    </Marker>
+                                    {markerPosition && (
+                                        <Marker 
+                                        position={{
+                                            lat: markerPosition.lat,
+                                            lng: markerPosition.lng
+                                        }}/>
+                                    )}
                                 </GoogleMap>
                             </LoadScript>
                         </Col>
