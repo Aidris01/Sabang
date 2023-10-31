@@ -5,7 +5,6 @@ import '../../pages/style/style.css'
 import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
-import { latLng2Tile } from 'google-map-react'
 import { useForm } from 'antd/es/form/Form'
 import axios from '../../api/axios'
 
@@ -96,7 +95,6 @@ function CreateFactory() {
                     lng: parseFloat(e.target.value)
                   })} />
               </Form.Item>
-
             </Col>
             <Col span={12}>
               <LoadScript

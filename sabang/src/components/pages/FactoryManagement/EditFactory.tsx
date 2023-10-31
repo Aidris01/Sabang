@@ -1,11 +1,17 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { Button, Col, Form, Input, message, Row, Space, Spin, Typography } from 'antd'
 import { useForm } from 'antd/es/form/Form'
 import TextArea from 'antd/es/input/TextArea'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from '../../api/axios'
 import '../style/style.css'
+
+const containerStyle = {
+    width: '100%',
+    height: '365px'
+};
 
 interface Factory {
     name: string,
@@ -27,6 +33,7 @@ function EditFactory() {
     }
     const navigate = useNavigate()
     const { factoryId } = useParams<Record<string, string>>();
+    const [loading, setLoading] = useState(true)
     const [factory, setFactory] = useState<Factory>(
         {
             name: '',
@@ -36,11 +43,23 @@ function EditFactory() {
         }
     )
     const token = localStorage.getItem('token')
-    const [loading, setLoading] = useState(true)
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
+    }
+    const center = useMemo(() => ({ lat: -6.2, lng: 106.816666 }), [])
+    const [markerPosition, setMarkerPosition] = useState({ lat: -6.2, lng: 106.816666 })
+    const handleMapClick = (event: { latLng: any }) => {
+        const { latLng } = event;
+        const lat = latLng.lat();
+        const lng = latLng.lng();
+        setMarkerPosition({ lat, lng });
+
+        form.setFieldsValue({
+            lat: lat,
+            lng: lng
+        })
     }
     useEffect(() => {
         axios.get(`/factories/${factoryId}`, config)
@@ -51,6 +70,7 @@ function EditFactory() {
             }).catch((error) => {
                 console.error('Error Ocured: ', error)
                 message.error('Error Ocured')
+                setLoading(false)
             })
     }, [token, factoryId, form])
     const onFinish = (values: any) => {
@@ -59,7 +79,7 @@ function EditFactory() {
 
         if (isNaN(lat) || isNaN(lng)) {
             message.error('Latitude and Longitude must be valid numbers');
-            return; // Menghentikan operasi jika angka tidak valid
+            return;
         }
 
         const updatedFactory = {
@@ -108,20 +128,42 @@ function EditFactory() {
                                     rules={[{ required: true, message: 'Please input the address!' }]}>
                                     <TextArea rows={5} autoSize={{ minRows: 4, maxRows: 7 }} />
                                 </Form.Item>
+                                <Form.Item
+                                    label='Lat'
+                                    name='lat'>
+                                    <Input value={markerPosition.lat}
+                                        onChange={(e) => setMarkerPosition({
+                                            lat: parseFloat(e.target.value),
+                                            lng: markerPosition.lng
+                                        })} />
+                                </Form.Item>
+                                <Form.Item
+                                    label='Lng'
+                                    name='lng'>
+                                    <Input value={markerPosition.lng}
+                                        onChange={(e) => setMarkerPosition({
+                                            lat: markerPosition.lat,
+                                            lng: parseFloat(e.target.value)
+                                        })} />
+                                </Form.Item>
                             </Col>
                             <Col span={12}>
-                                <Form.Item
-                                    name='lat'
-                                    label='Lat'
-                                    rules={[{ required: true, message: 'Please input the latitude!' }]}>
-                                    <Input />
-                                </Form.Item>
-                                <Form.Item
-                                    name='lng'
-                                    label='Long'
-                                    rules={[{ required: true, message: 'Please input the Longitude!' }]}>
-                                    <Input />
-                                </Form.Item>
+                                <LoadScript
+                                    googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY!}>
+                                    <GoogleMap
+                                        onClick={handleMapClick}
+                                        mapContainerStyle={containerStyle}
+                                        center={center}
+                                        zoom={10}>
+                                        {markerPosition && (
+                                            <Marker
+                                                position={{
+                                                    lat: markerPosition.lat,
+                                                    lng: markerPosition.lng
+                                                }} />
+                                        )}
+                                    </GoogleMap>
+                                </LoadScript>
                             </Col>
                         </Row>
                         <div className="button-container">

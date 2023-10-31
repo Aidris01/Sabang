@@ -110,8 +110,7 @@ function CreateWarehouse() {
                                             position={{
                                                 lat: markerPosition.lat,
                                                 lng: markerPosition.lng
-                                            }} />
-                                    )}
+                                            }} /> )}
                                 </GoogleMap>
                             </LoadScript>
                         </Col>

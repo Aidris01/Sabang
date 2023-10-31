@@ -42,7 +42,7 @@ function FactoryManagement() {
       })
   }, [])
   const deleteFactory = (factoryId: number) => {
-    axios.delete(`/factory/${factoryId}`, config)
+    axios.delete(`/factories/${factoryId}`, config)
       .then((response) => {
         message.success('Factory Deleted')
         console.log(response)
