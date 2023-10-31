@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, Space, Typography } from 'antd'
+import { Button, Col, Form, Input, message, Row, Space, Typography } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
 import React, { useEffect, useMemo, useState } from 'react'
 import '../../pages/style/style.css'
@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import { latLng2Tile } from 'google-map-react'
+import { useForm } from 'antd/es/form/Form'
+import axios from '../../api/axios'
 
 const containerStyle = {
   width: '100%',
@@ -20,6 +22,8 @@ function CreateFactory() {
   const factoryManagement = () => {
     navigate("/FactoryManagement")
   }
+  const [form] = useForm()
+  const token = localStorage.getItem('token')
   const center = useMemo(() => ({ lat: -6.2, lng: 106.816666 }), [])
   const [markerPosition, setMarkerPosition] = useState({ lat: -6.2, lng: 106.816666 })
   const handleMapClick = (event: { latLng: any }) => {
@@ -27,13 +31,35 @@ function CreateFactory() {
     const lat = latLng.lat();
     const lng = latLng.lng();
     setMarkerPosition({ lat, lng });
+
+    form.setFieldsValue({
+      lat: lat,
+      lng: lng
+    })
   }
-  console.log(markerPosition)
+  const handleFormSubmit = async (values: any) => {
+    try {
+      const response = await axios.post('/factories', values, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      console.log(response)
+      message.success('Factory Added')
+      navigate('/FactoryManagement')
+    } catch (error) {
+      console.error('Error Ocured: ',error)
+      message.error('Error Ocured, Please check the console')
+    }
+  }
   return (
     <div className='content'>
       <Typography.Title level={4}>Create Factory</Typography.Title>
       <div className='main-container'>
         <Form
+          form={form}
+          onFinish={handleFormSubmit}
+          autoComplete='off'
           className='form-container'
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
@@ -52,6 +78,25 @@ function CreateFactory() {
                 rules={[{ required: true, message: "Please input your address!" }]}>
                 <TextArea rows={6} />
               </Form.Item>
+              <Form.Item
+                label='Lat'
+                name='lat'>
+                <Input value={markerPosition.lat}
+                  onChange={(e) => setMarkerPosition({
+                    lat: parseFloat(e.target.value),
+                    lng: markerPosition.lng
+                  })} />
+              </Form.Item>
+              <Form.Item
+                label='Lng'
+                name='lng'>
+                <Input value={markerPosition.lng}
+                  onChange={(e) => setMarkerPosition({
+                    lat: markerPosition.lat,
+                    lng: parseFloat(e.target.value)
+                  })} />
+              </Form.Item>
+
             </Col>
             <Col span={12}>
               <LoadScript

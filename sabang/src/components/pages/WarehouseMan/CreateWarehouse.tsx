@@ -1,10 +1,12 @@
-import { Button, Col, Form, Input, Row, Space, Typography } from 'antd'
+import { Button, Col, Form, Input, message, Row, Space, Typography } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
 import '../../pages/style/style.css'
+import { useForm } from 'antd/es/form/Form'
+import axios from '../../api/axios'
 
 const containerStyle = {
     width: '100%',
@@ -19,13 +21,35 @@ function CreateWarehouse() {
     const warehouseManagement = () => {
         navigate("/WarehouseManagement")
     }
-    const center = useMemo(() => ( { lat: -6.2, lng: 106.816666 }),[])
-    const [markerPosition, setMarkerPosition] = useState({lat: -6.2, lng: 106.816666});
-    const handleMapClick = (event: {latLng: any}) => {
-        const {latLng} = event;
+    const [form] = useForm()
+    const token = localStorage.getItem('token')
+    const center = useMemo(() => ({ lat: -6.2, lng: 106.816666 }), [])
+    const [markerPosition, setMarkerPosition] = useState({ lat: -6.2, lng: 106.816666 });
+    const handleMapClick = (event: { latLng: any }) => {
+        const { latLng } = event;
         const lat = latLng.lat();
         const lng = latLng.lng();
-        setMarkerPosition({lat, lng});
+        setMarkerPosition({ lat, lng });
+
+        form.setFieldsValue({
+            lat: lat,
+            lng: lng
+        })
+    }
+    const handleFormSubmit = async (values: any) => {
+        try {
+            const response = await axios.post('/warehouses', values, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log(response)
+            message.success('Warehouse Added')
+            navigate('/WarehouseManagement')
+        } catch (error) {
+            console.error('Error Ocured: ',error)
+            message.error('Error Ocured, Please check the console')
+        }
     }
     console.log(markerPosition)
     return (
@@ -33,6 +57,9 @@ function CreateWarehouse() {
             <Typography.Title level={4}>Create Warehouse</Typography.Title>
             <div className='main-container'>
                 <Form
+                    autoComplete='off'
+                    onFinish={handleFormSubmit}
+                    form={form}
                     className='form-container'
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
@@ -52,14 +79,22 @@ function CreateWarehouse() {
                                 <TextArea rows={6} />
                             </Form.Item>
                             <Form.Item
-                            label='Lat'
-                            name='lat'>
-                                <Input value={markerPosition.lat} />
+                                label='Lat'
+                                name='lat'>
+                                <Input value={markerPosition.lat}
+                                    onChange={(e) => setMarkerPosition({
+                                        lat: parseFloat(e.target.value),
+                                        lng: markerPosition.lng
+                                    })} />
                             </Form.Item>
                             <Form.Item
-                            label='Lng'
-                            name='lng'>
-                                <Input value={markerPosition.lng} />
+                                label='Lng'
+                                name='lng'>
+                                <Input value={markerPosition.lng}
+                                    onChange={(e) => setMarkerPosition({
+                                        lat: markerPosition.lat,
+                                        lng: parseFloat(e.target.value)
+                                    })} />
                             </Form.Item>
                         </Col>
                         <Col span={12}>
@@ -71,11 +106,11 @@ function CreateWarehouse() {
                                     center={center}
                                     zoom={10}>
                                     {markerPosition && (
-                                        <Marker 
-                                        position={{
-                                            lat: markerPosition.lat,
-                                            lng: markerPosition.lng
-                                        }}/>
+                                        <Marker
+                                            position={{
+                                                lat: markerPosition.lat,
+                                                lng: markerPosition.lng
+                                            }} />
                                     )}
                                 </GoogleMap>
                             </LoadScript>
