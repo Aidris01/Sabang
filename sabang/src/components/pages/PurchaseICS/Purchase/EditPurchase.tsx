@@ -23,7 +23,7 @@ interface Penyadap {
 
 function EditPurchase() {
     useEffect(() => {
-        document.title = `Sabang | Edit User ${purchaseId} `
+        document.title = `Sabang | Edit Purchase ${purchaseId} `
     }, [])
     const { purchaseId } = useParams<Record<string, string>>();
     const [loading, setLoading] = useState(true)
@@ -56,12 +56,13 @@ function EditPurchase() {
         }
     )
     const token = localStorage.getItem('token')
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
     useEffect(() => {
-        axios.get(`/purchases/${purchaseId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.get(`/purchases/${purchaseId}`, config).then((response) => {
             form.setFieldsValue(response.data)
             setPurchase(response.data)
             setLoading(false)
@@ -72,16 +73,16 @@ function EditPurchase() {
         })
     }, [token, form, purchaseId])
     useEffect(() => {
-        axios.get('/users/penyadap', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.get('/users/penyadap', config).then((response) => {
             const format = response.data.map((item: any) => ({
                 value: item.id,
                 label: item.name
             }))
             setPenyadap(format)
+            setLoading(false)
+        }).catch((error) => {
+            console.error('Error Ocured: ',error)
+            message.error('Error Ocured, Please check the console')
             setLoading(false)
         })
     }, [])
@@ -96,11 +97,8 @@ function EditPurchase() {
             sugarLevel,
             amount
         }
-        axios.patch(`/purchases/${purchaseId}`, form.getFieldsValue(), {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.patch(`/purchases/${purchaseId}`, form.getFieldsValue(), config)
+        .then((response) => {
             message.success('Puchase Updated')
             navigate('/Purchase')
         }).catch((error) => {

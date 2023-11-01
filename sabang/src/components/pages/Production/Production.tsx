@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined } from '@ant-design/icons'
-import { Button, Col, Form, Input, Row, Select, Space, Table, Tabs, Typography } from 'antd'
+import { Button, Table, Tabs, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/style/style.css'
@@ -12,10 +12,13 @@ function Production() {
   const createLabel = () => {
     navigate('/Production/CreateProduction')
   }
-  const Create = <Button style={{marginRight: 10}} onClick={createLabel} icon={<PlusOutlined />}>
+  const Create = <Button
+    style={{ marginRight: 10 }}
+    onClick={createLabel}
+    icon={<PlusOutlined />}>
     Create Production
   </Button>
-  
+
   const [data, setData] = useState([
     {
       id: 1,
@@ -71,9 +74,9 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },
@@ -141,8 +144,8 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },
@@ -213,9 +216,9 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },
@@ -279,9 +282,9 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },
@@ -353,9 +356,9 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },
@@ -435,9 +438,9 @@ function Production() {
       title: 'Action',
       render: () => {
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{color: 'black'}} /></Button>
+          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },

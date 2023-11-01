@@ -1,8 +1,14 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
-import { Button, Col, Form, Input, Row, Select, Space, Typography } from 'antd'
-import React, { useEffect } from 'react'
+import { Button, Col, Form, Input, message, Row, Select, Space, Typography } from 'antd'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../api/axios'
 import '../style/style.css'
+
+interface Factory {
+    id: number,
+    name: string
+}
 
 function CreateProduction() {
     useEffect(() => {
@@ -12,6 +18,29 @@ function CreateProduction() {
     const Production = () => {
         navigate('/Production')
     }
+    const [loading, setLoading] = useState(true)
+    const [getFactory, setGetFactory] = useState<Factory[]>([])
+    const token = localStorage.getItem('token')
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    useEffect(() => {
+        axios.get('/factories', config)
+        .then((response) => {
+            const format = response.data.map((item: any) => ({
+                value: item.id,
+                label: item.name
+            }))
+            setGetFactory(format)
+            setLoading(false)
+        }).catch((error) => {
+            console.error('Error Ocured: ',error)
+            message.error('Error Ocured, Please check the console')
+            setLoading(false)
+        })
+    },[])
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Production</Typography.Title>
@@ -26,30 +55,18 @@ function CreateProduction() {
                             <Form.Item
                                 label="Factory Name"
                                 name="factory"
-                                rules={[{ required: true, message: 'Please choose the factory name!' }]}
-                            >
+                                rules={[{ required: true, message: 'Please choose the factory name!' }]}>
                                 <Select
                                     placeholder='Select the factory'
                                     allowClear
                                     placement='bottomLeft'
                                     listHeight={200}
-                                    options={[
-                                        {
-                                            value: 'Mandalasari',
-                                            label: 'Mandalasari'
-                                        },
-                                        {
-                                            value: 'Bunikasih',
-                                            label: 'Bunikasih'
-                                        }
-                                    ]}
-                                />
+                                    options={getFactory}/>
                             </Form.Item>
                             <Form.Item
                                 label='Type Weight'
                                 name='weight'
-                                rules={[{ required: true, message: 'Please choose the weight type!' }]}
-                            >
+                                rules={[{ required: true, message: 'Please choose the weight type!' }]}>
                                 <Select
                                     placeholder='Select the weight type'
                                     allowClear
@@ -64,16 +81,14 @@ function CreateProduction() {
                                             value: 'Gram',
                                             label: 'Gram'
                                         }
-                                    ]}
-                                />
+                                    ]}/>
                             </Form.Item>
                         </Col>
                         <Col span={12}>
                             <Form.Item
                                 label='Production Type'
                                 name='productionType'
-                                rules={[{ required: true, message: 'Please choose the production type!' }]}
-                            >
+                                rules={[{ required: true, message: 'Please choose the production type!' }]}>
                                 <Select
                                     placeholder='Select the production type'
                                     allowClear
@@ -88,14 +103,12 @@ function CreateProduction() {
                                             value: 'Temporary',
                                             label: 'Temporary'
                                         }
-                                    ]}
-                                />
+                                    ]}/>
                             </Form.Item>
                             <Form.Item
                                 label='Total'
                                 name='Total'
-                                rules={[{ required: true, message: 'Please enter the total!' }]}
-                            >
+                                rules={[{ required: true, message: 'Please enter the total!' }]}>
                                 <Input />
                             </Form.Item>
                         </Col>
