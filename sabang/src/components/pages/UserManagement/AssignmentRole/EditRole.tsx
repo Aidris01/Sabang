@@ -31,12 +31,14 @@ function EditRole() {
         }
     )
     const token = localStorage.getItem('token')
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
     useEffect(() => {
-        axios.get(`/roles/${roleId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.get(`/roles/${roleId}`, config)
+        .then((response) => {
             form.setFieldsValue(response.data)
             setRoleData(response.data)
             setLoading(false)
@@ -48,11 +50,8 @@ function EditRole() {
     }, [token, roleId, form])
 
     const onFinish = (values: any) => {
-        axios.patch(`/roles/${roleId}`, form.getFieldsValue(), {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.patch(`/roles/${roleId}`, form.getFieldsValue(), config
+        ).then((response) => {
             message.success('Role Updated')
             navigate('/Roles')
             console.log(roleData)

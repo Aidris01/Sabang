@@ -48,12 +48,6 @@ function CreateChecklist() {
                         rules={[{ required: true, message: "Please input the name!" }]}>
                         <Input />
                     </Form.Item>
-                    <Form.Item
-                        label='Type'
-                        name='type'
-                        rules={[{ required: true, message: 'Please input the type!' }]}>
-                        <Input />
-                    </Form.Item>
                     <div className="button-container">
                         <Space size={8}>
                             <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>

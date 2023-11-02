@@ -39,7 +39,7 @@ function ListUser() {
       },
     };
     axios
-      .delete(`/users/${userId}/softDelete`, config)
+      .delete(`/users/${userId}`, config)
       .then((response) => {
         message.success('User deleted');
         console.log(response)

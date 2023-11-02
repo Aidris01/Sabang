@@ -7,8 +7,7 @@ import axios from '../../api/axios'
 import '../style/style.css'
 
 interface Checklist {
-    title: string,
-    type: string
+    title: string
 }
 
 function EditChecklist() {
@@ -19,14 +18,12 @@ function EditChecklist() {
     const { checklistId } = useParams<Record<string, string>>();
     const [form] = useForm()
     const initialValues = {
-        title: form.getFieldValue('title') || '',
-        type: form.getFieldValue('type') || ''
+        title: form.getFieldValue('title') || ''
     }
     const [loading, setLoading] = useState(true)
     const [checklist, setChecklist] = useState<Checklist>(
         {
-            title: '',
-            type: ''
+            title: ''
         }
     )
     const token = localStorage.getItem('token')
@@ -48,7 +45,7 @@ function EditChecklist() {
             })
     }, [token, checklistId, form])
     const onFinish = (values: any) => {
-        axios.patch(`/checklists/${checklistId}`, form.getFieldsValue, config)
+        axios.patch(`/checklists/${checklistId}`, form.getFieldsValue(), config)
             .then((response) => {
                 message.success('Checklist updated')
                 navigate('/Checklist')
@@ -79,12 +76,6 @@ function EditChecklist() {
                             name='title'
                             label='Name'
                             rules={[{ required: true, message: 'Please input the name!' }]}>
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                        name='type'
-                        label='Type'
-                        rules={[{required: true, message: 'Please input the type!'}]}>
                             <Input />
                         </Form.Item>
                         <div className="button-container">
