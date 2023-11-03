@@ -13,16 +13,18 @@ interface PurchaseData {
     volume: number,
     lat: number,
     lng: number,
-    amount: number
+    amount: number,
+    penyadap: any,
+    purchaser: any
 }
-interface PenyadapName {
-    id: number,
-    name: string
-}
-interface Purchaser {
-    id: number,
-    name: string
-}
+// interface PenyadapName {
+//     id: number,
+//     name: string
+// }
+// interface Purchaser {
+//     id: number,
+//     name: string
+// }
 
 function DetailPurchase() {
     useEffect(() => {
@@ -32,8 +34,6 @@ function DetailPurchase() {
     const token = localStorage.getItem('token')
     const { purchaseId } = useParams<Record<string, string>>();
     const [loading, setLoading] = useState(true)
-    const [penyadapName, setPenyadapName] = useState<PenyadapName[]>([])
-    const [purchaserName, setPurchaserName] = useState<Purchaser[]>([])
     const [purchaseData, setPurchaseData] = useState<PurchaseData>(
         {
             penyadapId: 0,
@@ -44,38 +44,14 @@ function DetailPurchase() {
             lat: 0,
             lng: 0,
             amount: 0,
+            penyadap: '',
+            purchaser: ''
         }
     )
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
-    }
-    useEffect(() => {
-        axios.get('/users/penyadap', config)
-        .then((dataResponse) => {
-            setPenyadapName(dataResponse.data)
-        }).catch((dataError) => {
-            console.error('Error Ocured: ',dataError)
-            message.error('Error Fetching Tapper')
-        })
-    },[])
-    const getTapperName = (penyadapId: number) => {
-        const penyadap = penyadapName.find((penyadap: any) => penyadap.id === penyadapId)
-        return penyadap ? penyadap.name : 'Unknown Tapper'
-    }
-    useEffect(() => {
-        axios.get('/users/purchasers', config)
-        .then((response) => {
-            setPurchaserName(response.data)
-        }).catch((error) => {
-            console.error('Error Ocured: ',error)
-            message.error('Error Fetching Purchaser')
-        })
-    },[])
-    const getPurchaserName = (purchaserId: number) => {
-        const purchaser = purchaserName.find((purchaser: any) => purchaser.id === purchaserId)
-        return purchaser ? purchaser.name : 'Unknow Purchaser'
     }
     useEffect(() => {
         axios.get(`/purchases/${purchaseId}`, {
@@ -103,8 +79,8 @@ function DetailPurchase() {
             <div className="desc-container">
                 <Spin spinning={loading}>
                     <Descriptions title='Purchase Detail' layout='vertical' className='form-container'>
-                        <Descriptions.Item label='Tapper'>{purchaseData.penyadapId} - {getTapperName(purchaseData.penyadapId)}</Descriptions.Item>
-                        <Descriptions.Item label='Purchaser'>{purchaseData.purchaserId} - {getPurchaserName(purchaseData.purchaserId)}</Descriptions.Item>
+                        <Descriptions.Item label='Tapper'>{purchaseData.penyadapId} - {purchaseData.penyadap.name}</Descriptions.Item>
+                        <Descriptions.Item label='Purchaser'>{purchaseData.purchaserId} - {purchaseData.purchaser.name}</Descriptions.Item>
                         <Descriptions.Item label='Sugar Level'>{purchaseData.sugarLevel}</Descriptions.Item>
                         <Descriptions.Item label='Volume(Liter)'>{purchaseData.volume} Liter</Descriptions.Item>
                         <Descriptions.Item label='PH'>{purchaseData.ph}</Descriptions.Item>

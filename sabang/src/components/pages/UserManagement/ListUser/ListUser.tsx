@@ -38,8 +38,7 @@ function ListUser() {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios
-      .delete(`/users/${userId}`, config)
+    axios.delete(`/users/${userId}`, config)
       .then((response) => {
         message.success('User deleted');
         console.log(response)
@@ -169,9 +168,7 @@ function ListUser() {
             getUsers(pagination.current ?? 1)
             console.log(currentPage)
           }}
-          pagination={{ total: totalItems }}
-        >
-        </Table>
+          pagination={{ total: totalItems }} />
       </div>
     </div>
   )

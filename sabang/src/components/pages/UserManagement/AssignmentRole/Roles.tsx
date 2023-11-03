@@ -40,21 +40,12 @@ function Roles() {
       });
   }, []);
   const deleteRole = (roleId: number) => {
-    const token = localStorage.getItem('token');
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    axios
-      .delete(`/roles/${roleId}`, config)
+    axios.delete(`/roles/${roleId}`, config)
       .then((response) => {
         message.success('Role deleted');
         console.log(response)
         setDataSource((prevData) => prevData.filter((role) => role.id !== roleId));
-      })
-      .catch((error) => {
+      }).catch((error) => {
         message.error('Error deleting user');
         console.error('Error deleting user:', error);
       });
@@ -87,7 +78,7 @@ function Roles() {
         };
         return <>
           <Link to={`/Roles/EditRole/${record.id}`}>
-            <Button type='link' size='small'><EditOutlined style={{color: 'black'}} /></Button>
+            <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
           </Link>
           <Popconfirm
             title="Apakah anda yakin untuk menghapus role ini ?"

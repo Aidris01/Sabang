@@ -16,7 +16,8 @@ interface UserData {
     bankName: string,
     accName: string,
     accNumber: string,
-    villageId: string
+    villageId: string,
+    userRoles: number
 }
 interface VillageData {
     name: string,
@@ -38,7 +39,8 @@ function EditUser() {
         phone: form.getFieldValue('phone') || '',
         address: form.getFieldValue('address') || '',
         email: form.getFieldValue('email') || '',
-        villageId: form.getFieldValue('villageId') || ''
+        villageId: form.getFieldValue('villageId') || '',
+        userRoles: form.getFieldValue('userRoles') || 0
     }
     const navigate = useNavigate()
     const { userId } = useParams<Record<string, string>>();
@@ -52,7 +54,8 @@ function EditUser() {
             bankName: '',
             accName: '',
             accNumber: '',
-            villageId: ''
+            villageId: '',
+            userRoles: 0
         }
     );
     const token = localStorage.getItem('token')

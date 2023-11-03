@@ -50,8 +50,8 @@ function EditRole() {
     }, [token, roleId, form])
 
     const onFinish = (values: any) => {
-        axios.patch(`/roles/${roleId}`, form.getFieldsValue(), config
-        ).then((response) => {
+        axios.patch(`/roles/${roleId}`, form.getFieldsValue(), config)
+        .then((response) => {
             message.success('Role Updated')
             navigate('/Roles')
             console.log(roleData)

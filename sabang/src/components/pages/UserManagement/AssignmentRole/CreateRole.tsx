@@ -15,13 +15,14 @@ function CreateRole() {
   const roles = () => {
     navigate("/Roles")
   }
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
   const handleFormSubmit = async (values: any) => {
     try {
-      const response = await axios.post('/roles', values, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+      const response = await axios.post('/roles', values, config)
       console.log('Response', response)
       message.success('Role Added')
       navigate('/roles')
