@@ -6,6 +6,7 @@ import axios from '../../../api/axios';
 import '../../style/style.css'
 
 interface PurchaseData {
+    id: number,
     penyadapId: number,
     purchaserId: number,
     ph: number,
@@ -17,14 +18,6 @@ interface PurchaseData {
     penyadap: any,
     purchaser: any
 }
-// interface PenyadapName {
-//     id: number,
-//     name: string
-// }
-// interface Purchaser {
-//     id: number,
-//     name: string
-// }
 
 function DetailPurchase() {
     useEffect(() => {
@@ -36,6 +29,7 @@ function DetailPurchase() {
     const [loading, setLoading] = useState(true)
     const [purchaseData, setPurchaseData] = useState<PurchaseData>(
         {
+            id: 0,
             penyadapId: 0,
             purchaserId: 0,
             ph: 0,
@@ -79,6 +73,7 @@ function DetailPurchase() {
             <div className="desc-container">
                 <Spin spinning={loading}>
                     <Descriptions title='Purchase Detail' layout='vertical' className='form-container'>
+                        <Descriptions.Item label='ID'>{purchaseData.id}</Descriptions.Item>
                         <Descriptions.Item label='Tapper'>{purchaseData.penyadapId} - {purchaseData.penyadap.name}</Descriptions.Item>
                         <Descriptions.Item label='Purchaser'>{purchaseData.purchaserId} - {purchaseData.purchaser.name}</Descriptions.Item>
                         <Descriptions.Item label='Sugar Level'>{purchaseData.sugarLevel}</Descriptions.Item>
