@@ -8,6 +8,10 @@ interface PenyadapData {
   id: number,
   name: string
 }
+interface PurchaserData {
+  id: number,
+  name: string
+}
 
 function AssignmentTapper() {
   useEffect(() => {
@@ -15,24 +19,40 @@ function AssignmentTapper() {
   }, [])
 
   const [penyadap, setPenyadap] = useState<PenyadapData[]>([])
+  const [purchaser, setPurchaser] = useState<PurchaserData[]>([])
 
   const token = localStorage.getItem('token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
   useEffect(() => {
-    axios.get('/users/penyadap', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then((response) => {
-      const formattedData = response.data.map((item: any) => ({
-        value: item.id,
-        label: item.name
-      }))
-      setPenyadap(formattedData)
-    }).catch((error) => {
-      console.error('Error Ocured: ',error)
-      message.error('Error Ocured')
-    })
-  },[])
+    axios.get('/users/penyadap', config)
+      .then((response) => {
+        const formattedData = response.data.map((item: any) => ({
+          value: item.id,
+          label: item.name
+        }))
+        setPenyadap(formattedData)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Fetching Penyadap, Please check the console')
+      })
+  }, [])
+  useEffect(() => {
+    axios.get('/users/purchaser', config)
+      .then((response) => {
+        const dataFormatted = response.data.map((item: any) => ({
+          value: item.id,
+          label: item.name
+        }))
+        setPurchaser(dataFormatted)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Fetching Purchaser, Please check the console')
+      })
+  }, [])
   return (
     <div className='content'>
       <Typography.Title level={4}>Assignment Tapper</Typography.Title>
@@ -54,9 +74,7 @@ function AssignmentTapper() {
               allowClear
               placement="bottomLeft"
               listHeight={200}
-              options={penyadap}
-            >
-            </Select>
+              options={penyadap} />
           </Form.Item>
           <Form.Item
             label="Collector Name"
@@ -68,21 +86,7 @@ function AssignmentTapper() {
               allowClear
               placement="bottomLeft"
               listHeight={200}
-              options={[{
-                value: "ling.pengepul",
-                label: "ling.pengepul"
-              },
-              {
-                value: "amct.pengepul",
-                label: "amct.pengepul"
-              },
-              {
-                value: "amsa.pengepul",
-                label: "amsa.pengepul"
-              }
-              ]}
-            >
-            </Select>
+              options={purchaser} />
           </Form.Item>
           <div className="button-container">
             <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>

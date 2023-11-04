@@ -18,7 +18,7 @@ interface RoleData {
 function CreateUser() {
     useEffect(() => {
         document.title = 'Sabang | Create User'
-      }, [])
+    }, [])
     const [villageData, setVillageData] = useState<VillageData[]>([]);
     const [roleOptions, setRoleOptions] = useState<RoleData[]>([])
     const [loading, setLoading] = useState<Boolean>();
@@ -91,48 +91,56 @@ function CreateUser() {
                                 label="Username"
                                 name="username"
                                 rules={[{ required: true, message: "Please input your username!" }]}>
-                                <Input /></Form.Item>
+                                <Input />
+                            </Form.Item>
                             <Form.Item
                                 label="Password"
                                 name="password"
                                 rules={[{ required: true, message: "Please input your password!" }]}>
-                                <Input.Password /></Form.Item>
+                                <Input.Password />
+                            </Form.Item>
                         </Col>
                         <Col span={12}>
                             <Form.Item
                                 label="NIK"
                                 name="nik"
                                 rules={[{ required: true, message: "Please input your NIK!" }]}>
-                                <Input /></Form.Item>
+                                <Input />
+                            </Form.Item>
                             <Form.Item
                                 label="Phone"
                                 name="phone"
                                 rules={[{ required: true, message: "Please input your phone number!" }]}>
-                                <Input /></Form.Item>
+                                <Input />
+                            </Form.Item>
                         </Col>
                         <Col span={12}>
                             <Form.Item
                                 label="Email"
                                 name="email"
                                 rules={[{ required: true, message: "Please input your email!" }]}>
-                                <Input /></Form.Item>
+                                <Input />
+                            </Form.Item>
                             <Form.Item
                                 label="Name"
                                 name="name"
                                 rules={[{ required: true, message: "Please input your name!" }]}>
-                                <Input /></Form.Item>
+                                <Input />
+                            </Form.Item>
                         </Col>
                         <Col span={12}>
                             <Form.Item
                                 label="Bank Name"
                                 name="bankName"
-                                rules={[{ required: true, message: "Please input your bank name!" }]}
-                            ><Input /></Form.Item>
+                                rules={[{ required: true, message: "Please input your bank name!" }]}>
+                                <Input />
+                            </Form.Item>
                             <Form.Item
                                 label="Acc Name"
                                 name="accName"
-                                rules={[{ required: true, message: "Please input your Acc Name!" }]}
-                            ><Input /></Form.Item>
+                                rules={[{ required: true, message: "Please input your Acc Name!" }]}>
+                                <Input />
+                            </Form.Item>
                         </Col>
                         <Col span={12}>
                             <Form.Item

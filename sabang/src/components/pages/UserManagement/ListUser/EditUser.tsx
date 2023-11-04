@@ -73,7 +73,7 @@ function EditUser() {
             setUserData(response.data)
             setLoading(false)
         }).catch((error) => {
-            message.error('Error Ocured', error)
+            message.error('Error Fetching Data, Please check the console', error)
             setLoading(false)
         })
     }, [token, userId, form])
@@ -90,7 +90,8 @@ function EditUser() {
             setVillageData(formattedData)
             setLoading(false)
         }).catch((error) => {
-            console.log("Error Fetching Data: ", error)
+            message.error('Error Fetching Village, Please check the console')
+            console.log("Error Fetching Vilage: ", error)
             setLoading(false)
         })
     }, [token])
@@ -104,7 +105,8 @@ function EditUser() {
             setRoleOptions(roleData);
             setLoading(false)
         }).catch((error) => {
-            console.log("Error Fetching Data: ", error)
+            message.error('Error Fetching Roles, Please check the console')
+            console.log("Error Fetching Roles: ", error)
             setLoading(false)
         })
     }, [token])
@@ -118,7 +120,7 @@ function EditUser() {
             message.success('User Updated')
             navigate('/ListUser')
         }).catch((error) => {
-            message.error("Error Ocured")
+            message.error("Error Ocured, Please check the console")
             console.error('Error Ocured: ', error)
         })
     }
