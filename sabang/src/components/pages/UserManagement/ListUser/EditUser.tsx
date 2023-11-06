@@ -17,11 +17,13 @@ interface UserData {
     accName: string,
     accNumber: string,
     villageId: string,
-    userRoles: string
 }
 interface VillageData {
     name: string,
     code: string
+}
+interface RoleInput {
+    role: string
 }
 interface RoleData {
     name: string,
@@ -40,7 +42,9 @@ function EditUser() {
         address: form.getFieldValue('address') || '',
         email: form.getFieldValue('email') || '',
         villageId: form.getFieldValue('villageId') || '',
-        userRoles: form.getFieldValue('userRoles') || ''
+    }
+    const initialRole = {
+        roles: form.getFieldValue('role') || ''
     }
     const navigate = useNavigate()
     const { userId } = useParams<Record<string, string>>();
@@ -55,20 +59,26 @@ function EditUser() {
             accName: '',
             accNumber: '',
             villageId: '',
-            userRoles: ''
         }
     );
+    const [roles, setRoles] = useState<RoleInput>(
+        {
+            role: ''
+        }
+    )
     const token = localStorage.getItem('token')
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
     const [villageData, setVillageData] = useState<VillageData[]>([]);
     const [roleOptions, setRoleOptions] = useState<RoleData[]>([])
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`/users/${userId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.get(`/users/${userId}`, config)
+        .then((response) => {
             form.setFieldsValue(response.data)
             setUserData(response.data)
             setLoading(false)
@@ -78,11 +88,8 @@ function EditUser() {
         })
     }, [token, userId, form])
     useEffect(() => {
-        axios.get('/villages', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.get('/villages', config)
+        .then((response) => {
             const formattedData = response.data.map((item: any) => ({
                 value: item.id,
                 label: `${item.code} ${item.name}`
@@ -96,11 +103,8 @@ function EditUser() {
         })
     }, [token])
     useEffect(() => {
-        axios.get('/roles', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.get('/roles', config)
+        .then((response) => {
             const roleData = response.data as RoleData[];
             setRoleOptions(roleData);
             setLoading(false)
@@ -112,11 +116,8 @@ function EditUser() {
     }, [token])
 
     const onFinish = (values: any) => {
-        axios.patch(`/users/${userId}`, form.getFieldsValue(), {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.patch(`/users/${userId}`, form.getFieldsValue(), config)
+        .then((response) => {
             message.success('User Updated')
             navigate('/ListUser')
         }).catch((error) => {

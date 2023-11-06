@@ -132,8 +132,7 @@ function ListUser() {
               title="Apakah anda yakin untuk menghapus user ini ?"
               onConfirm={handleDelete}
               okText="Yes"
-              cancelText="No"
-            >
+              cancelText="No">
               <Button type='link' size='small'>
                 <DeleteOutlined style={{ color: 'red', marginLeft: 0 }} />
               </Button>

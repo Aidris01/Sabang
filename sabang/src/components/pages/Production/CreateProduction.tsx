@@ -41,12 +41,40 @@ function CreateProduction() {
             setLoading(false)
         })
     },[])
+    const onFinish = async (values: any) => {
+        try {
+            const productionType = values.productionType
+
+            let url = ''
+            if(productionType === 'Production') {
+                url = '/productions/production'
+            } 
+            else if (productionType === 'Temporary') {
+                url = '/productions/temporary'
+            }
+
+            axios.post(url, values, config)
+            .then((response) => {
+                message.success('Production Added')
+                console.log(response)
+                navigate('/Production')
+            }).catch((error) => {
+                console.error('Error Ocured: ',error)
+                message.error('Error Adding Production, Please check the console')
+            })
+        } catch (error) {
+            console.error('Error Ocured: ',error)
+            message.error('Error Ocured, Please check the console')
+        }
+    }
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Production</Typography.Title>
             <div className="main-container">
                 <Form
                     className='form-container'
+                    autoComplete='off'
+                    onFinish={onFinish}
                     hideRequiredMark
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}>

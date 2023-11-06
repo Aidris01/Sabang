@@ -24,16 +24,18 @@ function CreateUser() {
     const [loading, setLoading] = useState<Boolean>();
 
     const token = localStorage.getItem('token')
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
     const navigate = useNavigate()
     const listUser = () => {
         navigate("/ListUser")
     }
     useEffect(() => {
-        axios.get('/villages', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.get('/villages', config)
+        .then((response) => {
             const formattedData = response.data.map((item: any) => ({
                 value: item.id,
                 label: `${item.code} ${item.name}`
@@ -46,11 +48,8 @@ function CreateUser() {
         })
     }, [])
     useEffect(() => {
-        axios.get('/roles', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.get('/roles', config)
+        .then((response) => {
             const roleData = response.data as RoleData[];
             setRoleOptions(roleData);
             setLoading(false)
@@ -61,11 +60,7 @@ function CreateUser() {
     }, [])
     const handleFormSubmit = async (values: any) => {
         try {
-            const response = await axios.post('/users', values, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
+            const response = await axios.post('/users', values, config)
             console.log(response)
             message.success("User Added")
             navigate('/ListUser')
@@ -188,6 +183,9 @@ function CreateUser() {
                             </Button>
                         </Space>
                     </div>
+                </Form>
+                <Form>
+                    
                 </Form>
             </div>
         </div >

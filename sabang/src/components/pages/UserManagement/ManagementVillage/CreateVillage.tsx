@@ -8,8 +8,13 @@ import '../../../pages/style/style.css'
 function CreateVillage() {
     useEffect(() => {
         document.title = 'Sabang | Create Village'
-      }, [])
+    }, [])
     const token = localStorage.getItem('token')
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
     const navigate = useNavigate()
     const managementVillage = () => {
         navigate("/ManagementVillage")
@@ -17,11 +22,7 @@ function CreateVillage() {
 
     const handleFormSubmit = async (values: any) => {
         try {
-            const response = await axios.post('/villages', values, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
+            const response = await axios.post('/villages', values, config)
             console.log("Response Server: ", response.data)
             message.success("Village Added")
             navigate('/ManagementVillage')
@@ -40,7 +41,7 @@ function CreateVillage() {
                     labelCol={{ span: 4 }}
                     wrapperCol={{ span: 20 }}
                     hideRequiredMark
-                    style={{width: 900}}
+                    style={{ width: 900 }}
                     autoComplete='off'>
                     <Form.Item
                         label="Name"
