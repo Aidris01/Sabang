@@ -6,6 +6,7 @@ import axios from '../../../api/axios';
 import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 
 interface UserData {
+    id: number,
     name: string,
     nik: string,
     phone: string,
@@ -15,7 +16,7 @@ interface UserData {
     accName: string,
     accNumber: string,
     villageId: string,
-    roles: string[]
+    userRoles: any
 }
 function DetailUser() {
     useEffect(() => {
@@ -27,6 +28,7 @@ function DetailUser() {
     const [loading, setLoading] = useState(true)
     const [userData, setUserData] = useState<UserData>(
         {
+            id: 0,
             name: '',
             nik: '',
             phone: '',
@@ -36,7 +38,7 @@ function DetailUser() {
             accName: '',
             accNumber: '',
             villageId: '',
-            roles: []
+            userRoles: ''
         }
     )
     useEffect(() => {
@@ -76,7 +78,7 @@ function DetailUser() {
             <div className="desc-container">
                 <Spin spinning={loading}>
                     <Descriptions title='User Detail' layout='vertical' className='form-container'>
-                        <Descriptions.Item label='Name'>{userData.name}</Descriptions.Item>
+                        <Descriptions.Item label='Name'>{userData.id} - {userData.name}</Descriptions.Item>
                         <Descriptions.Item label='NIK'>{userData.nik}</Descriptions.Item>
                         <Descriptions.Item label='Email'>{userData.email}</Descriptions.Item>
                         <Descriptions.Item label='Phone'>{userData.phone}</Descriptions.Item>
@@ -85,7 +87,18 @@ function DetailUser() {
                         <Descriptions.Item label='Bank Name'>{userData.bankName}</Descriptions.Item>
                         <Descriptions.Item label='Acc Name'>{userData.accName}</Descriptions.Item>
                         <Descriptions.Item label='Acc Number'>{userData.accNumber}</Descriptions.Item>
-                        <Descriptions.Item label='Roles'>{userData.roles}</Descriptions.Item>
+                        <Descriptions.Item label='Roles'>
+                            {Array.isArray(userData.userRoles) ? (
+                                userData.userRoles.map((userRole, index) => (
+                                    <span key={index}>
+                                        {userRole.role.name}
+                                        {index < userData.userRoles.length - 1 ? ', ' : ''}
+                                    </span>
+                                ))
+                            ) : (
+                                <span>No Roles Data</span>
+                            )}
+                        </Descriptions.Item>
                     </Descriptions>
                 </Spin>
                 <div className="button-container">

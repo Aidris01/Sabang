@@ -86,7 +86,7 @@ function CreateUser() {
                                 label="Username"
                                 name="username"
                                 rules={[{ required: true, message: "Please input your username!" }]}>
-                                <Input />
+                                <Input placeholder='exp: johnDoe' />
                             </Form.Item>
                             <Form.Item
                                 label="Password"
@@ -100,13 +100,13 @@ function CreateUser() {
                                 label="NIK"
                                 name="nik"
                                 rules={[{ required: true, message: "Please input your NIK!" }]}>
-                                <Input />
+                                <Input placeholder='exp: 327702......' />
                             </Form.Item>
                             <Form.Item
                                 label="Phone"
                                 name="phone"
                                 rules={[{ required: true, message: "Please input your phone number!" }]}>
-                                <Input />
+                                <Input placeholder='exp: 08.......' />
                             </Form.Item>
                         </Col>
                         <Col span={12}>
@@ -114,13 +114,13 @@ function CreateUser() {
                                 label="Email"
                                 name="email"
                                 rules={[{ required: true, message: "Please input your email!" }]}>
-                                <Input />
+                                <Input placeholder='exp: Your@email.com' />
                             </Form.Item>
                             <Form.Item
                                 label="Name"
                                 name="name"
                                 rules={[{ required: true, message: "Please input your name!" }]}>
-                                <Input />
+                                <Input placeholder='exp: John Doe' />
                             </Form.Item>
                         </Col>
                         <Col span={12}>
@@ -128,13 +128,13 @@ function CreateUser() {
                                 label="Bank Name"
                                 name="bankName"
                                 rules={[{ required: true, message: "Please input your bank name!" }]}>
-                                <Input />
+                                <Input placeholder='exp: Mandiri, BNI' />
                             </Form.Item>
                             <Form.Item
                                 label="Acc Name"
                                 name="accName"
                                 rules={[{ required: true, message: "Please input your Acc Name!" }]}>
-                                <Input />
+                                <Input placeholder='exp: John Doe' />
                             </Form.Item>
                         </Col>
                         <Col span={12}>
@@ -154,7 +154,8 @@ function CreateUser() {
                                 label="Address"
                                 name="address"
                                 rules={[{ required: true, message: "Please input your address!" }]}>
-                                <TextArea rows={5} autoSize={{ minRows: 3, maxRows: 6 }} />
+                                <TextArea rows={5} autoSize={{ minRows: 3, maxRows: 6 }} 
+                                placeholder='exp: Jl......'/>
                             </Form.Item>
                         </Col>
                         <Col span={12}>
@@ -162,7 +163,7 @@ function CreateUser() {
                                 label="Acc Number"
                                 name="accNumber"
                                 rules={[{ required: true, message: "Please input your Acc Number!" }]}>
-                                <Input />
+                                <Input placeholder='exp: 008......' />
                             </Form.Item>
                             <Form.Item
                                 label='Roles'

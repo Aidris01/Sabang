@@ -17,13 +17,11 @@ interface UserData {
     accName: string,
     accNumber: string,
     villageId: string,
+    userRoles: any[]
 }
 interface VillageData {
     name: string,
     code: string
-}
-interface RoleInput {
-    role: string
 }
 interface RoleData {
     name: string,
@@ -42,9 +40,7 @@ function EditUser() {
         address: form.getFieldValue('address') || '',
         email: form.getFieldValue('email') || '',
         villageId: form.getFieldValue('villageId') || '',
-    }
-    const initialRole = {
-        roles: form.getFieldValue('role') || ''
+        userRoles: form.getFieldValue('userRoles') || []
     }
     const navigate = useNavigate()
     const { userId } = useParams<Record<string, string>>();
@@ -59,13 +55,9 @@ function EditUser() {
             accName: '',
             accNumber: '',
             villageId: '',
+            userRoles: []
         }
     );
-    const [roles, setRoles] = useState<RoleInput>(
-        {
-            role: ''
-        }
-    )
     const token = localStorage.getItem('token')
     const config = {
         headers: {
@@ -78,57 +70,62 @@ function EditUser() {
 
     useEffect(() => {
         axios.get(`/users/${userId}`, config)
-        .then((response) => {
-            form.setFieldsValue(response.data)
-            setUserData(response.data)
-            setLoading(false)
-        }).catch((error) => {
-            message.error('Error Fetching Data, Please check the console', error)
-            setLoading(false)
-        })
+            .then((response) => {
+                const userRolesData = response.data.userRoles.map((role: { roleId: any; }) => role.roleId);
+                const combinedData = {
+                    ...response.data,
+                    userRoles: userRolesData
+                }
+                console.log(combinedData)
+                form.setFieldsValue(combinedData)
+                setUserData(response.data)
+                setLoading(false)
+            }).catch((error) => {
+                message.error('Error Fetching Data, Please check the console', error)
+                setLoading(false)
+            })
     }, [token, userId, form])
     useEffect(() => {
         axios.get('/villages', config)
-        .then((response) => {
-            const formattedData = response.data.map((item: any) => ({
-                value: item.id,
-                label: `${item.code} ${item.name}`
-            }));
-            setVillageData(formattedData)
-            setLoading(false)
-        }).catch((error) => {
-            message.error('Error Fetching Village, Please check the console')
-            console.log("Error Fetching Vilage: ", error)
-            setLoading(false)
-        })
+            .then((response) => {
+                const formattedData = response.data.map((item: any) => ({
+                    value: item.id,
+                    label: `${item.code} ${item.name}`
+                }));
+                setVillageData(formattedData)
+                setLoading(false)
+            }).catch((error) => {
+                message.error('Error Fetching Village, Please check the console')
+                console.log("Error Fetching Vilage: ", error)
+                setLoading(false)
+            })
     }, [token])
     useEffect(() => {
         axios.get('/roles', config)
-        .then((response) => {
-            const roleData = response.data as RoleData[];
-            setRoleOptions(roleData);
-            setLoading(false)
-        }).catch((error) => {
-            message.error('Error Fetching Roles, Please check the console')
-            console.log("Error Fetching Roles: ", error)
-            setLoading(false)
-        })
+            .then((response) => {
+                const roleData = response.data as RoleData[];
+                setRoleOptions(roleData);
+                setLoading(false)
+            }).catch((error) => {
+                message.error('Error Fetching Roles, Please check the console')
+                console.log("Error Fetching Roles: ", error)
+                setLoading(false)
+            })
     }, [token])
 
     const onFinish = (values: any) => {
         axios.patch(`/users/${userId}`, form.getFieldsValue(), config)
-        .then((response) => {
-            message.success('User Updated')
-            navigate('/ListUser')
-        }).catch((error) => {
-            message.error("Error Ocured, Please check the console")
-            console.error('Error Ocured: ', error)
-        })
+            .then((response) => {
+                message.success('User Updated')
+                navigate('/ListUser')
+            }).catch((error) => {
+                message.error("Error Ocured, Please check the console")
+                console.error('Error Ocured: ', error)
+            })
     }
     const handleCancel = () => {
         navigate('/ListUser')
     }
-
     return (
         <div className='content'>
             <Typography.Title level={4}>Edit User - {userId}</Typography.Title>
@@ -150,13 +147,13 @@ function EditUser() {
                                     name="name"
                                     label="Name"
                                     rules={[{ required: true, message: "Please enter your name!" }]}>
-                                    <Input />
+                                    <Input placeholder='exp: John Doe' />
                                 </Form.Item>
                                 <Form.Item
                                     name='nik'
                                     label='NIK'
                                     rules={[{ required: true, message: 'Please enter your nik!' }]}>
-                                    <Input />
+                                    <Input placeholder='exp: 327702.....' />
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
@@ -164,7 +161,7 @@ function EditUser() {
                                     name='phone'
                                     label='Phone'
                                     rules={[{ required: true, message: 'Please enter your phone number!' }]}>
-                                    <Input />
+                                    <Input placeholder='exp: 082.....' />
                                 </Form.Item>
                                 <Form.Item
                                     name='villageId'
@@ -183,7 +180,7 @@ function EditUser() {
                                     name='email'
                                     label='Email'
                                     rules={[{ required: true, message: 'Please enter your email!' }]}>
-                                    <Input />
+                                    <Input placeholder='exp: Your@email.com' />
                                 </Form.Item>
                                 <Form.Item
                                     name='userRoles'
@@ -197,7 +194,8 @@ function EditUser() {
                                     name='address'
                                     label='Address'
                                     rules={[{ required: true, message: 'Please enter your address!' }]}>
-                                    <TextArea rows={5} autoSize={{ minRows: 4, maxRows: 7 }} />
+                                    <TextArea rows={5} autoSize={{ minRows: 4, maxRows: 7 }}
+                                        placeholder='exp: Jl.ABC' />
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
@@ -205,19 +203,19 @@ function EditUser() {
                                     name='bankName'
                                     label='Bank Name'
                                     rules={[{ required: true, message: 'Please input the bank name!' }]}>
-                                    <Input />
+                                    <Input placeholder='exp: Mandiri, BNI' />
                                 </Form.Item>
                                 <Form.Item
                                     name='accName'
                                     label='Acc Name'
                                     rules={[{ required: true, message: 'Please input your account name!' }]}>
-                                    <Input />
+                                    <Input placeholder='exp: John Doe' />
                                 </Form.Item>
                                 <Form.Item
                                     name='accNumber'
                                     label='Acc Number'
                                     rules={[{ required: true, message: 'Please input your account number!' }]}>
-                                    <Input />
+                                    <Input placeholder='exp: 008......' />
                                 </Form.Item>
                             </Col>
                         </Row>
