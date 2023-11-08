@@ -1,7 +1,8 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined } from '@ant-design/icons'
-import { Button, Table, Tabs, Typography } from 'antd'
+import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined, SettingOutlined } from '@ant-design/icons'
+import { Button, Checkbox, message, Space, Table, Tabs, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../api/axios'
 import '../../pages/style/style.css'
 
 function Production() {
@@ -12,12 +13,42 @@ function Production() {
   const createLabel = () => {
     navigate('/Production/CreateProduction')
   }
-  const Create = <Button
-    style={{ marginRight: 10 }}
-    onClick={createLabel}
-    icon={<PlusOutlined />}>
-    Create Production
-  </Button>
+  const generateTotal = () => {
+    navigate('/Production/GenerateTotal')
+  }
+  const Create =
+    <Space>
+      <Button
+        style={{ marginRight: 10, width: '100%' }}
+        onClick={createLabel}
+        icon={<PlusOutlined />}>
+        Create Production
+      </Button>
+      <Button
+        style={{ marginRight: 10 }}
+        onClick={generateTotal}
+        icon={<SettingOutlined />}>
+        Generate Total
+      </Button>
+    </Space>
+
+
+  const token = localStorage.getItem('token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  useEffect(() => {
+    axios.get('/productions', config)
+      .then((response) => {
+        console.log(response.data)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error OCured, Please check the console')
+      })
+  }, [])
 
   const [data, setData] = useState([
     {
@@ -80,7 +111,16 @@ function Production() {
           <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
         </>
       },
-      width: 250
+      width: 350
+    },
+    {
+      key: 'checkbox',
+      title: '',
+      render: () => {
+        return <>
+          <Checkbox></Checkbox>
+        </>
+      }
     }
   ]
   const [dataTempo, setDataTempo] = useState([
@@ -458,8 +498,7 @@ function Production() {
             children: <Table
               size='small'
               columns={columns}
-              dataSource={data}
-            />
+              dataSource={data} />
           },
           {
             key: '2',
@@ -467,8 +506,7 @@ function Production() {
             children: <Table
               size='small'
               columns={columnsTempo}
-              dataSource={dataTempo}
-            />
+              dataSource={dataTempo} />
           },
           {
             key: '3',
@@ -476,8 +514,7 @@ function Production() {
             children: <Table
               size='small'
               columns={columnsLiquid}
-              dataSource={dataLiquid}
-            />
+              dataSource={dataLiquid} />
           },
           {
             key: '4',
@@ -485,8 +522,7 @@ function Production() {
             children: <Table
               size='small'
               columns={columnsToday}
-              dataSource={dataToday}
-            />
+              dataSource={dataToday} />
           },
           {
             key: '5',
@@ -494,8 +530,7 @@ function Production() {
             children: <Table
               size='small'
               columns={columnsWeek}
-              dataSource={dataWeek}
-            />
+              dataSource={dataWeek} />
           },
           {
             key: '6',
@@ -503,8 +538,7 @@ function Production() {
             children: <Table
               size='small'
               columns={columnsMonth}
-              dataSource={dataMonth}
-            />
+              dataSource={dataMonth} />
           }
         ]}
         />

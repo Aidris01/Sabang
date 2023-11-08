@@ -104,15 +104,17 @@ function Purchase() {
       key: 'statusChecked',
       title: 'Status Checked',
       dataIndex: 'statusChecked',
-      width: 300,
-      render: (checkedAt: Date) => checkedAt == null ? 'Not Checked' : 'Checked'
+      width: 100,
+      render: (checkedAt: Date) => checkedAt == null ? <Button type='link' style={{color: 'black'}}>Not Checked</Button>
+       : 'Checked'
     },
     {
       key: 'statusUpdated',
       title: 'Status Updated',
       dataIndex: 'statusUpdated',
-      width: 300,
-      render: (updatedAt: Date) => updatedAt == null ? 'Not Updated' : 'Updated'
+      width: 100,
+      render: (updatedAt: Date) => updatedAt == null ? <Button type='link' style={{color: 'black'}}>Not Updated</Button>
+       : 'Updated'
     },
     {
       key: 'timestamp',
@@ -182,7 +184,7 @@ function Purchase() {
           </Popconfirm>
         </>
       },
-      width: 500
+      width: 900
     }
   ]
   const [dataWeek, setDataWeek] = useState([

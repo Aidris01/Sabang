@@ -100,8 +100,7 @@ function CreatePupuk() {
                                     value: 'Kohe Sapi',
                                     label: 'Kohe Sapi'
                                   }
-                                ]}
-                              />
+                                ]} />
                             </Form.Item>
                           </Col>
                           <Col span={12}>

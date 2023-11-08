@@ -78,8 +78,7 @@ function Checklist() {
             title="Apakah anda yakin untuk menghapus checklist ini ?"
             onConfirm={handleDelete}
             okText="Yes"
-            cancelText="No"
-          >
+            cancelText="No">
             <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
           </Popconfirm>
         </>
@@ -97,8 +96,7 @@ function Checklist() {
           <Table
             size='small'
             columns={columns}
-            dataSource={dataSource}
-          />
+            dataSource={dataSource}/>
         </Spin>
       </div>
     </div>

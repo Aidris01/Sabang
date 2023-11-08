@@ -55,8 +55,7 @@ function CatatanPetani() {
           <Table 
           size='small'
           columns={columns}
-          dataSource={data}
-          />
+          dataSource={data}/>
         </div>
       </div>
     </div>

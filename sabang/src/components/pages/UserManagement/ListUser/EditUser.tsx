@@ -153,7 +153,7 @@ function EditUser() {
                                     name='nik'
                                     label='NIK'
                                     rules={[{ required: true, message: 'Please enter your nik!' }]}>
-                                    <Input placeholder='exp: 327702.....' />
+                                    <Input placeholder='exp: 3277020101010032' />
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
@@ -161,7 +161,7 @@ function EditUser() {
                                     name='phone'
                                     label='Phone'
                                     rules={[{ required: true, message: 'Please enter your phone number!' }]}>
-                                    <Input placeholder='exp: 082.....' />
+                                    <Input placeholder='exp: 082123456789' />
                                 </Form.Item>
                                 <Form.Item
                                     name='villageId'
@@ -195,7 +195,7 @@ function EditUser() {
                                     label='Address'
                                     rules={[{ required: true, message: 'Please enter your address!' }]}>
                                     <TextArea rows={5} autoSize={{ minRows: 4, maxRows: 7 }}
-                                        placeholder='exp: Jl.ABC' />
+                                        placeholder='exp: Jl.ABC no.3' />
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
@@ -215,7 +215,7 @@ function EditUser() {
                                     name='accNumber'
                                     label='Acc Number'
                                     rules={[{ required: true, message: 'Please input your account number!' }]}>
-                                    <Input placeholder='exp: 008......' />
+                                    <Input placeholder='exp: 0085678901' />
                                 </Form.Item>
                             </Col>
                         </Row>

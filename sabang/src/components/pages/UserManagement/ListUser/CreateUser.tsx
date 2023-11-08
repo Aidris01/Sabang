@@ -100,13 +100,13 @@ function CreateUser() {
                                 label="NIK"
                                 name="nik"
                                 rules={[{ required: true, message: "Please input your NIK!" }]}>
-                                <Input placeholder='exp: 327702......' />
+                                <Input placeholder='exp: 3277020101010032' />
                             </Form.Item>
                             <Form.Item
                                 label="Phone"
                                 name="phone"
                                 rules={[{ required: true, message: "Please input your phone number!" }]}>
-                                <Input placeholder='exp: 08.......' />
+                                <Input placeholder='exp: 082123456789' />
                             </Form.Item>
                         </Col>
                         <Col span={12}>
@@ -155,7 +155,7 @@ function CreateUser() {
                                 name="address"
                                 rules={[{ required: true, message: "Please input your address!" }]}>
                                 <TextArea rows={5} autoSize={{ minRows: 3, maxRows: 6 }} 
-                                placeholder='exp: Jl......'/>
+                                placeholder='exp: Jl.ABC no.3'/>
                             </Form.Item>
                         </Col>
                         <Col span={12}>
@@ -163,7 +163,7 @@ function CreateUser() {
                                 label="Acc Number"
                                 name="accNumber"
                                 rules={[{ required: true, message: "Please input your Acc Number!" }]}>
-                                <Input placeholder='exp: 008......' />
+                                <Input placeholder='exp: 0085678901' />
                             </Form.Item>
                             <Form.Item
                                 label='Roles'

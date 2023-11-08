@@ -7,7 +7,7 @@ import '../../pages/style/style.css'
 function CreatePetani() {
     useEffect(() => {
         document.title = 'Sabang | Create Petani'
-      }, [])
+    }, [])
     const navigate = useNavigate()
     const back = () => {
         navigate('/CatatanPetani')
@@ -104,8 +104,7 @@ function CreatePetani() {
                                                                         value: 'Pemotongan lengan aren',
                                                                         label: 'Pemotongan lengan aren'
                                                                     }
-                                                                ]}
-                                                            />
+                                                                ]}/>
                                                         </Form.Item>
                                                     </Col>
                                                     <Col span={12}>
@@ -145,8 +144,7 @@ function CreatePetani() {
                                                                         value: 'Pisau Sadap',
                                                                         label: 'Pisau Sadap'
                                                                     }
-                                                                ]}
-                                                            />
+                                                                ]}/>
                                                         </Form.Item>
                                                     </Col>
                                                     <Col span={12}>
@@ -168,8 +166,7 @@ function CreatePetani() {
                                                                         value: 'Belum',
                                                                         label: 'Belum'
                                                                     }
-                                                                ]}
-                                                            />
+                                                                ]}/>
                                                         </Form.Item>
                                                     </Col>
                                                 </Row>
