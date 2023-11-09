@@ -1,13 +1,19 @@
 import { EyeOutlined } from '@ant-design/icons'
 import { Button, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import '../../pages/style/style.css'
+
+interface Villages {
+  id: number,
+  code: string
+}
 
 function Village() {
   useEffect(() => {
     document.title = 'Sabang | Village'
   }, [])
-  const [ data, setData ] = useState([
+  const [data, setData] = useState([
     {
       id: 1,
       village: 'AMCT',
@@ -23,7 +29,12 @@ function Village() {
     {
       key: '2',
       title: 'Detail',
-      render: () => <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>,
+      render: (record: Villages) =>
+        <Link to={`/Village/DetailVillage/${record.id}`}>
+          <Button type='link' size='small'
+          ><EyeOutlined style={{ color: 'black' }} />
+          </Button>
+        </Link>,
       width: 30
     },
     {
@@ -43,10 +54,10 @@ function Village() {
     <div className='content'>
       <Typography.Title level={4}>Village</Typography.Title>
       <div className='main-container'>
-        <Table 
-        size='small'
-        columns={columns}
-        dataSource={data}/>
+        <Table
+          size='small'
+          columns={columns}
+          dataSource={data} />
       </div>
     </div>
   )

@@ -55,6 +55,7 @@ import EditWarehouse from "../pages/WarehouseMan/EditWarehouse";
 import DetailPrice from "../pages/PaymentManagement/PriceList/DetailPrice";
 import EditPrice from "../pages/PaymentManagement/PriceList/EditPrice";
 import GenerateTotal from "../pages/Production/GenerateTotal";
+import DetailVillage from "../pages/Village/DetailVillage";
 
 function AppRoute() {
     return (
@@ -116,6 +117,7 @@ function AppRoute() {
                 <Route path="/PriceList/DetailPrice/:priceId" element={<WebLayout>{<DetailPrice />}</WebLayout>} />
                 <Route path="/PriceList/EditPrice/:priceId" element={<WebLayout>{<EditPrice />}</WebLayout>} />
                 <Route path="/Production/GenerateTotal" element={<WebLayout>{<GenerateTotal />}</WebLayout>} />
+                <Route path="/Village/DetailVillage/:code" element={<WebLayout>{<DetailVillage />}</WebLayout>} />
             </Route>
         </Routes>
     )

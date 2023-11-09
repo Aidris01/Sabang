@@ -3,22 +3,16 @@ import { Button, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import '../../pages/style/style.css'
 
+interface Payment {
+  id: number,
+  penyadapId: number,
+}
+
 function StatusPayment() {
   useEffect(() => {
     document.title = 'Sabang | Status Payment'
   }, [])
-  const [dataSource, setDataSource] = useState([
-    {
-      id: 1,
-      penyadap: 'amkm.14',
-      status: 'Pending'
-    },
-    {
-      id: 2,
-      penyadap: 'amkm.14',
-      status: "Pending"
-    }
-  ])
+  const [dataSource, setDataSource] = useState([])
   const columns = [
     {
       key: '1',
