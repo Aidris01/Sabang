@@ -107,7 +107,7 @@ function AppRoute() {
                 <Route path="/Roles/EditRole/:roleId" element={<WebLayout>{<EditRole />}</WebLayout>} />
                 <Route path="/Purchase/EditPurchase/:purchaseId" element={<WebLayout>{<EditPurchase />}</WebLayout>} />
                 <Route path="/Purchase/DetailPurchase/:purchaseId" element={<WebLayout>{<DetailPurchase />}</WebLayout>} />
-                <Route path="/StatusPayment/DetailPayment" element={<WebLayout>{<DetailPayment />}</WebLayout>} />
+                <Route path="/StatusPayment/DetailPayment/:paymentId" element={<WebLayout>{<DetailPayment />}</WebLayout>} />
                 <Route path="/FactoryManagement/DetailFactory/:factoryId" element={<WebLayout>{<DetailFactory />}</WebLayout>} />
                 <Route path="/FactoryManagement/EditFactory/:factoryId" element={<WebLayout>{<EditFactory />}</WebLayout>} />
                 <Route path="/Checklist/DetailChecklist/:checklistId" element={<WebLayout>{<DetailChecklist />}</WebLayout>} />

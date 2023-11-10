@@ -19,7 +19,7 @@ interface Purchases {
   updatedAt: Date,
   checkedAt: Date,
   auditedAt: Date,
-  penyadap: any
+  penyadap: any,
 }
 
 function formatDate(timestamp: Date) {
@@ -57,7 +57,12 @@ function Purchase() {
       .then((response) => {
         const purchase = response.data.data
         setTotalItems(response.data.totalItems)
-        setData(response.data.data)
+        const updateData = purchase.map((purchase) => {
+          const penyadap = purchase.penyadap.name
+          console.log('Nama Penyadap: ',penyadap);
+          return purchase
+        })
+        setData(updateData)
         setIsLoading(false)
       }).catch((error) => {
         setIsLoading(false)
@@ -119,7 +124,7 @@ function Purchase() {
         message.error('Error Checking, Please check the console')
       })
   }
-
+  
   const [data, setData] = useState<Purchases[]>([])
   const columns = [
     {
@@ -142,7 +147,7 @@ function Purchase() {
             Not Checked
           </Button>
         </Popconfirm>
-        : 'Checked'
+        : <div style={{textAlign: 'center'}}>Checked</div>
     },
     {
       key: 'statusUpdated',
@@ -159,7 +164,7 @@ function Purchase() {
             Not Updated
           </Button>
         </Popconfirm>
-        : 'Updated'
+        : <div style={{textAlign: 'center'}}>Updated</div>
     },
     {
       key: 'timestamp',
@@ -169,10 +174,11 @@ function Purchase() {
       render: (timestamp: Date) => formatDate(new Date(timestamp))
     },
     {
-      key: 'penyadapId',
-      title: 'Tapper',
-      dataIndex: 'penyadapId',
-      width: 100
+      key: 'penyadap',
+      title: 'Penyadap',
+      dataIndex: 'penyadap',
+      width: 100,
+      render: (penyadap: any) => penyadap.name
     },
     {
       key: 'ph',
@@ -236,7 +242,7 @@ function Purchase() {
           </Popconfirm>
         </>
       },
-      width: 900
+      width: 1000
     }
   ]
   const [dataWeek, setDataWeek] = useState([

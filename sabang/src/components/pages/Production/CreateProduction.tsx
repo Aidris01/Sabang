@@ -13,7 +13,7 @@ interface Factory {
 function CreateProduction() {
     useEffect(() => {
         document.title = 'Sabang | Create Production'
-      }, [])
+    }, [])
     const navigate = useNavigate()
     const Production = () => {
         navigate('/Production')
@@ -28,42 +28,42 @@ function CreateProduction() {
     }
     useEffect(() => {
         axios.get('/factories', config)
-        .then((response) => {
-            const format = response.data.map((item: any) => ({
-                value: item.id,
-                label: item.name
-            }))
-            setGetFactory(format)
-            setLoading(false)
-        }).catch((error) => {
-            console.error('Error Ocured: ',error)
-            message.error('Error Ocured, Please check the console')
-            setLoading(false)
-        })
-    },[])
+            .then((response) => {
+                const format = response.data.map((item: any) => ({
+                    value: item.id,
+                    label: item.name
+                }))
+                setGetFactory(format)
+                setLoading(false)
+            }).catch((error) => {
+                console.error('Error Ocured: ', error)
+                message.error('Error Ocured, Please check the console')
+                setLoading(false)
+            })
+    }, [])
     const onFinish = async (values: any) => {
         try {
             const productionType = values.productionType
 
             let url = ''
-            if(productionType === 'Production') {
+            if (productionType === 'Production') {
                 url = '/productions/production'
-            } 
+            }
             else if (productionType === 'Temporary') {
                 url = '/productions/temporary'
             }
 
             axios.post(url, values, config)
-            .then((response) => {
-                message.success('Production Added')
-                console.log(response)
-                navigate('/Production')
-            }).catch((error) => {
-                console.error('Error Ocured: ',error)
-                message.error('Error Adding Production, Please check the console')
-            })
+                .then((response) => {
+                    message.success('Production Added')
+                    console.log(response)
+                    navigate('/Production')
+                }).catch((error) => {
+                    console.error('Error Ocured: ', error)
+                    message.error('Error Adding Production, Please check the console')
+                })
         } catch (error) {
-            console.error('Error Ocured: ',error)
+            console.error('Error Ocured: ', error)
             message.error('Error Ocured, Please check the console')
         }
     }
@@ -77,70 +77,45 @@ function CreateProduction() {
                     onFinish={onFinish}
                     hideRequiredMark
                     labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}>
-                    <Row gutter={16}>
-                        <Col span={12}>
-                            <Form.Item
-                                label="Factory Name"
-                                name="factory"
-                                rules={[{ required: true, message: 'Please choose the factory name!' }]}>
-                                <Select
-                                    placeholder='Select the factory'
-                                    allowClear
-                                    placement='bottomLeft'
-                                    listHeight={200}
-                                    options={getFactory}/>
-                            </Form.Item>
-                            <Form.Item
-                                label='Type Weight'
-                                name='weight'
-                                rules={[{ required: true, message: 'Please choose the weight type!' }]}>
-                                <Select
-                                    placeholder='Select the weight type'
-                                    allowClear
-                                    placement='bottomLeft'
-                                    listHeight={200}
-                                    options={[
-                                        {
-                                            value: 'Kilogram',
-                                            label: 'Kilogram'
-                                        },
-                                        {
-                                            value: 'Gram',
-                                            label: 'Gram'
-                                        }
-                                    ]}/>
-                            </Form.Item>
-                        </Col>
-                        <Col span={12}>
-                            <Form.Item
-                                label='Production Type'
-                                name='productionType'
-                                rules={[{ required: true, message: 'Please choose the production type!' }]}>
-                                <Select
-                                    placeholder='Select the production type'
-                                    allowClear
-                                    placement='bottomLeft'
-                                    listHeight={200}
-                                    options={[
-                                        {
-                                            value: 'Production',
-                                            label: 'Production'
-                                        },
-                                        {
-                                            value: 'Temporary',
-                                            label: 'Temporary'
-                                        }
-                                    ]}/>
-                            </Form.Item>
-                            <Form.Item
-                                label='Total'
-                                name='Total'
-                                rules={[{ required: true, message: 'Please enter the total!' }]}>
-                                <Input />
-                            </Form.Item>
-                        </Col>
-                    </Row>
+                    wrapperCol={{ span: 16 }}
+                    style={{width: 850}}>
+                    <Form.Item
+                        label="Factory Name"
+                        name="factory"
+                        rules={[{ required: true, message: 'Please choose the factory name!' }]}>
+                        <Select
+                            placeholder='Select the factory'
+                            allowClear
+                            placement='bottomLeft'
+                            listHeight={200}
+                            options={getFactory} />
+                    </Form.Item>
+                    <Form.Item
+                        label='Production Type'
+                        name='productionType'
+                        rules={[{ required: true, message: 'Please choose the production type!' }]}>
+                        <Select
+                            placeholder='Select the production type'
+                            allowClear
+                            placement='bottomLeft'
+                            listHeight={200}
+                            options={[
+                                {
+                                    value: 'Production',
+                                    label: 'Production'
+                                },
+                                {
+                                    value: 'Temporary',
+                                    label: 'Temporary'
+                                }
+                            ]} />
+                    </Form.Item>
+                    <Form.Item
+                        label='Total(Kg)'
+                        name='Total'
+                        rules={[{ required: true, message: 'Please enter the total!' }]}>
+                        <Input />
+                    </Form.Item>
                     <div className="button-container">
                         <Space size={10}>
                             <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>

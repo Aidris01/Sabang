@@ -48,11 +48,8 @@ function DetailPurchase() {
         }
     }
     useEffect(() => {
-        axios.get(`/purchases/${purchaseId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => {
+        axios.get(`/purchases/${purchaseId}`, config)
+        .then((response) => {
             setPurchaseData(response.data)
             setLoading(false)
         }).catch((error) => {

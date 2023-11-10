@@ -97,7 +97,7 @@ function EditPurchase() {
             sugarLevel,
             amount
         }
-        axios.patch(`/purchases/${purchaseId}`, form.getFieldsValue(), config)
+        axios.patch(`/purchases/${purchaseId}`, updatedPurchase, config)
         .then((response) => {
             message.success('Puchase Updated')
             navigate('/Purchase')
