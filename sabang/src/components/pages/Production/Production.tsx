@@ -5,6 +5,22 @@ import { useNavigate } from 'react-router-dom'
 import axios from '../../api/axios'
 import '../../pages/style/style.css'
 
+interface Production {
+  id: number,
+  creatorName: string,
+  factoryName: string,
+  barcode: string,
+  kilogram: number,
+  gram: number,
+  createdAt: Date
+}
+
+function formatDate(createdAt: Date) {
+  const year = createdAt.getFullYear();
+  const month = String(createdAt.getMonth() + 1).padStart(2, '0'); // Tambah 1 karena bulan dimulai dari 0
+  const day = String(createdAt.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
 function Production() {
   useEffect(() => {
     document.title = 'Sabang | Production'
@@ -32,7 +48,6 @@ function Production() {
       </Button>
     </Space>
 
-
   const token = localStorage.getItem('token')
   const config = {
     headers: {
@@ -43,62 +58,53 @@ function Production() {
   useEffect(() => {
     axios.get('/productions', config)
       .then((response) => {
-        console.log(response.data)
+        setData(response.data)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error OCured, Please check the console')
       })
   }, [])
 
-  const [data, setData] = useState([
-    {
-      id: 1,
-      operator: 'Santi Prasinta',
-      factory: 'Mandalasari',
-      barcode: '0000008312',
-      kilo: 11.5,
-      gram: 11500,
-      createDate: '2020-08-20'
-    }
-  ])
+  const [data, setData] = useState<Production[]>([])
   const columns = [
     {
-      key: '1',
+      key: 'id',
       title: 'ID',
       dataIndex: 'id'
     },
     {
-      key: '2',
+      key: 'creator',
       title: 'Operator',
-      dataIndex: 'operator',
+      dataIndex: 'creatorName',
       width: 200
     },
     {
-      key: '3',
+      key: 'factory',
       title: 'Factory',
-      dataIndex: 'factory',
+      dataIndex: 'factoryName',
       width: 200
     },
     {
-      key: '4',
+      key: 'barcode',
       title: 'Barcode',
       dataIndex: 'barcode',
       width: 200
     },
     {
-      key: '5',
+      key: 'kilo',
       title: 'In Kilogram',
-      dataIndex: 'kilo'
+      dataIndex: 'kilogram'
     },
     {
-      key: '6',
+      key: 'gram',
       title: 'In Gram',
       dataIndex: 'gram'
     },
     {
-      key: '7',
+      key: 'createDate',
       title: 'Create Date',
-      dataIndex: 'createDate'
+      dataIndex: 'createdAt',
+      render: (createdAt: Date) => formatDate(new Date(createdAt))
     },
     {
       key: '8',
@@ -115,7 +121,7 @@ function Production() {
     },
     {
       key: 'checkbox',
-      title: '',
+      title: 'Status',
       render: () => {
         return <>
           <Checkbox></Checkbox>
@@ -540,8 +546,7 @@ function Production() {
               columns={columnsMonth}
               dataSource={dataMonth} />
           }
-        ]}
-        />
+        ]}/>
       </div>
     </div>
   )

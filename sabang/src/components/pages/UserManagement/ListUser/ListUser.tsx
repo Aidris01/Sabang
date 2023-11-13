@@ -80,13 +80,13 @@ function ListUser() {
             setIsLoading(false)
           }).catch((villageError) => {
             setIsLoading(false)
-            console.error('Error Fetching Village Data: ', villageError)
+            console.error('Error Ocured: ', villageError)
             message.error('Error Fetching Village Data')
           });
       }).catch((error) => {
         setIsLoading(false)
-        console.error('Error fetching data:', error)
-        message.error('Error Ocured, Please check the console')
+        console.error('Error Ocured:', error)
+        message.error('Error Fetching Users, Please check the console')
       });
   }
   const columns = [

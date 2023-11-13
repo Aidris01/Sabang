@@ -1,4 +1,4 @@
-import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
+import { CloseOutlined, ConsoleSqlOutlined, SaveOutlined } from '@ant-design/icons'
 import { Button, Col, Form, Input, message, Row, Select, Space, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -42,18 +42,13 @@ function CreateProduction() {
             })
     }, [])
     const onFinish = async (values: any) => {
+        const weight = parseFloat(values.weight)
+        const updatedData = {
+            ...values,
+            weight
+        }
         try {
-            const productionType = values.productionType
-
-            let url = ''
-            if (productionType === 'Production') {
-                url = '/productions/production'
-            }
-            else if (productionType === 'Temporary') {
-                url = '/productions/temporary'
-            }
-
-            axios.post(url, values, config)
+            axios.post('/productions', updatedData, config)
                 .then((response) => {
                     message.success('Production Added')
                     console.log(response)
@@ -81,7 +76,7 @@ function CreateProduction() {
                     style={{width: 850}}>
                     <Form.Item
                         label="Factory Name"
-                        name="factory"
+                        name="factoryId"
                         rules={[{ required: true, message: 'Please choose the factory name!' }]}>
                         <Select
                             placeholder='Select the factory'
@@ -92,7 +87,7 @@ function CreateProduction() {
                     </Form.Item>
                     <Form.Item
                         label='Production Type'
-                        name='productionType'
+                        name='type'
                         rules={[{ required: true, message: 'Please choose the production type!' }]}>
                         <Select
                             placeholder='Select the production type'
@@ -101,20 +96,20 @@ function CreateProduction() {
                             listHeight={200}
                             options={[
                                 {
-                                    value: 'Production',
+                                    value: 'production',
                                     label: 'Production'
                                 },
                                 {
-                                    value: 'Temporary',
+                                    value: 'temporary',
                                     label: 'Temporary'
                                 }
                             ]} />
                     </Form.Item>
                     <Form.Item
                         label='Total(Kg)'
-                        name='Total'
+                        name='weight'
                         rules={[{ required: true, message: 'Please enter the total!' }]}>
-                        <Input />
+                        <Input type='number' />
                     </Form.Item>
                     <div className="button-container">
                         <Space size={10}>
