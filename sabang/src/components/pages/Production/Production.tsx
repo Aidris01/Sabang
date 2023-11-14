@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined, SettingOutlined } from '@ant-design/icons'
-import { Button, Checkbox, message, Space, Table, Tabs, Typography } from 'antd'
+import { Button, Checkbox, message, Popconfirm, Space, Spin, Table, Tabs, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from '../../api/axios'
 import '../../pages/style/style.css'
 
@@ -54,17 +54,28 @@ function Production() {
       Authorization: `Bearer ${token}`
     }
   }
-
   useEffect(() => {
     axios.get('/productions', config)
       .then((response) => {
+        setLoading(false)
         setData(response.data)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error OCured, Please check the console')
       })
   }, [])
-
+  const deleteProduction = (productionId: number) => {
+    axios.delete(`/productions/${productionId}`, config)
+      .then((response) => {
+        message.success('Production Deleted')
+        console.log(response)
+        setData((prevData) => prevData.filter((productions) => productions.id !== productionId))
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Deleting Production, Please check the console')
+      })
+  }
+  const [loading, setLoading] = useState(true)
   const [data, setData] = useState<Production[]>([])
   const columns = [
     {
@@ -109,12 +120,27 @@ function Production() {
     {
       key: '8',
       title: 'Action',
-      render: () => {
+      render: (record: Production) => {
+        const handleDelete = () => {
+          deleteProduction(record.id)
+        }
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          <Link to={`/Production/DetailProduction/${record.id}`}>
+            <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          </Link>
+          <Link to={`/Production/EditProduction/${record.id}`}>
+            <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          </Link>
+          <Link to={`/Production/PrintBarcode/${record.id}`}>
+            <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
+          </Link>
+          <Popconfirm
+            title="Apakah anda yakin untuk menghapus produksi ini ?"
+            onConfirm={handleDelete}
+            okText="Yes"
+            cancelText="No">
+            <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          </Popconfirm>
         </>
       },
       width: 350
@@ -129,21 +155,10 @@ function Production() {
       }
     }
   ]
-  const [dataTempo, setDataTempo] = useState([
-    {
-      id: 1,
-      createNewLabel: '(not set)',
-      operator: 'Santi Prasinta',
-      factory: 'Mandalasari',
-      barcode: '0000008312',
-      kilo: 11.5,
-      gram: 11500,
-      createDate: '2020-08-20'
-    }
-  ])
+  const [dataTempo, setDataTempo] = useState<Production[]>([])
   const columnsTempo = [
     {
-      key: '1',
+      key: 'id',
       title: 'ID',
       dataIndex: 'id'
     },
@@ -153,40 +168,40 @@ function Production() {
       dataIndex: 'createNewLabel'
     },
     {
-      key: '2',
+      key: 'operator',
       title: 'Operator',
-      dataIndex: 'operator',
+      dataIndex: 'operatorName',
       width: 200
     },
     {
-      key: '3',
+      key: 'factory',
       title: 'Factory',
-      dataIndex: 'factory',
+      dataIndex: 'factoryName',
       width: 200
     },
     {
-      key: '4',
+      key: 'barcode',
       title: 'Barcode',
       dataIndex: 'barcode',
       width: 200
     },
     {
-      key: '5',
+      key: 'kilogram',
       title: 'In Kilogram',
-      dataIndex: 'kilo'
+      dataIndex: 'kilogram'
     },
     {
-      key: '6',
+      key: 'gram',
       title: 'In Gram',
       dataIndex: 'gram'
     },
     {
-      key: '7',
+      key: 'createAt',
       title: 'Create Date',
-      dataIndex: 'createDate'
+      dataIndex: 'createdAt'
     },
     {
-      key: '8',
+      key: 'action',
       title: 'Action',
       render: () => {
         return <>
@@ -501,10 +516,13 @@ function Production() {
           {
             key: '1',
             label: 'Production',
-            children: <Table
-              size='small'
-              columns={columns}
-              dataSource={data} />
+            children:
+              <Spin spinning={loading}>
+                <Table
+                  size='small'
+                  columns={columns}
+                  dataSource={data} />
+              </Spin>
           },
           {
             key: '2',
@@ -546,7 +564,7 @@ function Production() {
               columns={columnsMonth}
               dataSource={dataMonth} />
           }
-        ]}/>
+        ]} />
       </div>
     </div>
   )

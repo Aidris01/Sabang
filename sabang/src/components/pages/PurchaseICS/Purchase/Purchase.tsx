@@ -234,7 +234,7 @@ function Purchase() {
             <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
           </Link>
           <Popconfirm
-            title="Apakah anda yakin untuk menghapus role ini ?"
+            title="Apakah anda yakin untuk menghapus pembelian ini ?"
             onConfirm={handleDelete}
             okText="Yes"
             cancelText="No">

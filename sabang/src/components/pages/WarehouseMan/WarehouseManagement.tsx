@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons'
-import { Button, message, Spin, Table, Typography } from 'antd'
+import { Button, message, Popconfirm, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from '../../api/axios'
@@ -40,6 +40,17 @@ function WarehouseManagement() {
         setLoading(false)
       })
   }, [])
+  const deleteWarehouse = (warehouseId: number) => {
+    axios.delete(`/warehouses/${warehouseId}`, config)
+      .then((response) => {
+        message.success('Warehouse Deleted')
+        console.log(response)
+        setDataSource((prevData) => prevData.filter((warehouse) => warehouse.id !== warehouseId))
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Deleting Warehouse, Please check the console')
+      })
+  }
   const columns = [
     {
       key: '1',
@@ -63,6 +74,9 @@ function WarehouseManagement() {
       title: 'Action',
       width: 400,
       render: (record: Warehouse) => {
+        const handleDelete = () => {
+          deleteWarehouse(record.id)
+        }
         return <>
           <Link to={`/WarehouseManagement/DetailWarehouse/${record.id}`}>
             <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
@@ -70,7 +84,13 @@ function WarehouseManagement() {
           <Link to={`/WarehouseManagement/EditWarehouse/${record.id}`}>
             <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
           </Link>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          <Popconfirm
+            title="Apakah anda yakin untuk menghapus warehouse ini ?"
+            onConfirm={handleDelete}
+            okText="Yes"
+            cancelText="No">
+            <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+          </Popconfirm>
         </>
       }
     }

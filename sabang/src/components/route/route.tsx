@@ -56,6 +56,9 @@ import DetailPrice from "../pages/PaymentManagement/PriceList/DetailPrice";
 import EditPrice from "../pages/PaymentManagement/PriceList/EditPrice";
 import GenerateTotal from "../pages/Production/GenerateTotal";
 import DetailVillage from "../pages/Village/DetailVillage";
+import DetailProduction from "../pages/Production/DetailProduction";
+import EditProduction from "../pages/Production/EditProduction";
+import PrintBarcode from "../pages/Production/PrintBarcode";
 
 function AppRoute() {
     return (
@@ -118,6 +121,9 @@ function AppRoute() {
                 <Route path="/PriceList/EditPrice/:priceId" element={<WebLayout>{<EditPrice />}</WebLayout>} />
                 <Route path="/Production/GenerateTotal" element={<WebLayout>{<GenerateTotal />}</WebLayout>} />
                 <Route path="/Village/DetailVillage/:code" element={<WebLayout>{<DetailVillage />}</WebLayout>} />
+                <Route path="/Production/DetailProduction/:productionId" element={<WebLayout>{<DetailProduction />}</WebLayout>} />
+                <Route path="/Production/EditProduction/:productionId" element={<WebLayout>{<EditProduction />}</WebLayout>} />
+                <Route path="/Production/PrintBarcode/:productionId" element={<WebLayout>{<PrintBarcode />}</WebLayout>} />
             </Route>
         </Routes>
     )

@@ -74,6 +74,7 @@ function DetailPayment() {
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Fetching Data, Please check the console')
+        setLoading(false)
       })
   }, [paymentId])
 
