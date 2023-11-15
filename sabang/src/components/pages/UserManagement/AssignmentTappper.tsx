@@ -1,13 +1,10 @@
-import { SaveOutlined } from '@ant-design/icons';
-import { Button, Form, message, Select, Typography } from 'antd';
+import { EditOutlined, SaveOutlined } from '@ant-design/icons';
+import { Button, message, Spin, Table, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from '../../api/axios';
 import '../../pages/style/style.css'
 
-interface PenyadapData {
-  id: number,
-  name: string
-}
 interface PurchaserData {
   id: number,
   name: string
@@ -17,9 +14,34 @@ function AssignmentTapper() {
   useEffect(() => {
     document.title = 'Sabang | Assignment Tapper'
   }, [])
-
-  const [penyadap, setPenyadap] = useState<PenyadapData[]>([])
-  const [purchaser, setPurchaser] = useState<PurchaserData[]>([])
+  const [pengepul, setPengepul] = useState<PurchaserData[]>([])
+  const [loading, setLoading] = useState(true)
+  const column = [
+    {
+      key: 'id',
+      title: 'ID',
+      dataIndex: 'id',
+      width: 100
+    },
+    {
+      key: 'pengepul',
+      title: 'Pengepul',
+      dataIndex: 'name',
+      width: 900
+    },
+    {
+      key: 'action',
+      title: 'Action',
+      render: (record: PurchaserData) => {
+        return <>
+          <Link to={`/AssignmentTapper/Assignment/${record.id}`}>
+            <Button type='link' style={{ color: 'black', justifyContent: 'center' }} icon={<EditOutlined />} />
+          </Link>
+        </>
+      },
+      width: 100
+    }
+  ]
 
   const token = localStorage.getItem('token')
   const config = {
@@ -28,72 +50,27 @@ function AssignmentTapper() {
     }
   }
   useEffect(() => {
-    axios.get('/users/penyadap', config)
+    axios.get('/users/pengepul', config)
       .then((response) => {
-        const formattedData = response.data.map((item: any) => ({
-          value: item.id,
-          label: item.name
-        }))
-        setPenyadap(formattedData)
+        setPengepul(response.data)
+        console.log(response.data)
+        setLoading(false)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Fetching Penyadap, Please check the console')
-      })
-  }, [])
-  useEffect(() => {
-    axios.get('/users/purchaser', config)
-      .then((response) => {
-        const dataFormatted = response.data.map((item: any) => ({
-          value: item.id,
-          label: item.name
-        }))
-        setPurchaser(dataFormatted)
-      }).catch((error) => {
-        console.error('Error Ocured: ', error)
-        message.error('Error Fetching Purchaser, Please check the console')
+        setLoading(false)
       })
   }, [])
   return (
     <div className='content'>
       <Typography.Title level={4}>Assignment Tapper</Typography.Title>
       <div className='main-container'>
-        <Form
-          className='form-container'
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          hideRequiredMark
-          style={{ width: 800 }}
-          autoComplete='off'>
-          <Form.Item
-            label="Tapper Name"
-            name="tapperName"
-            rules={[{ required: true, message: "Please select the tapper!" }]}>
-            <Select
-              showSearch
-              placeholder="Select Tapper"
-              allowClear
-              placement="bottomLeft"
-              listHeight={200}
-              options={penyadap} />
-          </Form.Item>
-          <Form.Item
-            label="Collector Name"
-            name="collectorName"
-            rules={[{ required: true, message: "Please select the collector!" }]}>
-            <Select
-              showSearch
-              placeholder="Select Collector"
-              allowClear
-              placement="bottomLeft"
-              listHeight={200}
-              options={purchaser} />
-          </Form.Item>
-          <div className="button-container">
-            <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
-              Save
-            </Button>
-          </div>
-        </Form>
+        <Spin spinning={loading}>
+          <Table
+            size='small'
+            columns={column}
+            dataSource={pengepul} />
+        </Spin>
       </div>
     </div>
   )

@@ -59,6 +59,7 @@ import DetailVillage from "../pages/Village/DetailVillage";
 import DetailProduction from "../pages/Production/DetailProduction";
 import EditProduction from "../pages/Production/EditProduction";
 import PrintBarcode from "../pages/Production/PrintBarcode";
+import Assignment from "../pages/UserManagement/Assignment";
 
 function AppRoute() {
     return (
@@ -124,6 +125,7 @@ function AppRoute() {
                 <Route path="/Production/DetailProduction/:productionId" element={<WebLayout>{<DetailProduction />}</WebLayout>} />
                 <Route path="/Production/EditProduction/:productionId" element={<WebLayout>{<EditProduction />}</WebLayout>} />
                 <Route path="/Production/PrintBarcode/:productionId" element={<WebLayout>{<PrintBarcode />}</WebLayout>} />
+                <Route path="/AssignmentTapper/Assignment/:collectorId" element={<WebLayout>{<Assignment />}</WebLayout>} />
             </Route>
         </Routes>
     )

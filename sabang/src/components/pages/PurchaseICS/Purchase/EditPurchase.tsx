@@ -20,6 +20,10 @@ interface Penyadap {
     id: number,
     name: string
 }
+interface Pengepul {
+    id: number,
+    name: string
+}
 
 function EditPurchase() {
     useEffect(() => {
@@ -43,6 +47,7 @@ function EditPurchase() {
         navigate('/Purchase')
     }
     const [penyadap, setPenyadap] = useState<Penyadap[]>([])
+    const [pengepul, setPengepul] = useState<Pengepul[]>([])
     const [purchase, setPurchase] = useState<PurchaseData>(
         {
             penyadapId: 0,
@@ -81,16 +86,28 @@ function EditPurchase() {
             setPenyadap(format)
             setLoading(false)
         }).catch((error) => {
-            console.error('Error Ocured: ',error)
-            message.error('Error Ocured, Please check the console')
+            console.error('Error Ocured: ', error)
+            message.error('Error Fetching Penyadap, Please check the console')
             setLoading(false)
+        })
+    }, [])
+    useEffect(() => {
+        axios.get('/users/pengepul', config).then((response) => {
+            const format = response.data.map((items: any) => ({
+                value: items.id,
+                label: items.name
+            }))
+            setPengepul(format)
+        }).catch((error) => {
+            console.error('Error Ocured: ', error)
+            message.error('Error Fetching Pengepul, Please check the console')
         })
     }, [])
     const onFinish = (values: any) => {
         const ph = parseFloat(values.ph)
         const sugarLevel = parseFloat(values.sugarLevel)
         const amount = parseFloat(values.amount)
-        
+
         const updatedPurchase = {
             ...values,
             ph,
@@ -98,13 +115,13 @@ function EditPurchase() {
             amount
         }
         axios.patch(`/purchases/${purchaseId}`, updatedPurchase, config)
-        .then((response) => {
-            message.success('Puchase Updated')
-            navigate('/Purchase')
-        }).catch((error) => {
-            message.error('Error Ocured')
-            console.error('Error Ocured: ', error)
-        })
+            .then((response) => {
+                message.success('Puchase Updated')
+                navigate('/Purchase')
+            }).catch((error) => {
+                message.error('Error Ocured')
+                console.error('Error Ocured: ', error)
+            })
     }
     return (
         <div className='content'>
@@ -134,7 +151,12 @@ function EditPurchase() {
                         <Form.Item
                             label='Purchaser'
                             name='purchaserId'>
-                            <Select />
+                            <Select
+                                placeholder='Select Collector'
+                                allowClear
+                                placement="bottomLeft"
+                                listHeight={200}
+                                options={pengepul} />
                         </Form.Item>
                         <Form.Item
                             label='Sugar Level'
