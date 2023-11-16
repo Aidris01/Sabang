@@ -1,4 +1,4 @@
-import { EditOutlined, SaveOutlined } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
 import { Button, message, Spin, Table, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -53,7 +53,6 @@ function AssignmentTapper() {
     axios.get('/users/pengepul', config)
       .then((response) => {
         setPengepul(response.data)
-        console.log(response.data)
         setLoading(false)
       }).catch((error) => {
         console.error('Error Ocured: ', error)

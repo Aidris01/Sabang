@@ -1,12 +1,15 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, message, Space, Spin, Typography } from 'antd'
+import { useForm } from 'antd/es/form/Form';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../api/axios';
 
 interface Penyadap {
-    id: number,
-    name: string
+    userId: number,
+    name: string,
+    disabled: boolean,
+    isSelected: boolean
 }
 
 function Assignment() {
@@ -14,6 +17,10 @@ function Assignment() {
         document.title = `Sabang | Assignment ${collectorId} `
     }, [])
     const navigate = useNavigate()
+    const [form] = useForm()
+    const initialValues = {
+        isSelected: form.getFieldValue('isSelected') || false
+    }
     const [loading, setLoading] = useState(true)
     const { collectorId } = useParams<Record<string, string>>();
     const [penyadap, setPenyadap] = useState<Penyadap[]>([])
@@ -24,9 +31,10 @@ function Assignment() {
         }
     }
     useEffect(() => {
-        axios.get('/users/penyadap', config).then((response) => {
+        axios.get(`/users/penyadap-for-pengepul/${collectorId}`, config).then((response) => {
             const penyadapOptions = response.data as Penyadap[]
             setPenyadap(penyadapOptions)
+            console.log(penyadapOptions)
             setLoading(false)
         }).catch((error) => {
             console.error('Error Ocured: ', error)
@@ -37,6 +45,9 @@ function Assignment() {
     const handleCancel = () => {
         navigate('/AssignmentTapper')
     }
+    const onFinish = (values: any) => {
+
+    }
     return (
         <div className='content'>
             <Typography.Title level={4}>Assignment - {collectorId}</Typography.Title>
@@ -44,6 +55,8 @@ function Assignment() {
                 <Spin spinning={loading}>
                     <Form
                         className='form-container'
+                        form={form}
+                        initialValues={initialValues}
                         hideRequiredMark
                         autoComplete='off'
                         labelCol={{ span: 2 }}
@@ -51,9 +64,15 @@ function Assignment() {
                         <Form.Item
                             label='Penyadap'
                             name='penyadapId'
-                            rules={[{ required: true, message: 'Please select the tapper!' }]}>
-                            <Checkbox.Group options={
-                                penyadap.map(r => ({ value: r.id, label: r.name }))} />
+                            valuePropName='checked'
+                            rules={[{ required: false, message: 'Please select the tapper!' }]}>
+                            <Checkbox.Group
+                                options={
+                                    penyadap.map(r => ({
+                                        value: r.userId,
+                                        label: r.name,
+                                        disabled: r.disabled,
+                                    }))} />
                         </Form.Item>
                         <div className="button-container">
                             <Space>
