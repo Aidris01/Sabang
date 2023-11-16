@@ -76,7 +76,6 @@ function EditUser() {
                     ...response.data,
                     userRoles: userRolesData
                 }
-                console.log(combinedData)
                 form.setFieldsValue(combinedData)
                 setUserData(response.data)
                 setLoading(false)
@@ -113,7 +112,7 @@ function EditUser() {
             })
     }, [token])
 
-    const onFinish = (values: any) => {
+    const onFinish = () => {
         axios.patch(`/users/${userId}`, form.getFieldsValue(), config)
             .then((response) => {
                 message.success('User Updated')

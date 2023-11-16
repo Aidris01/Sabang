@@ -31,23 +31,26 @@ function Assignment() {
         }
     }
     useEffect(() => {
-        axios.get(`/users/penyadap-for-pengepul/${collectorId}`, config).then((response) => {
-            const penyadapOptions = response.data as Penyadap[]
-            setPenyadap(penyadapOptions)
-            console.log(penyadapOptions)
-            setLoading(false)
-        }).catch((error) => {
-            console.error('Error Ocured: ', error)
-            message.error('Error Fetching Penyadap, Please check the console')
-            setLoading(false)
-        })
+        axios.get(`/users/penyadap-for-pengepul/${collectorId}`, config)
+            .then((response) => {
+                const penyadapOptions = response.data as Penyadap[]
+                setPenyadap(penyadapOptions)
+            }).catch((error) => {
+                console.error('Error Ocured: ', error)
+                message.error('Error Fetching Penyadap, Please check the console')
+            }).finally(() => {
+                setLoading(false)
+            })
     }, [])
     const handleCancel = () => {
         navigate('/AssignmentTapper')
     }
-    const onFinish = (values: any) => {
-
-    }
+    // const onFinish = (values: any) => {
+    //     axios.patch(`/users/penyadap-for-pengepul/${collectorId}`, values, config)
+    //         .then((response) => {
+    //
+    //         })
+    // }
     return (
         <div className='content'>
             <Typography.Title level={4}>Assignment - {collectorId}</Typography.Title>
@@ -57,6 +60,7 @@ function Assignment() {
                         className='form-container'
                         form={form}
                         initialValues={initialValues}
+                        // onFinish={onFinish}
                         hideRequiredMark
                         autoComplete='off'
                         labelCol={{ span: 2 }}
@@ -66,13 +70,23 @@ function Assignment() {
                             name='penyadapId'
                             valuePropName='checked'
                             rules={[{ required: false, message: 'Please select the tapper!' }]}>
-                            <Checkbox.Group
-                                options={
-                                    penyadap.map(r => ({
-                                        value: r.userId,
-                                        label: r.name,
-                                        disabled: r.disabled,
-                                    }))} />
+                            {penyadap.map((r) => (
+                                <Checkbox
+                                    key={r.userId}
+                                    checked={r.isSelected}
+                                    disabled={r.disabled}
+                                    onChange={(e) => {
+                                        const updatedPenyadap = penyadap.map(item => {
+                                            if (item.userId === r.userId) {
+                                                return { ...item, isSelected: e.target.checked };
+                                            }
+                                            return item;
+                                        });
+                                        setPenyadap(updatedPenyadap);
+                                    }}>
+                                    {r.name}
+                                </Checkbox>
+                            ))}
                         </Form.Item>
                         <div className="button-container">
                             <Space>
