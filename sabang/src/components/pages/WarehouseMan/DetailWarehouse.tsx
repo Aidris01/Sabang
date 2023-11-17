@@ -43,10 +43,11 @@ function DetailWarehouse() {
         axios.get(`/warehouses/${warehouseId}`, config)
             .then((response) => {
                 setWarehouse(response.data)
-                setLoading(false)
             }).catch((error) => {
                 console.error('Error Ocured: ', error)
                 message.error('Error Ocured')
+            }).finally(() => {
+                setLoading(false)
             })
     }, [])
     return (

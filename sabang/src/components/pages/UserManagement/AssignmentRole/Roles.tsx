@@ -31,13 +31,13 @@ function Roles() {
     axios.get('/roles', config)
       .then(response => {
         setDataSource(response.data);
-        setIsLoading(false)
       })
       .catch(error => {
         console.error('Error fetching roles:', error);
-        setIsLoading(false)
         message.error('Error Ocured, Please check the console')
-      });
+      }).finally(() => {
+        setIsLoading(false)
+      })
   }, []);
   const deleteRole = (roleId: number) => {
     axios.delete(`/roles/${roleId}`, config)

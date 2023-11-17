@@ -1,5 +1,5 @@
 import { CloseOutlined, PrinterOutlined } from '@ant-design/icons'
-import { Button, message, Space, Typography } from 'antd'
+import { Button, message, Space, Spin, Typography } from 'antd'
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useReactToPrint } from 'react-to-print'
@@ -12,6 +12,7 @@ function PrintBarcode() {
     }, [])
     const { productionId } = useParams<Record<string, string>>()
     const [barcode, setBarcode] = useState('')
+    const [loading, setLoading] = useState(true)
     const token = localStorage.getItem('token')
     const config = {
         headers: {
@@ -29,6 +30,8 @@ function PrintBarcode() {
             }).catch((error) => {
                 console.error('Error Ocured: ', error)
                 message.error('Error Fetching Barcode, Please check the console')
+            }).finally(() => {
+                setLoading(false)
             })
     }, [])
     const imgUrl = `http://192.168.102.151:3001/productions/generate/${productionId}`
@@ -40,9 +43,11 @@ function PrintBarcode() {
         <div className='content'>
             <Typography.Title level={4}>Print Barcode - {productionId}</Typography.Title>
             <div className="main-container">
-                <div ref={printRef} className='img-container'>
-                    <img className='barcode' src={imgUrl} />
-                </div>
+                <Spin spinning={loading}>
+                    <div ref={printRef} className='img-container'>
+                        <img className='barcode' src={imgUrl} />
+                    </div>
+                </Spin>
                 <div className="button-container">
                     <Space>
                         <Button className='save-btn' onClick={handlePrint} type='primary' icon={<PrinterOutlined />}>

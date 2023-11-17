@@ -76,10 +76,10 @@ function DetailProduction() {
           createdAt: createdAt
         })
         console.log(setProduction)
-        setLoading(false)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Fetching Production, Please check the console')
+      }).finally(() => {  
         setLoading(false)
       })
   }, [productionId])

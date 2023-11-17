@@ -32,10 +32,10 @@ function ManagementVillage() {
   useEffect(() => {
     axios.get<Village[]>('/villages', config).then((response) => {
       setDataSource(response.data)
-      setIsLoading(false)
     }).catch((error) => {
       console.error('Error Ocured: ', error)
       message.error('Error Ocured, Please check the console')
+    }).finally(() => {
       setIsLoading(false)
     })
   }, [])

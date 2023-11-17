@@ -43,10 +43,11 @@ function DetailFactory() {
         axios.get(`/factories/${factoryId}`, config)
             .then((response) => {
                 setFactoryData(response.data)
-                setLoading(false)
             }).catch((error) => {
                 console.error('Error Ocured: ', error)
                 message.error('Error Ocured')
+            }).finally(() => {
+                setLoading(false)
             })
     }, [])
     return (

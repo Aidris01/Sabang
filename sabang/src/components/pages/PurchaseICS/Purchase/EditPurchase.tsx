@@ -70,10 +70,10 @@ function EditPurchase() {
         axios.get(`/purchases/${purchaseId}`, config).then((response) => {
             form.setFieldsValue(response.data)
             setPurchase(response.data)
-            setLoading(false)
         }).catch((error) => {
             console.error('Error Ocured: ', error)
             message.error('Error Ocured')
+        }).finally(() => {
             setLoading(false)
         })
     }, [token, form, purchaseId])

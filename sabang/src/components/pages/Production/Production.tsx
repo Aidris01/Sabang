@@ -57,11 +57,12 @@ function Production() {
   useEffect(() => {
     axios.get('/productions', config)
       .then((response) => {
-        setLoading(false)
         setData(response.data)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error OCured, Please check the console')
+      }).finally(() => {
+        setLoading(false)
       })
   }, [])
   const deleteProduction = (productionId: number) => {

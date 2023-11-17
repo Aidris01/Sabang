@@ -77,12 +77,12 @@ function ListUser() {
               };
             });
             setDataSource(updatedUsers)
-            setIsLoading(false)
           }).catch((villageError) => {
-            setIsLoading(false)
             console.error('Error Ocured: ', villageError)
             message.error('Error Fetching Village Data')
-          });
+          }).finally(() => {
+            setIsLoading(false)
+          })
       }).catch((error) => {
         setIsLoading(false)
         console.error('Error Ocured:', error)

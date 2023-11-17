@@ -66,10 +66,10 @@ function EditFactory() {
             .then((response) => {
                 form.setFieldsValue(response.data)
                 setFactory(response.data)
-                setLoading(false)
             }).catch((error) => {
                 console.error('Error Ocured: ', error)
                 message.error('Error Ocured')
+            }).finally(() => {
                 setLoading(false)
             })
     }, [token, factoryId, form])

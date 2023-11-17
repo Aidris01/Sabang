@@ -34,10 +34,10 @@ function FactoryManagement() {
     axios.get('/factories', config)
       .then((response) => {
         setDataSource(response.data)
-        setLoading(false)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Ocured, Please check the console')
+      }).finally(() => {
         setLoading(false)
       })
   }, [])

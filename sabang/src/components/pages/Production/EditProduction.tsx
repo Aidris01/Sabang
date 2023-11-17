@@ -61,10 +61,10 @@ function EditProduction() {
       .then((response) => {
         form.setFieldsValue(response.data)
         setProduction(response.data)
-        setLoading(false)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Fetching Production, Please check the console')
+      }).finally(() => {
         setLoading(false)
       })
   }, [token, productionId, form])

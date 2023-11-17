@@ -57,6 +57,7 @@ function AssignmentTapper() {
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Fetching Penyadap, Please check the console')
+      }).finally(() => {
         setLoading(false)
       })
   }, [])

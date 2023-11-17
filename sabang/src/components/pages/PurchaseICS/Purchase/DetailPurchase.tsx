@@ -51,10 +51,10 @@ function DetailPurchase() {
         axios.get(`/purchases/${purchaseId}`, config)
         .then((response) => {
             setPurchaseData(response.data)
-            setLoading(false)
         }).catch((error) => {
             console.error('Error Ocured: ',error)
             message.error('Error Ocured')
+        }).finally(() => {
             setLoading(false)
         })
     },[purchaseId])

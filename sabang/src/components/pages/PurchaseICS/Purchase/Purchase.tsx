@@ -62,11 +62,11 @@ function Purchase() {
           return purchase
         })
         setData(updateData)
-        setIsLoading(false)
       }).catch((error) => {
-        setIsLoading(false)
         console.error('Error Ocured: ', error)
         message.error('Error Ocured, Please check the console')
+      }).finally(() => {
+        setIsLoading(false)
       })
   }
   const deletePurchase = (purchaseId: number) => {
