@@ -41,10 +41,10 @@ function EditRole() {
         .then((response) => {
             form.setFieldsValue(response.data)
             setRoleData(response.data)
-            setLoading(false)
         }).catch((error) => {
             console.error('Error Ocured: ', error)
             message.error('Error Fetching Data')
+        }).finally(() => {
             setLoading(false)
         })
     }, [token, roleId, form])

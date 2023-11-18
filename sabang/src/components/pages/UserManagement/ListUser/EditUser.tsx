@@ -104,10 +104,10 @@ function EditUser() {
             .then((response) => {
                 const roleData = response.data as RoleData[];
                 setRoleOptions(roleData);
-                setLoading(false)
             }).catch((error) => {
                 message.error('Error Fetching Roles, Please check the console')
                 console.log("Error Fetching Roles: ", error)
+            }).finally(() => {
                 setLoading(false)
             })
     }, [token])

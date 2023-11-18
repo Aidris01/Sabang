@@ -36,10 +36,10 @@ function EditVillage() {
             .then((response) => {
                 form.setFieldsValue(response.data)
                 setVillageData(response.data)
-                setLoading(false)
             }).catch((error) => {
                 message.error('Error Ocured')
                 console.error(error)
+            }).finally(() => {
                 setLoading(false)
             })
     }, [token, villageId])

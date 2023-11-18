@@ -84,10 +84,11 @@ function ListUser() {
             setIsLoading(false)
           })
       }).catch((error) => {
-        setIsLoading(false)
         console.error('Error Ocured:', error)
         message.error('Error Fetching Users, Please check the console')
-      });
+      }).finally(() => {
+        setIsLoading(false)
+      })
   }
   const columns = [
     {

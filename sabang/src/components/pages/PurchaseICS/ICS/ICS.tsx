@@ -12,6 +12,7 @@ function ICS() {
   const Team = () => {
     navigate('/ICS/ICSTeam')
   }
+  const [loading, setLoading] = useState(true)
   const [ data, setData ] = useState([
     {
       id: 1,

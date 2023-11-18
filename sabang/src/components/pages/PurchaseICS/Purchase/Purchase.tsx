@@ -123,7 +123,7 @@ function Purchase() {
         message.error('Error Checking, Please check the console')
       })
   }
-  
+
   const [data, setData] = useState<Purchases[]>([])
   const columns = [
     {
@@ -146,7 +146,7 @@ function Purchase() {
             Not Checked
           </Button>
         </Popconfirm>
-        : <div style={{textAlign: 'center'}}>Checked</div>
+        : <div style={{ textAlign: 'center' }}>Checked</div>
     },
     {
       key: 'statusUpdated',
@@ -163,7 +163,7 @@ function Purchase() {
             Not Updated
           </Button>
         </Popconfirm>
-        : <div style={{textAlign: 'center'}}>Updated</div>
+        : <div style={{ textAlign: 'center' }}>Updated</div>
     },
     {
       key: 'timestamp',
@@ -209,14 +209,19 @@ function Purchase() {
     {
       key: '11',
       title: 'Set Audit',
-      render: (record: Purchases) =>
-        <Popconfirm
-          title="Apakah anda yakin untuk mengubah status (ini tidak bisa dikembalikan) ?"
-          onConfirm={() => handleAudit(record.id)}
-          okText="Yes"
-          cancelText="No">
-          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
-        </Popconfirm>
+      render: (record: Purchases) => {
+        const isAudit = record.auditedAt !== null;
+        return <>
+          <Popconfirm
+            title="Apakah anda yakin untuk mengubah status (ini tidak bisa dikembalikan) ?"
+            onConfirm={() => handleAudit(record.id)}
+            okText="Yes"
+            cancelText="No"
+            disabled={isAudit}>
+            <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+          </Popconfirm>
+        </>
+      }
     },
     {
       key: '12',

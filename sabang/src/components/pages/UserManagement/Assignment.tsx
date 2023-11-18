@@ -14,9 +14,9 @@ interface Penyadap {
 
 function Assignment() {
     useEffect(() => {
-        document.title = `Sabang | Assignment ${collectorId} `
+        document.title = `Sabang | Assignment ${collectorId}`
     }, [])
-    const navigate = useNavigate()
+    const navigate = useNavigate()      
     const [form] = useForm()
     const initialValues = {
         isSelected: form.getFieldValue('isSelected') || false
@@ -48,7 +48,11 @@ function Assignment() {
     // const onFinish = (values: any) => {
     //     axios.patch(`/users/penyadap-for-pengepul/${collectorId}`, values, config)
     //         .then((response) => {
-    //
+    //             message.success('Assignment Updated')
+    //             navigate('/AssignmentTapper')
+    //         }).catch((error) => {
+    //             console.error('Error Ocured: ', error)
+    //             message.error('Error Updating Assignment, Please check the console')
     //         })
     // }
     return (

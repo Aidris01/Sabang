@@ -101,14 +101,19 @@ function StatusPayment() {
       key: 'action',
       title: 'Action',
       width: 400,
-      render: (record: Payment) =>
-        <Popconfirm
-          title="Apakah anda yakin untuk mengubah status (ini tidak bisa dikembalikan) ?"
-          onConfirm={() => handlePaid(record.id)}
-          okText="Yes"
-          cancelText="No">
-          <Button type='link' size='small' style={{ color: 'black' }}> Set As Paid </Button>
-        </Popconfirm>
+      render: (record: Payment) => {
+        const isPaid = record.paidAt !== null;
+        return <>
+          <Popconfirm
+            title="Apakah anda yakin untuk mengubah status (ini tidak bisa dikembalikan) ?"
+            onConfirm={() => handlePaid(record.id)}
+            okText="Yes"
+            cancelText="No"
+            disabled={isPaid}>
+            <Button type='link' size='small' style={{ color: 'black' }}> Set As Paid </Button>
+          </Popconfirm>
+        </>
+      }
     }
   ]
   return (

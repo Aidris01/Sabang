@@ -34,10 +34,10 @@ function CreateProduction() {
                     label: item.name
                 }))
                 setGetFactory(format)
-                setLoading(false)
             }).catch((error) => {
                 console.error('Error Ocured: ', error)
                 message.error('Error Ocured, Please check the console')
+            }).finally(() => {
                 setLoading(false)
             })
     }, [])

@@ -42,7 +42,6 @@ function AssignmentTapper() {
       width: 100
     }
   ]
-
   const token = localStorage.getItem('token')
   const config = {
     headers: {
