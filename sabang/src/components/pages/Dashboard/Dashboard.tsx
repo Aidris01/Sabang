@@ -34,8 +34,6 @@ function Dashboard() {
   const [production, setProduction] = useState<Production[]>([])
   const [loadingPurc, setLoadingPurch] = useState(true)
   const [loadingProd, setLoadingProd] = useState(true)
-  const [totalItems, setTotalItems] = useState(0)
-  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     axios.get('/productions', config)
@@ -48,31 +46,18 @@ function Dashboard() {
         setLoadingProd(false)
       })
   }, [])
-
   useEffect(() => {
-    getPurchase(1)
-  }, [])
-  function getPurchase(page: number) {
-    const token = localStorage.getItem('token');
+    axios.get('/purchases', config)
+    .then((response) => {
+      setPurchase(response.data)
+    }).catch((error) => {
+      console.error('Error Ocured: ',error)
+      message.error('Error Fetching Purchase Data, Please check the console')
+    }).finally(() => {
+      setLoadingPurch(false)
+    })
+  },[])
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
-    setLoadingPurch(true)
-    axios.get<{ data: Purchase[], totalItems: number }>(`/purchases/paginated?page=${page}&limit=10`, config)
-      .then((response) => {
-        const purchase = response.data.data
-        setTotalItems(response.data.totalItems)
-        setPurchase(response.data.data)
-      }).catch((error) => {
-        console.error('Error Ocured: ', error)
-        message.error('Error Ocured, Please check the console')
-      }).finally(() => {
-        setLoadingPurch(false)
-      })
-  }
   function DashboardCard({ title, value }: { title: string; value: number; }) {
     return (
       <Card>
@@ -90,11 +75,13 @@ function Dashboard() {
             {
               title: "Date",
               dataIndex: "timestamp",
-              render: (timestamp: Date) => formatDate(new Date(timestamp))
+              render: (timestamp: Date) => formatDate(new Date(timestamp)),
+              width: 100
             },
             {
               title: "Nira Total",
-              dataIndex: "volume"
+              dataIndex: "volume",
+              width: 100
             }
           ]}
           dataSource={purchase} />
@@ -109,11 +96,13 @@ function Dashboard() {
             {
               title: "Date",
               dataIndex: "createdAt",
-              render: (createdAt: Date) => formatDate(new Date(createdAt))
+              render: (createdAt: Date) => formatDate(new Date(createdAt)),
+              width: 100
             },
             {
               title: "Weight (Kg)",
-              dataIndex: "kilogram"
+              dataIndex: "kilogram",
+              width: 100
             }
           ]}
           dataSource={production} />

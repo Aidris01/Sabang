@@ -146,15 +146,6 @@ function Production() {
       },
       width: 350
     },
-    {
-      key: 'checkbox',
-      title: 'Status',
-      render: () => {
-        return <>
-          <Checkbox></Checkbox>
-        </>
-      }
-    }
   ]
   const [dataTempo, setDataTempo] = useState<Production[]>([])
   const columnsTempo = [
