@@ -139,7 +139,7 @@ function EditProduction() {
               label='Total(Kg)'
               name='weight'
               rules={[{ required: true, message: 'Please enter the total!' }]}>
-              <Input type='number' />
+              <Input />
             </Form.Item>
             <div className="button-container">
               <Space>

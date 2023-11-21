@@ -1,5 +1,5 @@
 import { EyeOutlined, TeamOutlined } from '@ant-design/icons'
-import { Button, message, Table, Typography } from 'antd'
+import { Button, message, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from '../../../api/axios'
@@ -31,15 +31,15 @@ function ICS() {
   }
   useEffect(() => {
     axios.get('/garden-controls', config)
-    .then((response) => {
-      console.log(response)
-    }).catch((error) => {
-      console.error('Error Ocured: ',error)
-      message.error('Error Fetching Garden, Please check the console')
-    }).finally(() => {
-      setLoading(false)
-    })
-  },[])
+      .then((response) => {
+        console.log(response.data)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Fetching Garden, Please check the console')
+      }).finally(() => {
+        setLoading(false)
+      })
+  }, [])
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([
     {
@@ -94,11 +94,12 @@ function ICS() {
           ICS Team
         </Button>
         <div className="ics-table">
-          <Table
-            size='small'
-            columns={columns}
-            dataSource={data}
-          />
+          <Spin spinning={loading}>
+            <Table
+              size='small'
+              columns={columns}
+              dataSource={data} />
+          </Spin>
         </div>
       </div>
     </div>

@@ -19,6 +19,9 @@ function Assignment() {
     const navigate = useNavigate()
     const [form] = useForm()
     const initialValues = {
+        userId: form.getFieldValue('userId') || 0,
+        name: form.getFieldValue('name') || '',
+        disabled: form.getFieldValue('disabled') || false,
         isSelected: form.getFieldValue('isSelected') || false
     }
     const [loading, setLoading] = useState(true)
@@ -45,16 +48,16 @@ function Assignment() {
     const handleCancel = () => {
         navigate('/AssignmentTapper')
     }
-    // const onFinish = (values: any) => {
-    //     axios.patch(`/users/penyadap-for-pengepul/${collectorId}`, values, config)
-    //         .then((response) => {
-    //             message.success('Assignment Updated')
-    //             navigate('/AssignmentTapper')
-    //         }).catch((error) => {
-    //             console.error('Error Ocured: ', error)
-    //             message.error('Error Updating Assignment, Please check the console')
-    //         })
-    // }
+    const onFinish = () => {
+        axios.patch(`/users/penyadap-for-pengepul/${collectorId}`, penyadap, config)
+            .then(() => {
+                message.success('Assignment Updated')
+                navigate('/AssignmentTapper')
+            }).catch((error) => {
+                console.error('Error Ocured: ', error)
+                message.error('Error Updating Assignment, Please check the console')
+            })
+    }
     return (
         <div className='content'>
             <Typography.Title level={4}>Assignment - {collectorId}</Typography.Title>
@@ -64,14 +67,14 @@ function Assignment() {
                         className='form-container'
                         form={form}
                         initialValues={initialValues}
-                        // onFinish={onFinish}
+                        onFinish={onFinish}
                         hideRequiredMark
                         autoComplete='off'
                         labelCol={{ span: 2 }}
                         wrapperCol={{ span: 22 }}>
                         <Form.Item
                             label='Penyadap'
-                            name='penyadapId'
+                            name='isSelected'
                             valuePropName='checked'
                             rules={[{ required: false, message: 'Please select the tapper!' }]}>
                             {penyadap.map((r) => (
