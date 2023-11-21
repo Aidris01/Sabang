@@ -16,7 +16,7 @@ function Assignment() {
     useEffect(() => {
         document.title = `Sabang | Assignment ${collectorId}`
     }, [])
-    const navigate = useNavigate()      
+    const navigate = useNavigate()
     const [form] = useForm()
     const initialValues = {
         isSelected: form.getFieldValue('isSelected') || false

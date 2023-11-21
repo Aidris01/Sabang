@@ -76,12 +76,12 @@ function Dashboard() {
               title: "Date",
               dataIndex: "timestamp",
               render: (timestamp: Date) => formatDate(new Date(timestamp)),
-              width: 100
+              width: 150
             },
             {
               title: "Nira Total",
               dataIndex: "volume",
-              width: 100
+              width: 150
             }
           ]}
           dataSource={purchase} />
@@ -97,12 +97,12 @@ function Dashboard() {
               title: "Date",
               dataIndex: "createdAt",
               render: (createdAt: Date) => formatDate(new Date(createdAt)),
-              width: 100
+              width: 150
             },
             {
               title: "Weight (Kg)",
               dataIndex: "kilogram",
-              width: 100
+              width: 150
             }
           ]}
           dataSource={production} />
@@ -115,11 +115,13 @@ function Dashboard() {
         columns={[
           {
             title: "Date",
-            dataIndex: "date"
+            dataIndex: "date",
+            width: 150
           },
           {
             title: "Checked",
-            dataIndex: "checked"
+            dataIndex: "checked",
+            width: 150
           }
         ]} />
     )

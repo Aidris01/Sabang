@@ -102,6 +102,12 @@ function CreatePupuk() {
                                   }
                                 ]} />
                             </Form.Item>
+                            <Form.Item
+                              label='Berat Aplikasi'
+                              name={'beratAplikasi'}
+                              rules={[{ required: true, message: 'Please select the tool!' }]}>
+                              <Input />
+                            </Form.Item>
                           </Col>
                           <Col span={12}>
                             <Form.Item
@@ -115,14 +121,6 @@ function CreatePupuk() {
                               name={'tanggalAplikasi'}
                               rules={[{ required: true, message: 'Please input the amount!' }]}>
                               <DatePicker />
-                            </Form.Item>
-                          </Col>
-                          <Col span={14}>
-                            <Form.Item
-                              label='Berat Kompos Aplikasi'
-                              name={'beratAplikasi'}
-                              rules={[{ required: true, message: 'Please select the tool!' }]}>
-                              <Input />
                             </Form.Item>
                           </Col>
                         </Row>

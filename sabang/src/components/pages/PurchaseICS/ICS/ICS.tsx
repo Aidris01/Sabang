@@ -1,9 +1,20 @@
 import { EyeOutlined, TeamOutlined } from '@ant-design/icons'
-import { Button, Table, Typography } from 'antd'
+import { Button, message, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../../api/axios'
 import '../../../pages/style/style.css'
 
+interface Garden {
+  id: number,
+
+}
+function formatDate(timestamp: Date) {
+  const year = timestamp.getFullYear();
+  const month = String(timestamp.getMonth() + 1).padStart(2, '0'); // Tambah 1 karena bulan dimulai dari 0
+  const day = String(timestamp.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
 function ICS() {
   useEffect(() => {
     document.title = 'Sabang | ICS'
@@ -12,8 +23,25 @@ function ICS() {
   const Team = () => {
     navigate('/ICS/ICSTeam')
   }
+  const token = localStorage.getItem('token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  useEffect(() => {
+    axios.get('/garden-controls', config)
+    .then((response) => {
+      console.log(response)
+    }).catch((error) => {
+      console.error('Error Ocured: ',error)
+      message.error('Error Fetching Garden, Please check the console')
+    }).finally(() => {
+      setLoading(false)
+    })
+  },[])
   const [loading, setLoading] = useState(true)
-  const [ data, setData ] = useState([
+  const [data, setData] = useState([
     {
       id: 1,
       tapper: 'amct.01',
@@ -54,7 +82,7 @@ function ICS() {
     {
       key: '5',
       title: 'Action',
-      render: () => <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>,
+      render: () => <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>,
       width: 100
     }
   ]
