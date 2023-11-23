@@ -75,8 +75,7 @@ function Assignment() {
                         <Form.Item
                             label='Penyadap'
                             name='isSelected'
-                            valuePropName='checked'
-                            rules={[{ required: false, message: 'Please select the tapper!' }]}>
+                            valuePropName='checked'>
                             {penyadap.map((r) => (
                                 <Checkbox
                                     key={r.userId}

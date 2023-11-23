@@ -65,24 +65,28 @@ function ICS() {
       key: '2',
       title: 'Tapper',
       dataIndex: 'tapper',
-      width: 200
+      width: 300
     },
     {
       key: '3',
       title: 'ICS Name',
       dataIndex: 'ICSName',
-      width: 200
+      width: 300
     },
     {
       key: '4',
       title: 'Create Date',
       dataIndex: 'createDate',
-      width: 200
+      width: 300
     },
     {
       key: '5',
       title: 'Action',
-      render: () => <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>,
+      render: (record: Garden) => {
+        return <>
+          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+        </>
+      },
       width: 100
     }
   ]
