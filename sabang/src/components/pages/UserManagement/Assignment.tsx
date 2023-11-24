@@ -1,5 +1,5 @@
-import { CloseOutlined, SaveOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, message, Space, Spin, Typography } from 'antd'
+import { CloseOutlined } from '@ant-design/icons';
+import { Button, Checkbox, Form, message, Spin, Typography } from 'antd'
 import { useForm } from 'antd/es/form/Form';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
@@ -48,16 +48,6 @@ function Assignment() {
     const handleCancel = () => {
         navigate('/AssignmentTapper')
     }
-    const onFinish = () => {
-        axios.patch(`/users/penyadap-for-pengepul/${collectorId}`, penyadap, config)
-            .then(() => {
-                message.success('Assignment Updated')
-                navigate('/AssignmentTapper')
-            }).catch((error) => {
-                console.error('Error Ocured: ', error)
-                message.error('Error Updating Assignment, Please check the console')
-            })
-    }
     return (
         <div className='content'>
             <Typography.Title level={4}>Assignment - {collectorId}</Typography.Title>
@@ -67,7 +57,6 @@ function Assignment() {
                         className='form-container'
                         form={form}
                         initialValues={initialValues}
-                        onFinish={onFinish}
                         hideRequiredMark
                         autoComplete='off'
                         labelCol={{ span: 2 }}
@@ -88,21 +77,29 @@ function Assignment() {
                                             }
                                             return item;
                                         });
-                                        setPenyadap(updatedPenyadap);
+                                        const updatedData = {
+                                            pengepulId: collectorId,
+                                            penyadapId: r.userId,
+                                            isSelected: e.target.checked
+                                        }
+                                        console.log(updatedData)
+                                        setPenyadap(updatedPenyadap)
+                                        axios.patch(`/users/penyadap-for-pengepul/${collectorId}`, updatedData, config)
+                                            .then(() => {
+                                                message.success('Assignment Updated')
+                                            }).catch((error) => {
+                                                console.error('Error Ocured: ', error)
+                                                message.error('Error Updating Assignment, Please check the console')
+                                            })
                                     }}>
                                     {r.name}
                                 </Checkbox>
                             ))}
                         </Form.Item>
                         <div className="button-container">
-                            <Space>
-                                <Button className='save-btn' type='primary' htmlType='submit' icon={<SaveOutlined />}>
-                                    Save
-                                </Button>
-                                <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
-                                    Cancel
-                                </Button>
-                            </Space>
+                            <Button className='cancel-btn' danger onClick={handleCancel} icon={<CloseOutlined />}>
+                                Back
+                            </Button>
                         </div>
                     </Form>
                 </Spin>

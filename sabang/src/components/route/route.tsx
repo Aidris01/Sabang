@@ -127,7 +127,7 @@ function AppRoute() {
                 <Route path="/Production/EditProduction/:productionId" element={<WebLayout>{<EditProduction />}</WebLayout>} />
                 <Route path="/Production/PrintBarcode/:productionId" element={<WebLayout>{<PrintBarcode />}</WebLayout>} />
                 <Route path="/AssignmentTapper/Assignment/:collectorId" element={<WebLayout>{<Assignment />}</WebLayout>} />
-                <Route path="/ICS/ICSDetail/:icsId" element={<WebLayout>{<DetailICS />}</WebLayout>} />
+                <Route path="/ICS/DetailICS/:icsId" element={<WebLayout>{<DetailICS />}</WebLayout>} />
             </Route>
         </Routes>
     )

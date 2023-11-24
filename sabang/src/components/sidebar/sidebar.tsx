@@ -1,6 +1,5 @@
 import './sidebar.css';
 import { Menu } from 'antd'
-import React from 'react'
 import {
   ApartmentOutlined,
   AppstoreOutlined,
@@ -25,7 +24,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 function SideBar() {
-
   const navigate = useNavigate()
 
   return (

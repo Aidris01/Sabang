@@ -1,13 +1,15 @@
 import { EyeOutlined, TeamOutlined } from '@ant-design/icons'
 import { Button, message, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from '../../../api/axios'
 import '../../../pages/style/style.css'
 
 interface Garden {
   id: number,
-
+  timestamp: Date,
+  lat: number,
+  lng: number,
 }
 function formatDate(timestamp: Date) {
   const year = timestamp.getFullYear();
@@ -84,7 +86,9 @@ function ICS() {
       title: 'Action',
       render: (record: Garden) => {
         return <>
-          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          <Link to={`/ICS/DetailICS/${record.id}`}>
+            <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+          </Link>
         </>
       },
       width: 100
@@ -97,14 +101,12 @@ function ICS() {
         <Button className='create-btn' onClick={Team} icon={<TeamOutlined />}>
           ICS Team
         </Button>
-        <div className="ics-table">
           <Spin spinning={loading}>
             <Table
               size='small'
               columns={columns}
               dataSource={data} />
           </Spin>
-        </div>
       </div>
     </div>
   )
