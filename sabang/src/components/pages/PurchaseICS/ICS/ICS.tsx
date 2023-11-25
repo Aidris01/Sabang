@@ -8,8 +8,6 @@ import '../../../pages/style/style.css'
 interface Garden {
   id: number,
   timestamp: Date,
-  lat: number,
-  lng: number,
 }
 function formatDate(timestamp: Date) {
   const year = timestamp.getFullYear();
@@ -35,6 +33,7 @@ function ICS() {
     axios.get('/garden-controls', config)
       .then((response) => {
         console.log(response.data)
+        setData(response.data)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Fetching Garden, Please check the console')
@@ -43,20 +42,7 @@ function ICS() {
       })
   }, [])
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState([
-    {
-      id: 1,
-      tapper: 'amct.01',
-      ICSName: 'dedi dedi',
-      createDate: '2001-09-11'
-    },
-    {
-      id: 2,
-      tapper: 'amks.03',
-      ICSName: 'dedi dedi',
-      createDate: '2020-10-14'
-    }
-  ])
+  const [data, setData] = useState<Garden[]>([])
   const columns = [
     {
       key: '1',
@@ -78,8 +64,9 @@ function ICS() {
     {
       key: '4',
       title: 'Create Date',
-      dataIndex: 'createDate',
-      width: 300
+      dataIndex: 'timestamp',
+      width: 300,
+      render: (timestamp: Date) => formatDate(new Date(timestamp))
     },
     {
       key: '5',

@@ -48,15 +48,15 @@ function Dashboard() {
   }, [])
   useEffect(() => {
     axios.get('/purchases', config)
-    .then((response) => {
-      setPurchase(response.data)
-    }).catch((error) => {
-      console.error('Error Ocured: ',error)
-      message.error('Error Fetching Purchase Data, Please check the console')
-    }).finally(() => {
-      setLoadingPurch(false)
-    })
-  },[])
+      .then((response) => {
+        setPurchase(response.data)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Fetching Purchase Data, Please check the console')
+      }).finally(() => {
+        setLoadingPurch(false)
+      })
+  }, [])
 
   function DashboardCard({ title, value }: { title: string; value: number; }) {
     return (
@@ -130,17 +130,21 @@ function Dashboard() {
     <div className='content'>
       <Typography.Title level={4}>Dashboard</Typography.Title>
       <div className='dashboard-page'>
-        <Space direction='horizontal'>
-          <DashboardCard title={"All Purchases (Liter)"} value={6740} />
-          <DashboardCard title={"All Productions (Kg)"} value={4200} />
-          <DashboardCard title={"ICS Checked (Place)"} value={2} />
-          <DashboardCard title={"All Payments (Rp)"} value={2130} />
-        </Space>
-        <Flex justify={'space-around'} align={'flex-start'}>
-          <Typography.Title level={4}>Purchase<Purchase /></Typography.Title>
-          <Typography.Title level={4}>Production<Production /></Typography.Title>
-          <Typography.Title level={4}>ICS Progress<ICS /></Typography.Title>
-        </Flex>
+        <div className="all-data">
+          <Space direction='horizontal'>
+            <DashboardCard title={"All Purchases (Liter)"} value={6740} />
+            <DashboardCard title={"All Productions (Kg)"} value={4200} />
+            <DashboardCard title={"ICS Checked (Place)"} value={2} />
+            <DashboardCard title={"All Payments (Rp)"} value={2130} />
+          </Space>
+        </div>
+        <div className="table-data">
+          <Flex justify={'space-around'} align={'flex-start'}>
+            <Typography.Title style={{marginTop: 24}} level={4}>Purchase<Purchase /></Typography.Title>
+            <Typography.Title level={4}>Production<Production /></Typography.Title>
+            <Typography.Title level={4}>ICS Progress<ICS /></Typography.Title>
+          </Flex>
+        </div>
         <Typography.Title level={4}>Daftar Kadar PH Dibawah 6<PH5 /></Typography.Title>
       </div>
     </div>

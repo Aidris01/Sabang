@@ -1,8 +1,14 @@
 import { CloseOutlined, MinusCircleOutlined, PlusOutlined, SaveOutlined } from '@ant-design/icons'
-import { Button, Col, DatePicker, Form, Input, Row, Select, Space, Typography } from 'antd'
-import React, { useEffect } from 'react'
+import { Button, Col, DatePicker, Form, Input, message, Row, Select, Space, Typography } from 'antd'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../api/axios'
 import '../../pages/style/style.css'
+
+interface Penyadap {
+    id: number,
+    name: string
+}
 
 function CreatePetani() {
     useEffect(() => {
@@ -12,6 +18,26 @@ function CreatePetani() {
     const back = () => {
         navigate('/CatatanPetani')
     }
+    const token = localStorage.getItem('token')
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const [penyadap, setPenyadap] = useState<Penyadap[]>([])
+    useEffect(() => {
+        axios.get('/users/penyadap', config)
+        .then((response) => {
+            const formatData = response.data.map((item: any) =>({
+                value: item.id,
+                label: item.name
+            }))
+            setPenyadap(formatData)
+        }).catch((error) => {
+            console.error('Error Ocured: ',error)
+            message.error('Error Fetching Penyadap, Please check the console')
+        })
+    }, [])
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Catatan Petani</Typography.Title>
@@ -24,36 +50,14 @@ function CreatePetani() {
                     wrapperCol={{ span: 16 }}>
                     <Form.Item
                         label='Petani'
-                        name={'petani'}
+                        name='petani'
                         rules={[{ required: true, message: 'Please select the farmer!' }]}>
                         <Select
                             placeholder='Select the farmer'
                             allowClear
                             placement="bottomLeft"
                             listHeight={200}
-                            options={[
-                                {
-                                    value: "amct.01",
-                                    label: 'amct.01'
-                                },
-                                {
-                                    value: 'amct.02',
-                                    label: 'amct.02'
-                                },
-                                {
-                                    value: 'amct.03',
-                                    label: 'amct.03'
-                                },
-                                {
-                                    value: 'amct.04',
-                                    label: 'amct.04'
-                                },
-                                {
-                                    value: 'amct.05',
-                                    label: 'amct.05'
-                                }
-                            ]}
-                        />
+                            options={penyadap} />
                     </Form.Item>
                     <Form.Item
                         label='Kode Lahan'
@@ -78,13 +82,13 @@ function CreatePetani() {
                                                     <Col span={12}>
                                                         <Form.Item
                                                             label='Tanggal'
-                                                            name={'tanggal'}
+                                                            name='tanggal'
                                                             rules={[{ required: true, message: 'Please select the date!' }]}>
                                                             <DatePicker />
                                                         </Form.Item>
                                                         <Form.Item
                                                             label='Kegiatan Petani'
-                                                            name={'kegiatan'}
+                                                            name='kegiatan'
                                                             rules={[{ required: true, message: 'Please select farmer activity!' }]}>
                                                             <Select
                                                                 placeholder='Select the activity'
@@ -104,19 +108,19 @@ function CreatePetani() {
                                                                         value: 'Pemotongan lengan aren',
                                                                         label: 'Pemotongan lengan aren'
                                                                     }
-                                                                ]}/>
+                                                                ]} />
                                                         </Form.Item>
                                                     </Col>
                                                     <Col span={12}>
                                                         <Form.Item
                                                             label='Bahan'
-                                                            name={'bahan'}
+                                                            name='bahan'
                                                             rules={[{ required: true, message: 'Please input the used material!' }]}>
                                                             <Input />
                                                         </Form.Item>
                                                         <Form.Item
                                                             label='Jumlah'
-                                                            name={'jumlah'}
+                                                            name='jumlah'
                                                             rules={[{ required: true, message: 'Please input the amount!' }]}>
                                                             <Input />
                                                         </Form.Item>
@@ -124,7 +128,7 @@ function CreatePetani() {
                                                     <Col span={12}>
                                                         <Form.Item
                                                             label='Alat'
-                                                            name={'alat'}
+                                                            name='alat'
                                                             rules={[{ required: true, message: 'Please select the tool!' }]}>
                                                             <Select
                                                                 placeholder='Select the tool'
@@ -144,13 +148,13 @@ function CreatePetani() {
                                                                         value: 'Pisau Sadap',
                                                                         label: 'Pisau Sadap'
                                                                     }
-                                                                ]}/>
+                                                                ]} />
                                                         </Form.Item>
                                                     </Col>
                                                     <Col span={12}>
                                                         <Form.Item
                                                             label='Pencucian alat'
-                                                            name={'pencucian'}
+                                                            name='pencucianAlat'
                                                             rules={[{ required: true, message: 'Please select the options!' }]}>
                                                             <Select
                                                                 allowClear
@@ -159,14 +163,14 @@ function CreatePetani() {
                                                                 listHeight={200}
                                                                 options={[
                                                                     {
-                                                                        value: 'Sudah',
+                                                                        value: true,
                                                                         label: 'Sudah'
                                                                     },
                                                                     {
-                                                                        value: 'Belum',
+                                                                        value: false,
                                                                         label: 'Belum'
                                                                     }
-                                                                ]}/>
+                                                                ]} />
                                                         </Form.Item>
                                                     </Col>
                                                 </Row>

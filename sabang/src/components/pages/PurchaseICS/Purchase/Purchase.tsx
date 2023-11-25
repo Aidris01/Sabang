@@ -46,7 +46,6 @@ function Purchase() {
   }, [])
   function getPurchase(page: number) {
     const token = localStorage.getItem('token');
-
     const config = {
       headers: {
         Authorization: `Bearer ${token}`

@@ -1,8 +1,14 @@
 import { CloseOutlined, MinusCircleOutlined, PlusOutlined, SaveOutlined } from '@ant-design/icons'
-import { Button, Col, DatePicker, Form, Input, Row, Select, Space, Typography } from 'antd'
-import React, { useEffect } from 'react'
+import { Button, Col, DatePicker, Form, Input, message, Row, Select, Space, Typography } from 'antd'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../api/axios'
 import '../../pages/style/style.css'
+
+interface Penyadap {
+  id: number,
+  name: string
+}
 
 function CreatePupuk() {
   useEffect(() => {
@@ -12,6 +18,26 @@ function CreatePupuk() {
   const back = () => {
     navigate('/CatatanPupuk')
   }
+  const token = localStorage.getItem('token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const [penyadap, setPenyadap] = useState<Penyadap[]>([])
+  useEffect(() => {
+    axios.get('/users/penyadap', config)
+    .then((response) => {
+      const formatData = response.data.map((item: any) => ({
+        value: item.id,
+        label: item.name
+      }))
+      setPenyadap(formatData)
+    }).catch((error) => {
+      console.error('Error Ocured: ',error)
+      message.error('Error Fetching Penyadap, Please check the console')
+    })
+  },[])
   return (
     <div className='content'>
       <Typography.Title level={4}>Create Catatan Pupuk</Typography.Title>
@@ -24,44 +50,22 @@ function CreatePupuk() {
           wrapperCol={{ span: 16 }}>
           <Form.Item
             label='Petani'
-            name={'petani'}
+            name='petani'
             rules={[{ required: true, message: 'Please select the farmer!' }]}>
             <Select
               placeholder='Select the farmer'
               allowClear
               placement="bottomLeft"
               listHeight={200}
-              options={[
-                {
-                  value: "amct.01",
-                  label: 'amct.01'
-                },
-                {
-                  value: 'amct.02',
-                  label: 'amct.02'
-                },
-                {
-                  value: 'amct.03',
-                  label: 'amct.03'
-                },
-                {
-                  value: 'amct.04',
-                  label: 'amct.04'
-                },
-                {
-                  value: 'amct.05',
-                  label: 'amct.05'
-                }
-              ]}
-            />
+              options={penyadap} />
           </Form.Item>
           <Form.Item
             label='Kode Lahan'
-            name={'kodeLahan'}
+            name='kodeLahan'
             rules={[{ required: true, message: 'Please input the farm code!' }]}>
             <Input />
           </Form.Item>
-          <Form.List name={"details"}>
+          <Form.List name="details">
             {(fields, { add, remove }) => (
               <>
                 {fields.map((field, index) => {
@@ -78,13 +82,13 @@ function CreatePupuk() {
                           <Col span={12}>
                             <Form.Item
                               label='Tanggal'
-                              name={'tanggal'}
+                              name='tanggal'
                               rules={[{ required: true, message: 'Please select the date!' }]}>
                               <DatePicker />
                             </Form.Item>
                             <Form.Item
                               label='Bahan Kompos'
-                              name={'bahan'}
+                              name='bahan'
                               rules={[{ required: true, message: 'Please select manure material!' }]}>
                               <Select
                                 placeholder='Select the material'
@@ -104,7 +108,7 @@ function CreatePupuk() {
                             </Form.Item>
                             <Form.Item
                               label='Berat Aplikasi'
-                              name={'beratAplikasi'}
+                              name='beratAplikasi'
                               rules={[{ required: true, message: 'Please select the tool!' }]}>
                               <Input />
                             </Form.Item>
@@ -112,13 +116,13 @@ function CreatePupuk() {
                           <Col span={12}>
                             <Form.Item
                               label='Berat Kompos'
-                              name={'berat'}
+                              name='berat'
                               rules={[{ required: true, message: 'Please input the used material!' }]}>
                               <Input />
                             </Form.Item>
                             <Form.Item
                               label='Tanggal Aplikasi'
-                              name={'tanggalAplikasi'}
+                              name='tanggalAplikasi'
                               rules={[{ required: true, message: 'Please input the amount!' }]}>
                               <DatePicker />
                             </Form.Item>

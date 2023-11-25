@@ -1,8 +1,15 @@
 import { EyeOutlined, PlusOutlined } from '@ant-design/icons'
-import { Button, Table, Typography } from 'antd'
+import { Button, message, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../api/axios'
 import '../../pages/style/style.css'
+
+interface Petani {
+  id: number,
+  petaniId: number,
+  kodeLahan: string
+}
 
 function CatatanPetani() {
   useEffect(() => {
@@ -12,36 +19,72 @@ function CatatanPetani() {
   const createPetani = () => {
     navigate('/CatatanPetani/CreatePetani')
   }
-  const [ data, setData ] = useState([
-    {
-      no: 1,
-      docId: '220',
-      petani: 'amks.40'
+  const token = localStorage.getItem('token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
     }
-  ])
+  }
+  const [loading, setLoading] = useState(true)
+  const [pdf, setPdf] = useState(false)
+  useEffect(() => {
+    axios.get('/catatan-pekerjaan', config)
+      .then((response) => {
+        setData(response.data)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Fetching Data, Please check the console')
+      }).finally(() => {
+        setLoading(false)
+      })
+  }, [])
+  const handlePdf = async (id: number) => {
+    try {
+      setPdf(true)
+      const response = await axios.get(`/catatan-pekerjaan/pdf/${id}`, {
+        ...config,
+        responseType: 'blob'
+      })
+      const blob = new Blob([response.data], {type: 'application/pdf'});
+      const pdfUrl = URL.createObjectURL(blob)
+      window.open(pdfUrl)
+      setPdf(false)
+    } catch (error) {
+      console.error('Error Ocured: ',error)
+      message.error('Error Fetching PDF, Please check the console')
+      setPdf(false)
+    }
+  }
+  const [data, setData] = useState<Petani[]>([])
   const columns = [
     {
       key: '1',
-      title: 'No',
-      dataIndex: 'no'
+      title: 'ID',
+      dataIndex: 'id'
     },
     {
       key: '2',
-      title: 'Document ID',
-      dataIndex: 'docId',
+      title: 'Kode Lahan',
+      dataIndex: 'kodeLahan',
       width: 200
     },
     {
       key: '3',
       title: 'Petani',
-      dataIndex: 'petani',
+      dataIndex: 'petaniId',
       width: 900
     },
     {
       key: '4',
       title: 'Cetak',
       width: 200,
-      render: () => <Button type='link' size='small'><EyeOutlined style={{color: 'black'}} /></Button>
+      render: (record: Petani) => {
+        return <>
+          <Button type='link' size='small' onClick={() => handlePdf(record.id)} disabled={pdf}>
+            <EyeOutlined style={{ color: 'black' }} />
+          </Button>
+        </>
+      }
     }
   ]
   return (
@@ -51,12 +94,12 @@ function CatatanPetani() {
         <Button className='create-btn' onClick={createPetani} icon={<PlusOutlined />}>
           Create Catatan
         </Button>
-        <div className="petani-table">
-          <Table 
-          size='small'
-          columns={columns}
-          dataSource={data}/>
-        </div>
+        <Spin spinning={loading || pdf}>
+          <Table
+            size='small'
+            columns={columns}
+            dataSource={data} />
+        </Spin>
       </div>
     </div>
   )
