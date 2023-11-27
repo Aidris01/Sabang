@@ -84,7 +84,7 @@ function CreatePupuk() {
                               label='Tanggal'
                               name='tanggal'
                               rules={[{ required: true, message: 'Please select the date!' }]}>
-                              <DatePicker />
+                              <DatePicker style={{width: 210}} />
                             </Form.Item>
                             <Form.Item
                               label='Bahan Kompos'
@@ -94,7 +94,7 @@ function CreatePupuk() {
                                 placeholder='Select the material'
                                 allowClear
                                 placement='bottomLeft'
-                                listHeight={200}
+                                listHeight={100}
                                 options={[
                                   {
                                     value: 'Kohe Domba',
@@ -124,7 +124,7 @@ function CreatePupuk() {
                               label='Tanggal Aplikasi'
                               name='tanggalAplikasi'
                               rules={[{ required: true, message: 'Please input the amount!' }]}>
-                              <DatePicker />
+                              <DatePicker style={{width: 210}} />
                             </Form.Item>
                           </Col>
                         </Row>

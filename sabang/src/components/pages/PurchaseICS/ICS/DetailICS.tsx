@@ -1,17 +1,66 @@
 import { CloseOutlined } from '@ant-design/icons'
-import { Button, Descriptions, Spin, Table, Typography } from 'antd'
-import React, { useEffect } from 'react'
+import { Button, Descriptions, message, Spin, Table, Typography } from 'antd'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import axios from '../../../api/axios'
 
+interface ICS {
+  id: number,
+  timestamp: Date,
+  lat: number,
+  lng: number
+}
+function formatDate(timestamp: Date | string) {
+  const dateObj = typeof timestamp === 'string' ? new Date(timestamp) : timestamp;
+
+  if (dateObj instanceof Date && !isNaN(dateObj.getTime())) {
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  } else {
+    return 'Invalid Date';
+  }
+}
 function DetailICS() {
   useEffect(() => {
     document.title = `Sabang | Garden Control ${icsId}`
   }, [])
   const { icsId } = useParams<Record<string, string>>();
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
   const back = () => {
     navigate('/ICS')
   }
+  const token = localStorage.getItem('token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const [data, setData] = useState<ICS>({
+    id: 0,
+    lat: 0,
+    lng: 0,
+    timestamp: new Date,
+  })
+  useEffect(() => {
+    axios.get(`/garden-controls/${icsId}`, config)
+      .then((response) => {
+        const responseData = response.data
+        setData({
+          id: responseData.id,
+          timestamp: responseData.timestamp,
+          lat: responseData.lat,
+          lng: responseData.lng
+        })
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Fetching Data, Please check the console')
+      }).finally(() => {
+        setLoading(false)
+      })
+  }, [])
   const column = [
     {
       key: 'id',
@@ -48,14 +97,16 @@ function DetailICS() {
     <div className='content'>
       <Typography.Title level={4}>Garden Control - {icsId}</Typography.Title>
       <div className="desc-container">
-        <Descriptions title='Detail Garden' layout='vertical' className='form-container'>
-          <Descriptions.Item label='ID'>1</Descriptions.Item>
-          <Descriptions.Item label='Penyadap'>01 - AMCT.01</Descriptions.Item>
-          <Descriptions.Item label='ICS'>01 - Dedi</Descriptions.Item>
-          <Descriptions.Item label='Long'>107.9896661</Descriptions.Item>
-          <Descriptions.Item label='Lat'>-7.4093626</Descriptions.Item>
-          <Descriptions.Item label='Time'>2020-02-22 11:08:09</Descriptions.Item>
-        </Descriptions>
+        <Spin spinning={loading}>
+          <Descriptions title='Detail Garden' layout='vertical' className='form-container'>
+            <Descriptions.Item label='ID'>{data.id}</Descriptions.Item>
+            <Descriptions.Item label='Penyadap'>01 - AMCT.01</Descriptions.Item>
+            <Descriptions.Item label='ICS'>01 - Dedi</Descriptions.Item>
+            <Descriptions.Item label='Long'>{data.lng}</Descriptions.Item>
+            <Descriptions.Item label='Lat'>{data.lat}</Descriptions.Item>
+            <Descriptions.Item label='Time'>{formatDate(data.timestamp)}</Descriptions.Item>
+          </Descriptions>
+        </Spin>
         <Typography.Title level={5} style={{ marginLeft: 15 }}>Data Checklist - tapper.id</Typography.Title>
         <Spin spinning={false}>
           <Table

@@ -38,19 +38,31 @@ function CreatePetani() {
             message.error('Error Fetching Penyadap, Please check the console')
         })
     }, [])
+    const onFinish = async (values: any) => {
+        try {
+            const response = await axios.post('/catatan-pekerjaan', values, config)
+            console.log(response.data)
+            message.success('Document Added')
+            navigate('/CatatanPetani')
+        } catch (error) {
+            console.error('Error Ocured: ',error)
+            message.error('Error Adding Document, Please check the console')
+        }
+    }
     return (
         <div className='content'>
             <Typography.Title level={4}>Create Catatan Petani</Typography.Title>
             <div className='main-container'>
                 <Form
                     className='form-container'
+                    onFinish={onFinish}
                     style={{ width: 700 }}
                     hideRequiredMark
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}>
                     <Form.Item
                         label='Petani'
-                        name='petani'
+                        name='petaniId'
                         rules={[{ required: true, message: 'Please select the farmer!' }]}>
                         <Select
                             placeholder='Select the farmer'
@@ -84,7 +96,7 @@ function CreatePetani() {
                                                             label='Tanggal'
                                                             name='tanggal'
                                                             rules={[{ required: true, message: 'Please select the date!' }]}>
-                                                            <DatePicker />
+                                                            <DatePicker style={{width: 210}} />
                                                         </Form.Item>
                                                         <Form.Item
                                                             label='Kegiatan Petani'
@@ -94,7 +106,7 @@ function CreatePetani() {
                                                                 placeholder='Select the activity'
                                                                 allowClear
                                                                 placement='bottomLeft'
-                                                                listHeight={200}
+                                                                listHeight={100}
                                                                 options={[
                                                                     {
                                                                         value: 'Pelumpingan ijuk',
@@ -107,6 +119,22 @@ function CreatePetani() {
                                                                     {
                                                                         value: 'Pemotongan lengan aren',
                                                                         label: 'Pemotongan lengan aren'
+                                                                    },
+                                                                    {
+                                                                        value: 'Pembuatan sigai',
+                                                                        label: 'Pembuatan sigai'
+                                                                    },
+                                                                    {
+                                                                        value: 'Pengomposan kohe',
+                                                                        label: 'Pengomposan kohe'
+                                                                    },
+                                                                    {
+                                                                        value: 'Pembabatan rumput',
+                                                                        label: 'Pembabatan rumput'
+                                                                    },
+                                                                    {
+                                                                        value: 'Pembersihan',
+                                                                        label: 'Pembersihan'
                                                                     }
                                                                 ]} />
                                                         </Form.Item>
@@ -115,7 +143,7 @@ function CreatePetani() {
                                                         <Form.Item
                                                             label='Bahan'
                                                             name='bahan'
-                                                            rules={[{ required: true, message: 'Please input the used material!' }]}>
+                                                            rules={[{ required: false, message: 'Please input the used material!' }]}>
                                                             <Input />
                                                         </Form.Item>
                                                         <Form.Item
@@ -134,7 +162,7 @@ function CreatePetani() {
                                                                 placeholder='Select the tool'
                                                                 allowClear
                                                                 placement='bottomLeft'
-                                                                listHeight={200}
+                                                                listHeight={100}
                                                                 options={[
                                                                     {
                                                                         value: 'Golok',
@@ -145,8 +173,20 @@ function CreatePetani() {
                                                                         label: 'Paningur'
                                                                     },
                                                                     {
-                                                                        value: 'Pisau Sadap',
-                                                                        label: 'Pisau Sadap'
+                                                                        value: 'Pisau sadap',
+                                                                        label: 'Pisau sadap'
+                                                                    },
+                                                                    {
+                                                                        value: 'Golok, Gergaji',
+                                                                        label: 'Golok, Gergaji'
+                                                                    },
+                                                                    {
+                                                                        value: 'Cangkul',
+                                                                        label: 'Cangkul'
+                                                                    },
+                                                                    {
+                                                                        value: 'Parang',
+                                                                        label: 'Parang'
                                                                     }
                                                                 ]} />
                                                         </Form.Item>

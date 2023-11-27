@@ -31,6 +31,7 @@ function CatatanPetani() {
     axios.get('/catatan-pekerjaan', config)
       .then((response) => {
         setData(response.data)
+        console.log(response.data)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Fetching Data, Please check the console')
