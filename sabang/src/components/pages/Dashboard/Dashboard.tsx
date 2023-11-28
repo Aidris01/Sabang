@@ -38,7 +38,11 @@ function Dashboard() {
   useEffect(() => {
     axios.get('/productions', config)
       .then((response) => {
-        setProduction(response.data)
+        const updateProdcution = response.data.map((item: any) => ({
+          ...item,
+          kilogram: `${item.kilogram} Kg`
+        }))
+        setProduction(updateProdcution)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Fetching Production Data, Please check the console')
@@ -49,7 +53,11 @@ function Dashboard() {
   useEffect(() => {
     axios.get('/purchases', config)
       .then((response) => {
-        setPurchase(response.data)
+        const purchasesWithDataInLiter = response.data.map((purchase: any) => ({
+          ...purchase,
+          volume: `${purchase.volume} Liter`
+        }));
+        setPurchase(purchasesWithDataInLiter)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Fetching Purchase Data, Please check the console')
@@ -140,7 +148,7 @@ function Dashboard() {
         </div>
         <div className="table-data">
           <Flex justify={'space-around'} align={'flex-start'}>
-            <Typography.Title style={{marginTop: 24}} level={4}>Purchase<Purchase /></Typography.Title>
+            <Typography.Title style={{ marginTop: 24 }} level={4}>Purchase<Purchase /></Typography.Title>
             <Typography.Title level={4}>Production<Production /></Typography.Title>
             <Typography.Title level={4}>ICS Progress<ICS /></Typography.Title>
           </Flex>
