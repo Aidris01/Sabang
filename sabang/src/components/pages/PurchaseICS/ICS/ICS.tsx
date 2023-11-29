@@ -11,7 +11,7 @@ interface Garden {
 }
 function formatDate(timestamp: Date) {
   const year = timestamp.getFullYear();
-  const month = String(timestamp.getMonth() + 1).padStart(2, '0'); // Tambah 1 karena bulan dimulai dari 0
+  const month = String(timestamp.getMonth() + 1).padStart(2, '0');
   const day = String(timestamp.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 }

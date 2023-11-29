@@ -57,7 +57,12 @@ function Production() {
   useEffect(() => {
     axios.get('/productions', config)
       .then((response) => {
-        setData(response.data)
+        const updatedData = response.data.map((item: any) => ({
+          ...item,
+          kilogram: `${item.kilogram} Kg`,
+          gram: `${item.gram} Gram`
+        }))
+        setData(updatedData)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error OCured, Please check the console')
@@ -110,7 +115,8 @@ function Production() {
     {
       key: 'gram',
       title: 'In Gram',
-      dataIndex: 'gram'
+      dataIndex: 'gram',
+      width: 200
     },
     {
       key: 'createDate',

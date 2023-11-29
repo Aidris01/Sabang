@@ -13,6 +13,11 @@ interface Production {
   createdAt: Date,
   kilogram: number
 }
+interface Payment {
+  id: number,
+  timestamp: Date,
+  amount: number
+}
 
 function formatDate(timestamp: Date) {
   const year = timestamp.getFullYear();
@@ -32,8 +37,10 @@ function Dashboard() {
   }
   const [purchase, setPurchase] = useState<Purchase[]>([])
   const [production, setProduction] = useState<Production[]>([])
+  const [payment, setPayment] = useState<Payment[]>([])
   const [loadingPurc, setLoadingPurch] = useState(true)
   const [loadingProd, setLoadingProd] = useState(true)
+  const [loadingPay, setLoadingPay] = useState(true)
 
   useEffect(() => {
     axios.get('/productions', config)
@@ -63,6 +70,21 @@ function Dashboard() {
         message.error('Error Fetching Purchase Data, Please check the console')
       }).finally(() => {
         setLoadingPurch(false)
+      })
+  }, [])
+  useEffect(() => {
+    axios.get('/purchases', config)
+      .then((response) => {
+        const updatedPayment = response.data.map((item: any) => ({
+          ...item,
+          amount: `Rp.${item.amount}`
+        }))
+        setPayment(updatedPayment)
+      }).catch((error) => {
+        console.error('Error Ocured: ', error)
+        message.error('Error Fetching PAyment, Please check the console')
+      }).finally(() => {
+        setLoadingPay(false)
       })
   }, [])
 
@@ -117,21 +139,25 @@ function Dashboard() {
       </Spin>
     )
   }
-  function ICS() {
+  function Payment() {
     return (
-      <Table
-        columns={[
-          {
-            title: "Date",
-            dataIndex: "date",
-            width: 150
-          },
-          {
-            title: "Checked",
-            dataIndex: "checked",
-            width: 150
-          }
-        ]} />
+      <Spin spinning={loadingPay}>
+        <Table
+          columns={[
+            {
+              title: "Date",
+              dataIndex: "timestamp",
+              render: (timestamp: Date) => formatDate(new Date(timestamp)),
+              width: 150
+            },
+            {
+              title: "Price(Rp.)",
+              dataIndex: "amount",
+              width: 150
+            }
+          ]} 
+          dataSource={payment}/>
+      </Spin>
     )
   }
   return (
@@ -148,9 +174,9 @@ function Dashboard() {
         </div>
         <div className="table-data">
           <Flex justify={'space-around'} align={'flex-start'}>
-            <Typography.Title style={{ marginTop: 24 }} level={4}>Purchase<Purchase /></Typography.Title>
-            <Typography.Title level={4}>Production<Production /></Typography.Title>
-            <Typography.Title level={4}>ICS Progress<ICS /></Typography.Title>
+            <Typography.Title style={{ marginTop: 24 }} level={4}>Purchases<Purchase /></Typography.Title>
+            <Typography.Title level={4}>Productions<Production /></Typography.Title>
+            <Typography.Title level={4}>Payments<Payment /></Typography.Title>
           </Flex>
         </div>
         <Typography.Title level={4}>Daftar Kadar PH Dibawah 6<PH5 /></Typography.Title>

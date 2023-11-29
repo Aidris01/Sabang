@@ -56,11 +56,12 @@ function Purchase() {
       .then((response) => {
         const purchase = response.data.data
         setTotalItems(response.data.totalItems)
-        const updateData = purchase.map((purchase) => {
-          const penyadap = purchase.penyadap.name
-          return purchase
-        })
-        setData(updateData)
+        const updatedData = purchase.map((item: any) => ({
+          ...item,
+          volume: `${item.volume} Liter`,
+          amount: `Rp.${item.amount}`
+        }))
+        setData(updatedData)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Ocured, Please check the console')
@@ -245,7 +246,7 @@ function Purchase() {
           </Popconfirm>
         </>
       },
-      width: 1000
+      width: 2000
     }
   ]
   const [dataWeek, setDataWeek] = useState([

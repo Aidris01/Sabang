@@ -44,7 +44,6 @@ function StatusPayment() {
         setTotalItems(response.data.totalItems)
         const updateData = purchase.map((purchase) => {
           const penyadap = purchase.penyadap.name
-          console.log('Nama Penyadap: ', penyadap);
           return purchase
         })
         setDataSource(updateData)

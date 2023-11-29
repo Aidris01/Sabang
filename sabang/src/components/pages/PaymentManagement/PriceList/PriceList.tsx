@@ -30,7 +30,11 @@ function PriceList() {
   useEffect(() => {
     axios.get('/price_lists', config)
       .then((response) => {
-        setDataSource(response.data)
+        const updatedData = response.data.map((item: any) => ({
+          ...item,
+          price: `Rp.${item.price}`
+        }))
+        setDataSource(updatedData)
         setLoading(false)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
