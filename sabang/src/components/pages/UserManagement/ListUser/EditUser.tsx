@@ -114,7 +114,7 @@ function EditUser() {
 
     const onFinish = () => {
         axios.patch(`/users/${userId}`, form.getFieldsValue(), config)
-            .then((response) => {
+            .then(() => {
                 message.success('User Updated')
                 navigate('/ListUser')
             }).catch((error) => {

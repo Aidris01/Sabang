@@ -43,7 +43,7 @@ function EditRole() {
             setRoleData(response.data)
         }).catch((error) => {
             console.error('Error Ocured: ', error)
-            message.error('Error Fetching Data')
+            message.error('Error Fetching Data, Please check the console')
         }).finally(() => {
             setLoading(false)
         })
@@ -56,7 +56,7 @@ function EditRole() {
             navigate('/Roles')
             console.log(roleData)
         }).catch((error) => {
-            message.error("Error Ocured")
+            message.error("Error Updating Role, Please check the console")
             console.error('Error Ocured: ', error)
         })
     }
@@ -88,7 +88,7 @@ function EditRole() {
                         <Form.Item
                             name='description'
                             label='Description'
-                            rules={[{ required: true, message: 'Please input the description' }]}>
+                            rules={[{ required: false, message: 'Please input the description' }]}>
                             <TextArea rows={2} autoSize={{ minRows: 3, maxRows: 6 }} />
                         </Form.Item>
                         <div className="button-container">
