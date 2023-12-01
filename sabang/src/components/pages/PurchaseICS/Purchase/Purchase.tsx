@@ -169,7 +169,7 @@ function Purchase() {
       key: 'timestamp',
       title: 'Create Date',
       dataIndex: 'timestamp',
-      width: 100,
+      width: 400,
       render: (timestamp: Date) => formatDate(new Date(timestamp))
     },
     {
@@ -246,7 +246,7 @@ function Purchase() {
           </Popconfirm>
         </>
       },
-      width: 2000
+      width: 1000
     }
   ]
   const [dataWeek, setDataWeek] = useState([

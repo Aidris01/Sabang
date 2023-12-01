@@ -32,7 +32,6 @@ function SideBar() {
         onClick={(item) => {
           navigate(item.key)
         }}
-        defaultSelectedKeys={['/']}
         className='list-menu'
         mode='inline'
         items={[
