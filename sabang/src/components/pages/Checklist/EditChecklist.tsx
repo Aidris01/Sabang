@@ -1,5 +1,5 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
-import { Button, Form, Input, message, Space, Spin, Typography } from 'antd'
+import { Button, Form, Input, message, Radio, Space, Spin, Typography } from 'antd'
 import { useForm } from 'antd/es/form/Form'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -77,6 +77,22 @@ function EditChecklist() {
                             label='Name'
                             rules={[{ required: true, message: 'Please input the name!' }]}>
                             <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label="Type"
+                            name='type'
+                            rules={[{required: true, message: 'Please select type of checklist'}]}>
+                            <Radio.Group>
+                                <Radio value="text">
+                                    Text
+                                </Radio>
+                                <Radio value="image">
+                                    Image
+                                </Radio>
+                                <Radio value="check">
+                                    Check
+                                </Radio>
+                            </Radio.Group>
                         </Form.Item>
                         <div className="button-container">
                             <Space>

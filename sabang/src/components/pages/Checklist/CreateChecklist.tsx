@@ -1,5 +1,5 @@
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
-import { Button, Form, Input, message, Space, Typography } from 'antd'
+import { Button, Form, Input, message, Radio, Space, Typography } from 'antd'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from '../../api/axios'
@@ -47,6 +47,22 @@ function CreateChecklist() {
                         name="title"
                         rules={[{ required: true, message: "Please input the name!" }]}>
                         <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="Type"
+                        name='type'
+                        rules={[{required: true, message: 'Please select type of checklist'}]}>
+                        <Radio.Group>
+                            <Radio value="text">
+                                Text
+                            </Radio>
+                            <Radio value="image">
+                                Image
+                            </Radio>
+                            <Radio value="check">
+                                Check
+                            </Radio>
+                        </Radio.Group>
                     </Form.Item>
                     <div className="button-container">
                         <Space size={8}>

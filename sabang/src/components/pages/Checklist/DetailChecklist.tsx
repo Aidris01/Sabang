@@ -7,7 +7,8 @@ import '../style/style.css'
 
 interface Checklist {
   id: number,
-  title: string
+  title: string,
+  type: string
 }
 
 function DetailChecklist() {
@@ -24,10 +25,11 @@ function DetailChecklist() {
   }
   const token = localStorage.getItem('token')
   const [loading, setLoading] = useState(true)
-  const [checklist, setChecklist] = useState(
+  const [checklist, setChecklist] = useState<Checklist>(
     {
       id: 0,
-      title: ''
+      title: '',
+      type: ''
     }
   )
   const config = {
@@ -54,6 +56,7 @@ function DetailChecklist() {
           <Descriptions title='Checklist Detail' layout='vertical' className='form-container'>
             <Descriptions.Item label='ID'>{checklist.id}</Descriptions.Item>
             <Descriptions.Item label='Name'>{checklist.title}</Descriptions.Item>
+            <Descriptions.Item label='Type'>{checklist.type}</Descriptions.Item>
           </Descriptions>
         </Spin>
         <div className="button-container">
