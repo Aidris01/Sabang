@@ -32,7 +32,6 @@ function ICS() {
   useEffect(() => {
     axios.get('/garden-controls', config)
       .then((response) => {
-        console.log(response.data)
         setData(response.data)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
