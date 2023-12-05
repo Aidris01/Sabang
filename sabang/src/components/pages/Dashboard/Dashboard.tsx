@@ -41,6 +41,9 @@ function Dashboard() {
   const [loadingPurc, setLoadingPurch] = useState(true)
   const [loadingProd, setLoadingProd] = useState(true)
   const [loadingPay, setLoadingPay] = useState(true)
+  const [price, setPrice] = useState(0)
+  const [volume, setVolume] = useState(0)
+  const [weight, setWeight] = useState(0)
 
   useEffect(() => {
     axios.get('/productions', config)
@@ -87,6 +90,36 @@ function Dashboard() {
         setLoadingPay(false)
       })
   }, [])
+  useEffect(() => {
+    axios.get('/purchases/total-amount', config)
+    .then((response) => {
+      setPrice(response.data.totalAmount)
+    }).catch((error) => {
+      console.error('Error Ocured: ',error)
+      message.error('Error Fetching Total Price, Please check the console')
+    })
+  },[])
+  useEffect(() => {
+    axios.get('/purchases/total-volume', config)
+    .then((response) => {
+      setVolume(response.data.totalVolume)
+    }).catch((error) => {
+      console.error('Error Ocured: ',error)
+      message.error('Error Fetching Total Volume, Please check the console')
+    })
+  },[])
+  useEffect(() => {
+    axios.get('/productions/total-weight', config)
+    .then((response) => {
+      setWeight(response.data.totalWeight)
+    }).catch((error) => {
+      console.error('Error Ocured: ',error)
+      message.error('Error Fetching Total Weight, Please check the console')
+    })
+  },[])
+  useEffect(() => {
+    
+  },[])
 
   function DashboardCard({ title, value }: { title: string; value: number; }) {
     return (
@@ -166,10 +199,10 @@ function Dashboard() {
       <div className='dashboard-page'>
         <div className="all-data">
           <Space direction='horizontal'>
-            <DashboardCard title={"All Purchases (Liter)"} value={6740} />
-            <DashboardCard title={"All Productions (Kg)"} value={4200} />
+            <DashboardCard title={"All Purchases (Liter)"} value={volume} />
+            <DashboardCard title={"All Productions (Kg)"} value={weight} />
             <DashboardCard title={"ICS Checked (Place)"} value={2} />
-            <DashboardCard title={"All Payments (Rp)"} value={2130} />
+            <DashboardCard title={"All Payments (Rp)"} value={price} />
           </Space>
         </div>
         <div className="table-data">
