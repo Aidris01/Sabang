@@ -51,14 +51,16 @@ function ICS() {
     {
       key: '2',
       title: 'Tapper',
-      dataIndex: 'tapper',
-      width: 300
+      dataIndex: 'penyadap',
+      width: 300,
+      render: (penyadap: any) => penyadap.name
     },
     {
       key: '3',
       title: 'ICS Name',
-      dataIndex: 'ICSName',
-      width: 300
+      dataIndex: 'ics',
+      width: 300,
+      render: (ics: any) => ics.name
     },
     {
       key: '4',

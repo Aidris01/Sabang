@@ -8,7 +8,17 @@ interface ICS {
   id: number,
   timestamp: Date,
   lat: number,
-  lng: number
+  lng: number,
+  penyadapId: number,
+  icsId: number,
+  penyadap: string,
+  ics: string
+}
+interface ICSItem {
+  title: string,
+  value: string,
+  type: string,
+  note: string
 }
 function formatDate(timestamp: Date | string) {
   const dateObj = typeof timestamp === 'string' ? new Date(timestamp) : timestamp;
@@ -43,7 +53,12 @@ function DetailICS() {
     lat: 0,
     lng: 0,
     timestamp: new Date,
+    penyadapId: 0,
+    icsId: 0,
+    penyadap: '',
+    ics: ''
   })
+  const [items, setItems] = useState<ICSItem[]>([])
   useEffect(() => {
     axios.get(`/garden-controls/${icsId}`, config)
       .then((response) => {
@@ -52,8 +67,13 @@ function DetailICS() {
           id: responseData.id,
           timestamp: responseData.timestamp,
           lat: responseData.lat,
-          lng: responseData.lng
+          lng: responseData.lng,
+          penyadapId: responseData.penyadapId,
+          icsId: responseData.icsId,
+          penyadap: responseData.penyadap.name,
+          ics: responseData.ics.name
         })
+        setItems(responseData.items)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Fetching Data, Please check the console')
@@ -63,34 +83,32 @@ function DetailICS() {
   }, [])
   const column = [
     {
-      key: 'id',
-      title: 'ID',
-      dataIndex: 'id',
-      width: 100
-    },
-    {
-      key: 'checkName',
-      title: 'Checklist',
-      dataIndex: 'checklist',
-      width: 500
-    },
-    {
-      key: 'status',
-      title: 'Status',
-      dataIndex: 'status',
-      width: 200
-    },
-    {
-      key: 'photo',
-      title: 'Photo',
-      dataIndex: 'photo',
+      key: 'title',
+      title: 'Checklist Title',
+      dataIndex: 'title',
       width: 300
+    },
+    {
+      key: 'value',
+      title: 'Value',
+      dataIndex: 'value',
+      width: 300,
+      render: (text: string, record: ICSItem) => {
+        if(record.type.toLowerCase() === 'image') {
+          return <img src={record.value} alt='Checklist Image' style={{ maxWidth: '100px' }} />
+        }
+        return text
+      }
+    },
+    {
+      key: 'type',
+      title: 'Type',
+      dataIndex: 'type',
     },
     {
       key: 'note',
       title: 'Note',
       dataIndex: 'note',
-      width: 300
     }
   ]
   return (
@@ -100,18 +118,19 @@ function DetailICS() {
         <Spin spinning={loading}>
           <Descriptions title='Detail Garden' layout='vertical' className='form-container'>
             <Descriptions.Item label='ID'>{data.id}</Descriptions.Item>
-            <Descriptions.Item label='Penyadap'>01 - AMCT.01</Descriptions.Item>
-            <Descriptions.Item label='ICS'>01 - Dedi</Descriptions.Item>
+            <Descriptions.Item label='Penyadap'>{data.penyadapId} - {data.penyadap}</Descriptions.Item>
+            <Descriptions.Item label='ICS'>{data.icsId} - {data.ics}</Descriptions.Item>
             <Descriptions.Item label='Long'>{data.lng}</Descriptions.Item>
             <Descriptions.Item label='Lat'>{data.lat}</Descriptions.Item>
             <Descriptions.Item label='Time'>{formatDate(data.timestamp)}</Descriptions.Item>
           </Descriptions>
         </Spin>
-        <Typography.Title level={5} style={{ marginLeft: 15 }}>Data Checklist - tapper.id</Typography.Title>
+        <Typography.Title level={5} style={{ marginLeft: 15 }}>Data Checklist - {data.id}</Typography.Title>
         <Spin spinning={false}>
           <Table
             size='small'
-            columns={column} />
+            columns={column} 
+            dataSource={items}/>
         </Spin>
         <div className="button-container">
           <Button className='back-btn' icon={<CloseOutlined />} danger onClick={back}>
