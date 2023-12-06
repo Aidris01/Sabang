@@ -34,7 +34,7 @@ function PrintBarcode() {
                 setLoading(false)
             })
     }, [])
-    const imgUrl = `http://192.168.102.182:3001/productions/generate/${productionId}`
+    const imgUrl = `http://192.168.102.151:3001/productions/generate/${productionId}`
     const printRef = useRef(null)
     const handlePrint = useReactToPrint({
         content: () => printRef.current

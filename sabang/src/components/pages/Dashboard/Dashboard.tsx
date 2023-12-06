@@ -6,17 +6,13 @@ import '../../pages/style/style.css'
 interface Purchase {
   id: number,
   timestamp: Date,
-  volume: number
+  volume: number,
+  amount: number
 }
 interface Production {
   id: number,
   createdAt: Date,
   kilogram: number
-}
-interface Payment {
-  id: number,
-  timestamp: Date,
-  amount: number
 }
 
 function formatDate(timestamp: Date) {
@@ -37,13 +33,14 @@ function Dashboard() {
   }
   const [purchase, setPurchase] = useState<Purchase[]>([])
   const [production, setProduction] = useState<Production[]>([])
-  const [payment, setPayment] = useState<Payment[]>([])
+  const [payment, setPayment] = useState<Purchase[]>([])
   const [loadingPurc, setLoadingPurch] = useState(true)
   const [loadingProd, setLoadingProd] = useState(true)
   const [loadingPay, setLoadingPay] = useState(true)
   const [price, setPrice] = useState(0)
   const [volume, setVolume] = useState(0)
   const [weight, setWeight] = useState(0)
+  const [ics, setIcs] = useState(0)
 
   useEffect(() => {
     axios.get('/productions', config)
@@ -65,28 +62,16 @@ function Dashboard() {
       .then((response) => {
         const purchasesWithDataInLiter = response.data.map((purchase: any) => ({
           ...purchase,
-          volume: `${purchase.volume} Liter`
+          volume: `${purchase.volume} Liter`,
+          amount: `Rp.${purchase.amount}`
         }));
         setPurchase(purchasesWithDataInLiter)
+        setPayment(purchasesWithDataInLiter)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Fetching Purchase Data, Please check the console')
       }).finally(() => {
         setLoadingPurch(false)
-      })
-  }, [])
-  useEffect(() => {
-    axios.get('/purchases', config)
-      .then((response) => {
-        const updatedPayment = response.data.map((item: any) => ({
-          ...item,
-          amount: `Rp.${item.amount}`
-        }))
-        setPayment(updatedPayment)
-      }).catch((error) => {
-        console.error('Error Ocured: ', error)
-        message.error('Error Fetching PAyment, Please check the console')
-      }).finally(() => {
         setLoadingPay(false)
       })
   }, [])
@@ -118,7 +103,13 @@ function Dashboard() {
     })
   },[])
   useEffect(() => {
-    
+    axios.get('/garden-controls/total-ics', config)
+    .then((response) => {
+      setIcs(response.data.total)
+    }).catch((error) => {
+      console.error('Error Ocured: ',error)
+      message.error('Error Fetching Total ICS, Please check the console')
+    })
   },[])
 
   function DashboardCard({ title, value }: { title: string; value: number; }) {
@@ -201,7 +192,7 @@ function Dashboard() {
           <Space direction='horizontal'>
             <DashboardCard title={"All Purchases (Liter)"} value={volume} />
             <DashboardCard title={"All Productions (Kg)"} value={weight} />
-            <DashboardCard title={"ICS Checked (Place)"} value={2} />
+            <DashboardCard title={"ICS Checked (Place)"} value={ics} />
             <DashboardCard title={"All Payments (Rp)"} value={price} />
           </Space>
         </div>

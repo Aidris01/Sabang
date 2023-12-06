@@ -84,7 +84,7 @@ function DetailICS() {
   const column = [
     {
       key: 'title',
-      title: 'Checklist Title',
+      title: 'Checklists',
       dataIndex: 'title',
       width: 300
     },
@@ -96,20 +96,12 @@ function DetailICS() {
       render: (text: string, record: ICSItem) => {
         if(record.type.toLowerCase() === 'image') {
           return <img src={record.value} alt='Checklist Image' style={{ maxWidth: '100px' }} />
+        } else if(record.type.toLocaleLowerCase() === 'check') {
+          return record.value === 'false' ? 'Tidak' : 'Ya'
         }
         return text
       }
     },
-    {
-      key: 'type',
-      title: 'Type',
-      dataIndex: 'type',
-    },
-    {
-      key: 'note',
-      title: 'Note',
-      dataIndex: 'note',
-    }
   ]
   return (
     <div className='content'>

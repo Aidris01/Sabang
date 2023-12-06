@@ -32,21 +32,6 @@ function Production() {
   const generateTotal = () => {
     navigate('/Production/GenerateTotal')
   }
-  const Create =
-    <Space>
-      <Button
-        style={{ marginRight: 10, width: '100%' }}
-        onClick={createLabel}
-        icon={<PlusOutlined />}>
-        Create Production
-      </Button>
-      <Button
-        style={{ marginRight: 10 }}
-        onClick={generateTotal}
-        icon={<SettingOutlined />}>
-        Generate Total
-      </Button>
-    </Space>
 
   const token = localStorage.getItem('token')
   const config = {
@@ -153,364 +138,372 @@ function Production() {
       width: 350
     },
   ]
-  const [dataTempo, setDataTempo] = useState<Production[]>([])
-  const columnsTempo = [
-    {
-      key: 'id',
-      title: 'ID',
-      dataIndex: 'id'
-    },
-    {
-      key: '9',
-      title: 'Create New Label',
-      dataIndex: 'createNewLabel'
-    },
-    {
-      key: 'operator',
-      title: 'Operator',
-      dataIndex: 'operatorName',
-      width: 200
-    },
-    {
-      key: 'factory',
-      title: 'Factory',
-      dataIndex: 'factoryName',
-      width: 200
-    },
-    {
-      key: 'barcode',
-      title: 'Barcode',
-      dataIndex: 'barcode',
-      width: 200
-    },
-    {
-      key: 'kilogram',
-      title: 'In Kilogram',
-      dataIndex: 'kilogram'
-    },
-    {
-      key: 'gram',
-      title: 'In Gram',
-      dataIndex: 'gram'
-    },
-    {
-      key: 'createAt',
-      title: 'Create Date',
-      dataIndex: 'createdAt'
-    },
-    {
-      key: 'action',
-      title: 'Action',
-      render: () => {
-        return <>
-          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
-        </>
-      },
-      width: 250
-    }
-  ]
-  const [dataLiquid, setDataLiquid] = useState([
-    {
-      id: 1,
-      operator: 'Santi Prasinta',
-      factory: 'Mandalasari',
-      barcode: '0000008311',
-      kilo: 12.5,
-      gram: 12500,
-      createDate: '2020-10-20'
-    },
-    {
-      id: 2,
-      operator: 'Santi Prasinta',
-      factory: 'Bunikasih',
-      barcode: '0000008321',
-      kilo: 14.0,
-      gram: 14000,
-      createDate: '2021-12-01'
-    }
-  ])
-  const columnsLiquid = [
-    {
-      key: '1',
-      title: 'ID',
-      dataIndex: 'id'
-    },
-    {
-      key: '2',
-      title: 'Operator',
-      dataIndex: 'operator',
-      width: 200
-    },
-    {
-      key: '3',
-      title: 'Factory',
-      dataIndex: 'factory',
-      width: 200
-    },
-    {
-      key: '4',
-      title: 'Barcode',
-      dataIndex: 'barcode',
-      width: 200
-    },
-    {
-      key: '5',
-      title: 'In Kilogram',
-      dataIndex: 'kilo'
-    },
-    {
-      key: '6',
-      title: 'In Gram',
-      dataIndex: 'gram'
-    },
-    {
-      key: '7',
-      title: 'Create Date',
-      dataIndex: 'createDate'
-    },
-    {
-      key: '8',
-      title: 'Action',
-      render: () => {
-        return <>
-          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
-        </>
-      },
-      width: 250
-    }
-  ]
-  const [dataToday, setDataToday] = useState([
-    {
-      id: 1,
-      operator: 'Santi Prasinta',
-      factory: 'Mandalasari',
-      barcode: '0000008312',
-      kilo: 11.5,
-      gram: 11500
-    },
-    {
-      id: 2,
-      operator: 'Santi Prasinta',
-      factory: 'Bunikasih',
-      barcode: '0000008324',
-      kilo: 21.0,
-      gram: 21000
-    }
-  ])
-  const columnsToday = [
-    {
-      key: '1',
-      title: 'ID',
-      dataIndex: 'id'
-    },
-    {
-      key: '2',
-      title: 'Operator',
-      dataIndex: 'operator',
-      width: 200
-    },
-    {
-      key: '3',
-      title: 'Factory',
-      dataIndex: 'factory',
-      width: 200
-    },
-    {
-      key: '4',
-      title: 'Barcode',
-      dataIndex: 'barcode',
-      width: 200
-    },
-    {
-      key: '5',
-      title: 'In Kilogram',
-      dataIndex: 'kilo'
-    },
-    {
-      key: '6',
-      title: 'In Gram',
-      dataIndex: 'gram'
-    },
-    {
-      key: '7',
-      title: 'Action',
-      render: () => {
-        return <>
-          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
-        </>
-      },
-      width: 200
-    }
-  ]
-  const [dataWeek, setDataWeek] = useState([
-    {
-      id: 1,
-      operator: 'Santi Prasinta',
-      factory: 'Mandalasari',
-      barcode: '0000008312',
-      kilo: 11.5,
-      gram: 11500
-    },
-    {
-      id: 2,
-      operator: 'Santi Prasinta',
-      factory: 'Bunikasih',
-      barcode: '0000008324',
-      kilo: 21.0,
-      gram: 21000
-    },
-    {
-      id: 3,
-      operator: 'Santi Prasinta',
-      factory: 'Mandalasari',
-      barcode: '0000008333',
-      kilo: 12.4,
-      gram: 12400
-    }
-  ])
-  const columnsWeek = [
-    {
-      key: '1',
-      title: 'ID',
-      dataIndex: 'id'
-    },
-    {
-      key: '2',
-      title: 'Operator',
-      dataIndex: 'operator',
-      width: 200
-    },
-    {
-      key: '3',
-      title: 'Factory',
-      dataIndex: 'factory',
-      width: 200
-    },
-    {
-      key: '4',
-      title: 'Barcode',
-      dataIndex: 'barcode',
-      width: 200
-    },
-    {
-      key: '5',
-      title: 'In Kilogram',
-      dataIndex: 'kilo'
-    },
-    {
-      key: '6',
-      title: 'In Gram',
-      dataIndex: 'gram'
-    },
-    {
-      key: '7',
-      title: 'Action',
-      render: () => {
-        return <>
-          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
-        </>
-      },
-      width: 200
-    }
-  ]
-  const [dataMonth, setDataMonth] = useState([
-    {
-      id: 1,
-      operator: 'Santi Prasinta',
-      factory: 'Mandalasari',
-      barcode: '0000008312',
-      kilo: 11.5,
-      gram: 11500
-    },
-    {
-      id: 2,
-      operator: 'Santi Prasinta',
-      factory: 'Bunikasih',
-      barcode: '0000008324',
-      kilo: 21.0,
-      gram: 21000
-    },
-    {
-      id: 3,
-      operator: 'Santi Prasinta',
-      factory: 'Mandalasari',
-      barcode: '0000008333',
-      kilo: 12.4,
-      gram: 12400
-    },
-    {
-      id: 4,
-      operator: 'Santi Prasinta',
-      factory: 'Mandalasari',
-      barcode: '0000008327',
-      kilo: 21.0,
-      gram: 21000
-    }
-  ])
-  const columnsMonth = [
-    {
-      key: '1',
-      title: 'ID',
-      dataIndex: 'id'
-    },
-    {
-      key: '2',
-      title: 'Operator',
-      dataIndex: 'operator',
-      width: 200
-    },
-    {
-      key: '3',
-      title: 'Factory',
-      dataIndex: 'factory',
-      width: 200
-    },
-    {
-      key: '4',
-      title: 'Barcode',
-      dataIndex: 'barcode',
-      width: 200
-    },
-    {
-      key: '5',
-      title: 'In Kilogram',
-      dataIndex: 'kilo'
-    },
-    {
-      key: '6',
-      title: 'In Gram',
-      dataIndex: 'gram'
-    },
-    {
-      key: '7',
-      title: 'Action',
-      render: () => {
-        return <>
-          <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
-          <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
-        </>
-      },
-      width: 200
-    }
-  ]
+  // const [dataTempo, setDataTempo] = useState<Production[]>([])
+  // const columnsTempo = [
+  //   {
+  //     key: 'id',
+  //     title: 'ID',
+  //     dataIndex: 'id'
+  //   },
+  //   {
+  //     key: '9',
+  //     title: 'Create New Label',
+  //     dataIndex: 'createNewLabel'
+  //   },
+  //   {
+  //     key: 'operator',
+  //     title: 'Operator',
+  //     dataIndex: 'operatorName',
+  //     width: 200
+  //   },
+  //   {
+  //     key: 'factory',
+  //     title: 'Factory',
+  //     dataIndex: 'factoryName',
+  //     width: 200
+  //   },
+  //   {
+  //     key: 'barcode',
+  //     title: 'Barcode',
+  //     dataIndex: 'barcode',
+  //     width: 200
+  //   },
+  //   {
+  //     key: 'kilogram',
+  //     title: 'In Kilogram',
+  //     dataIndex: 'kilogram'
+  //   },
+  //   {
+  //     key: 'gram',
+  //     title: 'In Gram',
+  //     dataIndex: 'gram'
+  //   },
+  //   {
+  //     key: 'createAt',
+  //     title: 'Create Date',
+  //     dataIndex: 'createdAt'
+  //   },
+  //   {
+  //     key: 'action',
+  //     title: 'Action',
+  //     render: () => {
+  //       return <>
+  //         <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+  //       </>
+  //     },
+  //     width: 250
+  //   }
+  // ]
+  // const [dataLiquid, setDataLiquid] = useState([
+  //   {
+  //     id: 1,
+  //     operator: 'Santi Prasinta',
+  //     factory: 'Mandalasari',
+  //     barcode: '0000008311',
+  //     kilo: 12.5,
+  //     gram: 12500,
+  //     createDate: '2020-10-20'
+  //   },
+  //   {
+  //     id: 2,
+  //     operator: 'Santi Prasinta',
+  //     factory: 'Bunikasih',
+  //     barcode: '0000008321',
+  //     kilo: 14.0,
+  //     gram: 14000,
+  //     createDate: '2021-12-01'
+  //   }
+  // ])
+  // const columnsLiquid = [
+  //   {
+  //     key: '1',
+  //     title: 'ID',
+  //     dataIndex: 'id'
+  //   },
+  //   {
+  //     key: '2',
+  //     title: 'Operator',
+  //     dataIndex: 'operator',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '3',
+  //     title: 'Factory',
+  //     dataIndex: 'factory',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '4',
+  //     title: 'Barcode',
+  //     dataIndex: 'barcode',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '5',
+  //     title: 'In Kilogram',
+  //     dataIndex: 'kilo'
+  //   },
+  //   {
+  //     key: '6',
+  //     title: 'In Gram',
+  //     dataIndex: 'gram'
+  //   },
+  //   {
+  //     key: '7',
+  //     title: 'Create Date',
+  //     dataIndex: 'createDate'
+  //   },
+  //   {
+  //     key: '8',
+  //     title: 'Action',
+  //     render: () => {
+  //       return <>
+  //         <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+  //       </>
+  //     },
+  //     width: 250
+  //   }
+  // ]
+  // const [dataToday, setDataToday] = useState([
+  //   {
+  //     id: 1,
+  //     operator: 'Santi Prasinta',
+  //     factory: 'Mandalasari',
+  //     barcode: '0000008312',
+  //     kilo: 11.5,
+  //     gram: 11500
+  //   },
+  //   {
+  //     id: 2,
+  //     operator: 'Santi Prasinta',
+  //     factory: 'Bunikasih',
+  //     barcode: '0000008324',
+  //     kilo: 21.0,
+  //     gram: 21000
+  //   }
+  // ])
+  // const columnsToday = [
+  //   {
+  //     key: '1',
+  //     title: 'ID',
+  //     dataIndex: 'id'
+  //   },
+  //   {
+  //     key: '2',
+  //     title: 'Operator',
+  //     dataIndex: 'operator',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '3',
+  //     title: 'Factory',
+  //     dataIndex: 'factory',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '4',
+  //     title: 'Barcode',
+  //     dataIndex: 'barcode',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '5',
+  //     title: 'In Kilogram',
+  //     dataIndex: 'kilo'
+  //   },
+  //   {
+  //     key: '6',
+  //     title: 'In Gram',
+  //     dataIndex: 'gram'
+  //   },
+  //   {
+  //     key: '7',
+  //     title: 'Action',
+  //     render: () => {
+  //       return <>
+  //         <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+  //       </>
+  //     },
+  //     width: 200
+  //   }
+  // ]
+  // const [dataWeek, setDataWeek] = useState([
+  //   {
+  //     id: 1,
+  //     operator: 'Santi Prasinta',
+  //     factory: 'Mandalasari',
+  //     barcode: '0000008312',
+  //     kilo: 11.5,
+  //     gram: 11500
+  //   },
+  //   {
+  //     id: 2,
+  //     operator: 'Santi Prasinta',
+  //     factory: 'Bunikasih',
+  //     barcode: '0000008324',
+  //     kilo: 21.0,
+  //     gram: 21000
+  //   },
+  //   {
+  //     id: 3,
+  //     operator: 'Santi Prasinta',
+  //     factory: 'Mandalasari',
+  //     barcode: '0000008333',
+  //     kilo: 12.4,
+  //     gram: 12400
+  //   }
+  // ])
+  // const columnsWeek = [
+  //   {
+  //     key: '1',
+  //     title: 'ID',
+  //     dataIndex: 'id'
+  //   },
+  //   {
+  //     key: '2',
+  //     title: 'Operator',
+  //     dataIndex: 'operator',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '3',
+  //     title: 'Factory',
+  //     dataIndex: 'factory',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '4',
+  //     title: 'Barcode',
+  //     dataIndex: 'barcode',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '5',
+  //     title: 'In Kilogram',
+  //     dataIndex: 'kilo'
+  //   },
+  //   {
+  //     key: '6',
+  //     title: 'In Gram',
+  //     dataIndex: 'gram'
+  //   },
+  //   {
+  //     key: '7',
+  //     title: 'Action',
+  //     render: () => {
+  //       return <>
+  //         <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+  //       </>
+  //     },
+  //     width: 200
+  //   }
+  // ]
+  // const [dataMonth, setDataMonth] = useState([
+  //   {
+  //     id: 1,
+  //     operator: 'Santi Prasinta',
+  //     factory: 'Mandalasari',
+  //     barcode: '0000008312',
+  //     kilo: 11.5,
+  //     gram: 11500
+  //   },
+  //   {
+  //     id: 2,
+  //     operator: 'Santi Prasinta',
+  //     factory: 'Bunikasih',
+  //     barcode: '0000008324',
+  //     kilo: 21.0,
+  //     gram: 21000
+  //   },
+  //   {
+  //     id: 3,
+  //     operator: 'Santi Prasinta',
+  //     factory: 'Mandalasari',
+  //     barcode: '0000008333',
+  //     kilo: 12.4,
+  //     gram: 12400
+  //   },
+  //   {
+  //     id: 4,
+  //     operator: 'Santi Prasinta',
+  //     factory: 'Mandalasari',
+  //     barcode: '0000008327',
+  //     kilo: 21.0,
+  //     gram: 21000
+  //   }
+  // ])
+  // const columnsMonth = [
+  //   {
+  //     key: '1',
+  //     title: 'ID',
+  //     dataIndex: 'id'
+  //   },
+  //   {
+  //     key: '2',
+  //     title: 'Operator',
+  //     dataIndex: 'operator',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '3',
+  //     title: 'Factory',
+  //     dataIndex: 'factory',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '4',
+  //     title: 'Barcode',
+  //     dataIndex: 'barcode',
+  //     width: 200
+  //   },
+  //   {
+  //     key: '5',
+  //     title: 'In Kilogram',
+  //     dataIndex: 'kilo'
+  //   },
+  //   {
+  //     key: '6',
+  //     title: 'In Gram',
+  //     dataIndex: 'gram'
+  //   },
+  //   {
+  //     key: '7',
+  //     title: 'Action',
+  //     render: () => {
+  //       return <>
+  //         <Button type='link' size='small'><EyeOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><PrinterOutlined style={{ color: 'black' }} /></Button>
+  //         <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
+  //       </>
+  //     },
+  //     width: 200
+  //   }
+  // ]
   return (
     <div className='content'>
       <Typography.Title level={4}>Production</Typography.Title>
       <div className='main-container'>
-        <Tabs tabBarExtraContent={Create} defaultActiveKey='1' items={[
+        <div style={{ margin: 10 }}>
+          <Button
+            style={{ marginRight: 10, width: 200 }}
+            onClick={createLabel}
+            icon={<PlusOutlined />}>
+            Create Production
+          </Button>
+        </div>
+        {/* <Tabs tabBarExtraContent={Create} defaultActiveKey='1' items={[
           {
             key: '1',
             label: 'Production',
@@ -562,7 +555,10 @@ function Production() {
               columns={columnsMonth}
               dataSource={dataMonth} />
           }
-        ]} />
+        ]} /> */}
+        <Table
+          columns={columns}
+          dataSource={data} />
       </div>
     </div>
   )
