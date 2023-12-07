@@ -153,9 +153,6 @@ function ListUser() {
           <Button className='create-btn-user' onClick={createUser}><PlusOutlined />
             Create User
           </Button>
-          <Button className='create-btn-user' onClick={createBulk}><UploadOutlined />
-            Create User Bulk
-          </Button>
         </Space>
         <Table
           size='small'

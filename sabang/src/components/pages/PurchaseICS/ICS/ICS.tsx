@@ -1,13 +1,15 @@
-import { EyeOutlined, TeamOutlined } from '@ant-design/icons'
-import { Button, message, Spin, Table, Typography } from 'antd'
+import { EyeOutlined } from '@ant-design/icons'
+import { Button, Input, message, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from '../../../api/axios'
 import '../../../pages/style/style.css'
 
 interface Garden {
   id: number,
   timestamp: Date,
+  penyadap: any,
+  ics: any,
 }
 function formatDate(timestamp: Date) {
   const year = timestamp.getFullYear();
@@ -19,10 +21,6 @@ function ICS() {
   useEffect(() => {
     document.title = 'Sabang | ICS'
   }, [])
-  const navigate = useNavigate()
-  const Team = () => {
-    navigate('/ICS/ICSTeam')
-  }
   const token = localStorage.getItem('token')
   const config = {
     headers: {
@@ -40,6 +38,10 @@ function ICS() {
         setLoading(false)
       })
   }, [])
+  const [search, setSearch] = useState('')
+  const onSearch = (value: any) => {
+    setSearch(value)
+  }
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<Garden[]>([])
   const columns = [
@@ -53,7 +55,10 @@ function ICS() {
       title: 'Tapper',
       dataIndex: 'penyadap',
       width: 300,
-      render: (penyadap: any) => penyadap.name
+      render: (penyadap: any) => penyadap.name,
+      filteredValue: search ? [search] : null,
+      onFilter: (value: any, record: Garden) =>
+        record.penyadap.name.toLowerCase().startsWith(search.toLowerCase()),
     },
     {
       key: '3',
@@ -86,15 +91,18 @@ function ICS() {
     <div className='content'>
       <Typography.Title level={4}>ICS</Typography.Title>
       <div className='main-container'>
-        <Button className='create-btn' onClick={Team} icon={<TeamOutlined />}>
-          ICS Team
-        </Button>
-          <Spin spinning={loading}>
-            <Table
-              size='small'
-              columns={columns}
-              dataSource={data} />
-          </Spin>
+        <div style={{ margin: 10 }}>
+          <Input
+            placeholder='Search Penyadap'
+            onChange={(e) => onSearch(e.target.value)}
+            style={{ marginLeft: 10, width: 200 }} />
+        </div>
+        <Spin spinning={loading}>
+          <Table
+            size='small'
+            columns={columns}
+            dataSource={data} />
+        </Spin>
       </div>
     </div>
   )

@@ -1,11 +1,11 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined, SettingOutlined } from '@ant-design/icons'
-import { Button, Checkbox, message, Popconfirm, Space, Spin, Table, Tabs, Typography } from 'antd'
+import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined } from '@ant-design/icons'
+import { Button, Input, message, Popconfirm, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from '../../api/axios'
 import '../../pages/style/style.css'
 
-interface Production {
+interface Productions {
   id: number,
   creatorName: string,
   factoryName: string,
@@ -28,9 +28,6 @@ function Production() {
   const navigate = useNavigate()
   const createLabel = () => {
     navigate('/Production/CreateProduction')
-  }
-  const generateTotal = () => {
-    navigate('/Production/GenerateTotal')
   }
 
   const token = localStorage.getItem('token')
@@ -66,8 +63,18 @@ function Production() {
         message.error('Error Deleting Production, Please check the console')
       })
   }
+  const [searchOperator, setSearchOperator] = useState('');
+  const [searchFactory, setSearchFactory] = useState('');
+
+  const onSearchOperator = (value: any) => {
+    setSearchOperator(value);
+  };
+
+  const onSearchFactory = (value: any) => {
+    setSearchFactory(value);
+  };
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState<Production[]>([])
+  const [data, setData] = useState<Productions[]>([])
   const columns = [
     {
       key: 'id',
@@ -78,13 +85,19 @@ function Production() {
       key: 'creator',
       title: 'Operator',
       dataIndex: 'creatorName',
-      width: 200
+      width: 200,
+      filteredValue: searchOperator ? [searchOperator] : null,
+      onFilter: (value: any, record: Productions) =>
+        record.creatorName.toLowerCase().startsWith(searchOperator.toLowerCase()),
     },
     {
       key: 'factory',
       title: 'Factory',
       dataIndex: 'factoryName',
-      width: 200
+      width: 200,
+      filteredValue: searchFactory ? [searchFactory] : null,
+      onFilter: (value: any, record: Productions) =>
+        record.factoryName.toLowerCase().startsWith(searchFactory.toLowerCase()),
     },
     {
       key: 'barcode',
@@ -112,7 +125,7 @@ function Production() {
     {
       key: '8',
       title: 'Action',
-      render: (record: Production) => {
+      render: (record: Productions) => {
         const handleDelete = () => {
           deleteProduction(record.id)
         }
@@ -502,63 +515,22 @@ function Production() {
             icon={<PlusOutlined />}>
             Create Production
           </Button>
+          <Input
+            placeholder="Search Operator"
+            onChange={(e) => onSearchOperator(e.target.value)}
+            style={{ marginRight: 10, width: 200, marginLeft: 10 }}
+          />
+          <Input
+            placeholder="Search Factory"
+            onChange={(e) => onSearchFactory(e.target.value)}
+            style={{ marginRight: 10, width: 200, marginLeft: 10 }}
+          />
         </div>
-        {/* <Tabs tabBarExtraContent={Create} defaultActiveKey='1' items={[
-          {
-            key: '1',
-            label: 'Production',
-            children:
-              <Spin spinning={loading}>
-                <Table
-                  size='small'
-                  columns={columns}
-                  dataSource={data} />
-              </Spin>
-          },
-          {
-            key: '2',
-            label: 'Label Temporary',
-            children: <Table
-              size='small'
-              columns={columnsTempo}
-              dataSource={dataTempo} />
-          },
-          {
-            key: '3',
-            label: 'Label Liquid',
-            children: <Table
-              size='small'
-              columns={columnsLiquid}
-              dataSource={dataLiquid} />
-          },
-          {
-            key: '4',
-            label: 'Label Today',
-            children: <Table
-              size='small'
-              columns={columnsToday}
-              dataSource={dataToday} />
-          },
-          {
-            key: '5',
-            label: 'Label Week',
-            children: <Table
-              size='small'
-              columns={columnsWeek}
-              dataSource={dataWeek} />
-          },
-          {
-            key: '6',
-            label: 'Label Month',
-            children: <Table
-              size='small'
-              columns={columnsMonth}
-              dataSource={dataMonth} />
-          }
-        ]} /> */}
-        <Table
-          columns={columns}
-          dataSource={data} />
+        <Spin spinning={loading}>
+          <Table
+            columns={columns}
+            dataSource={data} />
+        </Spin>
       </div>
     </div>
   )
