@@ -29,7 +29,6 @@ function Production() {
   const createLabel = () => {
     navigate('/Production/CreateProduction')
   }
-
   const token = localStorage.getItem('token')
   const config = {
     headers: {
@@ -66,6 +65,15 @@ function Production() {
   const [searchOperator, setSearchOperator] = useState('');
   const [searchFactory, setSearchFactory] = useState('');
 
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
+  const sortById = () => {
+    const sortedData = [...data];
+    sortedData.sort((a, b) => {
+      return sortOrder === 'asc' ? a.id - b.id : b.id - a.id;
+    })
+    setData(sortedData)
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
+  }
   const onSearchOperator = (value: any) => {
     setSearchOperator(value);
   };
@@ -78,8 +86,10 @@ function Production() {
   const columns = [
     {
       key: 'id',
-      title: 'ID',
-      dataIndex: 'id'
+      title: (
+        <div onClick={sortById}>ID <span>{sortOrder === 'asc' ? '▼' : '▲'}</span></div>
+      ),
+      dataIndex: 'id',
     },
     {
       key: 'creator',
