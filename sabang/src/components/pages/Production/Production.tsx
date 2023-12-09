@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined, SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons'
 import { Button, Input, message, Popconfirm, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -69,7 +69,7 @@ function Production() {
   const sortById = () => {
     const sortedData = [...data];
     sortedData.sort((a, b) => {
-      return sortOrder === 'asc' ? a.id - b.id : b.id - a.id;
+      return sortOrder === 'asc' ? b.id - a.id : a.id - b.id;
     })
     setData(sortedData)
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
@@ -87,7 +87,12 @@ function Production() {
     {
       key: 'id',
       title: (
-        <div onClick={sortById}>ID <span>{sortOrder === 'asc' ? '▼' : '▲'}</span></div>
+        <div onClick={sortById}>
+          ID
+          <span>
+            {sortOrder === 'asc' ? <SortAscendingOutlined /> : <SortDescendingOutlined />}
+          </span>
+        </div>
       ),
       dataIndex: 'id',
     },

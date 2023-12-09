@@ -209,7 +209,7 @@ function Purchase() {
       title: 'Set Audit',
       render: (record: Purchases) => {
         const isAudit = record.auditedAt !== null;
-        return <>
+        return isAudit ? 'Has Been Audited' : (
           <Popconfirm
             title="Apakah anda yakin untuk mengubah status (ini tidak bisa dikembalikan) ?"
             onConfirm={() => handleAudit(record.id)}
@@ -218,7 +218,7 @@ function Purchase() {
             disabled={isAudit}>
             <Button type='link' size='small'><EditOutlined style={{ color: 'black' }} /></Button>
           </Popconfirm>
-        </>
+        )
       }
     },
     {

@@ -43,7 +43,6 @@ function StatusPayment() {
         const purchase = response.data.data
         setTotalItems(response.data.totalItems)
         const updateData = purchase.map((purchase) => {
-          const penyadap = purchase.penyadap.name
           return purchase
         })
         setDataSource(updateData)
@@ -102,7 +101,7 @@ function StatusPayment() {
       width: 400,
       render: (record: Payment) => {
         const isPaid = record.paidAt !== null;
-        return <>
+        return isPaid ? 'Has Been Paid' : (
           <Popconfirm
             title="Apakah anda yakin untuk mengubah status (ini tidak bisa dikembalikan) ?"
             onConfirm={() => handlePaid(record.id)}
@@ -111,7 +110,7 @@ function StatusPayment() {
             disabled={isPaid}>
             <Button type='link' size='small' style={{ color: 'black' }}> Set As Paid </Button>
           </Popconfirm>
-        </>
+        );
       }
     }
   ]

@@ -1,4 +1,4 @@
-import { EyeOutlined } from '@ant-design/icons'
+import { EyeOutlined, SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons'
 import { Button, Input, message, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -42,12 +42,31 @@ function ICS() {
   const onSearch = (value: any) => {
     setSearch(value)
   }
+  const [sort, setSort] = useState<'asc' | 'desc'>('asc')
+  const handleSort = () => {
+    const nextSort = sort === 'asc' ? 'desc' : 'asc';
+    setSort(nextSort)
+
+    const sortedData = [...data];
+    sortedData.sort((a, b) => {
+      if (sort === 'asc') {
+        return b.id - a.id
+      } else {
+        return a.id - b.id
+      }
+    })
+    setData(sortedData)
+  }
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<Garden[]>([])
   const columns = [
     {
       key: '1',
-      title: 'ID',
+      title: (
+        <div onClick={handleSort}>
+          ID<span>{sort ===  'asc' ? <SortAscendingOutlined /> : <SortDescendingOutlined />}</span>
+        </div>
+      ),
       dataIndex: 'id'
     },
     {
