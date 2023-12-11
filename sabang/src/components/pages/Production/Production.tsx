@@ -74,6 +74,7 @@ function Production() {
     setData(sortedData)
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
   }
+  
   const onSearchOperator = (value: any) => {
     setSearchOperator(value);
   };

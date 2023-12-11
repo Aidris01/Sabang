@@ -72,7 +72,6 @@ function Purchase() {
   const deletePurchase = (purchaseId: number) => {
     axios.delete(`/purchases/${purchaseId}`, config)
       .then((response) => {
-        // Perbarui data setelah penghapusan berhasil
         const updatedData = data.filter((purchase) => purchase.id !== purchaseId);
         setData(updatedData);
         message.success('Purchase Deleted');

@@ -42,29 +42,29 @@ function ICS() {
   const onSearch = (value: any) => {
     setSearch(value)
   }
-  const [sort, setSort] = useState<'asc' | 'desc'>('asc')
-  const handleSort = () => {
-    const nextSort = sort === 'asc' ? 'desc' : 'asc';
-    setSort(nextSort)
-
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
+  const sortById = () => {
     const sortedData = [...data];
+    const newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+
     sortedData.sort((a, b) => {
-      if (sort === 'asc') {
-        return b.id - a.id
-      } else {
-        return a.id - b.id
-      }
-    })
-    setData(sortedData)
-  }
+      return newSortOrder === 'asc' ? a.id - b.id : b.id - a.id;
+    });
+
+    setData(sortedData);
+    setSortOrder(newSortOrder);
+  };
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<Garden[]>([])
   const columns = [
     {
       key: '1',
       title: (
-        <div onClick={handleSort}>
-          ID<span>{sort ===  'asc' ? <SortAscendingOutlined /> : <SortDescendingOutlined />}</span>
+        <div onClick={sortById}>
+          ID
+          <span>
+            {sortOrder === 'desc' ? <SortDescendingOutlined /> : <SortAscendingOutlined />}
+          </span>
         </div>
       ),
       dataIndex: 'id'
