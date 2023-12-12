@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons';
 import { Typography, Table, Button, Space, Popconfirm, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
@@ -21,12 +21,13 @@ function ListUser() {
   const createUser = () => {
     navigate("/ListUser/CreateUser")
   }
-  const createBulk = () => {
-    navigate("/ListUser/CreateUserBulk")
-  }
+  // const createBulk = () => {
+  //   navigate("/ListUser/CreateUserBulk")
+  // }
 
   const [totalItems, setTotalItems] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
+  const [number] = useState(1)
   const [dataSource, setDataSource] = useState<UserData[]>([])
 
   const [isLoading, setIsLoading] = useState(true);
@@ -93,8 +94,10 @@ function ListUser() {
   const columns = [
     {
       key: 'id',
-      title: 'ID',
-      dataIndex: 'id'
+      title: 'No',
+      render: (text: any, record: any, index: number) => {
+        return <span>{number + index + (currentPage - 1) * 10}</span>
+      }
     },
     {
       key: 'name',

@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons'
-import { Button, message, Popconfirm, Spin, Table, Typography } from 'antd'
+import { Button, Input, message, Popconfirm, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from '../../../api/axios'
@@ -19,7 +19,7 @@ interface Purchases {
   updatedAt: Date,
   checkedAt: Date,
   auditedAt: Date,
-  penyadap: any,
+  penyadap: { name: string },
 }
 
 function formatDate(timestamp: Date) {
@@ -36,6 +36,8 @@ function Purchase() {
   const [totalItems, setTotalItems] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const [isLoading, setIsLoading] = useState(true);
+  const [number] = useState(1)
+  const [search, setSearch] = useState('')
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -68,6 +70,9 @@ function Purchase() {
       }).finally(() => {
         setIsLoading(false)
       })
+  }
+  function handleSearch(value: string) {
+    setSearch(value);
   }
   const deletePurchase = (purchaseId: number) => {
     axios.delete(`/purchases/${purchaseId}`, config)
@@ -127,8 +132,10 @@ function Purchase() {
   const columns = [
     {
       key: 'id',
-      title: 'ID',
-      dataIndex: 'id',
+      title: 'No',
+      render: (text: any, record: any, index: number) => {
+        return <span>{number + index + (currentPage - 1) * 10}</span>
+      }
     },
     {
       key: 'statusChecked',
@@ -175,26 +182,6 @@ function Purchase() {
       dataIndex: 'penyadap',
       width: 100,
       render: (penyadap: any) => penyadap.name
-    },
-    {
-      key: 'ph',
-      title: 'PH',
-      dataIndex: 'ph'
-    },
-    {
-      key: 'sugarLevel',
-      title: 'BRIX',
-      dataIndex: 'sugarLevel'
-    },
-    {
-      key: 'volume',
-      title: 'Volume',
-      dataIndex: 'volume'
-    },
-    {
-      key: 'amount',
-      title: 'Price',
-      dataIndex: 'amount'
     },
     {
       key: 'statusAudited',
@@ -246,16 +233,23 @@ function Purchase() {
       width: 100
     }
   ]
+
+  const filteredData = data.filter((item: any) => {
+    return item.penyadap.name.toLowerCase().includes(search.toLowerCase());
+  });
   return (
     <div className='content'>
       <Typography.Title level={4}>Purchase</Typography.Title>
       <div className='main-container'>
+        <Input.Search
+          placeholder='Cari Penyadap'
+          onSearch={handleSearch}
+          style={{ width: 200, marginLeft: 10, marginTop: 10 }} />
         <Spin spinning={isLoading}>
           <Table
             size='small'
             columns={columns}
-            dataSource={data}
-            scroll={{ x: 'max-content' }}
+            dataSource={filteredData}
             onChange={(pagination) => {
               console.log(pagination)
               setCurrentPage(pagination.current ?? 1)

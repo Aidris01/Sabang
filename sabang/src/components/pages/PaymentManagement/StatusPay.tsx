@@ -20,6 +20,7 @@ function StatusPayment() {
   const token = localStorage.getItem('token');
   const [totalItems, setTotalItems] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
+  const [number] = useState(1)
   const [isLoading, setIsLoading] = useState(true);
   const config = {
     headers: {
@@ -69,8 +70,10 @@ function StatusPayment() {
   const columns = [
     {
       key: 'id',
-      title: 'ID',
-      dataIndex: 'id'
+      title: 'No',
+      render: (text: any, record: any, index: number) => {
+        return <span>{number + index + (currentPage - 1) * 10}</span>
+      }
     },
     {
       key: 'detail',
