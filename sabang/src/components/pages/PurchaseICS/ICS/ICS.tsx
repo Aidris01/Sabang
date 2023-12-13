@@ -1,5 +1,5 @@
-import { EyeOutlined, SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons'
-import { Button, Input, message, Spin, Table, Typography } from 'antd'
+import { EyeOutlined } from '@ant-design/icons'
+import { Button, message, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from '../../../api/axios'
@@ -21,53 +21,40 @@ function ICS() {
   useEffect(() => {
     document.title = 'Sabang | ICS'
   }, [])
-  const token = localStorage.getItem('token')
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  }
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState<Garden[]>([])
+  const [totalItems, setTotalItems] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [number] = useState(1)
   useEffect(() => {
-    axios.get('/garden-controls', config)
+    getGarden(1)
+  }, [])
+  function getGarden(page: number) {
+    const token = localStorage.getItem('token')
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    setLoading(true)
+    axios.get<{ data: Garden[], totalItems: number }>(`/garden-controls/paginated?page${page}&limit=10&sort=DESC`, config)
       .then((response) => {
-        setData(response.data)
+        const garden = response.data.data
+        setTotalItems(response.data.totalItems)
+        setData(garden)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
-        message.error('Error Fetching Garden, Please check the console')
+        message.error('Error Fetching ICS, Please check the console')
       }).finally(() => {
         setLoading(false)
       })
-  }, [])
-  const [search, setSearch] = useState('')
-  const onSearch = (value: any) => {
-    setSearch(value)
   }
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
-  const sortById = () => {
-    const sortedData = [...data];
-    const newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
-
-    sortedData.sort((a, b) => {
-      return newSortOrder === 'asc' ? a.id - b.id : b.id - a.id;
-    });
-
-    setData(sortedData);
-    setSortOrder(newSortOrder);
-  };
-  const [loading, setLoading] = useState(true)
-  const [data, setData] = useState<Garden[]>([])
   const columns = [
     {
       key: '1',
-      title: (
-        <div onClick={sortById}>
-          ID
-          <span>
-            {sortOrder === 'desc' ? <SortDescendingOutlined /> : <SortAscendingOutlined />}
-          </span>
-        </div>
-      ),
-      dataIndex: 'id'
+      title: 'No', render: (text: any, record: any, index: number) => {
+        return <span>{number + index + (currentPage - 1) * 10}</span>
+      }
     },
     {
       key: '2',
@@ -75,9 +62,6 @@ function ICS() {
       dataIndex: 'penyadap',
       width: 300,
       render: (penyadap: any) => penyadap.name,
-      filteredValue: search ? [search] : null,
-      onFilter: (value: any, record: Garden) =>
-        record.penyadap.name.toLowerCase().startsWith(search.toLowerCase()),
     },
     {
       key: '3',
@@ -111,16 +95,23 @@ function ICS() {
       <Typography.Title level={4}>ICS</Typography.Title>
       <div className='main-container'>
         <div style={{ margin: 10 }}>
-          <Input
+          {/* <Input
             placeholder='Search Penyadap'
             onChange={(e) => onSearch(e.target.value)}
-            style={{ marginLeft: 10, width: 200 }} />
+            style={{ marginLeft: 10, width: 200 }} /> */}
         </div>
         <Spin spinning={loading}>
           <Table
             size='small'
             columns={columns}
-            dataSource={data} />
+            dataSource={data}
+            onChange={(pagination) => {
+              console.log(pagination)
+              setCurrentPage(pagination.current ?? 1)
+              getGarden(pagination.current ?? 1)
+              console.log(currentPage)
+            }}
+            pagination={{total: totalItems}} />
         </Spin>
       </div>
     </div>

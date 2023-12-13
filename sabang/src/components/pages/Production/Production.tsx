@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined, SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons'
-import { Button, Input, message, Popconfirm, Spin, Table, Typography } from 'antd'
+import { Button, Input, message, Popconfirm, Space, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from '../../api/axios'
@@ -29,6 +29,14 @@ function Production() {
   const createLabel = () => {
     navigate('/Production/CreateProduction')
   }
+  // const [searchOperator, setSearchOperator] = useState('');
+  // const [searchFactory, setSearchFactory] = useState('');
+  const [totalItems, setTotalItems] = useState(0)
+  const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>('DESC')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [number] = useState(1)
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState<Productions[]>([])
   const token = localStorage.getItem('token')
   const config = {
     headers: {
@@ -36,21 +44,38 @@ function Production() {
     }
   }
   useEffect(() => {
-    axios.get('/productions', config)
+    getProduction(1)
+  }, [])
+  const toggleSortOrder = () => {
+      const newSortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
+      setSortOrder(newSortOrder);
+      getProduction(currentPage);
+    };
+  function getProduction(page: number) {
+    const token = localStorage.getItem('token')
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    setLoading(true)
+    axios.get<{ data: Productions[], totalItems: number }>(`/productions/paginated?page=${page}&limit=10&sort=${sortOrder}`, config)
       .then((response) => {
-        const updatedData = response.data.map((item: any) => ({
+        const productions = response.data.data
+        setTotalItems(response.data.totalItems)
+        const updateData = productions.map((item: any) => ({
           ...item,
           kilogram: `${item.kilogram} Kg`,
-          gram: `${item.gram} Gram`
+          gram: `${item.gram} gram`
         }))
-        setData(updatedData)
+        setData(updateData)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
-        message.error('Error OCured, Please check the console')
+        message.error('Error Fetching Productions, Please check the console')
       }).finally(() => {
         setLoading(false)
       })
-  }, [])
+  }
   const deleteProduction = (productionId: number) => {
     axios.delete(`/productions/${productionId}`, config)
       .then((response) => {
@@ -62,58 +87,31 @@ function Production() {
         message.error('Error Deleting Production, Please check the console')
       })
   }
-  const [searchOperator, setSearchOperator] = useState('');
-  const [searchFactory, setSearchFactory] = useState('');
-
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
-  const sortById = () => {
-    const sortedData = [...data];
-    sortedData.sort((a, b) => {
-      return sortOrder === 'asc' ? b.id - a.id : a.id - b.id;
-    })
-    setData(sortedData)
-    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
-  }
-  
-  const onSearchOperator = (value: any) => {
-    setSearchOperator(value);
-  };
-
-  const onSearchFactory = (value: any) => {
-    setSearchFactory(value);
-  };
-  const [loading, setLoading] = useState(true)
-  const [data, setData] = useState<Productions[]>([])
   const columns = [
     {
       key: 'id',
-      title: (
-        <div onClick={sortById}>
-          ID
-          <span>
-            {sortOrder === 'asc' ? <SortAscendingOutlined /> : <SortDescendingOutlined />}
-          </span>
-        </div>
-      ),
-      dataIndex: 'id',
+      title: 'No',
+      render: (text: any, record: any, index: number) => {
+        return <span>{number + index + (currentPage - 1) * 10}</span>
+      }
     },
     {
       key: 'creator',
       title: 'Operator',
       dataIndex: 'creatorName',
       width: 200,
-      filteredValue: searchOperator ? [searchOperator] : null,
-      onFilter: (value: any, record: Productions) =>
-        record.creatorName.toLowerCase().startsWith(searchOperator.toLowerCase()),
+      // filteredValue: searchOperator ? [searchOperator] : null,
+      // onFilter: (value: any, record: Productions) =>
+      //   record.creatorName.toLowerCase().startsWith(searchOperator.toLowerCase()),
     },
     {
       key: 'factory',
       title: 'Factory',
       dataIndex: 'factoryName',
       width: 200,
-      filteredValue: searchFactory ? [searchFactory] : null,
-      onFilter: (value: any, record: Productions) =>
-        record.factoryName.toLowerCase().startsWith(searchFactory.toLowerCase()),
+      // filteredValue: searchFactory ? [searchFactory] : null,
+      // onFilter: (value: any, record: Productions) =>
+      //   record.factoryName.toLowerCase().startsWith(searchFactory.toLowerCase()),
     },
     {
       key: 'barcode',
@@ -525,27 +523,30 @@ function Production() {
       <Typography.Title level={4}>Production</Typography.Title>
       <div className='main-container'>
         <div style={{ margin: 10 }}>
-          <Button
-            style={{ marginRight: 10, width: 200 }}
-            onClick={createLabel}
-            icon={<PlusOutlined />}>
-            Create Production
-          </Button>
-          <Input
-            placeholder="Search Operator"
-            onChange={(e) => onSearchOperator(e.target.value)}
-            style={{ marginRight: 10, width: 200, marginLeft: 10 }}
-          />
-          <Input
-            placeholder="Search Factory"
-            onChange={(e) => onSearchFactory(e.target.value)}
-            style={{ marginRight: 10, width: 200, marginLeft: 10 }}
-          />
+          <Space>
+            <Button
+              style={{ marginRight: 10, width: 200 }}
+              onClick={createLabel}
+              icon={<PlusOutlined />}>
+              Create Production
+            </Button>
+            <Button onClick={toggleSortOrder}>
+              {sortOrder === 'ASC' ? <SortAscendingOutlined /> : <SortDescendingOutlined />}
+              Sort {sortOrder === 'ASC' ? 'Ascending' : 'Descending'}
+            </Button>
+          </Space>
         </div>
         <Spin spinning={loading}>
           <Table
             columns={columns}
-            dataSource={data} />
+            dataSource={data}
+            onChange={(pagination) => {
+              console.log(pagination)
+              setCurrentPage(pagination.current ?? 1)
+              getProduction(pagination.current ?? 1)
+              console.log(currentPage)
+            }}
+            pagination={{ total: totalItems }} />
         </Spin>
       </div>
     </div>
