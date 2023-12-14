@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons'
-import { Button, Input, message, Popconfirm, Spin, Table, Typography } from 'antd'
+import { Button, message, Popconfirm, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from '../../../api/axios'
@@ -37,7 +37,7 @@ function Purchase() {
   const [currentPage, setCurrentPage] = useState(1)
   const [isLoading, setIsLoading] = useState(true);
   const [number] = useState(1)
-  const [search, setSearch] = useState('')
+  // const [search, setSearch] = useState('')
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -71,9 +71,9 @@ function Purchase() {
         setIsLoading(false)
       })
   }
-  function handleSearch(value: string) {
-    setSearch(value);
-  }
+  // function handleSearch(value: string) {
+  //   setSearch(value);
+  // }
   const deletePurchase = (purchaseId: number) => {
     axios.delete(`/purchases/${purchaseId}`, config)
       .then((response) => {
@@ -230,26 +230,26 @@ function Purchase() {
           </Popconfirm>
         </>
       },
-      width: 100
+      width: 200
     }
   ]
 
-  const filteredData = data.filter((item: any) => {
-    return item.penyadap.name.toLowerCase().includes(search.toLowerCase());
-  });
+  // const filteredData = data.filter((item: any) => {
+  //   return item.penyadap.name.toLowerCase().includes(search.toLowerCase());
+  // });
   return (
     <div className='content'>
       <Typography.Title level={4}>Purchase</Typography.Title>
       <div className='main-container'>
-        <Input.Search
+        {/* <Input.Search
           placeholder='Cari Penyadap'
           onSearch={handleSearch}
-          style={{ width: 200, marginLeft: 10, marginTop: 10 }} />
+          style={{ width: 200, marginLeft: 10, marginTop: 10 }} /> */}
         <Spin spinning={isLoading}>
           <Table
             size='small'
             columns={columns}
-            dataSource={filteredData}
+            dataSource={data}
             onChange={(pagination) => {
               console.log(pagination)
               setCurrentPage(pagination.current ?? 1)

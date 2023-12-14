@@ -138,7 +138,8 @@ function Dashboard() {
               width: 150
             }
           ]}
-          dataSource={purchase} />
+          dataSource={purchase}
+          style={{width: 320}} />
       </Spin>
     )
   }
@@ -159,7 +160,8 @@ function Dashboard() {
               width: 150
             }
           ]}
-          dataSource={production} />
+          dataSource={production}
+          style={{width: 320}} />
       </Spin>
     )
   }
@@ -180,7 +182,8 @@ function Dashboard() {
               width: 150
             }
           ]} 
-          dataSource={payment}/>
+          dataSource={payment}
+          style={{width: 320}}/>
       </Spin>
     )
   }

@@ -55,14 +55,15 @@ function Profile() {
             Authorization: `Bearer ${token}`
           },
         }).then((response) => {
-          // Ubah data menjadi bentuk string kembali
           console.log(response)
           localStorage.setItem('profile', JSON.stringify(updatedProfile));
-          // Pastikan untuk mengatur isEditing ke false setelah perubahan disimpan
           message.success('Editing Success')
           setIsEditing(false);
+          setTimeout(() => {
+            window.location.reload()
+          }, 1000)
         }).catch((error) => {
-          message.error('Error Ocured: ', error)
+          message.error('Error Updating Data, Please check the console')
           console.error('Error Ocured: ', error)
         });
       };
@@ -73,19 +74,18 @@ function Profile() {
           Authorization: `Bearer ${token}`
         },
       }).then((response) => {
-        // Jika tidak ada gambar baru yang dipilih, hanya simpan data yang lain
         console.log(response)
         localStorage.setItem('profile', JSON.stringify(updatedProfile));
         message.success('Editing Success')
         setIsEditing(false);
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000)
       }).catch((error) => {
-        message.error('Error Ocured: ', error)
+        message.error('Error Updating Data, Please check the console')
         console.error('Error Ocured: ', error)
       })
     }
-    setTimeout(() => {
-      message.destroy();
-    }, 5000);
   };
 
   return (

@@ -95,10 +95,6 @@ function ICS() {
       <Typography.Title level={4}>ICS</Typography.Title>
       <div className='main-container'>
         <div style={{ margin: 10 }}>
-          {/* <Input
-            placeholder='Search Penyadap'
-            onChange={(e) => onSearch(e.target.value)}
-            style={{ marginLeft: 10, width: 200 }} /> */}
         </div>
         <Spin spinning={loading}>
           <Table
