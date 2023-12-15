@@ -1,4 +1,4 @@
-import { EyeOutlined } from '@ant-design/icons'
+import { EyeOutlined, SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons'
 import { Button, message, Popconfirm, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -9,9 +9,15 @@ interface Payment {
   id: number,
   penyadapId: number,
   paidAt: Date,
-  penyadap: any
+  penyadap: any,
+  timestamp: Date
 }
-
+function formatDate(timestamp: Date) {
+  const year = timestamp.getFullYear();
+  const month = String(timestamp.getMonth() + 1).padStart(2, '0'); // Tambah 1 karena bulan dimulai dari 0
+  const day = String(timestamp.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
 function StatusPayment() {
   useEffect(() => {
     document.title = 'Sabang | Status Payment'
@@ -21,6 +27,7 @@ function StatusPayment() {
   const [totalItems, setTotalItems] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const [number] = useState(1)
+  const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>('DESC')
   const [isLoading, setIsLoading] = useState(true);
   const config = {
     headers: {
@@ -28,8 +35,14 @@ function StatusPayment() {
     },
   };
   useEffect(() => {
+    toggleSortOrder()
     getPayment(1)
   }, [])
+  const toggleSortOrder = () => {
+    const newSortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
+    setSortOrder(newSortOrder);
+    getPayment(currentPage);
+  };
   function getPayment(page: number) {
     const token = localStorage.getItem('token');
 
@@ -39,7 +52,7 @@ function StatusPayment() {
       }
     }
     setIsLoading(true)
-    axios.get<{ data: Payment[], totalItems: number }>(`/purchases/paginated?page=${page}&limit=10`, config)
+    axios.get<{ data: Payment[], totalItems: number }>(`/purchases/paginated?page=${page}&limit=10&sort=${sortOrder}`, config)
       .then((response) => {
         const purchase = response.data.data
         setTotalItems(response.data.totalItems)
@@ -88,14 +101,21 @@ function StatusPayment() {
       key: 'penyadap',
       title: 'Penyadap',
       dataIndex: 'penyadap',
-      width: 900,
+      width: 500,
       render: (penyadap: any) => penyadap.name
+    },
+    {
+      key: 'timestamp',
+      title: 'Date',
+      dataIndex: 'timestamp',
+      width: 400,
+      render: (timestamp: Date) => formatDate(new Date(timestamp))
     },
     {
       key: 'status',
       title: 'Status',
       dataIndex: 'status',
-      width: 900,
+      width: 700,
       render: (paidAt: Date, record: Payment) => record.paidAt == null ? 'Not Paid' : 'Paid'
     },
     {
@@ -121,6 +141,10 @@ function StatusPayment() {
     <div className='content'>
       <Typography.Title level={4}>Status Payment</Typography.Title>
       <div className='main-container'>
+        <Button style={{ marginTop: 10, marginLeft: 10 }} onClick={toggleSortOrder}>
+          {sortOrder === 'ASC' ? <SortAscendingOutlined /> : <SortDescendingOutlined />}
+          Sort {sortOrder === 'ASC' ? 'Ascending' : 'Descending'}
+        </Button>
         <Spin spinning={isLoading}>
           <Table
             size='small'

@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined, EyeOutlined, SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons'
 import { Button, message, Popconfirm, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -35,6 +35,7 @@ function Purchase() {
   const token = localStorage.getItem('token');
   const [totalItems, setTotalItems] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
+  const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>('DESC')
   const [isLoading, setIsLoading] = useState(true);
   const [number] = useState(1)
   // const [search, setSearch] = useState('')
@@ -44,8 +45,14 @@ function Purchase() {
     },
   };
   useEffect(() => {
+    toggleSortOrder()
     getPurchase(1)
   }, [])
+  const toggleSortOrder = () => {
+    const newSortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
+    setSortOrder(newSortOrder);
+    getPurchase(currentPage);
+  };
   function getPurchase(page: number) {
     const token = localStorage.getItem('token');
     const config = {
@@ -54,7 +61,7 @@ function Purchase() {
       }
     }
     setIsLoading(true)
-    axios.get<{ data: Purchases[], totalItems: number }>(`/purchases/paginated?page=${page}&limit=10`, config)
+    axios.get<{ data: Purchases[], totalItems: number }>(`/purchases/paginated?page=${page}&limit=10&sort=${sortOrder}`, config)
       .then((response) => {
         const purchase = response.data.data
         setTotalItems(response.data.totalItems)
@@ -245,6 +252,10 @@ function Purchase() {
           placeholder='Cari Penyadap'
           onSearch={handleSearch}
           style={{ width: 200, marginLeft: 10, marginTop: 10 }} /> */}
+        <Button style={{marginTop: 10, marginLeft: 10}} onClick={toggleSortOrder}>
+          {sortOrder === 'ASC' ? <SortAscendingOutlined /> : <SortDescendingOutlined />}
+          Sort {sortOrder === 'ASC' ? 'Ascending' : 'Descending'}
+        </Button>
         <Spin spinning={isLoading}>
           <Table
             size='small'

@@ -1,4 +1,4 @@
-import { EyeOutlined } from '@ant-design/icons'
+import { EyeOutlined, SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons'
 import { Button, message, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -22,13 +22,20 @@ function ICS() {
     document.title = 'Sabang | ICS'
   }, [])
   const [loading, setLoading] = useState(true)
+  const [sortOrder, setSortOrder] = useState<boolean>(false)
   const [data, setData] = useState<Garden[]>([])
   const [totalItems, setTotalItems] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const [number] = useState(1)
   useEffect(() => {
+    toggleSortOrder()
     getGarden(1)
   }, [])
+  const toggleSortOrder = () => {
+    // const newSortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
+    setSortOrder(!sortOrder);
+    getGarden(currentPage);
+  };
   function getGarden(page: number) {
     const token = localStorage.getItem('token')
     const config = {
@@ -37,7 +44,7 @@ function ICS() {
       }
     }
     setLoading(true)
-    axios.get<{ data: Garden[], totalItems: number }>(`/garden-controls/paginated?page${page}&limit=10&sort=DESC`, config)
+    axios.get<{ data: Garden[], totalItems: number }>(`/garden-controls/paginated?page${page}&limit=10&sort=${sortOrder?'ASC':"DESC"}`, config)
       .then((response) => {
         const garden = response.data.data
         setTotalItems(response.data.totalItems)
@@ -95,6 +102,10 @@ function ICS() {
       <Typography.Title level={4}>ICS</Typography.Title>
       <div className='main-container'>
         <div style={{ margin: 10 }}>
+          <Button onClick={toggleSortOrder}>
+            {sortOrder ? <SortAscendingOutlined /> : <SortDescendingOutlined />}
+            Sort {sortOrder ? 'Ascending' : 'Descending'}
+          </Button>
         </div>
         <Spin spinning={loading}>
           <Table
@@ -107,7 +118,7 @@ function ICS() {
               getGarden(pagination.current ?? 1)
               console.log(currentPage)
             }}
-            pagination={{total: totalItems}} />
+            pagination={{ total: totalItems }} />
         </Spin>
       </div>
     </div>

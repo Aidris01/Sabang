@@ -43,11 +43,11 @@ function Dashboard() {
   const [ics, setIcs] = useState(0)
 
   useEffect(() => {
-    axios.get('/productions', config)
+    axios.get('/productions/dashboard', config)
       .then((response) => {
         const updateProdcution = response.data.map((item: any) => ({
           ...item,
-          kilogram: `${item.kilogram} Kg`
+          weight: `${item.weight} Kg`
         }))
         setProduction(updateProdcution)
       }).catch((error) => {
@@ -58,7 +58,7 @@ function Dashboard() {
       })
   }, [])
   useEffect(() => {
-    axios.get('/purchases', config)
+    axios.get('/purchases/dashboard', config)
       .then((response) => {
         const purchasesWithDataInLiter = response.data.map((purchase: any) => ({
           ...purchase,
@@ -128,7 +128,7 @@ function Dashboard() {
           columns={[
             {
               title: "Date",
-              dataIndex: "timestamp",
+              dataIndex: "date",
               render: (timestamp: Date) => formatDate(new Date(timestamp)),
               width: 150
             },
@@ -150,13 +150,13 @@ function Dashboard() {
           columns={[
             {
               title: "Date",
-              dataIndex: "createdAt",
+              dataIndex: "date",
               render: (createdAt: Date) => formatDate(new Date(createdAt)),
               width: 150
             },
             {
               title: "Weight (Kg)",
-              dataIndex: "kilogram",
+              dataIndex: "weight",
               width: 150
             }
           ]}
@@ -172,7 +172,7 @@ function Dashboard() {
           columns={[
             {
               title: "Date",
-              dataIndex: "timestamp",
+              dataIndex: "date",
               render: (timestamp: Date) => formatDate(new Date(timestamp)),
               width: 150
             },

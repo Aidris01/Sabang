@@ -44,6 +44,7 @@ function Production() {
     }
   }
   useEffect(() => {
+    toggleSortOrder()
     getProduction(1)
   }, [])
   const toggleSortOrder = () => {
