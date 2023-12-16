@@ -73,28 +73,22 @@ function Login() {
                         style={{ maxWidth: 600 }}
                         initialValues={{ remember: true }}
                         onFinish={onFinish}
-                        autoComplete="off"
-                    >
+                        autoComplete="off">
                         <Form.Item
-                            label={<UserOutlined style={{color: 'white', fontSize: 20}} />}
+                            label={<UserOutlined style={{ fontSize: 20}} />}
                             name="username"
-                            rules={[{ required: true, message: 'Please input your username!' }]}
-                        >
+                            rules={[{ required: true, message: 'Please input your username!' }]}>
                             <Input
                                 id='username'
-                                placeholder='username'
-                            />
+                                placeholder='username'/>
                         </Form.Item>
-
                         <Form.Item
-                            label={<LockOutlined style={{color: 'white', fontSize: 20}} />}
+                            label={<LockOutlined style={{ fontSize: 20}} />}
                             name="password"
-                            rules={[{ required: true, message: 'Please input your password!' }]}
-                        >
+                            rules={[{ required: true, message: 'Please input your password!' }]}>
                             <Input.Password
                                 id='password'
-                                placeholder='password'
-                            />
+                                placeholder='password'/>
                         </Form.Item>
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                             <Button type="primary" htmlType="submit" loading={loading}>

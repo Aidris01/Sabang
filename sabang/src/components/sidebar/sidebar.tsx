@@ -75,31 +75,31 @@ function SideBar() {
             icon: <CheckOutlined />,
             key: "/Checklist"
           },
-          {
-            label: "Control Checklist",
-            icon: <ControlOutlined />,
-            key: "/ControlChecklist"
-          },
-          {
-            label: "Village",
-            icon: <HomeOutlined />,
-            key: "/Village"
-          },
-          {
-            label: "Nira",
-            icon: <PieChartOutlined />,
-            key: "/Nira"
-          },
-          {
-            label: "Tappers",
-            icon: <TeamOutlined />,
-            key: "/Tappers"
-          },
-          {
-            label: "Collectors",
-            icon: <UserOutlined />,
-            key: "/Collectors"
-          },
+          // {
+          //   label: "Control Checklist",
+          //   icon: <ControlOutlined />,
+          //   key: "/ControlChecklist"
+          // },
+          // {
+          //   label: "Village",
+          //   icon: <HomeOutlined />,
+          //   key: "/Village"
+          // },
+          // {
+          //   label: "Nira",
+          //   icon: <PieChartOutlined />,
+          //   key: "/Nira"
+          // },
+          // {
+          //   label: "Tappers",
+          //   icon: <TeamOutlined />,
+          //   key: "/Tappers"
+          // },
+          // {
+          //   label: "Collectors",
+          //   icon: <UserOutlined />,
+          //   key: "/Collectors"
+          // },
           {
             label: "Production",
             icon: <ScheduleOutlined />,
@@ -114,20 +114,20 @@ function SideBar() {
               { label: "ICS", key: "/ICS", icon: <SearchOutlined /> }
             ]
           },
-          {
-            label: "KPI",
-            icon: <StarOutlined />,
-            key: "/KPI"
-          },
-          {
-            label: "Catatan Petani",
-            icon: <FileOutlined />,
-            key: "/Catatan",
-            children: [
-              { label: "Catatan Pekerjaan Petani", key: "/CatatanPetani", icon: <FileOutlined /> },
-              { label: "Catatan Pembuatan Pupuk", key: "/CatatanPupuk", icon: <FileOutlined /> }
-            ]
-          }
+          // {
+          //   label: "KPI",
+          //   icon: <StarOutlined />,
+          //   key: "/KPI"
+          // },
+          // {
+          //   label: "Catatan Petani",
+          //   icon: <FileOutlined />,
+          //   key: "/Catatan",
+          //   children: [
+          //     { label: "Catatan Pekerjaan Petani", key: "/CatatanPetani", icon: <FileOutlined /> },
+          //     { label: "Catatan Pembuatan Pupuk", key: "/CatatanPupuk", icon: <FileOutlined /> }
+          //   ]
+          // }
         ]}></Menu>
     </div>
   )
