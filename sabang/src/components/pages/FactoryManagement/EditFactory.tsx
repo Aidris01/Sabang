@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { Button, Col, Form, Input, message, Row, Space, Spin, Typography } from 'antd'
 import { useForm } from 'antd/es/form/Form'
 import TextArea from 'antd/es/input/TextArea'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from '../../api/axios'
 import '../style/style.css'
@@ -34,7 +34,7 @@ function EditFactory() {
     const navigate = useNavigate()
     const { factoryId } = useParams<Record<string, string>>();
     const [loading, setLoading] = useState(true)
-    const [factory, setFactory] = useState<Factory>(
+    const [, setFactory] = useState<Factory>(
         {
             name: '',
             address: '',
@@ -48,7 +48,7 @@ function EditFactory() {
             Authorization: `Bearer ${token}`
         }
     }
-    const center = useMemo(() => ({ lat: -6.2, lng: 106.816666 }), [])
+    const [center, setCenter] = useState({ lat: -6.2, lng: 106.816666 })
     const [markerPosition, setMarkerPosition] = useState({ lat: -6.2, lng: 106.816666 })
     const handleMapClick = (event: { latLng: any }) => {
         const { latLng } = event;
@@ -64,8 +64,12 @@ function EditFactory() {
     useEffect(() => {
         axios.get(`/factories/${factoryId}`, config)
             .then((response) => {
-                form.setFieldsValue(response.data)
-                setFactory(response.data)
+                const factoryData = response.data
+                form.setFieldsValue(factoryData)
+                setFactory(factoryData)
+                const {lat, lng} = factoryData
+                setMarkerPosition({lat, lng})
+                setCenter({lat, lng})
             }).catch((error) => {
                 console.error('Error Ocured: ', error)
                 message.error('Error Ocured')
@@ -160,8 +164,7 @@ function EditFactory() {
                                                 position={{
                                                     lat: markerPosition.lat,
                                                     lng: markerPosition.lng
-                                                }} />
-                                        )}
+                                                }} />)}
                                     </GoogleMap>
                                 </LoadScript>
                             </Col>

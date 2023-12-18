@@ -48,7 +48,7 @@ function EditWarehouse() {
             Authorization: `Bearer ${token}`
         }
     }
-    const center = useMemo(() => ({ lat: -6.2, lng: 106.816666 }), [])
+    const [center, setCenter] = useState({ lat: -6.2, lng: 106.816666 })
     const [markerPosition, setMarkerPosition] = useState({ lat: -6.2, lng: 106.816666 });
     const handleMapClick = (event: { latLng: any }) => {
         const { latLng } = event;
@@ -64,8 +64,12 @@ function EditWarehouse() {
     useEffect(() => {
         axios.get(`/warehouses/${warehouseId}`, config)
             .then((response) => {
-                form.setFieldsValue(response.data)
-                setWarehouse(response.data)
+                const warehouseData = response.data
+                form.setFieldsValue(warehouseData)
+                setWarehouse(warehouseData)
+                const {lat, lng} = warehouseData
+                setMarkerPosition({lat, lng})
+                setCenter({lat, lng})
             }).catch((error) => {
                 console.error('Error Ocured: ', error)
                 message.error('Error Ocured')
