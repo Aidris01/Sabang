@@ -57,11 +57,11 @@ function Profile() {
         }).then((response) => {
           console.log(response)
           localStorage.setItem('profile', JSON.stringify(updatedProfile));
-          message.success('Editing Success')
           setIsEditing(false);
           setTimeout(() => {
             window.location.reload()
           }, 1000)
+          message.success('Editing Success')
         }).catch((error) => {
           message.error('Error Updating Data, Please check the console')
           console.error('Error Ocured: ', error)

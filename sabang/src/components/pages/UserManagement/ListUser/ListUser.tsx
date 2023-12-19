@@ -33,7 +33,6 @@ function ListUser() {
   const [isLoading, setIsLoading] = useState(true);
   const deleteUser = (userId: number) => {
     const token = localStorage.getItem('token');
-
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,

@@ -2,6 +2,7 @@ import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-de
 import { Button, message, Popconfirm, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { factory } from 'typescript'
 import axios from '../../api/axios'
 import '../../pages/style/style.css'
 
@@ -46,6 +47,7 @@ function FactoryManagement() {
       .then((response) => {
         message.success('Factory Deleted')
         console.log(response)
+        setDataSource((prevData) => prevData.filter((factory) => factory.id !== factoryId))
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Deleting Factory')
@@ -88,8 +90,7 @@ function FactoryManagement() {
             title="Apakah anda yakin untuk menghapus factory ini ?"
             onConfirm={handleDelete}
             okText="Yes"
-            cancelText="No"
-          >
+            cancelText="No">
             <Button type='link' size='small'><DeleteOutlined style={{ color: 'red' }} /></Button>
           </Popconfirm>
         </>
