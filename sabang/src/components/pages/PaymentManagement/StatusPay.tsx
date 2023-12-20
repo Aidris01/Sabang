@@ -14,7 +14,7 @@ interface Payment {
 }
 function formatDate(timestamp: Date) {
   const year = timestamp.getFullYear();
-  const month = String(timestamp.getMonth() + 1).padStart(2, '0'); // Tambah 1 karena bulan dimulai dari 0
+  const month = String(timestamp.getMonth() + 1).padStart(2, '0');
   const day = String(timestamp.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 }
@@ -35,15 +35,15 @@ function StatusPayment() {
     },
   };
   useEffect(() => {
-    toggleSortOrder()
-    getPayment(1)
+    setSortOrder('DESC')
+    getPayment(1, 'DESC')
   }, [])
   const toggleSortOrder = () => {
     const newSortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
     setSortOrder(newSortOrder);
-    getPayment(currentPage);
+    getPayment(currentPage, newSortOrder);
   };
-  function getPayment(page: number) {
+  function getPayment(page: number, sortOrder: 'ASC' | 'DESC') {
     const token = localStorage.getItem('token');
 
     const config = {
@@ -72,9 +72,7 @@ function StatusPayment() {
       .then((response) => {
         console.log(response.data)
         message.success('Status Paid')
-        setTimeout(() => {
-          window.location.reload()
-        }, 1000)
+        getPayment(currentPage, sortOrder)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Paid, Please check the console')
@@ -153,7 +151,7 @@ function StatusPayment() {
             onChange={(pagination) => {
               console.log(pagination)
               setCurrentPage(pagination.current ?? 1)
-              getPayment(pagination.current ?? 1)
+              getPayment(pagination.current ?? 1, sortOrder)
               console.log(currentPage)
             }}
             pagination={{ total: totalItems }} />

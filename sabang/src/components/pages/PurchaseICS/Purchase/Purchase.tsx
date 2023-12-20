@@ -24,7 +24,7 @@ interface Purchases {
 
 function formatDate(timestamp: Date) {
   const year = timestamp.getFullYear();
-  const month = String(timestamp.getMonth() + 1).padStart(2, '0'); // Tambah 1 karena bulan dimulai dari 0
+  const month = String(timestamp.getMonth() + 1).padStart(2, '0');
   const day = String(timestamp.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 }
@@ -38,22 +38,21 @@ function Purchase() {
   const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>('DESC')
   const [isLoading, setIsLoading] = useState(true);
   const [number] = useState(1)
-  // const [search, setSearch] = useState('')
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
   useEffect(() => {
-    toggleSortOrder()
-    getPurchase(1)
+    setSortOrder('DESC')
+    getPurchase(1, 'DESC')
   }, [])
   const toggleSortOrder = () => {
     const newSortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
     setSortOrder(newSortOrder);
-    getPurchase(currentPage);
+    getPurchase(currentPage, newSortOrder);
   };
-  function getPurchase(page: number) {
+  function getPurchase(page: number, sortOrder: 'ASC' | 'DESC') {
     const token = localStorage.getItem('token');
     const config = {
       headers: {
@@ -78,9 +77,6 @@ function Purchase() {
         setIsLoading(false)
       })
   }
-  // function handleSearch(value: string) {
-  //   setSearch(value);
-  // }
   const deletePurchase = (purchaseId: number) => {
     axios.delete(`/purchases/${purchaseId}`, config)
       .then((response) => {
@@ -98,9 +94,7 @@ function Purchase() {
       .then((response) => {
         console.log(response.data)
         message.success('Status Checked')
-        setTimeout(() => {
-          window.location.reload()
-        }, 1000)
+        getPurchase(currentPage, sortOrder)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Checking, Please check the console')
@@ -112,9 +106,7 @@ function Purchase() {
       .then((response) => {
         console.log(response.data)
         message.success('Status Updated')
-        setTimeout(() => {
-          window.location.reload()
-        }, 1000)
+        getPurchase(currentPage, sortOrder)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Checking, Please check the console')
@@ -126,9 +118,7 @@ function Purchase() {
       .then((response) => {
         console.log(response.data)
         message.success('Status Audited')
-        setTimeout(() => {
-          window.location.reload()
-        }, 1000)
+        getPurchase(currentPage, sortOrder)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
         message.error('Error Checking, Please check the console')
@@ -264,7 +254,7 @@ function Purchase() {
             onChange={(pagination) => {
               console.log(pagination)
               setCurrentPage(pagination.current ?? 1)
-              getPurchase(pagination.current ?? 1)
+              getPurchase(pagination.current ?? 1, sortOrder)
               console.log(currentPage)
             }}
             pagination={{ total: totalItems }} />

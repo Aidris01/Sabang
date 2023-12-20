@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined, PrinterOutlined, SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons'
-import { Button, Input, message, Popconfirm, Space, Spin, Table, Typography } from 'antd'
+import { Button, message, Popconfirm, Space, Spin, Table, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from '../../api/axios'
@@ -29,8 +29,6 @@ function Production() {
   const createLabel = () => {
     navigate('/Production/CreateProduction')
   }
-  // const [searchOperator, setSearchOperator] = useState('');
-  // const [searchFactory, setSearchFactory] = useState('');
   const [totalItems, setTotalItems] = useState(0)
   const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>('DESC')
   const [currentPage, setCurrentPage] = useState(1)
@@ -44,15 +42,15 @@ function Production() {
     }
   }
   useEffect(() => {
-    toggleSortOrder()
-    getProduction(1)
+    setSortOrder('DESC')
+    getProduction(1, 'DESC')
   }, [])
   const toggleSortOrder = () => {
       const newSortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
       setSortOrder(newSortOrder);
-      getProduction(currentPage);
+      getProduction(currentPage, newSortOrder);
     };
-  function getProduction(page: number) {
+  function getProduction(page: number, sortOrder: 'ASC' | 'DESC') {
     const token = localStorage.getItem('token')
     const config = {
       headers: {
@@ -101,18 +99,12 @@ function Production() {
       title: 'Operator',
       dataIndex: 'creatorName',
       width: 200,
-      // filteredValue: searchOperator ? [searchOperator] : null,
-      // onFilter: (value: any, record: Productions) =>
-      //   record.creatorName.toLowerCase().startsWith(searchOperator.toLowerCase()),
     },
     {
       key: 'factory',
       title: 'Factory',
       dataIndex: 'factoryName',
       width: 200,
-      // filteredValue: searchFactory ? [searchFactory] : null,
-      // onFilter: (value: any, record: Productions) =>
-      //   record.factoryName.toLowerCase().startsWith(searchFactory.toLowerCase()),
     },
     {
       key: 'barcode',
@@ -544,7 +536,7 @@ function Production() {
             onChange={(pagination) => {
               console.log(pagination)
               setCurrentPage(pagination.current ?? 1)
-              getProduction(pagination.current ?? 1)
+              getProduction(pagination.current ?? 1, sortOrder)
               console.log(currentPage)
             }}
             pagination={{ total: totalItems }} />

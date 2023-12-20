@@ -42,6 +42,7 @@ function Checklist() {
       .then((response) => {
         message.success('Checklist deleted')
         console.log(response)
+        setDataSource((prevData) => prevData.filter((checklist) => checklist.id !== checklistId))
       }).catch((error) => {
         message.error('Error Ocured')
         console.error('Error Ocured: ', error)

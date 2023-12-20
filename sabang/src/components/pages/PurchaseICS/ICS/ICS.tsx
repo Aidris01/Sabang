@@ -28,15 +28,15 @@ function ICS() {
   const [currentPage, setCurrentPage] = useState(1)
   const [number] = useState(1)
   useEffect(() => {
-    toggleSortOrder()
-    getGarden(1)
+    setSortOrder(false)
+    getGarden(1, false)
   }, [])
   const toggleSortOrder = () => {
-    // const newSortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
-    setSortOrder(!sortOrder);
-    getGarden(currentPage);
+    const newSortOrder = sortOrder === true ? false : true
+    setSortOrder(newSortOrder);
+    getGarden(currentPage, newSortOrder);
   };
-  function getGarden(page: number) {
+  function getGarden(page: number, sortOrder: boolean) {
     const token = localStorage.getItem('token')
     const config = {
       headers: {
@@ -115,7 +115,7 @@ function ICS() {
             onChange={(pagination) => {
               console.log(pagination)
               setCurrentPage(pagination.current ?? 1)
-              getGarden(pagination.current ?? 1)
+              getGarden(pagination.current ?? 1, sortOrder)
               console.log(currentPage)
             }}
             pagination={{ total: totalItems }} />

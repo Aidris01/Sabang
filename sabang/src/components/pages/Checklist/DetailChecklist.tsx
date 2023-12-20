@@ -50,7 +50,7 @@ function DetailChecklist() {
   }, [])
   return (
     <div className='content'>
-      <Typography.Title level={4}>Detail Checklist</Typography.Title>
+      <Typography.Title level={4}>Detail Checklist - {checklistId}</Typography.Title>
       <div className="main-container">
         <Spin spinning={loading}>
           <Descriptions title='Checklist Detail' layout='vertical' className='form-container'>
