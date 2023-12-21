@@ -57,7 +57,7 @@ function Headers() {
     {
       key: '2',
       label: (
-        <a type='text' onClick={Logout}>
+        <a type='text' onClick={Logout} style={{color: 'red'}}>
           <PoweroffOutlined style={{ marginRight: 10 }} />Sign Out</a>
       )
     }
@@ -76,8 +76,7 @@ function Headers() {
         onOk={handleLogoutConfirm}
         onCancel={hideLogoutModal}
         okText='Ya'
-        cancelText='Batal'
-      >
+        cancelText='Batal'>
         Apakah Anda yakin ingin logout?
       </Modal>
     </div>
