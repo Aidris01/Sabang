@@ -238,11 +238,7 @@ function Purchase() {
     <div className='content'>
       <Typography.Title level={4}>Purchase</Typography.Title>
       <div className='main-container'>
-        {/* <Input.Search
-          placeholder='Cari Penyadap'
-          onSearch={handleSearch}
-          style={{ width: 200, marginLeft: 10, marginTop: 10 }} /> */}
-        <Button style={{marginTop: 10, marginLeft: 10}} onClick={toggleSortOrder}>
+        <Button style={{ marginTop: 10, marginLeft: 10 }} onClick={toggleSortOrder}>
           {sortOrder === 'ASC' ? <SortAscendingOutlined /> : <SortDescendingOutlined />}
           Sort {sortOrder === 'ASC' ? 'Ascending' : 'Descending'}
         </Button>

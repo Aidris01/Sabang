@@ -103,8 +103,8 @@ function ICS() {
       <div className='main-container'>
         <div style={{ margin: 10 }}>
           <Button onClick={toggleSortOrder}>
-            {sortOrder ? <SortAscendingOutlined /> : <SortDescendingOutlined />}
-            Sort {sortOrder ? 'Ascending' : 'Descending'}
+            {sortOrder === 'ASC' ? <SortAscendingOutlined /> : <SortDescendingOutlined />}
+            Sort {sortOrder === 'ASC' ? 'Ascending' : 'Descending'}
           </Button>
         </div>
         <Spin spinning={loading}>
