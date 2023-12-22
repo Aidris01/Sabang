@@ -22,21 +22,21 @@ function ICS() {
     document.title = 'Sabang | ICS'
   }, [])
   const [loading, setLoading] = useState(true)
-  const [sortOrder, setSortOrder] = useState<boolean>(false)
+  const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>('DESC')
   const [data, setData] = useState<Garden[]>([])
   const [totalItems, setTotalItems] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const [number] = useState(1)
   useEffect(() => {
-    setSortOrder(false)
-    getGarden(1, false)
+    setSortOrder('DESC')
+    getGarden(1, 'DESC')
   }, [])
   const toggleSortOrder = () => {
-    const newSortOrder = sortOrder === true ? false : true
+    const newSortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
     setSortOrder(newSortOrder);
     getGarden(currentPage, newSortOrder);
   };
-  function getGarden(page: number, sortOrder: boolean) {
+  function getGarden(page: number, sortOrder: 'ASC' | 'DESC') {
     const token = localStorage.getItem('token')
     const config = {
       headers: {
@@ -44,10 +44,10 @@ function ICS() {
       }
     }
     setLoading(true)
-    axios.get<{ data: Garden[], totalItems: number }>(`/garden-controls/paginated?page${page}&limit=10&sort=${sortOrder?'ASC':"DESC"}`, config)
+    axios.get<{ data: Garden[], total: number }>(`/garden-controls/paginated?page=${page}&limit=10&sort=${sortOrder}`, config)
       .then((response) => {
         const garden = response.data.data
-        setTotalItems(response.data.totalItems)
+        setTotalItems(response.data.total)
         setData(garden)
       }).catch((error) => {
         console.error('Error Ocured: ', error)
