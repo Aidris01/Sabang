@@ -34,7 +34,7 @@ function PrintBarcode() {
                 setLoading(false)
             })
     }, [])
-    const imgUrl = `api-sabang.xyz.co.id/productions/generate/${productionId}`
+    const imgUrl = `https://api-sabang.xyz.co.id/productions/generate/${productionId}`
     const printRef = useRef(null)
     const handlePrint = useReactToPrint({
         content: () => printRef.current
