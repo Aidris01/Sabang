@@ -1,0 +1,50 @@
+.parent-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: 100vh;
+    background-image: url(./img/background2.jpg);
+    background-size: cover;
+}
+.login-form {
+    width: 450px;
+    height: 20px;
+    display: block;
+    position: absolute;
+    top: 20vw;
+    right: 62vw;
+}
+.login-image {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+}
+.login-form h3 {
+    font-family: 'Courier New', Courier, monospace;
+    display: block;
+    position: absolute;
+    bottom: 200%;   
+    left: 35%;
+    font-weight: 100;
+}
+.submit-btn {
+    position: absolute;
+    top: 0px;
+    left: 1px;
+}
+.login-form button {
+    background-color: rgb(83, 83, 255);
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+    padding: 5px;
+    width: 100%;
+}
+.login-form button:hover {
+    cursor: pointer;
+    background-color: rgb(71, 71, 219);
+}

@@ -1,0 +1,19 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: fixed;
+  background-color: #FEFAE0;
+}
+
+.main-content {
+  position: absolute;
+  width: 80vw;
+  height: calc(100% - 65px);
+  top: 65px;
+  left: 20vw;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  background-color: #FEFAE0;
+  scrollbar-color: #B99470 #F9EBC7;
+}

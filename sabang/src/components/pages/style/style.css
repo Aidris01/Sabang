@@ -1,0 +1,157 @@
+.content {
+    display: flex;
+    flex: 1;
+    height: 100%;
+}
+.content h4 {
+    margin-left: 10px;
+    margin-top: 3vh;
+}
+.dashboard-page {
+    position: absolute;
+    padding: 5% 10px 10px 10px;
+    width: 76vw;
+}
+.ant-card {
+    width: 18vw;
+    background-color: #78937A;
+}
+.ant-table-thead .ant-table-cell {
+    background-color: #78937A !important;
+    color: white !important;
+}   
+.ant-statistic .ant-statistic-title {
+    color: white;
+}
+.ant-statistic-content-value {
+    color: white;
+}
+.ant-table-cell {
+    width: 10vw;
+    background-color: #B99470DD;
+    color: white !important;
+}
+tbody > tr:hover > td.ant-table-cell {
+    background-color: #B9947080 !important;
+    color: black !important;
+}
+.ant-table-wrapper {
+    padding: 15px;
+    padding-top: 20px;
+}
+.ant-tabs-nav-list {
+    padding-left: 10px;
+}
+.main-container {
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 10px;
+    width: 77vw;
+    height: auto;
+    background-color: #E9C8A954;
+    border: solid 0px rgba(46, 46, 46, 0.2);
+    border-radius: 5px;
+}
+.desc-container {
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 10px;
+    width: 77vw;
+    height: auto;
+    background-color: #E9C8A954;
+    border: solid 1px rgba(46, 46, 46, 0.2);
+    border-radius: 5px;
+}
+.form-container {
+    padding: 20px;
+}
+.img-container {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.barcode {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.input-upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px 0px 0px;
+    width: 500px;
+    height: 100px;
+    cursor: pointer;
+}
+.button-container {
+    display: flex;
+    justify-content: end;
+}
+.create-btn {
+    margin: 1px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.create-btn-user {
+    margin: 1px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.save-btn {
+    margin: 10px 10px 10px 0px;
+    width: 3cm;
+}
+.cancel-btn {
+    margin: 10px 10px 10px 0px;
+    width: 3cm;
+}
+.not-found {
+    width: 65vw;
+    position: fixed;
+    left: 20vw;
+    bottom: -50px;
+}
+.not-found-btn {
+    position: absolute;
+    margin-top: 5%;
+}
+.remove-btn {
+    position: absolute;
+    left: 75%;
+}
+.info {
+    margin: -20px 0px 10px 10px;
+}
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profile-btn {
+    margin: 0px 10px 10px 10px;
+    width: 8vw;
+    position: relative;
+    left: 45vw; 
+}
+.save-cancel-btn {
+    margin: 10px 10px 10px 10px;
+    width: 8vw;
+    position: relative;
+    left: 39vw;
+}
+.back-btn {
+    margin: 10px 10px 10px 0px;
+    width: 3cm;
+}
+.edit-btn {
+    margin: 10px 10px 10px 0px;
+    width: 3cm;
+}
