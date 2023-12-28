@@ -1,0 +1,16 @@
+stages:
+  - build
+
+build_prod:
+  stage: build
+  variables:
+    GIT_STRATEGY: clone
+  script:
+    - docker buildx use multi-platform-builder2
+    - docker buildx inspect --bootstrap
+    - docker buildx build --push --platform linux/arm/v8,linux/amd64 -f Dockerfile --tag asdfasdf.xyz.co.id:5050/web-sabang:1.0.0 .
+  only:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /build/
+  tags:
+    - shell_runner
