@@ -98,7 +98,7 @@ function CreateFactory() {
             </Col>
             <Col span={12}>
               <LoadScript
-                googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY!}>
+                googleMapsApiKey={"AIzaSyA4fGgrBw6A8PDNQg6hql07DciZSWrt9qw"}>
                 <GoogleMap
                   onClick={handleMapClick}
                   mapContainerStyle={containerStyle}

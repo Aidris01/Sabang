@@ -8,7 +8,7 @@ build_prod:
   script:
     - docker buildx use multi-platform-builder2
     - docker buildx inspect --bootstrap
-    - docker buildx build --push --platform linux/arm/v8,linux/amd64 -f Dockerfile --tag asdfasdf.xyz.co.id:5050/web-sabang:1.0.2 .
+    - docker buildx build --push --platform linux/arm/v8,linux/amd64 -f Dockerfile --tag asdfasdf.xyz.co.id:5050/web-sabang:1.0.3 .
   only:
     variables:
       - $CI_COMMIT_MESSAGE =~ /build/
