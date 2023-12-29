@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default axios.create({
-    baseURL: 'http://192.168.102.151:3001'
+    baseURL: 'https://api-sabang.xyz.co.id/'
 });
 
 
